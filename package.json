@@ -13,8 +13,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@datawheel/canon-cms": "^0.13.30",
-    "@datawheel/canon-core": "^0.18.28",
+    "@datawheel/canon-cms": "^0.14.12",
+    "@datawheel/canon-core": "^0.19.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "@datawheel/eslint-config": "latest",
+    "@types/react-router": "^3.0.24",
     "babel-eslint": ">=6",
     "eslint": ">=3",
     "eslint-plugin-react": ">=7"
