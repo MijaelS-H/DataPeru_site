@@ -215,3 +215,6 @@ stat-value-color:           "var(--accent-dark)"
 stat-subtitle-font-size:    "var(--font-xs)"
 stat-subtitle-color:        "var(--dark-1)"
 stat-group-stat-width:      "9rem"
+
+# peru colors
+gpe-red-1:          "#9F2241"
