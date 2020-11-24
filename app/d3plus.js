@@ -12,7 +12,7 @@ const fontSizeLg = 16;
 const labelPadding = 5;
 const shapeLegend = 25;
 
-const icons = ["Continente", "Capítulo"];
+const icons = ["Continente", "Capítulo", "Trade Flow"];
 
 const getTooltipTitle = (d3plusConfig, d) => {
   const len = d3plusConfig._groupBy.length;
@@ -63,7 +63,7 @@ export const findIconV2 = (key, d) => {
   // const options = {2: "export", 1: "import"};
   // console.log(key, d);
   if (key === "Pais") {
-    const icon = (key === "Pais" && Array.isArray(d["Pais ID"])) ? d["Continente ID"] : d[`${key} ID`];
+    const icon = key === "Pais" && Array.isArray(d["Pais ID"]) ? d["Continente ID"] : d[`${key} ID`];
     return `/icons/visualizations/Pais/country_${icon}.png`;
   }
   const icon = key;
@@ -71,7 +71,7 @@ export const findIconV2 = (key, d) => {
 
   return icons.includes(icon)
     ? `/icons/visualizations/${icon}/png/white/${iconID}.png`
-    : undefined;
+    : "/icons/visualizations/others.png";
 };
 
 /** default x/y axis styles */
@@ -114,6 +114,7 @@ const axisConfig = {
 export default {
   // global defaults
   aggs: {
+    "Indicador Tributo ID": mean,
     "Trade Flow ID": mean,
     "Year": mean
   },
