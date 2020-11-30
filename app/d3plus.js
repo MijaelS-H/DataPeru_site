@@ -42,6 +42,7 @@ export const findColorV2 = (key, d) => {
     if (!Array.isArray(d["Pais ID"])) return "transparent";
     else return colors.Continente[d["Continente ID"]];
   }
+
   const id = d[`${key} ID`];
 
   const palette = colors[key];
@@ -114,6 +115,8 @@ const axisConfig = {
 export default {
   // global defaults
   aggs: {
+    "Concepto ID": mean,
+    "Subconcepto ID": mean,
     "Indicador Tributo ID": mean,
     "Trade Flow ID": mean,
     "Year": mean
