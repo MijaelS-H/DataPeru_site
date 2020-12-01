@@ -31,6 +31,11 @@ const getTooltipTitle = (d3plusConfig, d) => {
     item = Object.entries(d).find(h => h[0] === itemId) || [undefined];
   }
 
+  if (itemId === "ISO 3") {
+    itemId = "Pais";
+    item = Object.entries(d).find(h => h[0] === itemId) || [undefined];
+  }
+
   return {item, itemId, parent, parentId};
 };
 
@@ -38,7 +43,7 @@ const growthPct = d => `${formatAbbreviate(d * 100)}%`;
 const pesoPE = d => `S/ ${formatAbbreviate(d * 100)}`;
 
 export const findColorV2 = (key, d) => {
-  if (key === "Pais") {
+  if (key === "Pais" || key === "ISO 3") {
     if (!Array.isArray(d["Pais ID"])) return "transparent";
     else return colors.Continente[d["Continente ID"]];
   }
@@ -63,7 +68,7 @@ export const tooltipTitle = (bgColor, imgUrl, title) => {
 export const findIconV2 = (key, d) => {
   // const options = {2: "export", 1: "import"};
   // console.log(key, d);
-  if (key === "Pais") {
+  if (key === "Pais" || key === "ISO 3") {
     const icon = key === "Pais" && Array.isArray(d["Pais ID"]) ? d["Continente ID"] : d[`${key} ID`];
     return `/icons/visualizations/Pais/country_${icon}.png`;
   }
@@ -88,7 +93,7 @@ const axisConfig = {
     strokeWidth: 1
     // opacity: 0.5
   },
-  locale: "es-MX",
+  locale: "es-CL",
   // axis title labels
   titleConfig: {
     fontFamily: () => typeface,
@@ -211,7 +216,7 @@ export default {
   legendTooltip: {
     title(d) {
       const {item, parent, parentId} = getTooltipTitle(this, d);
-      const title = Array.isArray(item[1]) ? `${parent[1] || "Values"}` : item[1];
+      const title = Array.isArray(item[1]) ? `${parent[1] || "Valores"}` : item[1];
       const itemBgImg = parentId;
       const bgColor = findColorV2(itemBgImg, d);
       const imgUrl = findIconV2(itemBgImg, d);
