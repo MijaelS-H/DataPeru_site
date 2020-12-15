@@ -39,14 +39,14 @@ module.exports = function(app) {
       // Industry profile
       case 5:
         const industryDictionary = {
-          1: "A",
-          2: "B",
-          3: "C",
-          4: "D",
-          5: "F",
-          6: "G",
-          7: "H",
-          8: "S"
+          A: 1,
+          B: 2,
+          C: 3,
+          D: 4,
+          F: 5,
+          G: 6,
+          H: 7,
+          S: 8
         };
 
         const customHierarchy = "Industria";
