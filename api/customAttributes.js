@@ -36,6 +36,27 @@ module.exports = function(app) {
           isNationOrDepartmentOrProvince
         });
 
+      // Industry profile
+      case 5:
+        const industryDictionary = {
+          1: "A",
+          2: "B",
+          3: "C",
+          4: "D",
+          5: "F",
+          6: "G",
+          7: "H",
+          8: "S"
+        };
+
+        const customHierarchy = "Industria";
+        const customId = industryDictionary[id1] || false;
+
+        return res.json({
+          customHierarchy,
+          customId
+        });
+
       default:
         return res.json({});
     }

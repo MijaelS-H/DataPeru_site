@@ -122,6 +122,7 @@ export default {
   aggs: {
     "Concepto ID": mean,
     "Elemento PIB ID": mean,
+    "Elemento FBC ID": mean,
     "Subconcepto ID": mean,
     "Indicador Tributo ID": mean,
     "Trade Flow ID": mean,
