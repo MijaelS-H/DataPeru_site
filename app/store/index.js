@@ -1,5 +1,3 @@
-import {cmsReducer} from "@datawheel/canon-cms";
-
 /**
  * This object will be used to pre-populate the redux store with any
  * static values you may need.
@@ -12,21 +10,7 @@ export const initialState = {};
  */
 export const middleware = [];
 
-if (__DEV__ && !__SERVER__) {
-  const {createLogger} = require("redux-logger");
-
-  // You can apply any of these recipes freely
-  // https://www.npmjs.com/package/redux-logger#recipes
-  const loggerMiddleware = createLogger({
-    collapsed: (getState, action, logEntry) => !logEntry?.error
-  });
-  middleware.push(loggerMiddleware);
-}
-
-/**
- * This object should contain reducers to be combined with the internal
- * default canon reducers.
- */
+import {cmsReducer} from "@datawheel/canon-cms";
 export const reducers = {
   cms: cmsReducer
 };

@@ -1,0 +1,62 @@
+{
+  "CMS": {
+    "Options": {
+      "Close": "Cerrar",
+      "Copied": "Copiado",
+      "Copy": "Copiar",
+      "Direct link": "Enlace",
+      "Download": "Descargar",
+      "Download as CSV": "Descargar CSV",
+      "Endpoint": "API",
+      "Image Format": "Formato de imagen",
+      "Image area": "Área de imagen",
+      "Loading Data": "Cargando datos...",
+      "Processing image": "Procesando imagen",
+      "Save Image": "Guardar imagen",
+      "Save visualization as": "Guardar visualización",
+      "Scroll to section": "Scroll a la sección",
+      "Share": "Compartir",
+      "Share on Facebook": "Compartir en Facebook",
+      "Share on Twitter": "Compartir en Twitter",
+      "Social": "Social",
+      "Transparent Background": "Fondo Transparente",
+      "View Data": "Ver datos",
+      "Visualization options": "Opciones de visualización",
+      "entire section": "Sección completa",
+      "visualization only": "Solo visualización"
+    },
+    "Search": {
+      "Empty": "Por favor ingrese un término de búsqueda",
+      "Loading": "Cargando resultados...",
+      "No results": "No se encontraron resultados \"{{query}}\"",
+      "Related Profiles": "Perfiles similares",
+      "Search profiles": "Buscar perfiles",
+      "reset": "restablecer"
+    },
+    "Section": {
+      "Reset visualizations": "Restablecer visualizaciones"
+    },
+    "SourceGroup": {
+      "Data provided by": "Fuente",
+      "and": "y"
+    },
+    "Table": {
+      "Loading": "Cargando...",
+      "Next": "Siguiente",
+      "No rows found": "No se encontraron resultados",
+      "Page": "Página",
+      "Previous": "Anterior",
+      "of": "de",
+      "rows": "filas"
+    }
+  },
+  "Profile": {
+    "Geo Description": "Explore las estadísticas sobre economía, empleo, equidad, calidad de vida, educación, salud y seguridad pública en {{name}}",
+    "Geo Title": "{{name}}: Economía, empleo, equidad, calidad de vida, educación, salud y seguridad pública",
+    "Industry Description": "Explore las estadísticas sobre salarios, producción, inversión, oportunidades y complejidad en la industria {{name}}",
+    "Industry Title": "{{name}}: Salarios, producción, inversión, oportunidades y complejidad",
+    "CITE Description": "Explore las estadísticas sobre situación estudiantil, matrículas y graduaciones de la institución: {{name}}",
+    "CITE Title": "{{name}}: Situación estudiantil, matrículas y graduaciones",
+    "Search Placeholder": "Buscar perfiles..."
+  }
+}
