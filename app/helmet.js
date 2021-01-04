@@ -1,6 +1,8 @@
 export default {
   link: [
-    {rel: "icon", href: "favicon.ico"}
+    {rel: "icon", href: "favicon.ico"},
+    {rel: "preconnect", href: "https://fonts.gstatic.com/", crossorigin: ""},
+    {rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Fira+Sans:wght@200;300;400;500;600;700&family=Fira+Sans+Extra+Condensed:wght@200;300;400;500;600;700&display=swap"}
   ],
   meta: [
     {charset: "utf-8"},
