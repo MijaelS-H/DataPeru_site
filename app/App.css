@@ -4,6 +4,70 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
+/* Viz header tests */
+.cp-single-column-section {
+  & .cp-viz-container > .cp-viz-header + .cp-viz-figure {
+    height: 20rem !important;
+  }
+}
+
+.cp-viz-container > .cp-viz-header {
+  justify-content: center;
+}
+
+.cp-viz-container {
+  height: 100% !important;
+  width: 100%;
+  margin-top: 20px;
+  min-height: 400px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex: 1;
+  min-width: 300px;
+  padding: 0 var(--gutter-sm);
+  & > .cp-viz-header + .cp-viz-figure {
+    bottom: 3rem;
+    height: auto !important;
+    flex: 1;
+    top: 3rem;
+    width: 100%;
+  }
+}
+
+.cp-viz-container > .cp-viz-header > .cp-viz-title {
+  font-weight: 400;
+}
+
+.Options {
+  right: 0px;
+  position: absolute;
+  top: -40px;
+  background-color: var(--light-2);
+  & .cp-button-icon {
+    color: var(--dark-1);
+    margin: 5px;
+  }
+  & .options-button {
+    align-items: center;
+  }
+  & .options-button-group {
+    display: flex;
+    flex-wrap: wrap;
+    width: 6rem;
+    justify-content: space-between;
+    & .options-button {
+      flex: 1;
+      display: flex;
+      max-width: 50px;
+      min-width: 10px;
+      padding: 0;
+      font-size: var(--font-md);
+      justify-content: center;
+    }
+  }
+}
+
 /* Tooltip */
 .d3plus-tooltip {
   width: 220px !important;

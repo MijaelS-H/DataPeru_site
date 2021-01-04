@@ -102,9 +102,12 @@ font-xxl:                   "2rem"     # 32px - use sparingly
 
 # base (p, li, etc.)
 base-font-stack:            "'Lato', 'Trebuchet MS', sans-serif" # Remember to import custom fonts & only the necessary weights via Helmet.js
+base-font-stack-condensed:  "'Fira Sans Extra Condensed', 'Trebuchet MS', sans-serif"
 base-font-weight:           "400"
 base-letter-spacing:        "0"
-bold-weight:                "800"
+light-bold-weight:          "500"
+bold-weight:                "600"
+light-weight:               "200"
 
 # headings (h1, h2, etc.; .heading class)
 heading-font-stack:         "var(--base-font-stack)"
@@ -208,7 +211,7 @@ percentage-bar-color:       "var(--accent-dark)"
 percentage-bar-radius:      "0.5em"
 
 # stats
-stat-label-font-size:       "var(--font-sm)"
+stat-label-font-size:       "var(--font-xs)"
 stat-label-color:           "inherit"
 stat-value-font-size:       "var(--font-xl)"
 stat-value-color:           "var(--accent-dark)"

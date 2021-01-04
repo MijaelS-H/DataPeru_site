@@ -1,0 +1,21 @@
+.Options {
+  & .cp-button {
+    border: none;
+    border-radius: 0;
+  }
+}
+
+.cp-viz-title {
+  font-weight: 600;
+  margin: 0 var(--gutter-sm);
+  text-align: center;
+  & .dpe-click2select {
+    color: var(--gpe-red-1) !important;
+  }
+}
+
+.options-button-group {
+  & .cp-button-text {
+    display: none;
+  }
+}
