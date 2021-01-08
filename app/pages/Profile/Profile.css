@@ -135,6 +135,32 @@
   }
 }
 
+.cp-graphic-viz-container {
+  display: flex;
+  flex: 0 0;
+  margin-top: 0!important;
+  min-height: 0;
+
+  & .cp-graphic {
+    display: flex;
+    flex-direction: row;
+
+    & .cp-graphic-img {
+      height: 4rem;
+      margin-right: 0.5rem;
+    }
+
+    & .cp-stat-value {
+      display: flex;
+      flex-direction: column-reverse;
+
+      & .cp-stat-value-text {
+        text-transform: capitalize;
+      }
+    }
+  }
+}
+
 .Options {
   & .cp-button {
     border: none;
