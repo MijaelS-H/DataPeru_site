@@ -49,12 +49,31 @@ module.exports = function(app) {
           S: 8
         };
 
+        const enaveIndustryDictionary = {
+          A: 1,
+          G: 2,
+          J: 3,
+          F: 4,
+          D: 5,
+          K: 6,
+          I: 7,
+          C: 8,
+          B: 9,
+          S: 10,
+          H: 11
+        };
+
         const customHierarchy = "Industria";
         const customId = industryDictionary[id1] || false;
 
+        const enaveHierarchy = "Industria";
+        const enaveId = enaveIndustryDictionary[id1] || false;
+
         return res.json({
           customHierarchy,
-          customId
+          customId,
+          enaveHierarchy,
+          enaveId
         });
 
       default:
