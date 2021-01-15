@@ -1,0 +1,9 @@
+bs4
+fiona
+geojson
+geopandas
+numpy
+pandas
+pytopojson
+requests
+topojson

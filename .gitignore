@@ -12,6 +12,10 @@ node_modules
 # environment variable files for autoenv and direnv
 .env
 .envrc
+env.bat
+
+# virtual enviroment
+/venv
 
 # docker files
 dockerfiles/nginx/certs/*
@@ -22,3 +26,13 @@ ecosystem.config.js
 
 # google credentials
 dataperu-gcp-bucket-token.json
+
+# created topojsons
+/static/topojson/cultura_artes.json
+/static/topojson/museos.json
+/static/topojson/paisaje_cultural_.json
+/static/topojson/paisaje_cultural.json
+/static/topojson/patrimonio_inmaterial_.json
+/static/topojson/patrimonio_inmaterial.json
+/static/topojson/reserva_indigena_.json
+/static/topojson/reserva_indigena.json
