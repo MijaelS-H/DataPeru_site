@@ -3,13 +3,20 @@ const axios = require("axios");
 let {CANON_CMS_CUBES} = process.env;
 if (CANON_CMS_CUBES.substr(-1) === "/") CANON_CMS_CUBES = CANON_CMS_CUBES.substr(0, CANON_CMS_CUBES.length - 1);
 
-const BASE_URL = "/api/departmentProperties/";
+const BASE_URL = "/api/departmentProperties";
+
+const yn = require("yn");
+const verbose = yn(process.env.CANON_CMS_LOGGING);
+const catcher = error => {
+  if (verbose) console.error("Department Properties API Error:", error);
+  return [];
+};
 
 module.exports = function(app) {
   app.get(BASE_URL, async(req, res) => {
     try {
       const provincesListAPI = `${CANON_CMS_CUBES}/data.jsonrecords?cube=dimension_ubigeo_district&drilldowns=Provincia&measures=Variable+conteo&parents=true&sparse=false`;
-      const citeListAPI = `${CANON_CMS_CUBES}/data.jsonrecords?cube=itp_cite_ejecucion_presupuestal&drilldowns=CITE&measures=Ejecución+presupuestal&parents=false&sparse=false&properties=Ubigeo`;
+      const citeListAPI = `${CANON_CMS_CUBES}/data.jsonrecords?cube=itp_cite_ejecucion_presupuestal&drilldowns=CITE&measures=Ejecuci%C3%B3n+presupuestal&parents=false&sparse=false&properties=Ubigeo`;
 
       const data = await axios.all([axios.get(provincesListAPI), axios.get(citeListAPI)])
         .then(resp => {
@@ -21,34 +28,36 @@ module.exports = function(app) {
           const provincesByDepartmentList = [];
 
           provincesList.reduce((res, value) => {
-            const key = value["Department ID"];
+            const key = value["Departamento ID"];
 
-            if (!key) {
+            if (!res[key]) {
               res[key] = {
-                "Department ID": key,
-                "Province Count": 0
+                "Departamento ID": key,
+                "Departamento": value.Departamento,
+                "Provincia Count": 0
               };
               provincesByDepartmentList.push(res[key]);
             }
 
-            res[key]["Province Count"] += 1;
+            res[key]["Provincia Count"] += 1;
             return res;
           }, {});
+
 
           // Group CITEs by Department
 
           citeList.forEach(d => {
-            d["Department ID"] = d.Ubigeo.slice(-2);
+            d["Departamento ID"] = d.Ubigeo.slice(0, 2);
           });
 
           const citesByDepartmentList = [];
 
           citeList.reduce((res, value) => {
-            const key = value["Department ID"];
+            const key = value["Departamento ID"];
 
-            if (!key) {
+            if (!res[key]) {
               res[key] = {
-                "Department ID": key,
+                "Departamento ID": key,
                 "CITE Count": 0
               };
               citesByDepartmentList.push(res[key]);
@@ -60,11 +69,12 @@ module.exports = function(app) {
 
           provincesByDepartmentList.forEach(d =>
             d["CITE Count"] = citesByDepartmentList.find(h =>
-              h["Department ID"] === d["Department ID"])["CITE Count"]
+              h["Departamento ID"] === d["Departamento ID"]) ? citesByDepartmentList.find(h =>
+                h["Departamento ID"] === d["Departamento ID"])["CITE Count"] : 0
           );
 
-          return provincesList;
-        });
+          return provincesByDepartmentList.flat();
+        }).catch(catcher);
 
       res.json({
         data
@@ -72,7 +82,6 @@ module.exports = function(app) {
     }
     catch (e) {
       console.error("Departement Properties API Error:", e);
-      return [];
     }
   });
 };
