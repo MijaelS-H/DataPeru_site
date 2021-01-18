@@ -5,17 +5,13 @@ if (CANON_CMS_CUBES.substr(-1) === "/") CANON_CMS_CUBES = CANON_CMS_CUBES.substr
 
 const BASE_URL = "/api/departmentProperties/";
 
-const headers = {
-  headers: {}
-};
-
 module.exports = function(app) {
   app.get(BASE_URL, async(req, res) => {
     try {
-      const provincesListAPI = `${CANON_CMS_CUBES}/tesseract/data.jsonrecords?cube=dimension_ubigeo_district&drilldowns=Provincia&measures=Variable+conteo&parents=true&sparse=false`;
-      const citeListAPI = `${CANON_CMS_CUBES}/tesseract/data.jsonrecords?cube=itp_cite_ejecucion_presupuestal&drilldowns=CITE&measures=Ejecución+presupuestal&parents=false&sparse=false&properties=Ubigeo`;
+      const provincesListAPI = `${CANON_CMS_CUBES}/data.jsonrecords?cube=dimension_ubigeo_district&drilldowns=Provincia&measures=Variable+conteo&parents=true&sparse=false`;
+      const citeListAPI = `${CANON_CMS_CUBES}/data.jsonrecords?cube=itp_cite_ejecucion_presupuestal&drilldowns=CITE&measures=Ejecución+presupuestal&parents=false&sparse=false&properties=Ubigeo`;
 
-      const data = await axios.all([axios.get(provincesListAPI, headers), axios.get(citeListAPI, headers)])
+      const data = await axios.all([axios.get(provincesListAPI), axios.get(citeListAPI)])
         .then(resp => {
           const provincesList = resp[0].data.data;
           const citeList = resp[1].data.data;
