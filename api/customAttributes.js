@@ -25,7 +25,9 @@ module.exports = function(app) {
         const isDistrict = hierarchy1 === "Distrito" ? true : false;
 
         const isNationOrDepartment = ["Nacion", "Departamento"].includes(hierarchy1) ? true : false;
+        const isNationOrProvince = ["Nacion", "Provincia"].includes(hierarchy1) ? true : false;
         const isNationOrDepartmentOrProvince = ["Nacion", "Departamento", "Provincia"].includes(hierarchy1) ? true : false;
+        const isDepartmentOrProvince = ["Departamento", "Provincia"].includes(hierarchy1) ? true : false;
 
         return res.json({
           isNation,
@@ -33,7 +35,35 @@ module.exports = function(app) {
           isProvince,
           isDistrict,
           isNationOrDepartment,
-          isNationOrDepartmentOrProvince
+          isNationOrProvince,
+          isNationOrDepartmentOrProvince,
+          isDepartmentOrProvince
+        });
+
+        // CITE profile
+
+      case 4:
+        const citeParams = {
+          cube: "dimension_cite",
+          drilldowns: "CITE",
+          measures: "Variable conteo",
+          properties: "Categoria",
+          [hierarchy1]: id1
+        };
+
+        const citeData = await axios
+          .get(BASE_API, {params: citeParams})
+          .then(resp => resp.data.data)
+          .catch(catcher);
+
+        const citeCategory = citeData[0].Categoria;
+        const isPublicCite = citeCategory === "público" ? true : false;
+        const isPrivateCite = !isPublicCite;
+
+        return res.json({
+          citeCategory,
+          isPublicCite,
+          isPrivateCite
         });
 
       // Industry profile
