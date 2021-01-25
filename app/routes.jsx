@@ -3,7 +3,7 @@ import {Route, IndexRoute, browserHistory} from "react-router";
 import {Builder} from "@datawheel/canon-cms";
 
 import {App} from "./App";
-import {Home} from "./pages/Home";
+import Home from "./pages/Home";
 import Profile from "./pages/Profile/Profile";
 
 /**

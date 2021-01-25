@@ -33,6 +33,7 @@ gray:         "#AEBDCC"
 dark-1:       "#8A97AE"
 dark-2:       "#2A2F3B"
 dark-3:       "#20242E"
+dark-4:       "#20242E"
 black:        "#181A21"
 
 # accent colors
@@ -220,4 +221,4 @@ stat-subtitle-color:        "var(--dark-1)"
 stat-group-stat-width:      "9rem"
 
 # peru colors
-gpe-red-1:          "#9F2241"
+gpe-red-1:          "#bf0909"
