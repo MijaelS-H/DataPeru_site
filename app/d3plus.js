@@ -12,7 +12,8 @@ const fontSizeLg = 16;
 const labelPadding = 5;
 const shapeLegend = 25;
 
-const icons = ["Continente", "Capítulo", "Trade Flow"];
+const icons = ["Continente", "Capítulo", "Contribuyente", "Seccion", "Subcategoria", "Trade Flow"];
+const activeIcons = ["Continente", "Capítulo", "Trade Flow"];
 
 const getTooltipTitle = (d3plusConfig, d) => {
   const len = d3plusConfig._groupBy.length;
@@ -48,6 +49,22 @@ export const findColorV2 = (key, d) => {
     else return colors.Continente[d["Continente ID"]];
   }
 
+  if (key === "Componente" && Object.keys(d).includes("Flujo")) {
+    return colors["Componente PIP"][d["Componente ID"]];
+  }
+
+  if (key === "Seccion" && Object.keys(d).includes("Empresas")) {
+    return colors["Seccion CITE"][d["Seccion ID"]];
+  }
+
+  if (key === "Subcategoria" && Object.keys(d).includes("Servicios")) {
+    return colors["Servicio CITE"][d["Subcategoria ID"]];
+  }
+
+  if (key === "Producto" && Object.keys(d).includes("Desembarque")) {
+    return colors["Producto Pesquero"][d["Producto ID"]];
+  }
+
   const id = d[`${key} ID`];
 
   const palette = colors[key];
@@ -76,8 +93,10 @@ export const findIconV2 = (key, d) => {
   const iconID = d[`${key} ID`];
 
   return icons.includes(icon)
-    ? `/icons/visualizations/${icon}/png/white/${iconID}.png`
-    : "/icons/visualizations/others.png";
+    ? activeIcons.includes(icon)
+      ? `/icons/visualizations/${icon}/png/white/${iconID}.png`
+      : "/icons/visualizations/others.png"
+    : undefined;
 };
 
 /** default x/y axis styles */
@@ -120,6 +139,7 @@ const axisConfig = {
 export default {
   // global defaults
   aggs: {
+    "Componente ID": mean,
     "Concepto ID": mean,
     "Elemento PIB ID": mean,
     "Elemento FBC ID": mean,
@@ -145,6 +165,7 @@ export default {
         const item = this._parent._groupBy[0](d);
         let itemId = Object.entries(d).find(h => h[1] === item)[0];
         if (itemId.includes(" ID")) itemId = itemId.replace(" ID", "");
+
         return findColorV2(itemId, d);
       },
       backgroundImage(d, i) {
@@ -195,11 +216,12 @@ export default {
       }
     },
     color: [
-      "#84F0EE",
-      "#4FBEBC",
-      "#008E8D",
-      "#006160",
-      "#005253"
+      "#BF0909",
+      "#B6004C",
+      "#912A74",
+      "#5D4281",
+      "#4E73F0",
+      "#0095FC"
     ],
     legendConfig: {
       shapeConfig: {
