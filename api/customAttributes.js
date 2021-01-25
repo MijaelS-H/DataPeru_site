@@ -60,10 +60,87 @@ module.exports = function(app) {
         const isPublicCite = citeCategory === "público" ? true : false;
         const isPrivateCite = !isPublicCite;
 
+        const citeAgroindustrialParams = {
+          cube: "itp_cite_mercado_interno_agroindustrial",
+          drilldowns: "CITE",
+          measures: "Produccion"
+        };
+
+        const citeCamelidoParams = {
+          cube: "itp_cite_mercado_interno_camelido",
+          drilldowns: "CITE",
+          measures: "Produccion"
+        };
+
+        const citeCueroCalzadoParams = {
+          cube: "itp_cite_mercado_interno_cuero",
+          drilldowns: "CITE",
+          measures: "Produccion"
+        };
+
+        const citePesqueroParams = {
+          cube: "itp_cite_mercado_interno_pesquero",
+          drilldowns: "CITE",
+          measures: "Desembarque"
+        };
+
+        const isAgroindustrialOrProductiveCite = await axios
+          .get(BASE_API, {params: citeAgroindustrialParams})
+          .then(resp => {
+            const data = resp.data.data;
+
+            const citeList = data.map(d => d["CITE ID"]);
+            const isAgroindustrialOrProductiveCite = citeList.includes(id1 * 1) ? true : false;
+
+            return isAgroindustrialOrProductiveCite;
+          })
+          .catch(catcher);
+
+        const isCamelido = await axios
+          .get(BASE_API, {params: citeCamelidoParams})
+          .then(resp => {
+            const data = resp.data.data;
+
+            const citeList = data.map(d => d["CITE ID"]);
+            const isCamelido = citeList.includes(id1 * 1) ? true : false;
+
+            return isCamelido;
+          })
+          .catch(catcher);
+
+
+        const isCueroYCalzado = await axios
+          .get(BASE_API, {params: citeCueroCalzadoParams})
+          .then(resp => {
+            const data = resp.data.data;
+
+            const citeList = data.map(d => d["CITE ID"]);
+            const isCueroYCalzado = citeList.includes(id1 * 1) ? true : false;
+
+            return isCueroYCalzado;
+          })
+          .catch(catcher);
+
+        const isPesquero = await axios
+          .get(BASE_API, {params: citePesqueroParams})
+          .then(resp => {
+            const data = resp.data.data;
+
+            const citeList = data.map(d => d["CITE ID"]);
+            const isPesquero = citeList.includes(id1 * 1) ? true : false;
+
+            return isPesquero;
+          })
+          .catch(catcher);
+
         return res.json({
           citeCategory,
           isPublicCite,
-          isPrivateCite
+          isPrivateCite,
+          isAgroindustrialOrProductiveCite,
+          isCamelido,
+          isCueroYCalzado,
+          isPesquero
         });
 
       // Industry profile
