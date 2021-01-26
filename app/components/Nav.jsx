@@ -103,11 +103,12 @@ class Nav extends React.Component {
         </button>
       </div>
       <div className={classnames("nav-center", {"active-searchbar": isSearchOpen})}>
-        {(logo || className === "background") && <a className="profile-logo" href={`/${lng}`} data-refresh="true"><img src="/icons/logo-horizontal.png" alt="" /></a>}
-        <span className="nav-subtitle">{title}</span>
+        {/* {(logo || className === "background") && <a className="profile-logo" href={`/${lng}`} data-refresh="true"><img src="/icons/logo-horizontal.png" alt="" /></a>}
+        <span className="nav-subtitle">{title}</span>*/}
+        DataITPRed<span className="nav-logo">CITE</span>
       </div>
       <div className="nav-right">
-        {routePath !== "/:lang" &&
+        {/* {routePath !== "/:lang" &&
           <div className={classnames("search-button", "search-nav", {active: isSearchOpen})}>
             <Icon icon="search" className="click" onClick={() => this.setState({isSearchOpen: !isSearchOpen})} />
             <InputGroup
@@ -116,7 +117,7 @@ class Nav extends React.Component {
               autoFocus={true}
               onChange={this.handleSearch}
             />
-            {/* <ul className={classnames("results", {active: isSearchOpen})}>
+            <ul className={classnames("results", {active: isSearchOpen})}>
               {resultsFilter.map((d, i) => <SearchResult
                 key={`search_result_${d.id}_${i}`}
                 id={d.id}
@@ -124,9 +125,9 @@ class Nav extends React.Component {
                 title={d.name}
                 level={d.level}
               />)}
-              </ul>*/}
+            </ul>
           </div>
-        }
+        }*/}
       </div>
     </div>;
   }

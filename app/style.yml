@@ -90,6 +90,8 @@ gutter-sm:                  "0.75rem"
 gutter-md:                  "1.5rem"
 gutter-lg:                  "2.25rem"
 gutter-xl:                  "3rem"
+gutter-xxl:                 "6rem"
+gutter-xxxl:                "9rem"
 
 # typography
 font-xxxs:                  "0.5rem"   # 8px  - use sparingly

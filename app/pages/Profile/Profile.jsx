@@ -9,7 +9,7 @@ import {withNamespaces} from "react-i18next";
 
 // import Error from "../Error/Error";
 // import Footer from "../../components/Footer";
-// import Nav from "../../components/Nav";
+import Nav from "../../components/Nav";
 
 // import {spanishLabels} from "helpers/spanishLabels";
 
@@ -56,10 +56,10 @@ class Profile extends React.Component {
   };
 
   render() {
-    const {profile, t, baseUrl} = this.props;
+    const {profile, t, baseUrl, router} = this.props;
 
     const {variables} = profile;
-    // const {scrolled} = this.state;
+    const {scrolled} = this.state;
 
     let desc = "", slug = "", title = "";
     // if (profile && profile.errorCode && profile.errorCode === 404) return <Error />;
@@ -99,12 +99,12 @@ class Profile extends React.Component {
     return <div id="Profile" onScroll={this.handleScroll}>
       <HelmetWrapper info={share} />
 
-      {/* <Nav
+      <Nav
         className={scrolled ? "background" : ""}
         title={scrolled ? variables.name : ""}
-        routePath={this.props.route.path}
+        // routePath={this.props.route.path}
         routeParams={this.props.router.params}
-      /> */}
+      />
 
       <CMSProfile {...this.props} searchProps={searchProps} />
 

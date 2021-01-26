@@ -40,6 +40,8 @@
 
 .hero-search-link {
   /* sizing */
+  align-items: center;
+  display: flex;
   margin: 0;
   padding: 0.5em 1.5em;
   line-height: 2rem; /* defines height of entire search box */
@@ -65,8 +67,9 @@
 /* main search input */
 .hero-search-input {
   /* sizing */
+  height: 3.5rem;
   width: 100%;
-  padding-left: 2.375rem; /* make room for search icon */
+  padding-left: 1rem; /* make room for search icon */
   /* theming */
   border: none;
   border-top-left-radius: 10px;

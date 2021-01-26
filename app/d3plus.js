@@ -65,6 +65,10 @@ export const findColorV2 = (key, d) => {
     return colors["Producto Pesquero"][d["Producto ID"]];
   }
 
+  if (key === "Year" && Object.keys(d).includes("Producto") && Object.keys(d).includes("Unidad")) {
+    return colors["Producto Cuero"][d["Producto ID"]];
+  }
+
   const id = d[`${key} ID`];
 
   const palette = colors[key];

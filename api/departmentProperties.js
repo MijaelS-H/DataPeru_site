@@ -1,7 +1,7 @@
 const axios = require("axios");
 
-let {CANON_CMS_CUBES} = process.env;
-if (CANON_CMS_CUBES.substr(-1) === "/") CANON_CMS_CUBES = CANON_CMS_CUBES.substr(0, CANON_CMS_CUBES.length - 1);
+let {CANON_CONST_BASE} = process.env;
+if (CANON_CONST_BASE.substr(-1) === "/") CANON_CONST_BASE = CANON_CONST_BASE.substr(0, CANON_CONST_BASE.length - 1);
 
 const BASE_URL = "/api/departmentProperties";
 
@@ -15,8 +15,8 @@ const catcher = error => {
 module.exports = function(app) {
   app.get(BASE_URL, async(req, res) => {
     try {
-      const provincesListAPI = `${CANON_CMS_CUBES}/data.jsonrecords?cube=dimension_ubigeo_district&drilldowns=Provincia&measures=Variable+conteo&parents=true&sparse=false`;
-      const citeListAPI = `${CANON_CMS_CUBES}/data.jsonrecords?cube=itp_cite_ejecucion_presupuestal&drilldowns=CITE&measures=Ejecuci%C3%B3n+presupuestal&parents=false&sparse=false&properties=Ubigeo`;
+      const provincesListAPI = `${CANON_CONST_BASE}/data.jsonrecords?cube=dimension_ubigeo_district&drilldowns=Provincia&measures=Variable+conteo&parents=true&sparse=false`;
+      const citeListAPI = `${CANON_CONST_BASE}/data.jsonrecords?cube=itp_cite_ejecucion_presupuestal&drilldowns=CITE&measures=Ejecuci%C3%B3n+presupuestal&parents=false&sparse=false&properties=Ubigeo`;
 
       const data = await axios.all([axios.get(provincesListAPI), axios.get(citeListAPI)])
         .then(resp => {
