@@ -25,9 +25,6 @@ function titleSize(title, large = false) {
 }
 
 function subtitle(entity) {
-
-  console.log(entity);
-
   return profileSearchConfig.subtitleFormat(entity);
 
 }
@@ -39,10 +36,10 @@ class Home extends Component {
   };
 
   componentDidMount = () => {
-    window.addEventListener("scroll", this.handleScroll);
     axios.get("/api/departmentProperties").then(resp => {
       this.setState({data: resp.data.data});
     });
+    window.addEventListener("scroll", this.handleScroll);
   }
 
   componentWillUnmount = () => {
@@ -109,8 +106,9 @@ class Home extends Component {
                   }
                 },
                 tooltipConfig: {
+                  className: "d3plus-tooltip-home",
                   title: d => {
-                    let tooltip = "<div class='d3plus-tooltip-home.title-wrapper'>";
+                    let tooltip = "<div class='d3plus-tooltip-home-title-wrapper'>";
                     tooltip += `<div class="title"><span>${d.Departamento}</span></div>`;
                     tooltip += "<div class=\"subtitle\"><span>Departamento</span></div>";
                     tooltip += "</div>";
@@ -118,8 +116,8 @@ class Home extends Component {
                     return tooltip;
                   },
                   tbody: d => [
-                    ["Cantidad CITE", d["CITE Count"]],
-                    ["Cantidad Provincias", d["Provincia Count"]]
+                    [`<span style="color: #bf0909;">${d["CITE Count"]}</span>`, "CITE"],
+                    [`<span style="color: #bf0909;">${d["Provincia Count"]}</span>`, "Provincias"]
                   ]
                 },
                 topojson: "/topojson/Department.json",
