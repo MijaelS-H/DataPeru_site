@@ -4,8 +4,8 @@ import classnames from "classnames";
 import {Icon, InputGroup} from "@blueprintjs/core";
 import {withNamespaces} from "react-i18next";
 
-// import NavMenu from "./NavMenu";
-// import SearchResult from "./SearchResult";
+import NavMenu from "./NavMenu";
+import SearchResult from "./SearchResult";
 
 import "./Nav.css";
 
@@ -91,11 +91,11 @@ class Nav extends React.Component {
     }
 
     return <div className={`${className} nav container`}>
-      {/* <NavMenu
+      <NavMenu
         isOpen={isOpen}
         run={isOpen => this.setState({isOpen})}
         dialogClassName={isOpen ? "slide-enter" : "slide-exit"}
-      />*/}
+      />
       <div className="nav-left">
         <button className="nav-button" onClick={() => this.setState({isOpen: !isOpen})}>
           <Icon icon="menu" />
@@ -105,29 +105,27 @@ class Nav extends React.Component {
       <div className={classnames("nav-center", {"active-searchbar": isSearchOpen})}>
         {/* {(logo || className === "background") && <a className="profile-logo" href={`/${lng}`} data-refresh="true"><img src="/icons/logo-horizontal.png" alt="" /></a>}
         <span className="nav-subtitle">{title}</span>*/}
-        DataITPRed<span className="nav-logo">CITE</span>
+        ITP<span className="nav-logo">PRODUCE</span>
       </div>
       <div className="nav-right">
-        {/* {routePath !== "/:lang" &&
-          <div className={classnames("search-button", "search-nav", {active: isSearchOpen})}>
-            <Icon icon="search" className="click" onClick={() => this.setState({isSearchOpen: !isSearchOpen})} />
-            <InputGroup
-              placeholder={t("Search profiles")}
-              className={classnames({active: isSearchOpen})}
-              autoFocus={true}
-              onChange={this.handleSearch}
-            />
-            <ul className={classnames("results", {active: isSearchOpen})}>
-              {resultsFilter.map((d, i) => <SearchResult
-                key={`search_result_${d.id}_${i}`}
-                id={d.id}
-                slug={d.slug}
-                title={d.name}
-                level={d.level}
-              />)}
-            </ul>
-          </div>
-        }*/}
+        <div className={classnames("search-button", "search-nav", {active: isSearchOpen})}>
+          <Icon icon="search" className="click" onClick={() => this.setState({isSearchOpen: !isSearchOpen})} />
+          <InputGroup
+            placeholder={t("Search profiles")}
+            className={classnames({active: isSearchOpen})}
+            autoFocus={true}
+            onChange={this.handleSearch}
+          />
+          <ul className={classnames("results", {active: isSearchOpen})}>
+            {resultsFilter.map((d, i) => <SearchResult
+              key={`search_result_${d.id}_${i}`}
+              id={d.id}
+              slug={d.slug}
+              title={d.name}
+              level={d.level}
+            />)}
+          </ul>
+        </div>
       </div>
     </div>;
   }

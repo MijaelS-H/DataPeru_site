@@ -92,7 +92,7 @@ class Profile extends React.Component {
     };
 
     const searchProps = {
-      placeholder: t("Profile.Search Placeholder")
+      placeholder: "Buscar perfiles.."
       // subtitleFormat: d => spanishLabels[d.memberHierarchy]
     };
 

@@ -3,6 +3,7 @@
 /* hero */
 
 .cp-hero.cp-section {
+  justify-content: center;
   min-height: auto;
   padding: calc(var(--nav-height) + var(--gutter-sm)) var(--gutter-lg)
     var(--gutter-lg);

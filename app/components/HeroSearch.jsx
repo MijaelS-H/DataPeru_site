@@ -6,6 +6,8 @@ import {event, select} from "d3-selection";
 import {Icon} from "@blueprintjs/core";
 import {encodeChars} from "@datawheel/canon-core";
 
+import SearchResult from "../components/SearchResult";
+
 import "./HeroSearch.css";
 
 class HeroSearch extends Component {
@@ -147,11 +149,31 @@ class HeroSearch extends Component {
           />
           <a
             className="hero-search-link u-font-sm"
-            // href={`/${locale}/explore${userQuery ? `?q=${ encodeChars(userQuery.toString()) }` : ""}`}
+            href={`/explore${userQuery ? `?q=${ encodeChars(userQuery.toString()) }` : ""}`}
           >
             Buscar
           </a>
         </label>
+
+        {searchActive && userQuery.length >= minQueryLength && results &&
+          <ul className="hero-search-results u-font-xs">
+            {results.map((result, i) =>
+              <SearchResult
+                key={`search-result-${i}`}
+                id={result.slug}
+                slug={result.profile}
+                title={result.name}
+                level={t(result.hierarchy)}
+              />
+            )}
+            {results.length === 0 &&
+              <li className="search-result">
+                <p className="search-result-link">No hay resultados</p>
+              </li>
+            }
+          </ul>
+        }
+
       </span>
     );
   }

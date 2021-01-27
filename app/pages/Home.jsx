@@ -79,7 +79,7 @@ class Home extends Component {
           <div className="home-hero-index">
             <div className="home-hero-info">
               <h1 className="hero-info-logo">
-                DataITPRed<span className="hero-info-logo-peru">CITE</span>
+                ITP<span className="hero-info-logo-peru">PRODUCE</span>
                 {/* <img src="/icons/homepage/svg/logo_red.svg" alt="DataITPRedCITE" />*/}
               </h1>
               <p className="hero-info-tagline u-font-xl">

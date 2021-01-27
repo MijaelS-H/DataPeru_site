@@ -58,5 +58,9 @@
     "CITE Description": "Explore las estadísticas sobre situación estudiantil, matrículas y graduaciones de la institución: {{name}}",
     "CITE Title": "{{name}}: clientes, servicios, presupuesto y recuros humanos",
     "Search Placeholder": "Buscar perfiles..."
+  },
+  "Explore": {
+    "Search Placeholder": "Buscar perfiles...",
+    "Title": "Explorador de perfiles"
   }
 }
