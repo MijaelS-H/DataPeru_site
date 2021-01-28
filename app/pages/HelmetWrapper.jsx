@@ -21,14 +21,14 @@ class HelmetWrapper extends Component {
     return (
       <Helmet title={defaults.title}>
 
-        <meta name="title" content={`${defaults.title} | DataITPRedCITE`} />
+        <meta name="title" content={`${defaults.title} | ITPProducción`} />
         <meta name="description" content={defaults.desc} />
 
-        <meta name="twitter:title" content={`${defaults.title} | DataITPRedCITE`} />
+        <meta name="twitter:title" content={`${defaults.title} | ITPProducción`} />
         <meta name="twitter:description" content={defaults.desc} />
         <meta name="twitter:image" content={defaults.img} />
 
-        <meta property="og:title" content={`${defaults.title} | DataITPRedCITE`} />
+        <meta property="og:title" content={`${defaults.title} | ITPProducción`} />
         <meta property="og:description" content={defaults.desc} />
         <meta property="og:locale" content={defaults.locale} />
         <meta property="og:url" content={defaults.url} />

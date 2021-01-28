@@ -81,8 +81,8 @@ class Home extends Component {
           <div className="home-hero-index">
             <div className="home-hero-info">
               <h1 className="hero-info-logo">
-                ITP<span className="hero-info-logo-peru">PRODUCE</span>
-                {/* <img src="/icons/homepage/svg/logo_red.svg" alt="DataITPRedCITE" />*/}
+                ITP<span className="hero-info-logo-peru">PRODUCCIÓN</span>
+                {/* <img src="/icons/homepage/svg/logo_red.svg" alt="ITPProducción" />*/}
               </h1>
               <p className="hero-info-tagline u-font-xl">
               Plataforma digital para la visualización de indicadores económicos y sectoriales del Perú

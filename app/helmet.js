@@ -12,7 +12,7 @@ export default {
     {name: "mobile-web-app-capable", content: "yes"},
     {name: "apple-mobile-web-app-capable", content: "yes"},
     {name: "apple-mobile-web-app-status-bar-style", content: "black"},
-    {name: "apple-mobile-web-app-title", content: "DataITPRedCITE"}
+    {name: "apple-mobile-web-app-title", content: "ITPProducción"}
   ],
-  title: "DataITPRedCITE"
+  title: "ITPProducción"
 };

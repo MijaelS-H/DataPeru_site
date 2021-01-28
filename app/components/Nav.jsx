@@ -105,7 +105,7 @@ class Nav extends React.Component {
       <div className={classnames("nav-center", {"active-searchbar": isSearchOpen})}>
         {/* {(logo || className === "background") && <a className="profile-logo" href={`/${lng}`} data-refresh="true"><img src="/icons/logo-horizontal.png" alt="" /></a>}
         <span className="nav-subtitle">{title}</span>*/}
-        ITP<span className="nav-logo">PRODUCE</span>
+        ITP<span className="nav-logo">PRODUCCIÓN</span>
       </div>
       <div className="nav-right">
         <div className={classnames("search-button", "search-nav", {active: isSearchOpen})}>
