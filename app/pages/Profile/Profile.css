@@ -183,3 +183,13 @@
     display: none;
   }
 }
+
+.cp-main.cp-grouping.cp-section {
+  & .cp-section-inner {
+    & .cp-section-content {
+      & .cp-fill-button {
+        width: 1px;
+      }
+    }
+  }
+}
