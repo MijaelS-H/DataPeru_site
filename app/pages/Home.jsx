@@ -60,8 +60,10 @@ class Home extends Component {
     const {t, lng, router, tiles} = this.props;
 
     let notMobile = true;
+    let mediumSize = true;
     if (typeof window !== "undefined") {
       notMobile = window.innerWidth > 768;
+      mediumSize = window.innerWidth >= 887 && window.innerWidth <= 1280;
     }
 
     return (
@@ -96,7 +98,8 @@ class Home extends Component {
                 data,
                 forceUpdate: true,
                 groupBy: "Departamento ID",
-                height: 600,
+                height: mediumSize ? 400 : 600,
+                width: mediumSize ? 400 : 600,
                 shapeConfig: {
                   hoverOpacity: 0.9,
                   Path: {

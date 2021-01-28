@@ -30,6 +30,7 @@
 
   & .home-hero-index {
     max-width: 70vw;
+    width: 100%;
     & .home-hero-info {
       align-items: left;
       display: flex;
@@ -94,19 +95,13 @@
 
   & .home-hero-map {
     display: flex;
-    justify-content: center;
-    max-width: 60vw;
-
-    & .viz {
-      & svg {
-        max-width: fit-content;
-      }
-    }
+    justify-content: flex-end;
+    width: 100%;
   }
 }
 
 .d3plus-tooltip-home {
-  height: 110px !important;
+  height: 100px !important;
   width: 300px !important;
   z-index: 101;
   & .d3plus-tooltip-title {
@@ -163,12 +158,19 @@
   }
 }
 
-@media (min-width: 887px) and (max-width: 1211px) {
+@media (min-width: 887px) and (max-width: 1280px) {
   .home-hero {
     min-height: 60vh;
     margin-bottom: var(--gutter-md);
-    & .home-hero-info {
-      align-items: center;
+    padding: calc(2 *var(--nav-height)) var(--gutter-xl) var(--nav-height) var(--gutter-xl);
+    & .home-hero-index {
+      width: 100%;
+      & .home-hero-info {
+        align-items: left;
+        & .hero-info-tagline {
+          font-size: var(--font-lg) !important;
+        }
+      }
     }
   }
 
@@ -186,6 +188,14 @@
       flex-wrap: nowrap;
     }
   }
+
+  .home-hero-map {
+    width: 50vw;
+  }
+
+  .home-grid {
+    padding: 0 var(--gutter-xl) var(--gutter-xl) !important;
+  }
 }
 
 @media (max-width: 886px) {
@@ -193,10 +203,22 @@
     justify-content: center;
     min-height: 60vh;
     margin-bottom: var(--gutter-md);
+    padding: var(--nav-height) var(--gutter-sm) 0 var(--gutter-sm);
     & .home-hero-info {
       align-items: center;
       & .hero-info-logo {
+        text-align: center;
         width: calc(var(--font-lg) * 16)!important;
+      }
+      & .hero-info-tagline {
+        font-size: var(--font-lg) !important;
+        max-width: 80vw !important;
+        text-align: center;
+      }
+    }
+    & .home-hero-search {
+      & .hero-search-input {
+        font-size: var(--font-sm) !important;
       }
     }
   }
@@ -220,6 +242,14 @@
 
   .home-content-profiles {
     margin: 0!important;
+  }
+
+  .home-hero-map {
+    display: none !important;
+  }
+
+  .home-grid {
+    padding: 0 var(--gutter-md) var(--gutter-md) !important;
   }
 }
 
@@ -422,6 +452,15 @@
       }
     }
     &.home-grid-tile-large {
+      @mixin min-xs {
+        & .cms-profilesearch-tile-link {
+          & .cms-profilesearch-tile-link-text {
+            & .cms-profilesearch-tile-link-title {
+              font-size: var(--font-lg) !important;
+            }
+          }
+        }
+      }
       @mixin min-sm {
         grid-column: auto / span 2;
         grid-row: auto / span 2;

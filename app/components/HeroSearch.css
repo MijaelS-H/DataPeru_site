@@ -3,7 +3,6 @@
 .hero-search {
   /* sizing */
   display: block; /* it's a span */
-  width: 34rem;
   max-width: 100%;
   /* positioning */
   position: relative; /* containe results */
