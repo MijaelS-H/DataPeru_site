@@ -184,11 +184,15 @@
   }
 }
 
-.cp-main.cp-grouping.cp-section {
-  & .cp-section-inner {
-    & .cp-section-content {
-      & .cp-fill-button {
-        width: 1px;
+.cp-main {
+  & .cp-grouping {
+    & .cp-section {
+      & .cp-section-inner {
+        & .cp-section-content {
+          & .cp-fill-button {
+            width: 1px;
+          }
+        }
       }
     }
   }
