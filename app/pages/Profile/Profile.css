@@ -108,6 +108,15 @@
   }
 }
 
+.cp-subnav {
+  & .cp-subnav-list {
+    background-color: #20242E;
+    flex-wrap: wrap;
+    height: auto;
+    margin-right: 0;
+  }
+}
+
 .cp-hero-figure {
   background-color: rgba(255, 255, 255, 0.25);
   border: 1px solid var(--light-3);
