@@ -143,12 +143,16 @@ const axisConfig = {
 export default {
   // global defaults
   aggs: {
+    "CITE ID": mean,
     "Componente ID": mean,
     "Concepto ID": mean,
+    "Contribuyente ID": mean,
     "Elemento PIB ID": mean,
     "Elemento FBC ID": mean,
-    "Subconcepto ID": mean,
+    "Indicador ID": mean,
     "Indicador Tributo ID": mean,
+    "Seccion ID": mean,
+    "Subconcepto ID": mean,
     "Trade Flow ID": mean,
     "Year": mean
   },
