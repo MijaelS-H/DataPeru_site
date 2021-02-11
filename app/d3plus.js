@@ -164,6 +164,7 @@ export default {
   groupPadding: 10,
 
   // legends
+  legend: (config, arr) => arr.length > 1,
   legendConfig: {
     label(d) {
       return "";
@@ -192,6 +193,18 @@ export default {
       fontFamily: () => typeface
     },
     stroke: "transparent"
+  },
+  legendPosition: "bottom",
+  legendTooltip: {
+    title(d) {
+      const {item, parent, parentId} = getTooltipTitle(this, d);
+      const title = Array.isArray(item[1]) ? `${parent[1] || "Valores"}` : item[1];
+      const itemBgImg = parentId;
+      const bgColor = findColorV2(itemBgImg, d);
+      const imgUrl = findIconV2(itemBgImg, d);
+      return tooltipTitle(bgColor, imgUrl, title);
+    },
+    tbody: []
   },
 
   // color scale
@@ -245,17 +258,7 @@ export default {
       stroke: "transparent"
     }
   },
-  legendTooltip: {
-    title(d) {
-      const {item, parent, parentId} = getTooltipTitle(this, d);
-      const title = Array.isArray(item[1]) ? `${parent[1] || "Valores"}` : item[1];
-      const itemBgImg = parentId;
-      const bgColor = findColorV2(itemBgImg, d);
-      const imgUrl = findIconV2(itemBgImg, d);
-      return tooltipTitle(bgColor, imgUrl, title);
-    },
-    tbody: []
-  },
+  colorScalePosition: "bottom",
 
   // geomaps
   ocean: "transparent",
