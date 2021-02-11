@@ -32,8 +32,8 @@ light-3:      "#CFDAE2"
 gray:         "#AEBDCC"
 dark-1:       "#8A97AE"
 dark-2:       "#2A2F3B"
-dark-3:       "#20242E"
-dark-4:       "#20242E"
+dark-3:       "#26292e"
+dark-4:       "#000000"
 black:        "#181A21"
 
 # accent colors
@@ -80,11 +80,12 @@ body-font-scale-md:         "112.5%" # 1rem = 18px (min-width: 992px)
 body-font-scale-xl:         "125%"   # 1rem = 20px (min-width: 1400px)
 
 # measurements
-nav-height:                 "50px"
+nav-height:                 "150px"
 subnav-height:              "var(--nav-height)"
 container-width:            "80rem" # 1280px
 hero-container-width:       "var(--container-width)"
 
+gutter-xxs:                 "0.25rem"
 gutter-xs:                  "0.5rem"
 gutter-sm:                  "0.75rem"
 gutter-md:                  "1.5rem"
@@ -104,8 +105,8 @@ font-xl:                    "1.5rem"   # 24px
 font-xxl:                   "2rem"     # 32px - use sparingly
 
 # base (p, li, etc.)
-base-font-stack:            "'Lato', 'Trebuchet MS', sans-serif" # Remember to import custom fonts & only the necessary weights via Helmet.js
-base-font-stack-condensed:  "'Fira Sans Extra Condensed', 'Trebuchet MS', sans-serif"
+base-font-stack:            "'Cabin', 'Trebuchet MS', sans-serif" # Remember to import custom fonts & only the necessary weights via Helmet.js
+base-font-stack-condensed:  "'Open Sans', 'Trebuchet MS', sans-serif"
 base-font-weight:           "400"
 base-letter-spacing:        "0"
 light-bold-weight:          "500"
@@ -223,4 +224,4 @@ stat-subtitle-color:        "var(--dark-1)"
 stat-group-stat-width:      "9rem"
 
 # peru colors
-gpe-red-1:          "#bf0909"
+gpe-red-1:          "#e30a14"
