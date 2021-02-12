@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import {withNamespaces} from "react-i18next";
-import {hot} from "react-hot-loader/root";
 import axios from "axios";
 import {Geomap} from "d3plus-react";
 
@@ -109,4 +108,4 @@ class HomeExplorer extends Component {
   }
 }
 
-export default withNamespaces()(hot(HomeExplorer));
+export default withNamespaces()(HomeExplorer);

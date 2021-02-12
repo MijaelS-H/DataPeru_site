@@ -1,6 +1,5 @@
 
 import React, {Component} from "react";
-import {hot} from "react-hot-loader/root";
 import {withNamespaces} from "react-i18next";
 
 import TileV2 from "./TileV2";
@@ -43,4 +42,4 @@ class HomeGrid extends Component {
   }
 }
 
-export default hot(withNamespaces()(HomeGrid));
+export default withNamespaces()(HomeGrid);
