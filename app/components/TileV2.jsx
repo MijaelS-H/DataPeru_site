@@ -8,7 +8,6 @@ import "./TileV2.css";
 class TileV2 extends Component {
   render() {
     const {
-      Element,
       color,
       icon,
       id,             // profile id
@@ -23,17 +22,17 @@ class TileV2 extends Component {
     } = this.props;
 
     return (
-      <Element className={classnames("tile-v2-container", `tile-v2-layout-${layout}`)} key={`tile-${slug}-${id}-${ix}`}>
+      <li className={classnames("tile-v2-container", `tile-v2-layout-${layout}`)} key={`tile-${slug}-${id}-${ix}`}>
         <a className="tile-link" href={link || `/profile/${slug}/${id}`}>
           <div className="tile-content">
+            <div className="image-content">
+              {/* <img src={!icon ? `/icons/explore/${slug}-white.png` : icon} alt="tag" className="tile-content-tag" style={{backgroundColor: `${slugColor}`}} />*/}
+              <img src={!icon ? "/icons/visualizations/others.png" : icon} alt="tag" className="tile-content-tag" style={{backgroundColor: `${slugColor}`}} />
+            </div>
             <div className="tile-content-description">
-              <div className="image-content">
-                {/* <img src={!icon ? `/icons/explore/${slug}-white.png` : icon} alt="tag" className="tile-content-tag" style={{backgroundColor: `${slugColor}`}} />*/}
-                <img src={!icon ? "/icons/visualizations/others.png" : icon} alt="tag" className="tile-content-tag" style={{backgroundColor: `${slugColor}`}} />
-                <div className="description-content">
-                  <h3 title={title} className={classnames("tile-content-description-title", title && (stringNormalizer(title).length > 30 || stringNormalizer(title).match(/\w+/).toString().length > 25) ? "u-font-xs" : "u-font-sm")}>{title}</h3>
-                  <span className="tile-content-description-level">{level}</span>
-                </div>
+              <div className="description-content">
+                <h3 title={title} className={classnames("tile-content-description-title", title && (stringNormalizer(title).length > 30 || stringNormalizer(title).match(/\w+/).toString().length > 25) ? "u-font-xs" : "u-font-sm")}>{title}</h3>
+                <span className="tile-content-description-level">{level}</span>
               </div>
             </div>
           </div>
@@ -43,7 +42,7 @@ class TileV2 extends Component {
               : <div className="tile-background-color" style={{backgroundColor: color}} />
           }
         </a>
-      </Element>
+      </li>
     );
   }
 }

@@ -10,8 +10,7 @@ module.exports = function(app) {
 
     const tiles = [
       {
-        link: "/profile/cite/citemadera-lima",
-        large: true
+        link: "/profile/cite/citemadera-lima"
       },
       {
         link: "/profile/cite/citeacuicola-ahuashiyacu"
@@ -27,22 +26,22 @@ module.exports = function(app) {
       },
       {
         link: "/profile/industry/fabricacion-de-productos-textiles"
-      },
+      }
+
+      /*
       {
         link: "/profile/cite/utagroindustrial-ambo"
       },
       {
-        link: "/profile/industry/industrias-manufactureras",
-        large: true
+        link: "/profile/industry/industrias-manufactureras"
       },
       {
         link: "/profile/industry/agricultura-ganaderia-silvicultura-y-pesca"
       },
       {
         link: "/profile/cite/citetextil-camelidos-arequipa"
-      }
-
-      /* {
+      },
+      {
         link: "/profile/cite/citepesquero-callao"
       },
       {
