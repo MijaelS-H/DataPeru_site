@@ -10,7 +10,7 @@
   width: auto;
 
   &.tile-v2-layout-full-width {
-    width: 31%;
+    width: auto;
   }
   &.tile-v2-layout-cols {
     text-align: left;
