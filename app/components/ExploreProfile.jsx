@@ -28,6 +28,7 @@ class ExploreProfile extends React.Component {
                   title={d.name}
                   slug={d.slug}
                   slugColor={d.background}
+                  icon={false}
                   id={d.id}
                   ix={ix}
                   level={t(d.level)}

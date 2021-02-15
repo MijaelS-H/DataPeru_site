@@ -5,7 +5,7 @@ import {Builder} from "@datawheel/canon-cms";
 import {App} from "./App";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile/Profile";
-// import Explore from "./pages/Explore/Explore";
+import Explore from "./pages/Explore/Explore";
 
 /**
  * Returns the React tree which will be rendered by the App.
@@ -16,7 +16,7 @@ function createRoute() {
     <Route path="/" component={App} history={browserHistory}>
       <IndexRoute component={Home} />
       <Route path="/profile/:slug/:id" component={Profile} />
-      {/* <Route path="/explore" component={Explore} /> */}
+      <Route path="/explore" component={Explore} />
       <Route path="/auth" component={Builder} />
     </Route>
   );

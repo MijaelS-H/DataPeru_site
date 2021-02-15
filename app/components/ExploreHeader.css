@@ -12,7 +12,7 @@
   /* scale up spacing on bigger screens */
   &:not(:last-child) {
     @mixin min-sm { margin-right: calc(0.25em + 1vw); }
-    @mixin min-md { margin-right: var(--gutter-lg); padding-right: 0.5em; }
+    @mixin min-md { margin-right: var(--gutter-xxl); padding-right: 0.5em; }
   }
 
   & .ep-header-img {
@@ -28,7 +28,11 @@
     padding-top: 0.25em;
     padding-bottom: 0.25em;
     border-bottom: 1px solid transparent;
-    transition: border 0.15s ease-out;
+    font-size: var(--font-md);
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: opacity 0.15s ease-out;
     & small{
       position: absolute;
       right: -26px;
@@ -39,27 +43,35 @@
   }
 
   /* inactive state */
-  &.is-inactive .ep-header-img {
-    opacity: 0.5;
+  &.is-inactive {
+    & .ep-header-img {
+      opacity: 0.5;
+    }
+
+    & .ep-header-title {
+      color: #7a7c7f;
+    }
   }
+
+
 
   /* active state */
   &.is-active .ep-header-title {
     color: var(--white);
-    border-color: var(--white);
   }
 
   /* interactions */
   &:hover .ep-header-img,
   &:focus .ep-header-img {
     opacity: 1;
+    color: var(--white) !important;
   }
   /* focus style override */
   &:focus {
     outline: none;
-
-    & .ep-header-title {
-      border-color: var(--accent);
-    }
+    color: var(--white) !important;
+  }
+  &:hover .ep-header-title {
+    color: var(--white) !important;
   }
 }

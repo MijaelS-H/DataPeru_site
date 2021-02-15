@@ -26,8 +26,7 @@ class TileV2 extends Component {
         <a className="tile-link" href={link || `/profile/${slug}/${id}`}>
           <div className="tile-content">
             <div className="image-content">
-              {/* <img src={!icon ? `/icons/explore/${slug}-white.png` : icon} alt="tag" className="tile-content-tag" style={{backgroundColor: `${slugColor}`}} />*/}
-              <img src={!icon ? "/icons/visualizations/others.png" : icon} alt="tag" className="tile-content-tag" style={{backgroundColor: `${slugColor}`}} />
+              <img src={!icon ? `/icons/explore/${slug}.svg` : icon} alt="tag" className="tile-content-tag" style={{backgroundColor: `${slugColor}`}} />
             </div>
             <div className="tile-content-description">
               <div className="description-content">

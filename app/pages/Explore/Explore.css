@@ -4,55 +4,70 @@
   margin-top: var(--nav-height);
   background-color: var(--dark-3);
 
-  & .bp3-input {
-    border-radius: 0;
-    border: none;
-    background-color: transparent;
-    color: var(--white);
-    box-shadow: none;
-    height: 60px;
-    font-size: 1.6rem;
-    border-bottom: 1px solid var(--dark-1);
-    padding-left: 1.5em !important; /* override blueprint */
-
-    &:focus {
+  & .ep-search {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--gutter-xxl) var(--gutter-xl) var(--gutter-xl);
+    & .bp3-input {
+      border-radius: 0;
+      border: none;
+      background-color: transparent;
       box-shadow: none;
-      outline-color: var(--dark-1);
+      color: #909194 !important;
+      height: 60px;
+      font-size: 1.6rem;
+      font-weight: 300 !important;
+      letter-spacing: 1px;
+      border-bottom: 0.1rem solid #3c485c;
+      padding-left: 0.5em !important; /* override blueprint */
+      padding-bottom: 0.5rem !important;
+      width: 50vw;
+
+      &::placeholder {
+        color: #7a7c7f;
+      }
+
+      &:focus {
+        box-shadow: none;
+        outline-color: var(--dark-1);
+      }
+
+      &.bp3-active {
+        box-shadow: none;
+      }
     }
 
-    &.bp3-active {
-      box-shadow: none;
-    }
-  }
-
-  & .bp3-icon-search[class] {
-    @mixin absolute-vertical-center; /* center it regardless of the size */
-    margin: 0; /* override blueprint */
-    color: var(--white);
-
-    & svg {
-      width: 2em;
-      height: auto;
-    }
-  }
-
-  & .bp3-input-group .bp3-input:not(:first-child) {
-    padding-left: 60px;
-  }
-
-  & .bp3-input-group .bp3-input-action .ep-clear-btn{
-    height: 48px;
-    border: 1px solid var(--white);
-    & .bp3-button-text{
+    & .bp3-icon-search[class] {
+      @mixin absolute-vertical-center; /* center it regardless of the size */
+      margin: 0; /* override blueprint */
       color: var(--white);
+
+      & svg {
+        width: 2em;
+        height: auto;
+      }
     }
-    & .bp3-icon svg path{
-      fill: var(--white);
+
+    & .bp3-input-group .bp3-input:not(:first-child) {
+      padding-left: 60px;
+    }
+
+    & .bp3-input-group .bp3-input-action .ep-clear-btn{
+      height: 48px;
+      border: 1px solid var(--white);
+      & .bp3-button-text{
+        color: var(--white);
+      }
+      & .bp3-icon svg path{
+        fill: var(--white);
+      }
     }
   }
 
   & .ep-headers {
-    margin: 30px auto;
+    margin: 30px auto 5px;
+    padding: var(--gutter-xs);
 
     /* break buttons into columns on small screens */
     @mixin min-xxs {
@@ -76,25 +91,74 @@
   }
 
   & .ep-profile-tabs {
-    display: inline-flex;
-    background: var(--dark-3);
+    display: flex;
+    background-color: #32383f;
     color: var(--dark-1);
+    align-items: center;
+    justify-content: center;
+    padding: var(--gutter-xs);
+
+
+    & .ep-profile-tab-header {
+      display: flex;
+      align-items: center;
+      padding: 7px;
+      margin: var(--gutter-xs);
+      color: #7a7c7f;
+      font-size: var(--font-sm);
+      font-weight: 600;
+      text-align: center;
+      width: 8rem;
+
+      & .ep-profile-tab-header-img {
+        width: 25px;
+        height: var(--font-xs);
+        margin-right: 7px;
+      }
+    }
 
     & .ep-profile-tab {
-      padding: 10px;
+      padding: 7px 7px;
       cursor: pointer;
+      margin: 0 var(--gutter-md);
+      color: var(--white);
+      font-size: var(--font-xs);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-align: center;
+      width: 8rem;
       &.selected {
-        background: var(--dark-4);
-        color: var(--white);
+        background: var(--gpe-red-1);
       }
+    }
+  }
+
+  & .ep-profiles-total {
+    display: flex;
+    font-size: var(--font-xs);
+    font-weight: 400;
+    justify-content: flex-end;
+    margin-top: var(--gutter-lg);
+    margin-right: calc(var(--gutter-xxl) + var(--gutter-md));
+    margin-bottom: var(--gutter-xs);
+
+    & .ep-profiles-total-title {
+      color: var(--gpe-red-1);
+      padding-right: var(--gutter-xxs);
+    }
+
+    & .ep-profiles-total-value {
+      color: var(--white);
     }
   }
 
   & .ep-profiles {
     display: flex;
-    flex-wrap: wrap;
-    background-color: var(--dark-4);
-    padding: var(--gutter-xs);
+    flex-direction: column;
+    flex-wrap: nowrap;
+    background-color: var(--dark-3);
+    padding: var(--gutter-xs) var(--gutter-xl);
 
     /* handle overflow on big screens */
     @mixin min-xs {
@@ -103,7 +167,7 @@
     }
   }
 
-  & .ep-loading-splash{
+  & .ep-loading-splash {
     position: absolute;
     display: none;
     background-color: rgba(22,28,44,0.6);
