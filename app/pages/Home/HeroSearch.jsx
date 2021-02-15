@@ -1,11 +1,10 @@
+import {encodeChars} from "@datawheel/canon-core";
+import axios from "axios";
+import clns from "classnames";
+import {select} from "d3-selection";
 import React, {Component} from "react";
 import {withNamespaces} from "react-i18next";
-import axios from "axios";
-import {select} from "d3-selection";
-import {Icon} from "@blueprintjs/core";
-import {encodeChars} from "@datawheel/canon-core";
-
-import SearchResult from "../components/SearchResult";
+import SearchResult from "$app/components/SearchResult";
 
 import "./HeroSearch.css";
 
@@ -129,8 +128,8 @@ class HeroSearch extends Component {
     const {results, searchActive, userQuery} = this.state;
 
     return (
-      <span
-        className={`hero-search ${searchActive ? "is-open" : "is-closed"}`}
+      <div
+        className={clns("hero-search-widget", searchActive ? "is-open" : "is-closed", this.props.className)}
         onBlur={this.onBlur.bind(this)}
       >
         <label className="hero-search-label">
@@ -173,7 +172,7 @@ class HeroSearch extends Component {
           </ul>
         }
 
-      </span>
+      </div>
     );
   }
 }

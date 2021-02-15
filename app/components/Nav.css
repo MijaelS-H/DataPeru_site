@@ -8,35 +8,28 @@
   height: var(--nav-height);
   justify-content: space-between;
   left: 0;
-  padding: 0 var(--gutter-xxl);
+  padding: var(--gutter-md) var(--gutter-xxl) var(--gutter-xs);
   position: fixed;
-  text-align: center;
   top: 0;
-  transform: translateX(0);
   transition: background-color .75s;
   width: 100%;
   z-index: 21;
 
+  &.solid {
+    background-color: var(--dark-3);
+  }
+
   & div {
-    flex: 1;
     display: flex;
+    flex: 1;
 
     &.nav-center {
+      flex: 2;
       font-size: var(--font-xl);
       justify-content: center;
       align-items: center;
-      & .nav-subtitle {
-        color: var(--accent-dark);
-        font-family: "Fira Sans Extra Condensed", sans-serif;
-        font-size: var(--font-sm);
-        line-height: 20px;
-        max-width: 500px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        vertical-align: middle;
-        white-space: nowrap;
-      }
-      & .nav-logo {
+
+      & .logo-produccion {
         color: var(--gpe-red-1);
         font-weight: 600;
       }
@@ -134,10 +127,6 @@
 
   & .menu {
     margin-left: 5px;
-  }
-
-  &.background {
-    background-color: var(--dark-3);
   }
 
   & .profile-logo {

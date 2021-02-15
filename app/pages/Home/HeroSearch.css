@@ -1,6 +1,6 @@
 @import "helpers/mixins.css";
 
-.hero-search {
+.hero-search-widget {
   /* sizing */
   display: block; /* it's a span */
   max-width: 100%;

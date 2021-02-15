@@ -138,7 +138,7 @@ module.exports = function(app) {
       return tileArray;
     }, []);
 
-    return res.json(tileData);
+    return res.json({status: "ok", data: tileData});
 
   });
 
