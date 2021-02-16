@@ -41,10 +41,9 @@ const Nav = props => {
       </div>
 
       <div className="nav-center">
-        <h1 className="nav-title">
-          <span className="logo-itp">ITP</span><span className="logo-produccion">Producción</span>
-          {props.title && <span className="nav-subtitle">{props.title}</span>}
-        </h1>
+        <a href="/">
+          <img src="/icons/logo_ITPProduccion.svg" alt="ITP Producción" />
+        </a>
       </div>
 
       <div className="nav-right">

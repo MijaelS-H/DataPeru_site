@@ -33,6 +33,11 @@
       align-items: center;
       white-space: nowrap;
 
+      & img {
+        height: 2.5rem;
+        width: auto;
+      }
+
       & h1 {
         margin: 0;
       }
@@ -40,20 +45,6 @@
       & span {
         display: inline-block;
         vertical-align: top;
-      }
-
-      & .logo-produccion {
-        color: var(--gpe-red-1);
-        font-weight: 600;
-      }
-
-      & .nav-subtitle {
-        display: none;
-        padding-left: 1rem;
-        max-width: 0;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        transition: max-width 0.2s ease-out;
       }
     }
 

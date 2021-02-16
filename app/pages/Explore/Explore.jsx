@@ -109,8 +109,8 @@ class Explore extends React.Component {
           cancel = c;
         }),
         params: {
-          query,
           limit: 100,
+          query,
           locale: this.props.lng,
           dimension: "",
           cubeName: "",
@@ -140,8 +140,6 @@ class Explore extends React.Component {
           });
 
           parsed = parsed.sort((a, b) => a.ranking > b.ranking ? -1 : 1);
-
-          console.log(parsed);
 
           const resultsNest = nest()
             .key(d => d.slug)

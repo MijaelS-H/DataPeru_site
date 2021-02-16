@@ -19,6 +19,7 @@
     & .message {
       max-width: 600px;
       padding: 20px;
+      color: #7a7c7f;
     }
   }
 
@@ -35,5 +36,11 @@
     grid-auto-flow: row dense;
     padding: 0 var(--gutter-md) var(--gutter-sm);
     width: calc(100% - var(--gutter-md));
+  }
+
+  & .message {
+    max-width: 100%;
+    padding: 20px;
+    color: var(--white);
   }
 }
