@@ -1,48 +1,60 @@
-import React, {Component} from "react";
-import {Helmet} from "react-helmet";
+import React from "react";
+import {Helmet} from "react-helmet-async";
 import {withNamespaces} from "react-i18next";
 import {connect} from "react-redux";
 
-Helmet.defaultProps.encodeSpecialCharacters = false;
+/**
+ * @typedef OwnProps
+ * @property {object} [info]
+ * @property {string} info.title
+ * @property {string} info.desc
+ * @property {string} info.img
+ */
 
-class HelmetWrapper extends Component {
+/**
+ * @typedef StateProps
+ * @property {string} baseUrl
+ * @property {string} lang
+ * @property {string} path
+ */
 
-  render() {
-    const {t, info, lang, baseUrl, path} = this.props;
+/** @type {React.FC<import("react-i18next").WithNamespaces & OwnProps & StateProps>} */
+const HelmetWrapper = props => {
+  const {t, info, lang, baseUrl, path} = props;
 
-    const defaults = {
-      title: info && info.title ? info.title : t("Share.Title"),
-      desc: info && info.desc ? info.desc : t("Share.Description"),
-      img: info && info.img ? info.img : `${baseUrl}/images/share/share-${lang}.jpg`,
-      url: `${baseUrl}${path}`,
-      locale: lang
-    };
+  const defaults = {
+    title: info?.title ?? t("Share.Title"),
+    desc: info?.desc ?? t("Share.Description"),
+    img: info?.img ?? `${baseUrl}/images/share/share-${lang}.jpg`,
+    url: `${baseUrl}${path}`,
+    locale: lang
+  };
 
-    return (
-      <Helmet title={defaults.title}>
+  return (
+    <Helmet encodeSpecialCharacters={false} title={defaults.title}>
+      <meta name="title" content={`${defaults.title} | ITPProducción`} />
+      <meta name="description" content={defaults.desc} />
 
-        <meta name="title" content={`${defaults.title} | ITPProducción`} />
-        <meta name="description" content={defaults.desc} />
+      <meta name="twitter:title" content={`${defaults.title} | ITPProducción`} />
+      <meta name="twitter:description" content={defaults.desc} />
+      <meta name="twitter:image" content={defaults.img} />
 
-        <meta name="twitter:title" content={`${defaults.title} | ITPProducción`} />
-        <meta name="twitter:description" content={defaults.desc} />
-        <meta name="twitter:image" content={defaults.img} />
+      <meta property="og:title" content={`${defaults.title} | ITPProducción`} />
+      <meta property="og:description" content={defaults.desc} />
+      <meta property="og:locale" content={defaults.locale} />
+      <meta property="og:url" content={defaults.url} />
+      <meta property="og:image" content={defaults.img} />
+    </Helmet>
+  );
+};
 
-        <meta property="og:title" content={`${defaults.title} | ITPProducción`} />
-        <meta property="og:description" content={defaults.desc} />
-        <meta property="og:locale" content={defaults.locale} />
-        <meta property="og:url" content={defaults.url} />
-        <meta property="og:image" content={defaults.img} />
-
-      </Helmet>
-    );
-  }
-}
+/** @type {import("react-redux").MapStateToProps<StateProps, OwnProps, any>} */
+const mapState = state => ({
+  baseUrl: state.env.CANON_API,
+  lang: "es",
+  path: state.location.pathname
+});
 
 export default withNamespaces()(
-  connect(state => ({
-    baseUrl: state.env.CANON_API,
-    lang: "es",
-    path: state.location.pathname
-  }))(HelmetWrapper)
+  connect(mapState)(HelmetWrapper)
 );
