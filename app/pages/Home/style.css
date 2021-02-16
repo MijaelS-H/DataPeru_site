@@ -65,7 +65,7 @@
     display: grid;
     grid-template-columns: 1fr 2fr;
     grid-template-rows: 2rem minmax(500px, auto);
-    gap: 1rem;
+    gap: 2rem 1rem;
     padding: var(--gutter-xxl) var(--gutter-xxl) var(--gutter-md);
     background-image: linear-gradient(transparent, var(--dark-3) 200px);
 
@@ -146,7 +146,7 @@
       flex-wrap: wrap;
       height: 100px;
       margin: 0;
-      padding: 0;
+      padding: var(--gutter-xs) 0;
     }
 
     & .hero-featured-tiles-more {

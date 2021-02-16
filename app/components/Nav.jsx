@@ -8,6 +8,14 @@ import NavSearch from "./NavSearch";
 
 import "./Nav.css";
 
+/**
+ * @typedef OwnProps
+ * @property {string} [className]
+ * @property {string} [title] A title shown when the page has been scrolled
+ * @property {Record<string, string>} [routeParams]
+ */
+
+/** @type {React.FC<import("react-i18next").WithNamespaces & OwnProps>} */
 const Nav = props => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -18,7 +26,7 @@ const Nav = props => {
   });
 
   return (
-    <div className={clns("container nav", props.className, {solid: scrolled})}>
+    <header className={clns("container nav", props.className, {solid: scrolled})}>
       <NavMenu
         isOpen={isMenuOpen}
         run={setIsMenuOpen}
@@ -28,24 +36,26 @@ const Nav = props => {
       <div className="nav-left">
         <button className="nav-button" onClick={() => setIsMenuOpen(!isMenuOpen)}>
           <Icon icon="menu" />
-          {/* <span className="menu">Menú</span>*/}
+          <span className="sr-only">Menú</span>
         </button>
       </div>
 
       <div className="nav-center">
-        <span className="logo-itp">ITP</span><span className="logo-produccion">Producción</span>
+        <h1 className="nav-title">
+          <span className="logo-itp">ITP</span><span className="logo-produccion">Producción</span>
+          {props.title && <span className="nav-subtitle">{props.title}</span>}
+        </h1>
       </div>
 
       <div className="nav-right">
         {/* <NavSearch /> */}
       </div>
-    </div>
+    </header>
   );
 };
 
 Nav.defaultProps = {
   className: "",
-  logo: true,
   title: ""
 };
 

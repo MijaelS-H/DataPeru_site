@@ -1,25 +1,34 @@
-import React from "react";
-import HelmetWrapper from "../HelmetWrapper";
-import PropTypes from "prop-types";
-import libs from "@datawheel/canon-cms/src/utils/libs";
 import {Profile as CMSProfile} from "@datawheel/canon-cms";
-import {connect} from "react-redux";
+import libs from "@datawheel/canon-cms/src/utils/libs";
 import {fetchData} from "@datawheel/canon-core";
+import PropTypes from "prop-types";
+import React from "react";
 import {withNamespaces} from "react-i18next";
-
+import {connect} from "react-redux";
+import HelmetWrapper from "../HelmetWrapper";
+import Nav from "$app/components/Nav";
 // import Error from "../Error/Error";
 // import Footer from "../../components/Footer";
-import Nav from "../../components/Nav";
-
 // import {spanishLabels} from "helpers/spanishLabels";
 
 import "./Profile.css";
 
-class Profile extends React.Component {
-  state = {
-    scrolled: false
-  };
+/**
+ * @typedef StateProps
+ * @property {string} baseUrl
+ * @property {any} formatters
+ * @property {string} locale
+ * @property {any} profile
+ */
 
+/**
+ * @typedef RouteParams
+ * @property {string} slug
+ * @property {string} id
+ */
+
+/** @extends {React.Component<import("react-router").RouteComponentProps<any, RouteParams> & import("react-i18next").WithNamespaces & StateProps>} */
+class Profile extends React.Component {
   getChildContext() {
     const {formatters, locale, profile, router} = this.props;
     const {variables} = profile;
@@ -37,79 +46,56 @@ class Profile extends React.Component {
     };
   }
 
-  componentDidMount() {
-    window.addEventListener("scroll", this.handleScroll);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleScroll);
-  }
-
-  handleScroll = () => {
-    if (window.scrollY > 5) {
-      this.setState({scrolled: true});
-    }
-    else {
-      this.setState({scrolled: false});
-    }
-
-  };
-
   render() {
-    const {profile, t, baseUrl, router} = this.props;
-
+    const {profile, t, baseUrl} = this.props;
     const {variables} = profile;
-    const {scrolled} = this.state;
 
-    let desc = "", slug = "", title = "";
     // if (profile && profile.errorCode && profile.errorCode === 404) return <Error />;
 
-    if (profile.meta) {
-      slug = profile.meta.map(d => d.slug).join("_");
-    }
+    const slug = profile.meta
+      ? profile.meta.map(d => d.slug).join("_")
+      : "";
 
-    switch (slug) {
-      case "geo":
-        title = t("Profile.Geo Title", {name: variables.name});
-        desc = t("Profile.Geo Description", {name: variables.name});
-        break;
-      case "industry":
-        title = t("Profile.Industry Title", {name: variables.name});
-        desc = t("Profile.Industry Description", {name: variables.name});
-        break;
-      case "cite":
-        title = t("Profile.CITE Title", {name: variables.name});
-        desc = t("Profile.CITE Description", {name: variables.name});
-        break;
-      default:
-        break;
-    }
+    const labels = {
+      geo: {
+        title: t("Profile.Geo Title", {name: variables.name}),
+        desc: t("Profile.Geo Description", {name: variables.name})
+      },
+      industry: {
+        title: t("Profile.Industry Title", {name: variables.name}),
+        desc: t("Profile.Industry Description", {name: variables.name})
+      },
+      cite: {
+        title: t("Profile.CITE Title", {name: variables.name}),
+        desc: t("Profile.CITE Description", {name: variables.name})
+      }
+    };
 
     const share = {
-      title,
-      desc,
+      title: labels[slug].title,
+      desc: labels[slug].desc,
       img: `${baseUrl}/api/image?slug=${slug}&id=${variables.id}&size=thumb`
     };
 
     const searchProps = {
+      // subtitleFormat: d => spanishLabels[d.memberHierarchy],
       placeholder: "Buscar perfiles.."
-      // subtitleFormat: d => spanishLabels[d.memberHierarchy]
     };
 
-    return <div id="Profile" onScroll={this.handleScroll}>
-      <HelmetWrapper info={share} />
+    return (
+      <div id="Profile">
+        <HelmetWrapper info={share} />
 
-      <Nav
-        className={scrolled ? "background" : ""}
-        title={scrolled ? variables.name : ""}
-        // routePath={this.props.route.path}
-        routeParams={this.props.router.params}
-      />
+        <Nav
+          title={variables.name}
+          // routePath={this.props.route.path}
+          routeParams={this.props.routeParams}
+        />
 
-      <CMSProfile {...this.props} searchProps={searchProps} />
-
-      {/* <Footer /> */}
-    </div>;
+        <CMSProfile {...this.props} searchProps={searchProps} />
+        {/* <Footer /> */}
+      </div>
+    );
   }
 }
 
