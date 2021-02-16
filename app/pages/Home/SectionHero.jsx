@@ -47,6 +47,7 @@ const SectionHero = props => {
 
   const mapConfig = useMemo(() => assign({}, heroMapConfig, {
     data: mapData,
+    forceUpdate: mapDepartamento,
     shapeConfig: {
       fillOpacity: d => mapDepartamento && d["Departamento ID"] !== mapDepartamento
         ? 0.5
@@ -84,19 +85,19 @@ const SectionHero = props => {
         <ul className="hero-featured-tabs">
           <li className={clns("hero-featured-tab", {active: tab === "geo"})}>
             <a href="#" onClickCapture={evt => [evt.preventDefault(), pickTab("geo")]}>
-              <img className="hero-featured-tab-icon" src="/icons/explore/geo-white.png" />
+              <img className="hero-featured-tab-icon" src="/icons/explore/geo.svg" />
               <span className="hero-featured-tab-label">Geográfico</span>
             </a>
           </li>
           <li className={clns("hero-featured-tab", {active: tab === "industry"})}>
             <a href="#" onClickCapture={evt => [evt.preventDefault(), pickTab("industry")]}>
-              <img className="hero-featured-tab-icon" src="/icons/explore/geo-white.png" />
+              <img className="hero-featured-tab-icon" src="/icons/explore/industry.svg" />
               <span className="hero-featured-tab-label">Industrias</span>
             </a>
           </li>
           <li className={clns("hero-featured-tab", {active: tab === "cite"})}>
             <a href="#" onClickCapture={evt => [evt.preventDefault(), pickTab("cite")]}>
-              <img className="hero-featured-tab-icon" src="/icons/explore/geo-white.png" />
+              <img className="hero-featured-tab-icon" src="/icons/explore/cite.svg" />
               <span className="hero-featured-tab-label">Red CITE</span>
             </a>
           </li>
@@ -119,7 +120,7 @@ const SectionHero = props => {
             )}
           </ul>
           <a className="hero-featured-tiles-more" href="/explore">
-            <img src="" alt="[Ícono]" /><span>Continuar explorando</span>
+            <img className="hero-features-more-icon" src="icons/homepage/svg/explorar_icon.svg" alt="" /><span>Continuar explorando</span>
           </a>
         </div>
       </div>

@@ -1,16 +1,15 @@
 export const heroBackgrounds = {
-  "geo": "url(/images/background-dpe.jpg)",
-  "industry": "url(/images/_background-dpe.jpg)",
-  "cite": "url(/images/background-dpe.jpg)",
+  "geo": "url(/images/homepage/geo.jpg)",
+  "industry": "url(/images/homepage/industry.jpeg)",
+  "cite": "url(/images/homepage/cite.jpg)",
   "01": "url(/images/_background-dpe.jpg)"
 };
 
 export const heroMapConfig = {
   groupBy: "Departamento ID",
   shapeConfig: {
-    fill: "#c9cacb",
     Path: {
-      stroke: "#c9cacb",
+      stroke: "#b3b3b4",
       strokeWidth: 1
     }
   },
@@ -26,7 +25,7 @@ export const heroMapConfig = {
     ]
   },
   topojson: "/topojson/Department.json",
-  topojsonFill: "#fff",
+  topojsonFill: "#c9cacb",
   topojsonId: d => d.properties.CCDD,
   transition: 0,
   zoom: false

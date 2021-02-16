@@ -35,7 +35,7 @@ const Nav = props => {
 
       <div className="nav-left">
         <button className="nav-button" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-          <Icon icon="menu" />
+          <img src="/icons/navbar/menu_icon.svg" alt=""/>
           <span className="sr-only">Menú</span>
         </button>
       </div>
@@ -48,7 +48,7 @@ const Nav = props => {
       </div>
 
       <div className="nav-right">
-        {/* <NavSearch /> */}
+        {/* <NavSearch />*/}
       </div>
     </header>
   );

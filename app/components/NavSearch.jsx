@@ -62,6 +62,7 @@ const NavSearch = props => {
 
   return (
     <div className={clns("search-button", "search-nav", {active: isOpen})}>
+      <img src="/icons/navbar/search_icon.svg" onClick={() => setIsOpen(!isOpen)} />
       <Popover2
         content={content}
         isOpen={isOpen}
@@ -69,7 +70,7 @@ const NavSearch = props => {
         placement="bottom"
       >
         <React.Fragment>
-          <Icon icon="search" className="click" onClick={() => setIsOpen(!isOpen)} />
+          <img className="click" src="/icons/navbar/search_icon.svg" onClick={() => setIsOpen(!isOpen)} />
           <InputGroup
             placeholder={t("Search profiles")}
             className={clns({active: isOpen})}
