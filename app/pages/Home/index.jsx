@@ -2,6 +2,7 @@ import React from "react";
 import {withNamespaces} from "react-i18next";
 import Nav from "$app/components/Nav";
 import HeroSearch from "$app/pages/Home/HeroSearch";
+import HomeAbout from "./HomeAbout";
 import SectionHero from "./SectionHero";
 
 import "./style.css";
@@ -22,6 +23,8 @@ const Home = props => {
       <SectionHero>
         <HeroSearch router={router} />
       </SectionHero>
+
+      <HomeAbout />
     </div>
   );
 };
