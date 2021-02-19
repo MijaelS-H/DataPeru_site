@@ -18,11 +18,12 @@ class TileV2 extends Component {
       slugColor,      // profile type color
       title,           // profile name
       ix,
-      layout         // Could be 'full-width'  or 'cols'
+      layout,         // Could be 'full-width'  or 'cols'
+      heightType
     } = this.props;
 
     return (
-      <li className={classnames("tile-v2-container", `tile-v2-layout-${layout}`)} key={`tile-${slug}-${id}-${ix}`}>
+      <li className={classnames("tile-v2-container", `tile-v2-layout-${layout}, ${heightType ? "tile-v2-large" : ""}`)} key={`tile-${slug}-${id}-${ix}`}>
         <a className="tile-link" href={link || `/profile/${slug}/${id}`}>
           <div className="tile-content">
             <div className="image-content">

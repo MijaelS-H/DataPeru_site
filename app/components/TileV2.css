@@ -9,12 +9,17 @@
   margin: var(--gutter-xxs);
   width: auto;
 
+  &.tile-v2-large {
+    height: 19rem !important;
+    width: 20rem !important;
+    list-style-type: none;
+  }
+
   &.tile-v2-layout-full-width {
     width: auto;
   }
   &.tile-v2-layout-cols {
     text-align: left;
-    margin: 0.75rem;
     margin: var(--gutter-xxs);
     @mixin max-xl {
 
