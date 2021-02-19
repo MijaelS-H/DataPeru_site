@@ -29,7 +29,7 @@
     & .footer-nav-elements {
       display: flex;
       align-items: flex-end;
-      justify-content: space-around;
+      justify-content: space-between;
       width: 50vw;
 
       & .footer-nav-element {
