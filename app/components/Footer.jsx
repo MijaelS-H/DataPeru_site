@@ -56,7 +56,8 @@ class Footer extends React.Component {
               </div>
             </div>
             <div className="footer-contact">
-              contacto@itp.gob.pe
+              <img className="footer-contact-icon" src="/icons/footer/mail_icon.svg" />
+              <a className="footer-contact-text" href="mailto:contacto@itp.gob.pe?Subject=ITPProducción">contacto@itp.gob.pe</a>
             </div>
           </div>
         </div>

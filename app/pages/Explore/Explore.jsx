@@ -13,6 +13,7 @@ import {commas} from "../../helpers/utils";
 import ExploreHeader from "../../components/ExploreHeader";
 import ExploreProfile from "../../components/ExploreProfile";
 import Nav from "../../components/Nav";
+import Footer from "../../components/Footer";
 
 import "./Explore.css";
 
@@ -280,6 +281,9 @@ class Explore extends React.Component {
           />
         </div>
       </div>
+
+      <Footer />
+
     </div>;
   }
 }
