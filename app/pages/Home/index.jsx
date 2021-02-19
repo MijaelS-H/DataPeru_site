@@ -4,6 +4,7 @@ import Nav from "$app/components/Nav";
 import HeroSearch from "$app/pages/Home/HeroSearch";
 import HomeAbout from "./HomeAbout";
 import SectionHero from "./SectionHero";
+import HomeExplore from "./HomeExplore";
 import Footer from "$app/components/Footer";
 
 import "./style.css";
@@ -26,6 +27,8 @@ const Home = props => {
       </SectionHero>
 
       <HomeAbout />
+
+      <HomeExplore />
 
       <Footer />
     </div>

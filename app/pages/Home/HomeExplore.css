@@ -1,0 +1,22 @@
+.home-explore-tiles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--dark-3);
+  height: 75vh;
+  padding: var(--gutter-xl);
+
+  & .home-explore-tiles-title {
+    font-size: var(--font-xxl);
+    font-weight: 400;
+    margin-bottom: var(--gutter-lg);
+  }
+
+  & .home-explore-tiles-elements {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: var(--gutter-md) var(--gutter-md);
+    grid-auto-flow: column dense;
+  }
+}
