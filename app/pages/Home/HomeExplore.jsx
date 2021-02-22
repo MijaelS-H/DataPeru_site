@@ -1,59 +1,47 @@
-import React from "react";
-import {withNamespaces} from "react-i18next";
+import axios from "axios";
+import React, {useEffect, useState} from "react";
 
 import TileV2 from "../../components/TileV2";
 
 import "./HomeExplore.css";
 
-class HomeExplore extends React.Component {
+/**
+ * @typedef OwnProps
+ * @property {string} [className]
+ */
 
-  render() {
-    return (
-      <div className="home-explore-tiles">
-        <span className="home-explore-tiles-title">Explore</span>
-        <div className="home-explore-tiles-elements">
+/** @type {React.FC<OwnProps>} */
+const HomeExplore = props => {
+
+  const [tiles, setExplorerTiles] = useState([]);
+
+  useEffect(() => {
+    axios.get("/api/randomTiles").then(res => {
+      const {status, data} = res.data;
+      status === "ok" && setExplorerTiles(data);
+    });
+  }, []);
+
+  return (
+    <div className="home-explore-tiles">
+      <span className="home-explore-tiles-title">Explore</span>
+      <div className="home-explore-tiles-elements">
+        {tiles.map((d, i) =>
           <TileV2
             background={""}
             heightType={"large"}
-            id={24}
-            ix={1}
-            key={1}
-            level={"Departamento"}
-            link={"/profile/geo/lima"}
-            slug={"geo"}
+            id={d.ID}
+            ix={i}
+            key={i}
+            level={d.level}
+            link={`/profile/${d.slug}/${d.ID}`}
+            slug={d.slug}
             slugColor={"#e30a14"}
-            title={"Lima"}
-          />
-          <TileV2
-            background={""}
-            heightType={"large"}
-            id={24}
-            ix={1}
-            key={1}
-            level={"Departamento"}
-            link={"/profile/geo/lima"}
-            slug={"geo"}
-            slugColor={"#e30a14"}
-            title={"Lima"}
-          />
-          <TileV2
-            background={""}
-            heightType={"large"}
-            id={24}
-            ix={1}
-            key={1}
-            level={"Departamento"}
-            link={"/profile/geo/lima"}
-            slug={"geo"}
-            slugColor={"#e30a14"}
-            title={"Lima"}
-          />
-        </div>
+            title={d.Label}
+          />)}
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
-HomeExplore.defaultProps = {};
-
-export default withNamespaces()(HomeExplore);
+export default HomeExplore;

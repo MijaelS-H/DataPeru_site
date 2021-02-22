@@ -13,6 +13,13 @@
   min-height: 80vh;
   position: relative;
   z-index: 2;
+  &::before {
+    @mixin absolute-expand;
+    display: block;
+    content: "";
+    z-index: -1;
+    background-image: linear-gradient(to right top, rgba(0, 0, 0, 0.2), rgba(25,23,26,0.4) rgba(38,41,46,0.1));
+  }
 
   & .hero-index {
     width: 100%;
@@ -171,8 +178,8 @@
 }
 
 .d3plus-tooltip-explorer {
-  height: 125px !important;
-  width: 300px !important;
+  height: 165px !important;
+  width: 200px !important;
   z-index: 101;
   & .d3plus-tooltip-title {
     max-width: 100% !important;
@@ -202,7 +209,7 @@
   & tbody {
     width: 100% !important;
     display: flex !important;
-    flex-direction: row !important;
+    flex-direction: column !important;
   }
   & tr {
     border-top: 0px solid var(--dark-1) !important;
@@ -212,7 +219,7 @@
     }
   }
   & td {
-    text-align: center;
+    text-align: left;
     padding: 5px 5px;
     flex: 1 !important;
     width: 100% !important;

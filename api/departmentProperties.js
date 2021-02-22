@@ -16,9 +16,28 @@ const ENDPOINT = "/api/departmentProperties";
 module.exports = function(app) {
   app.get(ENDPOINT, (req, res) => {
     const provincesListAPI = `${apiBase}/data.jsonrecords?cube=dimension_ubigeo_district&drilldowns=Provincia&measures=Variable+conteo&parents=true&sparse=false`;
+    const districtsListAPI = `${apiBase}/data.jsonrecords?cube=dimension_ubigeo_district&drilldowns=Distrito&measures=Variable+conteo&parents=true&sparse=false`;
     const citeListAPI = `${apiBase}/data.jsonrecords?cube=itp_cite_ejecucion_presupuestal&drilldowns=CITE&measures=Ejecuci%C3%B3n+presupuestal&parents=false&sparse=false&properties=Ubigeo`;
 
     Promise.all([
+      axios.get(districtsListAPI).then(response => {
+        const {data: districtsList} = response.data;
+
+        // Group provinces by "Departamento ID"
+        return districtsList.reduce((res, value) => {
+          const key = value["Departamento ID"];
+          if (!res[key]) {
+            res[key] = {
+              "Departamento ID": key,
+              "Departamento": value.Departamento,
+              "Distrito Count": 0
+            };
+          }
+
+          res[key]["Distrito Count"] += 1;
+          return res;
+        }, {});
+      }),
       axios.get(provincesListAPI).then(response => {
         const {data: provincesList} = response.data;
 
@@ -56,12 +75,14 @@ module.exports = function(app) {
         }, {});
       })
     ]).then(results => {
-      const [provinces, cites] = results;
+      const [districts, provinces, cites] = results;
 
       const provinceReduction = Object.values(provinces).map(province => {
         const key = province["Departamento ID"];
         const cite = cites[key] || {};
+        const district = districts[key] || {};
         province["CITE Count"] = cite["CITE Count"] || 0;
+        province["Distrito Count"] = district["Distrito Count"] || 0;
         return province;
       });
 

@@ -16,7 +16,7 @@ const SectionHero = props => {
   const [tab, setTab] = useState("geo");
   const [backgroundImage, setBackgroundImage] = useState(heroBackgrounds[tab]);
   const [mapData, setMapData] = useState([]);
-  const [mapDepartamento, setMapDepartamento] = useState("");
+  const [mapDepartamento, setMapDepartamento] = useState(0);
   const [tiles, setTiles] = useState([]);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const SectionHero = props => {
   }, []);
 
   useEffect(() => {
-    axios.get(`/api/home?departamento=${mapDepartamento}`).then(res => {
+    axios.get(`/api/home/${tab}/${mapDepartamento}`).then(res => {
       const {status, data} = res.data;
       status === "ok" && setTiles(data);
     });
@@ -35,13 +35,23 @@ const SectionHero = props => {
 
   const pickDepartamento = depto => {
     setMapDepartamento(depto);
-    // you can change bg depending on Departamento or Tab
-    setBackgroundImage(heroBackgrounds[depto] || "url(/images/background-dpe.jpg)");
+
+    axios.get(`/api/home/${tab}/${mapDepartamento}`).then(res => {
+      const {status, data} = res.data;
+      status === "ok" && setTiles(data);
+    });
+
+    setBackgroundImage(heroBackgrounds[depto] || "url(/images/homepage/geo.jpg)");
   };
 
   const pickTab = tab => {
     setTab(tab);
-    // you can change bg depending on Departamento or Tab
+
+    axios.get(`/api/home/${tab}/${mapDepartamento}`).then(res => {
+      const {status, data} = res.data;
+      status === "ok" && setTiles(data);
+    });
+
     setBackgroundImage(heroBackgrounds[tab]);
   };
 
@@ -55,7 +65,7 @@ const SectionHero = props => {
     },
     on: {
       click: d => mapDepartamento && mapDepartamento === d["Departamento ID"]
-        ? pickDepartamento("")
+        ? pickDepartamento(0)
         : pickDepartamento(d["Departamento ID"])
     }
   }), [mapDepartamento, mapData]);
