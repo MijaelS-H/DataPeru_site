@@ -65,9 +65,15 @@ module.exports = function(app) {
     ]).then(results => {
       const [nation, departments, provinces, districts, sections, divisions, cites] = results;
 
-      const totalEntities = nation.push([departments, provinces, districts, sections, divisions, cites]);
+      const geoEntities = nation.push(departments, provinces, districts);
+      const industryEntities = sections.push([divisions]);
+      const citeEntities = cites;
 
-      res.json({status: "ok", data: totalEntities});
+      const randomGeoEntity = geoEntities[Math.floor(Math.random() * geoEntities.length)];
+      const randomIndustryEntity = industryEntities[Math.floor(Math.random() * industryEntities.length)];
+      const randomCiteEntity = citeEntities[Math.floor(Math.random() * citeEntities.length)];
+
+      res.json({status: "ok", data: [randomGeoEntity, randomIndustryEntity, randomCiteEntity]});
     }).catch(err => {
       isVerboseMode && console.error("[api/randomTiles.js] API Error:", err);
       res.json({
