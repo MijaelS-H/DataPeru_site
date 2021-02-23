@@ -1,0 +1,93 @@
+.help-container {
+  background-color: var(--dark-3);
+  padding-top: var(--nav-height);
+
+  & .help-content {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: var(--gutter-xs) var(--gutter-xl);
+    width: 100%;
+
+    & .help-header {
+      color: var(--white);
+      font-family: "Open Sans";
+      font-size: var(--font-xxl);
+      font-weight: 300;
+      letter-spacing: 1px;
+      padding: var(--gutter-sm);
+    }
+
+    & .help-content-columns {
+      display: flex;
+      flex-direction: row;
+      padding: var(--gutter-sm) var(--gutter-xl);
+      width: 100%;
+
+      & .help-content-column-left {
+        width: 30%;
+
+        & .help-content-column-left-title {
+          color: var(--white);
+          font-family: "Open Sans";
+          font-size: var(--font-lg);
+          font-weight: 300;
+          margin-bottom: var(--gutter-sm);
+        }
+
+        & .help-content-column-left-subtitle {
+          color: #919295;
+          font-family: "Open Sans";
+          font-size: var(--font-sm);
+          font-weight: 600;
+          letter-spacing: 0.5px;
+          text-transform: uppercase;
+        }
+
+        & .help-content-viz-options {
+          margin-top: var(--gutter-md);
+
+          & .help-content-viz-option-box {
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            margin-top: var(--gutter-xs);
+            text-decoration: none;
+
+            & .help-content-viz-option-icon {
+              margin-right: 0.5rem;
+              height: 2rem;
+              width: 2rem;
+            }
+
+            & .help-content-viz-option-label {
+              color: #919295;
+              font-family: "Open Sans";
+              font-size: var(--font-sm);
+              letter-spacing: 0.5px;
+
+              &.active {
+                color: var(--white) !important;
+              }
+            }
+          }
+        }
+      }
+
+      & .help-content-column-right {
+        width: 70%;
+
+        & .help-content-column-right-title {
+          color: var(--white);
+          margin-top: var(--gutter-xl);
+        }
+
+        & .help-content-column-right-viz {
+          background-color: #32383f;
+          height: 500px;
+          padding: var(--gutter-md);
+        }
+      }
+    }
+  }
+}

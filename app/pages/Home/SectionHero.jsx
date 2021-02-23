@@ -35,24 +35,22 @@ const SectionHero = props => {
 
   const pickDepartamento = depto => {
     setMapDepartamento(depto);
+    setBackgroundImage(heroBackgrounds[depto] || "url(/images/homepage/geo.jpg)");
 
     axios.get(`/api/home/${tab}/${mapDepartamento}`).then(res => {
       const {status, data} = res.data;
       status === "ok" && setTiles(data);
     });
-
-    setBackgroundImage(heroBackgrounds[depto] || "url(/images/homepage/geo.jpg)");
   };
 
   const pickTab = tab => {
     setTab(tab);
+    setBackgroundImage(heroBackgrounds[tab]);
 
     axios.get(`/api/home/${tab}/${mapDepartamento}`).then(res => {
       const {status, data} = res.data;
       status === "ok" && setTiles(data);
     });
-
-    setBackgroundImage(heroBackgrounds[tab]);
   };
 
   const mapConfig = useMemo(() => assign({}, heroMapConfig, {

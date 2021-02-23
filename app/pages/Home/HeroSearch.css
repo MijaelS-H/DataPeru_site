@@ -12,13 +12,15 @@
 
 /* 🔎 */
 .hero-search-icon {
+  filter: invert(1);
+  opacity: 0.3;
   /* positioning */
   @mixin absolute-vertical-center;
   z-index: 1;
   left: var(--gutter-sm);
   /* sizing */
-  width: 1rem;
-  height: 1rem;
+  width: 1.5rem;
+  height: 1.5rem;
   /* theming */
   color: var(--gpe-red-1);
   pointer-events: none;
@@ -44,6 +46,7 @@
   margin: 0;
   padding: 0.5em 1.5em;
   line-height: 2rem; /* defines height of entire search box */
+  width: var(--gutter-xxl);
   /* theming */
   background: var(--gpe-red-1);
   border-top-right-radius: 10px;
@@ -71,22 +74,31 @@
   /* sizing */
   height: 3.5rem;
   width: 100%;
-  padding-left: 2rem; /* make room for search icon */
+  padding-left: 2.7rem; /* make room for search icon */
   /* theming */
   border: none;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   background-color: var(--white);
-  color: var(--dark-3);
+  color: var(--dark-1);
   font-size: var(--font-md);
-  font-weight: 300;
+  font-weight: 400;
   /* transitions */
   transition:
     0.2s ease-out box-shadow,
     0.3s ease-out border-color;
 
+    &.no-border {
+      border-bottom-left-radius: 0px !important;
+    }
+
   &::placeholder {
     color: var(--dark-1);
+    font-weight: 400;
+  }
+
+  &:focus {
+    outline: none;
   }
 }
 
@@ -97,18 +109,20 @@
   text-shadow: none; /* override .home-hero */
   /* positioning */
   position: absolute;
-  width: 100%;
+  width: calc(100% - var(--gutter-xxl));
   /* theming */
   background-color: var(--light-1);
   color: var(--white);
   /* handle overflow */
   @mixin vertical-overflow-container;
   max-height: 14.75rem;
+  box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.75);
 }
 
 /* shared style between actual search results and "no results" message */
 .hero-search-result-item,
 .hero-search-result-message {
+  color: #7d7574;
   padding: var(--gutter-xs) var(--gutter-md);
 
   /* space out first & last results */

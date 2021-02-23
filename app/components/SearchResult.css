@@ -18,25 +18,31 @@
 
   /* the icon */
   & .search-result-icon {
-    background-color: var(--gpe-red-1);
+    filter: invert(1);
+    opacity: 0.5;
     /* sizing */
     width: 2em;
     height: 2em;
     /* positioning */
     @mixin absolute-vertical-center;
-    left: 0.375em;
+    left: 0.75em;
     vertical-align: top;
     transform-origin: top center;
     transition: transform 0.15s ease-out;
   }
 
   & .search-result-title {
-    color: var(--dark-2);
-    padding-left: 10px;
+    color: #7d7574;
+    font-size: var(--font-md);
+    letter-spacing: 0.5px;
+    padding-left: 7px;
   }
 
   & .search-result-subttitle {
-    padding-left: 10px;
+    color: var(--gpe-red-1);
+    font-size: var(--font-sm);
+    letter-spacing: 0.5px;
+    padding-left: 7px;
   }
 
   /* interactions */

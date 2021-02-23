@@ -137,7 +137,7 @@ class HeroSearch extends Component {
             Buscar a nivel geográfico, industrial o red CITE
           </span>
           <input
-            className="hero-search-input u-font-md"
+            className={clns("hero-search-input u-font-md", userQuery.length >= minQueryLength ? "no-border" : "", this.props.className)}
             placeholder="Buscar a nivel geográfico, industrial o red CITE"
             value={userQuery}
             onChange={this.onChange.bind(this)}
@@ -145,6 +145,7 @@ class HeroSearch extends Component {
             ref={input => this.textInput = input}
             key="si"
           />
+          <img className="hero-search-icon" src="/icons/explore/filter.svg" />
           <a
             className="hero-search-link u-font-sm"
             href={`/explore${userQuery ? `?q=${ encodeChars(userQuery.toString()) }` : ""}`}

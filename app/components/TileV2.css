@@ -98,6 +98,8 @@
           }
 
           & .tile-content-description-level {
+            display: flex;
+            text-align: left;
             font-size: calc(var(--font-xxxs) + 0.1rem);
             font-weight: var(--base-font-weight);
             text-transform: uppercase;
