@@ -1,6 +1,9 @@
 import {format} from "d3-format";
+import {formatAbbreviate} from "d3plus-format";
 
 export const commas = n => format(",")(Math.round(n));
+
+export const abbreviate = n => formatAbbreviate(n);
 
 export const percentagenumber = n => `${Math.round(n * 100 * 10) / 10}%`;
 

@@ -87,6 +87,41 @@
           height: 500px;
           padding: var(--gutter-md);
         }
+
+        & .help-content-column-right-subtitle {
+          color: var(--white);
+          font-family: "Open Sans";
+          font-size: var(--font-lg);
+          font-weight: 300;
+          letter-spacing: 0.5px;
+          margin: var(--gutter-xl) 0 var(--gutter-md);
+        }
+
+        & .help-content-column-right-content {
+          color: var(--white);
+          font-family: "Open Sans";
+          font-size: var(--font-xs);
+          font-weight: 300;
+          letter-spacing: 0.7px;
+        }
+
+        & .help-content-column-right-tabs {
+          display: flex;
+          margin-top: var(--gutter-md);
+
+          & .help-content-column-right-tab {
+            background-color: var(--gpe-red-1);
+            color: var(--white);
+            display: flex;
+            margin-right: var(--gutter-sm);
+            padding: var(--gutter-xxs);
+            height: 2rem;
+            align-items: center;
+            justify-content: center;
+            width: 150px;
+            letter-spacing: 0.5px;
+          }
+        }
       }
     }
   }
