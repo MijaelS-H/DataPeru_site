@@ -2,7 +2,7 @@ import React from "react";
 import {withNamespaces} from "react-i18next";
 import {Dialog, Icon} from "@blueprintjs/core";
 
-import {SIDEBAR_NAV} from "../helpers/consts.js";
+import {SIDEBAR_NAV, LOGOS} from "../helpers/consts.js";
 import "./NavMenu.css";
 
 class NavMenu extends React.Component {
@@ -36,7 +36,6 @@ class NavMenu extends React.Component {
       <div className="nav-menu-content">
         {/* close button */}
         <button className="nav-button close-button" onClick={() => this.props.run(false)}>
-          <span className="menu">{t("Menu")}</span>
           <Icon icon="cross" />
         </button>
 
@@ -50,6 +49,9 @@ class NavMenu extends React.Component {
 
           {/* main list */}
           <ul className="nav-menu-list">
+            <a onClick={() => this.props.run(false)}>
+              <img className="nav-menu-list-icon" src="/icons/navbar/menu_icon.svg" />
+            </a>
             {NAV.map(link =>
               <li className="nav-menu-item" key={link.title}>
                 <a className="nav-menu-link" href={link.url}>
@@ -70,6 +72,14 @@ class NavMenu extends React.Component {
               </li>
             )}
           </ul>
+
+          <div className="nav-menu-footer">
+            {LOGOS.map(logo =>
+              <a className="nav-menu-footer-link" href={logo.url} key={logo.title} aria-hidden tabIndex="-1" target="_blank" rel="noopener noreferrer">
+                <img className="nav-menu-footer-img" src={`${logo.src}`} alt={logo.title} />
+              </a>
+            )}
+          </div>
         </nav>
       </div>
     </Dialog>;
