@@ -1,0 +1,35 @@
+@import "helpers/mixins.css";
+
+.error {
+  background-color: var(--dark-3);
+  padding-top: var(--nav-height);
+  height: 100vh;
+
+  & .error-header {
+    display: flex;
+    flex-direction: column;
+    height: 75vh;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+
+    & .error-header-title {
+      color: var(--white);
+      font-family: "Open Sans";
+      font-size: 5em;
+      font-weight: 400;
+    }
+
+    & .error-header-description {
+      color: var(--white);
+      font-size: var(--font-lg);
+      font-family: "Open Sans";
+    }
+
+    & .error-header-redirect {
+      color: var(--white);
+      font-size: var(--font-md);
+      text-decoration: none;
+    }
+  }
+}
