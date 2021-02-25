@@ -54,7 +54,7 @@ export const findColorV2 = (key, d) => {
   }
 
   if (key === "Seccion" && Object.keys(d).includes("Empresas")) {
-    return colors["Seccion CITE"][d["Seccion ID"]];
+    return colors["Seccion CITE"][d["Seccion CITE ID"]];
   }
 
   if (key === "Subcategoria" && Object.keys(d).includes("Servicios")) {
