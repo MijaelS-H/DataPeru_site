@@ -35,19 +35,21 @@ const Nav = props => {
 
       <div className="nav-left">
         <button className="nav-button" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-          <img src="/icons/navbar/menu_icon.svg" alt=""/>
+          <img src={scrolled ? "/icons/navbar/menu_gray_icon.svg" : "/icons/navbar/menu_white_icon.svg"} alt=""/>
           <span className="sr-only">Menú</span>
         </button>
       </div>
 
       <div className="nav-center">
         <a href="/">
-          <img src="/icons/logo_ITPProduccion.svg" alt="ITP Producción" />
+          <img src={scrolled ? "/icons/Logo_ITPProduccion_color.svg" : "/icons/logo_ITPProduccion.svg"} alt="ITP Producción" />
         </a>
       </div>
 
       <div className="nav-right">
-        <NavSearch />
+        <NavSearch
+          icon={scrolled ? "/icons/navbar/lupa_gris_icon.svg" : "/icons/navbar/search_icon.svg"}
+        />
       </div>
     </header>
   );

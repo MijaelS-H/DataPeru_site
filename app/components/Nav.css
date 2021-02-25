@@ -144,7 +144,7 @@
   }
 
   &.solid {
-    background-color: var(--dark-3);
+    background-color: var(--white);
 
     & .nav-center .nav-subtitle {
       max-width: 50%;

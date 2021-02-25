@@ -13,7 +13,7 @@ import {withNamespaces} from "react-i18next";
 
 /** @type {React.FC<import("react-i18next").WithNamespaces & OwnProps>} */
 const NavSearch = props => {
-  const {t, lng} = props;
+  const {t, lng, icon} = props;
 
   const [isOpen, setIsOpen] = useState(false);
   const [results, setResults] = useState([]);
@@ -100,7 +100,7 @@ const NavSearch = props => {
     <div className={clns("search-button", "search-nav", {active: isOpen})} ref={ref}>
 
       <React.Fragment>
-        <img className="click" src="/icons/navbar/search_icon.svg" onClick={() => setIsOpen(!isOpen)} />
+        <img className="click" src={icon} onClick={() => setIsOpen(!isOpen)} />
         <InputGroup
           placeholder={"Buscar perfiles"}
           className={clns("search-button-label", {active: isOpen})}
