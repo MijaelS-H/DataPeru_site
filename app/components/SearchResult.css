@@ -35,14 +35,14 @@
     color: #7d7574;
     font-size: var(--font-md);
     letter-spacing: 0.5px;
-    padding-left: 7px;
+    padding-left: 12px;
   }
 
   & .search-result-subttitle {
     color: var(--gpe-red-1);
     font-size: var(--font-sm);
     letter-spacing: 0.5px;
-    padding-left: 7px;
+    padding-left: 12px;
   }
 
   /* interactions */
@@ -50,7 +50,7 @@
   & a.search-result-link:hover,
   & a.search-result-link:focus {
     color: var(--dark-4);
-    background-color: color(var(--accent-light) a(0.5));
+    background-color: color(#ccc a(0.7));
     text-decoration: none;
 
     & .search-result-icon {

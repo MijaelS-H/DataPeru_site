@@ -65,6 +65,7 @@
         &.active {
           background-color: var(--dark-2);
           max-width: 250px;
+          padding: 25px 5px;
           transition: all .5s ease-in-out;
           width: 250px;
         }
@@ -88,13 +89,17 @@
           &:focus {
             outline: none;
           }
+
+          &::placeholder {
+            color: var(--white);
+          }
         }
       }
 
       & .results {
         position: fixed;
-        right: 20px;
-        top: var(--nav-height);
+        right: 120px;
+        top: 70px;
         margin: 0;
         width: 250px;
         margin-left: -40px;

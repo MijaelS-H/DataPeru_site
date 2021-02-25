@@ -47,7 +47,7 @@ const Nav = props => {
       </div>
 
       <div className="nav-right">
-        {/* <NavSearch />*/}
+        <NavSearch />
       </div>
     </header>
   );

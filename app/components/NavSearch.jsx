@@ -1,4 +1,4 @@
-import React, {useCallback, useRef, useState} from "react";
+import React, {useCallback, useEffect, useRef, useState} from "react";
 import clns from "classnames";
 import {Icon, InputGroup} from "@blueprintjs/core";
 import {Popover2, Popover2InteractionKind} from "@blueprintjs/popover2";
@@ -17,6 +17,7 @@ const NavSearch = props => {
 
   const [isOpen, setIsOpen] = useState(false);
   const [results, setResults] = useState([]);
+  const [content, setContent] = useState(<div>Sin resultados</div>);
 
   /** @type {React.MutableRefObject<import("axios").Canceler?>} */
   const cancelContainer = useRef(null);
@@ -43,42 +44,81 @@ const NavSearch = props => {
           const data = resp.data.results;
           const results = data.map(d => ({id: d.slug, name: d.name, slug: d.profile, level: d.hierarchy}));
           setResults(results);
+
+          const content = <ul className={clns("results", {active: isOpen})}>
+            {results.map((d, i) => <SearchResult
+              key={`search_result_${d.id}_${i}`}
+              id={d.id}
+              slug={d.slug}
+              title={d.name}
+              level={d.level}
+            />)}
+          </ul>;
+
+          setContent(content);
+
         })
         .catch(error => {
-          console.error("Search result error:", error);
+          error.message && console.error("Search result error:", error);
         });
+    }
+    else {
+      setResults([]);
+      setContent(<div>Sin resultados</div>);
     }
   };
 
-  const content = <ul className={clns("results", {active: isOpen})}>
-    {results.map((d, i) => <SearchResult
-      key={`search_result_${d.id}_${i}`}
-      id={d.id}
-      slug={d.slug}
-      title={d.name}
-      level={d.level}
-    />)}
-  </ul>;
+  const useOutsideClick = (ref, callback) => {
+    const handleClick = e => {
+      if (ref.current && !ref.current.contains(e.target)) {
+        callback();
+      }
+    };
+
+    useEffect(() => {
+      document.addEventListener("click", handleClick);
+      document.addEventListener("keydown", handleClick);
+
+      return () => {
+        document.removeEventListener("click", handleClick);
+        document.addEventListener("keydown", handleClick);
+      };
+    });
+  };
+
+  const ref = useRef();
+
+  useOutsideClick(ref, () => {
+    if (isOpen) {
+      setIsOpen(!isOpen);
+      setResults([]);
+      setContent(<div>Sin resultados</div>);
+    }
+  });
 
   return (
-    <div className={clns("search-button", "search-nav", {active: isOpen})}>
-      <img src="/icons/navbar/search_icon.svg" onClick={() => setIsOpen(!isOpen)} />
+    <div className={clns("search-button", "search-nav", {active: isOpen})} ref={ref}>
+
+      <React.Fragment>
+        <img className="click" src="/icons/navbar/search_icon.svg" onClick={() => setIsOpen(!isOpen)} />
+        <InputGroup
+          placeholder={"Buscar perfiles"}
+          className={clns("search-button-label", {active: isOpen})}
+          autoFocus={true}
+          onChange={inputHandler}
+        />
+      </React.Fragment>
+
+      {results.length > 0 &&
       <Popover2
-        content={content}
-        isOpen={isOpen}
+        isOpen={results.length > 0 && isOpen}
         minimal={true}
         placement="bottom"
+        usePortal={false}
       >
-        <React.Fragment>
-          <img className="click" src="/icons/navbar/search_icon.svg" onClick={() => setIsOpen(!isOpen)} />
-          <InputGroup
-            placeholder={t("Search profiles")}
-            className={clns({active: isOpen})}
-            autoFocus={true}
-            onChange={inputHandler}
-          />
-        </React.Fragment>
+        {content}
       </Popover2>
+      }
     </div>
   );
 };
