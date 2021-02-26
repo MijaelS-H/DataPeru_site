@@ -1,7 +1,7 @@
 @import "helpers/mixins.css";
 
 .tile-v2-container {
-  border: 1px solid var(--dark-4);
+  border: 1px solid var(--black);
   border-radius: 12px;
   height: 8rem;
   overflow: hidden;
