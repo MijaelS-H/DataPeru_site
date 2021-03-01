@@ -33,7 +33,6 @@
               color: var(--white);
               font-size: var(--font-xl);
               font-weight: 100;
-              text-transform: capitalize;
             }
           }
           & .cp-stat-label {
@@ -337,7 +336,6 @@
             color: var(--gray);
             font-size: var(--font-md);
             margin-top: 3px;
-            text-transform: capitalize;
           }
         }
       }
