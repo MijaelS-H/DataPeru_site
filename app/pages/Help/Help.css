@@ -1,3 +1,5 @@
+@import "helpers/mixins.css";
+
 .help-container {
   background-color: var(--dark-3);
   padding-top: var(--nav-height);
@@ -16,6 +18,26 @@
       font-weight: 300;
       letter-spacing: 1px;
       padding: var(--gutter-sm);
+
+      @mixin max-md {
+        margin-bottom: 0;
+        padding-top: 0;
+      }
+    }
+
+    & .help-sub-header {
+      color: var(--white);
+      display: none;
+      font-family: "Open Sans";
+      font-size: var(--font-md);
+      font-weight: 300;
+      letter-spacing: 1px;
+
+      @mixin max-md {
+        display: inline;
+        margin-bottom: 0;
+        padding-top: 0;
+      }
     }
 
     & .help-content-columns {
@@ -24,8 +46,21 @@
       padding: var(--gutter-sm) var(--gutter-xl);
       width: 100%;
 
+      @mixin max-md {
+        justify-content: center;
+        flex-direction: column;
+        padding: var(--gutter-sm) calc(var(--gutter-xxs) / 2);
+      }
+
       & .help-content-column-left {
         width: 30%;
+
+        @mixin max-md {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+        }
 
         & .help-content-column-left-title {
           color: var(--white);
@@ -33,6 +68,10 @@
           font-size: var(--font-lg);
           font-weight: 300;
           margin-bottom: var(--gutter-sm);
+
+          @mixin max-md {
+            display: none;
+          }
         }
 
         & .help-content-column-left-subtitle {
@@ -42,10 +81,20 @@
           font-weight: 600;
           letter-spacing: 0.5px;
           text-transform: uppercase;
+
+          @mixin max-md {
+            margin-top: var(--gutter-xl);
+          }
         }
 
         & .help-content-viz-options {
           margin-top: var(--gutter-md);
+
+          @mixin max-md {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+          }
 
           & .help-content-viz-option-box {
             display: flex;
@@ -53,6 +102,10 @@
             flex-direction: row;
             margin-top: var(--gutter-xs);
             text-decoration: none;
+
+            @mixin max-md {
+              width: 50%;
+            }
 
             & .help-content-viz-option-icon {
               margin-right: 0.5rem;
@@ -77,6 +130,14 @@
       & .help-content-column-right {
         width: 70%;
 
+        @mixin max-md {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+          padding: 0;
+        }
+
         & .help-content-column-right-title {
           color: var(--white);
           margin-top: var(--gutter-xl);
@@ -86,6 +147,11 @@
           background-color: #32383f;
           height: 500px;
           padding: var(--gutter-md);
+
+          @mixin max-md {
+            padding: var(--gutter-xs);
+            width: 100%;
+          }
         }
 
         & .help-content-column-right-subtitle {
@@ -108,6 +174,12 @@
         & .help-content-column-right-tabs {
           display: flex;
           margin-top: var(--gutter-md);
+          flex-wrap: wrap;
+
+          @mixin max-md {
+          justify-content: space-between;
+           width: 100%;
+          }
 
           & .help-content-column-right-tab {
             background-color: var(--gpe-red-1);
@@ -120,6 +192,10 @@
             justify-content: center;
             width: 150px;
             letter-spacing: 0.5px;
+
+            @mixin max-md {
+              flex-grow: 1;
+            }
           }
         }
       }

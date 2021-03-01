@@ -100,11 +100,12 @@ const Help = () => {
 
       <div className="help-content">
         <h1 className="help-header">Ayuda</h1>
+        <h2 className="help-sub-header">Catálogo de visualizaciones</h2>
 
         <div className="help-content-columns">
           <div className="help-content-column-left">
             <h2 className="help-content-column-left-title">Catálogo de visualizaciones</h2>
-            <span className="help-content-column-left-subtitle">Tipologías</span>
+            <h3 className="help-content-column-left-subtitle">Tipologías</h3>
             <div className="help-content-viz-options">
               {vizOptions.map((d, i) =>
                 <a className="help-content-viz-option-box" key={i} href={`#${d.type}`} onClickCapture={evt => [evt.preventDefault(), pickViz(d)]}>

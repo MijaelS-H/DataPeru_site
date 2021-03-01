@@ -1006,15 +1006,12 @@ export const vizOptions = [
       {id: "beta"},
       {id: "gamma"},
       {id: "epsilon"},
-      {id: "zeta"},
-      {id: "theta"}
+      {id: "zeta"}
     ],
     links: [
       {source: "alpha", target: "beta"},
       {source: "alpha", target: "gamma"},
-      {source: "epsilon", target: "zeta"},
-      {source: "epsilon", target: "theta"},
-      {source: "theta", target: "alpha"}
+      {source: "epsilon", target: "zeta"}
     ],
     data: [],
     item: "Sankey diagram",
