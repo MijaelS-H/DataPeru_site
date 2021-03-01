@@ -62,7 +62,7 @@
   & p.search-result-link {
     animation: fadeInSlowly 1s ease-out;
     margin-top: 0.5em;
-    margin-bottom: 0.75em;
+    margin-bottom: 0.5em;
   }
 }
 

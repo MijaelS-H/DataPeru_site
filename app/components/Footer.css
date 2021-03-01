@@ -1,3 +1,5 @@
+@import "helpers/mixins.css";
+
 .footer {
   color: var(--white);
   & .footer-nav {
@@ -47,7 +49,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    height: 40vh;
+    height: 45vh;
     padding: var(--gutter-md) var(--gutter-xxl) var(--gutter-xl);
 
     & .footer-logos-header {
@@ -70,9 +72,13 @@
           height: 5rem;
           margin-bottom: var(--gutter-md);
 
+          @mixin max-lg {
+            display: flex;
+            flex-direction: column;
+          }
+
           & .footer-logo-itp {
             height: 4rem;
-            overflow: hidden;
             margin: 0 0 0 -14px;
           }
 
@@ -115,21 +121,25 @@
           & .footer-logo-mef {
             height: 1.7rem;
             width: auto;
+            margin-bottom: 1em;
           }
 
           & .footer-logo-mincul {
             height: 1.7rem;
             width: auto;
+            margin-bottom: 1em;
           }
 
           & .footer-logo-midagri {
             height: 1.7rem;
             width: auto;
+            margin-bottom: 1em;
           }
 
           & .footer-logo-inei {
             height: 3rem;
             width: auto;
+            margin-bottom: 1em;
           }
         }
       }
