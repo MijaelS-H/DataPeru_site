@@ -147,7 +147,7 @@ class HeroSearch extends Component {
           />
           <img className="hero-search-icon" src="/icons/explore/filter.svg" />
           <a
-            className="hero-search-link u-font-sm"
+            className={clns("hero-search-link u-font-sm", searchActive ? "is-open" : "is-closed")}
             href={`/explore${userQuery ? `?q=${ encodeChars(userQuery.toString()) }` : ""}`}
           >
             Buscar

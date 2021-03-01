@@ -18,13 +18,12 @@
 
   /* the icon */
   & .search-result-icon {
-    filter: invert(1);
-    opacity: 0.5;
     /* sizing */
     width: 2em;
     height: 2em;
     /* positioning */
     @mixin absolute-vertical-center;
+    background-color: var(--gpe-red-1);
     left: 0.75em;
     vertical-align: top;
     transform-origin: top center;
