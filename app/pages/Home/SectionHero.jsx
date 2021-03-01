@@ -13,8 +13,8 @@ import TileV2 from "$app/components/TileV2";
 
 /** @type {React.FC<OwnProps>} */
 const SectionHero = props => {
-  const [tab, setTab] = useState("geo");
-  const [backgroundImage, setBackgroundImage] = useState(heroBackgrounds[tab]);
+  const [tab, setTab] = useState("");
+  const [backgroundImage, setBackgroundImage] = useState("url(/images/homepage/default.jpg)"); // useState(heroBackgrounds[tab]);
   const [mapData, setMapData] = useState([]);
   const [mapDepartamento, setMapDepartamento] = useState(0);
   const [tiles, setTiles] = useState([]);
@@ -35,7 +35,7 @@ const SectionHero = props => {
 
   const pickDepartamento = depto => {
     setMapDepartamento(depto);
-    setBackgroundImage(heroBackgrounds[depto] || "url(/images/homepage/geo.jpg)");
+    setBackgroundImage(heroBackgrounds[depto] || "url(/images/homepage/default.jpg)");
 
     axios.get(`/api/home/${tab}/${mapDepartamento}`).then(res => {
       const {status, data} = res.data;
