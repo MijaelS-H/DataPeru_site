@@ -87,6 +87,8 @@ class Profile extends React.Component {
         <HelmetWrapper info={share} />
 
         <Nav
+          hierarchy={variables.hierarchy}
+          isProfile={true}
           title={variables.name}
           // routePath={this.props.route.path}
           routeParams={this.props.routeParams}

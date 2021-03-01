@@ -13,7 +13,7 @@ import TileV2 from "$app/components/TileV2";
 
 /** @type {React.FC<OwnProps>} */
 const SectionHero = props => {
-  const [tab, setTab] = useState("");
+  const [tab, setTab] = useState("geo");
   const [backgroundImage, setBackgroundImage] = useState("url(/images/homepage/default.jpg)"); // useState(heroBackgrounds[tab]);
   const [mapData, setMapData] = useState([]);
   const [mapDepartamento, setMapDepartamento] = useState(0);
