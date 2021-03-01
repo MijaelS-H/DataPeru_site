@@ -1,23 +1,11 @@
 ########################################
-# instructions
+# PERU COLORS
 ########################################
-
-# When styling a canon profile, the first thing you should do is heavily customize these variables.
-# Each of the following variables is used throughout both the admin panel and generated profile css.
-# If you replace the default grayscale colors, you should try and use similar shades.
-
-# It is recommended that you also use these variables in your css files. i.e., `color: var(--accent);`
-# They can also be imported and used by react components: `import styles from style.yml`, then `<span style={{color: styles["alert-dark"]}} />`
-# And of course, you can add as many new variables here as you like, and use them in the same way.
-
-# The pigments plugin is highly recommended for visualizing hex values as colors in your text editor:
-# Atom:   https://atom.io/packages/pigments
-# VSCode: https://marketplace.visualstudio.com/items?itemName=jaspernorth.vscode-pigments
-
-# GOTCHAS:
-# 1. When aliasing variables in this file (i.e., `section-text-color: "var(--dark-2)"`), these variables will be replaced in css files, but NOT in js files.
-
-# Finally, if you encounter any bugs, are confused by anything, or wish things were better/different, let @perpetualgrimace know!
+gpe-red:       "#df0c14"
+gpe-red-1:     "var(--gpe-red)"
+gpe-red-dark:  "#b70b0b"
+gpe-red-light: "#e91a21"
+gpe-red-black: "#891a21"
 
 
 ########################################
@@ -26,21 +14,20 @@
 
 # grayscale
 white:        "#FFFFFF"
-light-1:      "#F8F9FA"
-light-2:      "#ECEFF1"
-light-3:      "#CFDAE2"
-gray:         "#AEBDCC"
-dark-1:       "#8A97AE"
-dark-2:       "#2A2F3B"
-dark-3:       "#26292e"
-dark-4:       "#000000"
-black:        "#181A21"
+light-1:      "#f0f0f0"
+light-2:      "#e0e0e2"
+light-3:      "#c5c5c5"
+gray:         "#87888b"
+dark-1:       "#494b48"
+dark-2:       "#2c3137"
+dark-3:       "#222529"
+black:        "#000000"
 
 # accent colors
-accent:       "#FFCD33"
-accent-light: "#FFD65B"
-accent-dark:  "#C4960B"
-accent-black: "#7F6516"
+accent:       "var(--gpe-red)"
+accent-light: "var(--gpe-red-light)"
+accent-dark:  "var(--gpe-red-dark)"
+accent-black: "var(--gpe-red-black)"
 
 
 ########################################
@@ -48,9 +35,9 @@ accent-black: "#7F6516"
 ########################################
 
 # UI colors
-alert-dark:         "#75224D"
-alert:              "#992C64"
-alert-light:        "#DB64A6"
+alert:              "var(--gpe-red)"
+alert-light:        "var(--gpe-red-light)"
+alert-dark:         "var(--gpe-red-dark)"
 
 type-number:        "#8EB6FF"
 type-number-dark:   "#2D4A7F"
@@ -61,8 +48,8 @@ type-string-dark:   "#62873B"
 type-boolean:       "#FFD65B"
 type-boolean-dark:  "#7F6516"
 
-type-error:         "#DB64A6"
-type-error-dark:    "#75224D"
+type-error:         "var(--gpe-red)"
+type-error-dark:    "var(--gpe-red-dark)"
 
 # measurements
 cms-nav-height:     "2.75rem"
@@ -81,7 +68,7 @@ body-font-scale-xl:         "125%"   # 1rem = 20px (min-width: 1400px)
 
 # measurements
 nav-height:                 "50px"
-subnav-height:              "var(--nav-height)"
+subnav-height:              "100px"
 container-width:            "80rem" # 1280px
 hero-container-width:       "var(--container-width)"
 
@@ -222,6 +209,3 @@ stat-value-color:           "var(--accent-dark)"
 stat-subtitle-font-size:    "var(--font-xs)"
 stat-subtitle-color:        "var(--dark-1)"
 stat-group-stat-width:      "9rem"
-
-# peru colors
-gpe-red-1:          "#e30a14"

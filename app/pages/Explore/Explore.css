@@ -84,7 +84,7 @@
       padding: 10px;
       cursor: pointer;
       &.selected {
-        background: var(--dark-4);
+        background: var(--black);
         color: var(--white);
       }
     }
@@ -93,7 +93,7 @@
   & .ep-profiles {
     display: flex;
     flex-wrap: wrap;
-    background-color: var(--dark-4);
+    background-color: var(--black);
     padding: var(--gutter-xs);
 
     /* handle overflow on big screens */
