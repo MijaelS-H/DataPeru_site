@@ -80,6 +80,12 @@ class Explore extends React.Component {
     this.setState({tab}, () => this.requestApi());
   }
 
+  handleTabSelect = tab => {
+    const {query, profile} = this.state;
+    this.updateUrl(query, profile, tab.target.value);
+    this.setState({tab: tab.target.value}, () => this.requestApi());
+  }
+
   updateUrl = (q, profile, tab) => {
     const searchParams = new URLSearchParams();
     if (q && q.length > 0) searchParams.set("q", q);
@@ -103,7 +109,7 @@ class Explore extends React.Component {
     }
 
     // Search actual query
-    if (profile === "filter" || profilesList[profile].levels[tab] !== "Ver todo" || query && query !== "" && query.length > 2) {
+    if (profile === "filter" || query && query !== "" && query.length > 2) {
       axios.get("/api/profilesearch", {
         cancelToken: new CancelToken(c => {
           // An executor function receives a cancel function as a parameter
@@ -203,6 +209,8 @@ class Explore extends React.Component {
 
     const totals = query && query !== "" && !loading ? resultsNest : totalsNest;
 
+    console.log(tab);
+
     return <div className="explore">
       <HelmetWrapper info={share} />
 
@@ -263,9 +271,26 @@ class Explore extends React.Component {
               key={levelKey}
               onClick={() => this.handleTab(levelKey)}
             >
-              {levelName}
+              {levelName === "Nacion" ? "Nación" : levelName === "Seccion" ? "Sección" : levelName === "Division" ? "División" : levelName}
             </div>;
           })}
+          <select
+            className="ep-profile-tab-select"
+            onChange={this.handleTabSelect}
+            value={tab}
+          >
+            {profilesList[profile].levels.map((levelName, ix) => {
+              const levelKey = `${ix}`;
+              return <option
+                className={classnames("ep-profile-option",  levelKey)}
+                key={levelKey}
+                value={levelKey}
+              >
+                {levelName === "Nacion" ? "Nación" : levelName === "Seccion" ? "Sección" : levelName === "Division" ? "División" : levelName}
+              </option>
+              ;
+            })}
+          </select>
         </div>
 
         <div className="ep-profiles-total">

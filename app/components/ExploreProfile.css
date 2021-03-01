@@ -36,6 +36,11 @@
     grid-auto-flow: row dense;
     padding: 0 var(--gutter-md) var(--gutter-sm);
     width: calc(100% - var(--gutter-md));
+
+    @mixin max-md {
+      padding: 0 !important;
+      width: 100% !important;
+    }
   }
 
   & .message {
