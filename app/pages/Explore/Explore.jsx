@@ -209,8 +209,6 @@ class Explore extends React.Component {
 
     const totals = query && query !== "" && !loading ? resultsNest : totalsNest;
 
-    console.log(tab);
-
     return <div className="explore">
       <HelmetWrapper info={share} />
 

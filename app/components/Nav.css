@@ -48,7 +48,7 @@
           overflow: hidden;
 
           &.solid {
-              color: #535552;
+              color: #fff;
             }
         }
 
@@ -208,11 +208,6 @@
 
   & .menu {
     margin-left: 5px;
-  }
-
-  &.background {
-    /* background-color: var(--gmx-red-2); */
-    background-color: var(--black);
   }
 
   & .profile-logo {
