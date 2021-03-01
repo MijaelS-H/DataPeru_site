@@ -9,6 +9,10 @@
   height: 80vh;
   padding: var(--gutter-xl);
 
+  @mixin max-lg {
+    height: 100%;
+  }
+
   @mixin max-md {
     height: 100%;
   }
@@ -26,7 +30,10 @@
     grid-auto-flow: column dense;
 
     @mixin max-lg {
-      grid-template-rows: repeat(auto-fit, minmax(200px, 1fr));
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
     @mixin max-md {

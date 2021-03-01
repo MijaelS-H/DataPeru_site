@@ -32,7 +32,7 @@
     padding: var(--nav-height) var(--gutter-xxxl) var(--gutter-xxl);
 
     @mixin max-md {
-      padding: var(--gutter-xxxl) var(--gutter-md) var(--gutter-xxl);
+      padding: 5rem var(--gutter-md) 1rem;
     }
 
     & .hero-tagline {
@@ -41,6 +41,13 @@
       line-height: 1.5;
       text-align: center;
       margin: var(--gutter-xxl) 20% 0;
+
+      @mixin max-md {
+        margin: var(--gutter-xxl) 5% 0;
+      }
+      @mixin max-lg {
+        margin: var(--gutter-xxl) 15% 0;
+      }
 
       & em {
         font-size: 1.2em;
@@ -51,13 +58,9 @@
         display: block;
 
         @mixin max-md {
-          font-size: var(--font-xl);
+          font-size: var(--font-md);
           font-weight: 400;
         }
-      }
-
-      @mixin max-sm {
-        margin: var(--gutter-lg) 10% 0;
       }
     }
 
@@ -68,12 +71,17 @@
       max-width: 50vw;
       margin: var(--gutter-xl) 20% 0;
 
+      @mixin min-lg {
+        margin: var(--gutter-xl) 10% 0;
+        max-width: 100%;
+      }
+
       @mixin max-md {
-        margin: var(--gutter-xl) 5% 0;
+        margin: var(--gutter-xl) 0 0;
         max-width: 100%;
 
         & .hero-search-input::placeholder {
-          font-size: var(--font-xs);
+          font-size: var(--font-xxs);
         }
       }
     }
@@ -84,14 +92,27 @@
       justify-content: center;
       margin-top: var(--gutter-lg);
 
+      @mixin max-md {
+        justify-content: space-around;
+      }
+
       & .hero-logo-itp {
         height: var(--gutter-xl);
         padding: 0 var(--gutter-md);
+
+        @mixin max-md {
+          height: var(--gutter-lg);
+          padding: 0;
+        }
       }
 
       & .hero-logo-produccion {
         height: var(--gutter-lg);
         padding: 0 var(--gutter-md);
+
+        @mixin max-md {
+          padding: 0;
+        }
       }
     }
   }
@@ -104,9 +125,10 @@
     padding: var(--gutter-xxl) var(--gutter-xxl) var(--gutter-md);
     background-image: linear-gradient(transparent, var(--dark-3) 200px);
 
-    @mixin max-sm {
+    @mixin max-md {
       display: flex;
       flex-direction: column;
+      padding: var(--gutter-xxl) var(--gutter-md) var(--gutter-md);
     }
 
     & .hero-featured-title {
@@ -117,6 +139,14 @@
       line-height: 1.75;
       margin: 0;
       padding: 0;
+
+      @mixin max-md {
+        text-align: center;
+        font-family: "Open Sans";
+        font-size: var(--font-md);
+        font-weight: 400;
+        letter-spacing: 1px;
+      }
     }
 
     & .hero-featured-map {
@@ -130,6 +160,9 @@
         height: 100%;
       }
 
+      @mixin max-md {
+        display: none;
+      }
       @mixin max-sm {
         display: none;
       }
@@ -143,12 +176,21 @@
       margin: 0;
       padding: 0;
       text-align: right;
+
+      @mixin max-md {
+        display: flex;
+        justify-content: space-around;
+      }
     }
 
     & .hero-featured-tab {
       display: inline-block;
       margin-left: var(--gutter-md);
       transition: border-color 0.5s linear;
+
+      @mixin max-md {
+        margin-left: 0;
+      }
 
       & a {
         display: block;
@@ -158,6 +200,11 @@
         line-height: 1.75;
         border-bottom: 2px solid transparent;
         text-decoration: none;
+
+        @mixin max-md {
+          font-size: var(--font-sm);
+          letter-spacing: 0.5px;
+        }
       }
 
       &.active a {
@@ -173,6 +220,10 @@
         display: inline-block;
         vertical-align: text-bottom;
         margin-right: var(--gutter-xxs);
+
+        @mixin max-md {
+          height: var(--font-md);
+        }
       }
     }
 
@@ -197,6 +248,17 @@
       height: 100px;
       margin: 0;
       padding: var(--gutter-xs) 0;
+
+      @mixin max-lg {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      @mixin max-md {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
     }
 
     & .hero-featured-tiles-more {
@@ -205,6 +267,10 @@
       color: #fff;
       font-size: var(--font-md);
       text-decoration: none;
+
+      @mixin max-md {
+        justify-content: center;
+      }
 
       & .hero-features-more-icon {
         width: 50px;

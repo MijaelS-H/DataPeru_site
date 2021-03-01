@@ -19,7 +19,7 @@
       width: 18rem !important;
     }
     @mixin max-md  {
-      height: 14rem !important;
+      height: 16rem !important;
       width: 16rem !important;
     }
   }

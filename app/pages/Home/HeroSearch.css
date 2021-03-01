@@ -33,6 +33,10 @@
     width: 100%;
     height: auto;
   }
+
+  @mixin max-md {
+    display: none;
+  }
 }
 
 .hero-search-label {
@@ -67,6 +71,11 @@
     @mixin max-md {
       border-bottom-right-radius: 0px;
     }
+  }
+
+  @mixin max-md {
+    font-size: var(--font-xs);
+    width: var(--gutter-xxl);
   }
 }
 
@@ -105,6 +114,12 @@
 
   &:focus {
     outline: none;
+  }
+
+  @mixin max-md {
+    height: 3rem;
+    width: 100%;
+    padding-left: 1rem;
   }
 }
 
