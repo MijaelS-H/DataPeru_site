@@ -15,14 +15,49 @@
   width: 100%;
   z-index: 21;
 
+  @mixin max-md {
+    padding: var(--gutter-xs) var(--gutter-md) var(--gutter-xs);
+  }
+
   & div {
     display: flex;
     flex: 1;
 
     &.nav-left {
+      align-items: center;
+
       & img {
         height: 2rem;
         width: auto;
+      }
+
+      & .nav-left-info {
+        display: flex;
+        flex-direction: column;
+        letter-spacing: 0.5px;
+        margin-left: 1em;
+
+        & .nav-left-info-title {
+          color: var(--white);
+          font-size: var(--font-sm);
+          font-weight: 500;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          width: 18em;
+          display: block;
+          overflow: hidden;
+
+          &.solid {
+              color: #535552;
+            }
+        }
+
+        & .nav-left-info-hierarchy {
+          color: var(--gpe-red-1);
+          font-family: "Open Sans";
+          font-size: var(--font-xxs);
+          font-weight: 600;
+        }
       }
     }
 
@@ -56,6 +91,8 @@
         max-width: 2rem;
         transition: all .5s ease-in-out;
         width: 2rem;
+        position: absolute;
+        top: 2rem;
 
         & img {
           height: 2rem !important;
@@ -65,7 +102,8 @@
         &.active {
           background-color: var(--dark-2);
           max-width: 250px;
-          padding: 25px 5px;
+          padding: 20px 5px;
+          top: 1.7rem;
           transition: all .5s ease-in-out;
           width: 250px;
         }
@@ -109,6 +147,14 @@
         box-shadow: 0 1px 2px color(var(--black) a(0.5));
         @mixin vertical-overflow-container;
         display: none;
+
+        @mixin max-xl {
+          right: 107px;
+        }
+
+        @mixin max-md {
+          right: 24px;
+        }
 
         &.active {
           display: flex;
