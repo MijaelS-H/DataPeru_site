@@ -9,7 +9,7 @@
   /* the link */
   & .search-result-link {
     padding: 0.5em 1em 0.5em 2.375rem; /* space out items & make room for icon */
-    color: var(--dark-4);
+    color: var(--black);
 
     &:focus {
       outline-offset: -2px;
@@ -48,7 +48,7 @@
   &.is-highlighted a.search-result-link,
   & a.search-result-link:hover,
   & a.search-result-link:focus {
-    color: var(--dark-4);
+    color: var(--black);
     background-color: color(#ccc a(0.7));
     text-decoration: none;
 

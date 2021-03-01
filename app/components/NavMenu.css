@@ -14,7 +14,7 @@
     /* handle overflow on small screens */
     @mixin vertical-overflow-container;
     /* theming */
-    background-color: var(--dark-4);
+    background-color: var(--black);
     /* override blueprint */
     border-radius: 0;
     margin: 0;

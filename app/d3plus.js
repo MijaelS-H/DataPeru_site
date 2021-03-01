@@ -54,7 +54,7 @@ export const findColorV2 = (key, d) => {
   }
 
   if (key === "Seccion" && Object.keys(d).includes("Empresas")) {
-    return colors["Seccion CITE"][d["Seccion ID"]];
+    return colors["Seccion CITE"][d["Seccion CITE ID"]];
   }
 
   if (key === "Subcategoria" && Object.keys(d).includes("Servicios")) {
@@ -72,7 +72,7 @@ export const findColorV2 = (key, d) => {
   const id = d[`${key} ID`];
 
   const palette = colors[key];
-  return palette ? colors[key][id] || colors[key][d[key]] || styles["gpe-red-1"] : styles["gpe-red-1"];
+  return palette ? colors[key][id] || colors[key][d[key]] || styles["gpe-red"] : styles["gpe-red"];
 };
 
 // Tooltip title
