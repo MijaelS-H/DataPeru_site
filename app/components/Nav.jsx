@@ -49,7 +49,7 @@ const Nav = props => {
 
       <div className="nav-center">
         <a href="/">
-          <img src={scrolled ? "/icons/Logo_ITPProduccion_color.svg" : "/icons/logo_ITPProduccion_white.svg"} alt="ITP Producción" />
+          <img src={scrolled ? "/icons/Logo_ITPProduccion_color.svg" : "/icons/Logo_ITPProduccion_white.svg"} alt="ITP Producción" />
         </a>
       </div>
 
