@@ -8,16 +8,32 @@
     flex-direction: row;
     padding: var(--gutter-md) var(--gutter-xxl) var(--gutter-md);
 
+    @mixin max-md {
+      align-items: center;
+      flex-direction: column;
+      padding: var(--gutter-md) var(--gutter-xs) var(--gutter-xxs);
+    }
+
     & .footer-nav-header {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       width: 50vw;
 
+      @mixin max-md {
+        align-items: center;
+        text-align: center;
+        width: 100%;
+      }
+
       & .footer-nav-header-image {
         height: 2.5rem;
         overflow: hidden;
         margin: 0 0 -10px -14px;
+
+        @mixin max-md {
+          margin: 0;
+        }
       }
 
       & .footer-nav-header-text {
@@ -34,12 +50,25 @@
       justify-content: space-between;
       width: 50vw;
 
+      @mixin max-md {
+        padding: var(--gutter-md) var(--gutter-lg);
+        width: 100%;
+      }
+
       & .footer-nav-element {
         color: var(--white);
         font-size: var(--font-md);
         font-weight: 500;
         letter-spacing: 0;
         text-decoration: none;
+
+        @mixin max-md {
+          font-size: 1em;
+        }
+
+        @mixin max-sm {
+          font-size: 0.8em;
+        }
       }
     }
   }
@@ -52,6 +81,12 @@
     height: 45vh;
     padding: var(--gutter-md) var(--gutter-xxl) var(--gutter-xl);
 
+    @mixin max-md {
+      flex-direction: column;
+      height: 100%;
+      padding: var(--gutter-md) var(--gutter-xs) var(--gutter-xxs);
+    }
+
     & .footer-logos-header {
       font-family: "Open Sans";
       font-size: var(--font-xxxs);
@@ -63,7 +98,21 @@
       height: 100%;
       margin-right: var(--gutter-lg);
       width: 33vw;
+
+      @mixin max-md {
+        margin-right: 0;
+        width: 100%;
+      }
+
       & .footer-logos-team {
+
+        @mixin max-md {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+        }
+
         & .footer-logos-team-box {
           display: flex;
           flex-direction: row;
@@ -72,24 +121,74 @@
           height: 5rem;
           margin-bottom: var(--gutter-md);
 
-          @mixin max-lg {
-            display: flex;
-            flex-direction: column;
+          @mixin max-md {
+            align-items: center;
+            justify-content: space-around;
+            width: 80%;
           }
 
           & .footer-logo-itp {
-            height: 4rem;
+            height: 5em;
             margin: 0 0 0 -14px;
+
+            @mixin max-xl {
+              height: 4em;
+              margin: 0 0 0 -14px;
+            }
+            @mixin max-lg {
+              height: 3.5em;
+              margin: 0;
+              margin: 0 0 0 -10px;
+            }
+            @mixin max-md {
+              height: 5em;
+              margin: 0;
+            }
+            @mixin max-sm {
+              height: 2.7em;
+              margin: 0;
+            }
           }
 
           & .footer-logo-produce {
-            height: 1.7rem;
+            height: 2.3em;
             width: auto;
+
+            @mixin max-xl {
+              height: 2em;
+              margin: 0;
+            }
+            @mixin max-lg {
+              height: 1.7em;
+              margin: 0;
+            }
+            @mixin max-md {
+              height: 2.2em;
+              margin: 0;
+            }
+            @mixin max-sm {
+              height: 1.5em;
+              margin: 0;
+            }
           }
 
           & .footer-logo-dw {
-            height: 4rem;
+            height: 5em;
             width: auto;
+
+            @mixin max-xl {
+              height: 4em;
+            }
+            @mixin max-lg {
+              height: 3.7em;
+            }
+            @mixin max-md {
+              height: 5em;
+              margin: 0;
+            }
+            @mixin max-sm {
+              height: 3.5em;
+            }
           }
         }
       }
@@ -98,6 +197,11 @@
         display: flex;
         flex-direction: column;
         height: 5rem;
+
+        @mixin max-md {
+          display: none;
+        }
+
         & .footer-logo-bid {
           height: 1.7rem;
           width: 12rem;
@@ -109,7 +213,19 @@
       height: 100%;
       width: 50vw;
 
+      @mixin max-md {
+        width: 100%;
+      }
+
       & .footer-logos-partners {
+
+        @mixin max-md {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+        }
+
         & .footer-logos-partners-box {
           display: flex;
           flex-direction: row;
@@ -117,30 +233,135 @@
           justify-content: space-between;
           height: 5rem;
           margin-bottom: 1.5rem;
+          margin-top: 0;
+
+          @mixin max-md {
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: var(--gutter-sm);
+            width: 80%;
+          }
 
           & .footer-logo-mef {
-            height: 1.7rem;
+            height: 2.3em;
             width: auto;
             margin-bottom: 1em;
+
+            @mixin max-xl {
+              height: 2em;
+              margin: 0;
+            }
+            @mixin max-lg {
+              height: 1.6em;
+              margin: 0;
+            }
+            @mixin max-md {
+              height: 2.2em;
+              margin: 0;
+            }
+            @mixin max-sm {
+              height: 2.3em;
+            }
+            @mixin max-xs {
+              height: 1.8em;
+            }
           }
 
           & .footer-logo-mincul {
-            height: 1.7rem;
+            height: 2.3em;
             width: auto;
             margin-bottom: 1em;
+
+            @mixin max-xl {
+              height: 2em;
+              margin: 0;
+            }
+            @mixin max-lg {
+              height: 1.6em;
+              margin: 0;
+            }
+            @mixin max-md {
+              height: 2.2em;
+              margin: 0;
+            }
+            @mixin max-sm {
+              height: 2.3em;
+            }
+            @mixin max-xs {
+              height: 1.8em;
+            }
           }
 
           & .footer-logo-midagri {
-            height: 1.7rem;
-            width: auto;
+            height: 2.3em;
             margin-bottom: 1em;
+            padding-right: 2rem;
+
+            @mixin max-xl {
+              height: 2em;
+              margin: 0;
+            }
+            @mixin max-lg {
+              height: 1.6em;
+              margin: 0;
+            }
+            @mixin max-md {
+              height: 2.2em;
+              margin: 0;
+            }
+            @mixin max-sm {
+              height: 2.3em;
+            }
+            @mixin max-xs {
+              height: 1.8em;
+            }
           }
 
           & .footer-logo-inei {
-            height: 3rem;
+            height: 4em;
             width: auto;
-            margin-bottom: 1em;
+            margin: 0;
+
+            @mixin max-xl {
+              height: 3em;
+              margin: 0;
+            }
+            @mixin max-lg {
+              height: 2.3em;
+              margin-left: -2em;
+            }
+            @mixin max-md {
+              height: 3em;
+              margin-left: 0;
+              margin-right: 0;
+            }
+            @mixin max-sm {
+              height: 3.5em;
+              margin-right: 2rem;
+              margin-left: 0;
+              margin-top: 0.5em;
+            }
+            @mixin max-xs {
+              height: 3em;
+            }
           }
+        }
+      }
+
+      & .footer-logos-support {
+        display: none;
+        flex-direction: column;
+        height: 5rem;
+
+        @mixin max-md {
+          display: flex;
+          align-items: center;
+        }
+
+        & .footer-logo-bid {
+          height: 1.7rem;
+          width: 12rem;
         }
       }
 
@@ -149,6 +370,12 @@
         align-items: center;
         justify-content: flex-end;
         height: 5rem;
+
+        @mixin max-md {
+          justify-content: center;
+          width: 100%;
+        }
+
         & .footer-contact-icon {
           height: 1.5rem;
           margin-right: var(--gutter-xxs);

@@ -92,7 +92,11 @@
         transition: all .5s ease-in-out;
         width: 2rem;
         position: absolute;
-        top: 2rem;
+        top: 1.5rem;
+
+        @mixin max-md {
+          top: 1.8rem;
+        }
 
         & img {
           height: 2rem !important;

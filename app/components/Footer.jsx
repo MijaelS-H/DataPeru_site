@@ -55,6 +55,10 @@ class Footer extends React.Component {
                 <img className="footer-logo-inei" src="/icons/footer/INEI_logo.png" alt="INEI" />
               </div>
             </div>
+            <div className="footer-logos-support">
+              <span className="footer-logos-header">Apoyado por</span>
+              <img className="footer-logo-bid" src="/icons/footer/BID_logo.png" alt="BID" />
+            </div>
             <div className="footer-contact">
               <img className="footer-contact-icon" src="/icons/footer/mail_icon.svg" />
               <a className="footer-contact-text" href="mailto:contacto@itp.gob.pe?Subject=ITPProducción">contacto@itp.gob.pe</a>
