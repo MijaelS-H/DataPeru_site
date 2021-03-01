@@ -28,6 +28,7 @@ class ExploreProfile extends React.Component {
                   title={d.name}
                   slug={d.slug}
                   slugColor={d.background}
+                  icon={false}
                   id={d.id}
                   ix={ix}
                   level={t(d.level)}
@@ -38,7 +39,7 @@ class ExploreProfile extends React.Component {
                 />
               )}
             </ul>
-            {results.length > 99 && <p className="message">{"La consulta supera los 100 resultados, intente ingresar filtros adicionales para refinar la búsqueda."}</p>}
+            {results.length > 99 && <p className="message">La consulta supera el límite de resultados, intente ingresar filtros adicionales para refinar la búsqueda.</p>}
           </>
       }
     </div>;

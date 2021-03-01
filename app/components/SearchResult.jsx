@@ -13,8 +13,7 @@ class SearchResult extends React.Component {
         {/* icon */}
         {slug &&
           <span className="result-icon" key="i">
-            {/* <img className="search-result-icon" src={`/icons/explore/${slug}.png`} alt="" />*/}
-            <img className="search-result-icon" src={"/icons/visualizations/others.png"} alt="" />
+            <img className="search-result-icon" src={`/icons/explore/${slug}.svg`} alt="" />
           </span>
         }
         {/* title & subtitle */}

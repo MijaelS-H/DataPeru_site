@@ -5,56 +5,76 @@ module.exports = function(app) {
 
   const {db} = app.settings;
 
-  app.get("/api/home", async(req, res) => {
+  app.get("/api/home/:slug/:departamento", async(req, res) => {
+    const departamento = req.params.departamento;
+    const slug = req.params.slug;
+
     const language = "es";
 
-    const tiles = [
-      {
-        link: "/profile/cite/citemadera-lima",
-        large: true
-      },
-      {
-        link: "/profile/cite/citeacuicola-ahuashiyacu"
-      },
-      {
-        link: "/profile/industry/elaboracion-de-productos-alimenticios"
-      },
-      {
-        link: "/profile/industry/fabricacion-de-otros-productos-minerales-no-metalicos"
-      },
-      {
-        link: "/profile/cite/citeforestal-pucallpa"
-      },
-      {
-        link: "/profile/industry/fabricacion-de-productos-textiles"
-      },
-      {
-        link: "/profile/cite/utagroindustrial-ambo"
-      },
-      {
-        link: "/profile/industry/industrias-manufactureras",
-        large: true
-      },
-      {
-        link: "/profile/industry/agricultura-ganaderia-silvicultura-y-pesca"
-      },
-      {
-        link: "/profile/cite/citetextil-camelidos-arequipa"
-      }
+    const defaultTiles = {
+      geo: [
+        {
+          link: "/profile/geo/peru"
+        },
+        {
+          link: "/profile/geo/lima"
+        },
+        {
+          link: "/profile/geo/cusco"
+        },
+        {
+          link: "/profile/geo/tacna"
+        },
+        {
+          link: "/profile/geo/lima-150101"
+        },
+        {
+          link: "/profile/geo/iquitos"
+        }
+      ],
+      industry: [
+        {
+          link: "/profile/industry/industrias-manufactureras"
+        },
+        {
+          link: "/profile/industry/agricultura-ganaderia-silvicultura-y-pesca"
+        },
+        {
+          link: "/profile/industry/elaboracion-de-productos-alimenticios"
+        },
+        {
+          link: "/profile/industry/fabricacion-de-productos-textiles"
+        },
+        {
+          link: "/profile/industry/fabricacion-de-otros-productos-minerales-no-metalicos"
+        },
+        {
+          link: "/profile/industry/comercio-al-por-mayor-y-al-por-menor-reparacion-de-vehiculos-automotores-y-motocicletas"
+        }
+      ],
+      cite: [
+        {
+          link: "/profile/cite/citemadera-lima"
+        },
+        {
+          link: "/profile/cite/citeacuicola-ahuashiyacu"
+        },
+        {
+          link: "/profile/cite/citeforestal-pucallpa"
+        },
+        {
+          link: "/profile/cite/utagroindustrial-ambo"
+        },
+        {
+          link: "/profile/cite/citetextil-camelidos-arequipa"
+        },
+        {
+          link: "/profile/cite/citepesquero-callao"
+        }
+      ]
+    };
 
-      /* {
-        link: "/profile/cite/citepesquero-callao"
-      },
-      {
-        link: "/profile/cite/citeccal-lima"
-      },
-      {
-        link: "/profile/industry/comercio-al-por-mayor-y-al-por-menor-reparacion-de-vehiculos-automotores-y-motocicletas"
-      },
-      {
-        link: "/profile/industry/construccion"
-      }, */
-    ];
+    const tiles =  defaultTiles[slug] || defaultTiles.geo;
 
     let tileData = tiles
       .map(d => typeof d === "string" ? {link: d} : d);
@@ -117,7 +137,7 @@ module.exports = function(app) {
               const content = e.content.find(c => c.locale === language) || e.content.find(c => c.locale === "en");
               arr.push({
                 dimension: e.dimension,
-                hierarchy: e.hierarchy,
+                hierarchy: e.hierarchy === "Nacion" ? "Nación" : e.hierarchy === "Seccion" ? "Sección" : e.hierarchy === "Division" ? "División" : e.hierarchy,
                 id: e.id,
                 slug: entity.slug,
                 title: content.name
@@ -139,7 +159,7 @@ module.exports = function(app) {
       return tileArray;
     }, []);
 
-    return res.json(tileData);
+    return res.json({status: "ok", data: tileData});
 
   });
 

@@ -2,20 +2,34 @@
 
 .tile-v2-container {
   border: 1px solid var(--black);
-  border-radius: 12px;
-  height: 8rem;
+  height: 10rem;
   overflow: hidden;
   position: relative;
   z-index: 1;
-  margin-bottom: 0.75rem;
+  margin: var(--gutter-xxs);
+  width: auto;
+
+  &.tile-v2-large {
+    height: 19rem !important;
+    width: 20rem !important;
+    list-style-type: none;
+
+    @mixin max-lg  {
+      height: 16rem !important;
+      width: 18rem !important;
+    }
+    @mixin max-md  {
+      height: 16rem !important;
+      width: 16rem !important;
+    }
+  }
+
   &.tile-v2-layout-full-width {
-    width: 100%;
+    width: auto;
   }
   &.tile-v2-layout-cols {
     text-align: left;
-    margin: 0.75rem;
-    width: 23%;
-    margin: var(--gutter-xs);
+    margin: var(--gutter-xxs);
     @mixin max-xl {
 
     }
@@ -47,36 +61,45 @@
       display: flex;
       padding: var(--gutter-sm);
       position: absolute;
-      width: -moz-available;
+      width: 100%;
       z-index: 2;
       align-items: center;
       vertical-align: middle;
       height: 100%;
+
+      & .image-content {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        position: absolute;
+        right: 0;
+        padding: 0.5em 0em;
+        top: 0;
+        width: 5rem;
+        height: auto;
+
+        & .tile-content-tag {
+          max-width: var(--gutter-md);
+          max-height: var(--gutter-md);
+          margin-right: var(--gutter-xs);
+        }
+      }
+
       & .tile-content-description {
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-end;
         vertical-align: middle;
         color: var(--white);
         height: 100%;
         text-shadow: 2px 2px 2px rgba(0,0,0,1);
-
-        & .image-content {
-          display: flex;
-          flex-direction: row;
-
-          & .tile-content-tag {
-            max-width: var(--gutter-md);
-            max-height: var(--gutter-md);
-            margin-right: var(--gutter-xs);
-          }
-        }
 
         & .description-content {
           & .tile-content-description-title {
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 4;
             display: -webkit-box;
+            font-weight: 400;
             margin-bottom: calc(var(--gutter-xs) / 2);
             overflow: hidden;
             text-align: left;
@@ -84,6 +107,8 @@
           }
 
           & .tile-content-description-level {
+            display: flex;
+            text-align: left;
             font-size: calc(var(--font-xxxs) + 0.1rem);
             font-weight: var(--base-font-weight);
             text-transform: uppercase;
@@ -104,7 +129,7 @@
         display: block;
         content: "";
         z-index: 1;
-        background-image: linear-gradient( to bottom, rgba(22, 28, 44, 0.5), rgba(22, 28, 44, 0.3) 10%, rgba(22, 28, 44, 0.5) 50%);
+        background-image: linear-gradient(to right top, rgba(0, 0, 0, 0.9), rgba(255,255,255,0.1));
       }
     }
   }

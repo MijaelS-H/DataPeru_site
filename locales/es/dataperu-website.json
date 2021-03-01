@@ -51,15 +51,16 @@
     }
   },
   "Profile": {
-    "Geo Description": "Explore las estadísticas sobre economía, empleo, equidad, calidad de vida, educación, salud y seguridad pública en {{name}}",
-    "Geo Title": "{{name}}: Economía, empleo, equidad, calidad de vida, educación, salud y seguridad pública",
-    "Industry Description": "Explore las estadísticas sobre salarios, producción, inversión, oportunidades y complejidad en la industria {{name}}",
-    "Industry Title": "{{name}}: Salarios, producción, inversión, oportunidades y complejidad",
-    "CITE Description": "Explore las estadísticas sobre situación estudiantil, matrículas y graduaciones de la institución: {{name}}",
+    "Geo Description": "Explore las estadísticas sobre economía, salud, educación, hogares, demografía, gobierno, industrias, I+D y red CITE en {{name}}",
+    "Geo Title": "{{name}}: Economía, salud, educación, hogares, demografía, gobierno, industrias, I+D y red CITE",
+    "Industry Description": "Explore las estadísticas más relevantes en la industria {{name}}",
+    "Industry Title": "{{name}}: ",
+    "CITE Description": "Explore las estadísticas sobre Centros de Innovación Productiva y Transferencia Tecnológica: {{name}}",
     "CITE Title": "{{name}}: clientes, servicios, presupuesto y recuros humanos",
     "Search Placeholder": "Buscar perfiles..."
   },
   "Explore": {
+    "Clear Filters": "Borrar",
     "Search Placeholder": "Buscar perfiles...",
     "Title": "Explorador de perfiles"
   }

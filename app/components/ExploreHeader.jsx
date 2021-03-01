@@ -14,8 +14,8 @@ class ExploreHeader extends React.Component {
         onClick={() => handleTabSelected(slug)}
         key={`explore-header-btn-${slug}`}
       >
-        <img className="ep-header-img" src={`/icons/explore/${slug}.png`} alt="" />
-        <span className="ep-header-title heading u-font-md">{t(title)}<small>{len ? `${len}` : ""}</small></span>
+        <img className="ep-header-img" src={`/icons/explore/${slug}.svg`} alt="" />
+        <span className="ep-header-title heading u-font-md">{title}</span>
       </button>
     );
   }

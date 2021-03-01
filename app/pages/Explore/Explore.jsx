@@ -13,6 +13,7 @@ import {commas} from "../../helpers/utils";
 import ExploreHeader from "../../components/ExploreHeader";
 import ExploreProfile from "../../components/ExploreProfile";
 import Nav from "../../components/Nav";
+import Footer from "../../components/Footer";
 
 import "./Explore.css";
 
@@ -20,10 +21,10 @@ const CancelToken = axios.CancelToken;
 let cancel;
 
 const profilesList = {
-  filter: {title: "Explora", dimension: false, levels: []},
-  // geo: {title: "Ciudades y lugares", cube: "dimension_ubigeo_district", dimension: "Dimension geografica", levels: ["Nacion", "Departamento", "Provincia", "Distrito"], background: "#8b9f65"},
-  product: {title: "CITE", cube: "dimension_cite", dimension: "CITE", levels: ["CITE"], background: "#ea8db2"},
-  industry: {title: "Industrias", cube: "dimension_ciiu", dimension: "Dimension CIIU", levels: ["Seccion", "Division"], background: "#f5c094"}
+  filter: {title: "Explorar", cube: undefined, dimension: undefined, levels: ["Ver todo"], background: "#e30a14"},
+  geo: {title: "Geográfico", cube: "dimension_ubigeo_district", dimension: "Dimension geografica", levels: ["Nacion", "Departamento", "Provincia", "Distrito", "Ver todo"], background: "#e30a14"},
+  industry: {title: "Industrias", cube: "dimension_ciiu", dimension: "Dimension CIIU", levels: ["Seccion", "Division", "Ver todo"], background: "#e30a14"},
+  cite: {title: "Red CITE", cube: "dimension_cite", dimension: "CITE", levels: ["CITE", "Ver todo"], background: "#e30a14"}
 };
 
 const generateTotalsMap = () => {
@@ -39,7 +40,7 @@ const generateTotalsMap = () => {
     });
     resp.set(profile, {len: count, leaves: leavesTemp});
   });
-  resp.set("filter", {len: bigCount});
+  // resp.set("filter", {len: bigCount});
   return resp;
 };
 
@@ -79,6 +80,12 @@ class Explore extends React.Component {
     this.setState({tab}, () => this.requestApi());
   }
 
+  handleTabSelect = tab => {
+    const {query, profile} = this.state;
+    this.updateUrl(query, profile, tab.target.value);
+    this.setState({tab: tab.target.value}, () => this.requestApi());
+  }
+
   updateUrl = (q, profile, tab) => {
     const searchParams = new URLSearchParams();
     if (q && q.length > 0) searchParams.set("q", q);
@@ -93,7 +100,6 @@ class Explore extends React.Component {
   }
 
   requestApi = () => {
-
     const {query, tab, profile} = this.state;
 
     this.setState({loading: true, results: []});
@@ -110,9 +116,12 @@ class Explore extends React.Component {
           cancel = c;
         }),
         params: {
-          query,
           limit: 100,
-          locale: this.props.lng
+          query,
+          locale: this.props.lng,
+          dimension: "",
+          cubeName: "",
+          levels: ""
         }
       })
         .then(resp => {
@@ -130,7 +139,7 @@ class Explore extends React.Component {
               if (profilesList[profileItem.slug]) {
                 tempObj = {id: profileItem.memberSlug, name: profileItem.name, slug: profileItem.slug, level: profileItem.memberHierarchy, background: profilesList[profileItem.slug].background, ranking: profileItem.ranking};
                 resultsRaw.push(tempObj);
-                if (profile === "filter" || profileItem.slug === profile && profileItem.memberHierarchy === profilesList[profile].levels[tab]) {
+                if (profile === "filter" || profilesList[profile].levels[tab] === "Ver todo" && profileItem.slug === profile || profileItem.slug === profile && profileItem.memberHierarchy === profilesList[profile].levels[tab]) {
                   parsed.push(tempObj);
                 }
               }
@@ -152,8 +161,6 @@ class Explore extends React.Component {
             }))
             .map(resultsRaw);
 
-          resultsNest.set("filter", {len: resultsRaw.length});
-
           this.setState({results: parsed, resultsNest, loading: false});
         })
         .catch(error => {
@@ -171,9 +178,9 @@ class Explore extends React.Component {
         params: {
           limit: 100,
           locale: this.props.lng,
-          dimension: profilesList[profile].dimension,
+          dimension: profilesList[profile].dimension ? profilesList[profile].dimension : "",
           cubeName: profilesList[profile].cube ? profilesList[profile].cube : "",
-          levels: profilesList[profile].levels[tab],
+          levels: profilesList[profile].levels[tab] !== "Ver todo" ? profilesList[profile].levels[tab] : "",
           pslug: profile
         }
       })
@@ -196,11 +203,13 @@ class Explore extends React.Component {
     const clearButton = query !== "" ? <Button onClick={() => this.clearSearch()} minimal={true} className="ep-clear-btn" icon="cross" large={true} outlined={true}>{t("Explore.Clear Filters")}</Button> : <span></span>;
 
     const share = {
-      title: `${t("Explore.Title")}`,
-      desc: `${t("Share.Explore")}`
+      title: "Explorador de perfiles",
+      desc: "Explore a través de los perfiles disponibles en ITP Producción"
     };
 
     const totals = query && query !== "" && !loading ? resultsNest : totalsNest;
+
+    console.log(tab);
 
     return <div className="explore">
       <HelmetWrapper info={share} />
@@ -219,8 +228,7 @@ class Explore extends React.Component {
 
         <div className="ep-search">
           <InputGroup
-            leftIcon="search"
-            placeholder={"Buscar a nivel geográfico, industrial o red cite"}
+            placeholder={"Buscar a nivel geográfico, industrial o Red CITE..."}
             onChange={this.handleSearch}
             value={query}
             rightElement={clearButton}
@@ -232,7 +240,8 @@ class Explore extends React.Component {
             let len = totals.get(sectionSlug);
             len = len ? len.len : 0;
             return <ExploreHeader
-              title={t(profilesList[sectionSlug].title)}
+              title={profilesList[sectionSlug].title}
+              key={i}
               len={loading ? "..." : commas(len)}
               selected={profile}
               slug={sectionSlug}
@@ -242,6 +251,12 @@ class Explore extends React.Component {
         </div>
 
         <div className="ep-profile-tabs">
+          <div
+            className="ep-profile-tab-header"
+          >
+            <img className="ep-profile-tab-header-img" src={"/icons/explore/filtro_icon.png"} alt="" />
+            Filtrar por
+          </div>
           {profilesList[profile].levels.map((levelName, ix) => {
             const levelKey = `${ix}`;
             let len = totals.get(profile);
@@ -256,9 +271,31 @@ class Explore extends React.Component {
               key={levelKey}
               onClick={() => this.handleTab(levelKey)}
             >
-              {`${t(levelName)}`} {len ? loading ? "(...)" : `(${commas(len)})` : "(0)"}
+              {levelName === "Nacion" ? "Nación" : levelName === "Seccion" ? "Sección" : levelName === "Division" ? "División" : levelName}
             </div>;
           })}
+          <select
+            className="ep-profile-tab-select"
+            onChange={this.handleTabSelect}
+            value={tab}
+          >
+            {profilesList[profile].levels.map((levelName, ix) => {
+              const levelKey = `${ix}`;
+              return <option
+                className={classnames("ep-profile-option",  levelKey)}
+                key={levelKey}
+                value={levelKey}
+              >
+                {levelName === "Nacion" ? "Nación" : levelName === "Seccion" ? "Sección" : levelName === "Division" ? "División" : levelName}
+              </option>
+              ;
+            })}
+          </select>
+        </div>
+
+        <div className="ep-profiles-total">
+          <span className="ep-profiles-total-title">Resultados: </span>
+          <span className="ep-profiles-total-value">{results.length}</span>
         </div>
 
         <div className="ep-profiles">
@@ -269,6 +306,9 @@ class Explore extends React.Component {
           />
         </div>
       </div>
+
+      <Footer />
+
     </div>;
   }
 }
@@ -277,6 +317,10 @@ Explore.need = [];
 
 Explore.contextTypes = {
   router: PropTypes.object
+};
+
+Explore.defaultProps = {
+  profile: "filter"
 };
 
 export default withNamespaces()(

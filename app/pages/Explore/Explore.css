@@ -1,58 +1,97 @@
 @import "helpers/mixins.css";
 
 .ep-container {
-  margin-top: var(--nav-height);
+  padding-top: var(--nav-height);
   background-color: var(--dark-3);
 
-  & .bp3-input {
-    border-radius: 0;
-    border: none;
-    background-color: transparent;
-    color: var(--white);
-    box-shadow: none;
-    height: 60px;
-    font-size: 1.6rem;
-    border-bottom: 1px solid var(--dark-1);
-    padding-left: 1.5em !important; /* override blueprint */
+  & .ep-search {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--gutter-xl);
 
-    &:focus {
+    @mixin max-md {
+      padding: var(--gutter-md) var(--gutter-xxs);
+    }
+    @mixin max-sm {
+      padding: var(--gutter-md) var(--gutter-xxs);
+    }
+
+    & .bp3-input {
+      border-radius: 0;
+      border: none;
+      background-color: transparent;
       box-shadow: none;
-      outline-color: var(--dark-1);
+      color: #909194 !important;
+      height: 60px;
+      font-size: 1.6rem;
+      font-weight: 300 !important;
+      letter-spacing: 1px;
+      border-bottom: 0.1rem solid #3c485c;
+      padding-left: 0 !important; /* override blueprint */
+      padding-bottom: 0.5rem !important;
+      width: 50vw;
+
+      @mixin max-lg {
+        padding-left: 0!important;
+        width: 80vw;
+      }
+      @mixin max-md {
+        padding-left: 0!important;
+        width: 90vw;
+      }
+
+      &::placeholder {
+        color: #7a7c7f;
+
+        @mixin max-md {
+          font-size: var(--font-sm);
+        }
+        @mixin max-sm {
+          font-size: var(--font-xs);
+        }
+      }
+
+      &:focus {
+        box-shadow: none;
+        outline-color: var(--dark-1);
+      }
+
+      &.bp3-active {
+        box-shadow: none;
+      }
     }
 
-    &.bp3-active {
-      box-shadow: none;
-    }
-  }
-
-  & .bp3-icon-search[class] {
-    @mixin absolute-vertical-center; /* center it regardless of the size */
-    margin: 0; /* override blueprint */
-    color: var(--white);
-
-    & svg {
-      width: 2em;
-      height: auto;
-    }
-  }
-
-  & .bp3-input-group .bp3-input:not(:first-child) {
-    padding-left: 60px;
-  }
-
-  & .bp3-input-group .bp3-input-action .ep-clear-btn{
-    height: 48px;
-    border: 1px solid var(--white);
-    & .bp3-button-text{
+    & .bp3-icon-search[class] {
+      @mixin absolute-vertical-center; /* center it regardless of the size */
+      margin: 0; /* override blueprint */
       color: var(--white);
+
+      & svg {
+        width: 2em;
+        height: auto;
+      }
     }
-    & .bp3-icon svg path{
-      fill: var(--white);
+
+    & .bp3-input-group .bp3-input:not(:first-child) {
+      padding-left: 60px;
+    }
+
+    & .bp3-input-group .bp3-input-action .ep-clear-btn{
+      height: 48px;
+      border: 1px solid var(--white);
+      & .bp3-button-text{
+        color: var(--white);
+      }
+      & .bp3-icon svg path{
+        fill: var(--white);
+      }
     }
   }
 
   & .ep-headers {
-    margin: 30px auto;
+    margin: 30px auto 5px;
+    padding: var(--gutter-xs);
 
     /* break buttons into columns on small screens */
     @mixin min-xxs {
@@ -62,9 +101,16 @@
       justify-content: center;
     }
 
+    @mixin max-md {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
     & .ep-header {
       @mixin max-sm {
         flex: 1 0 calc(33.333% - var(--gutter-xs)); /* 3 columns */
+        justify-content: center;
+        padding-bottom: 1em;
       }
       @mixin max-xs {
         flex-basis: calc(50% - var(--gutter-xs)); /* 2 columns */
@@ -76,37 +122,112 @@
   }
 
   & .ep-profile-tabs {
-    display: inline-flex;
-    background: var(--dark-3);
+    display: flex;
+    background-color: #32383f;
     color: var(--dark-1);
+    align-items: center;
+    justify-content: center;
+    padding: var(--gutter-xs);
+
+
+    & .ep-profile-tab-header {
+      display: flex;
+      align-items: center;
+      padding: 7px;
+      margin: var(--gutter-xs);
+      color: #7a7c7f;
+      font-size: var(--font-sm);
+      font-weight: 600;
+      text-align: center;
+      width: 8rem;
+
+      & .ep-profile-tab-header-img {
+        width: 25px;
+        height: var(--font-xs);
+        margin-right: 7px;
+      }
+    }
+
+    & .ep-profile-tab-select {
+      display: none;
+      background-color: #32383f;
+      color: var(--white);
+      padding: 0.3em;
+      width: 40vw;
+
+      @mixin max-sm {
+        display: inline;
+      }
+    }
 
     & .ep-profile-tab {
-      padding: 10px;
+      padding: 7px 7px;
       cursor: pointer;
+      margin: 0 var(--gutter-md);
+      color: var(--white);
+      font-size: var(--font-xs);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-align: center;
+      width: 8rem;
       &.selected {
-        background: var(--black);
-        color: var(--white);
+        background: var(--gpe-red-1);
       }
+
+      @mixin max-sm {
+        display: none !important;
+      }
+    }
+  }
+
+  & .ep-profiles-total {
+    display: flex;
+    font-size: var(--font-xs);
+    font-weight: 400;
+    justify-content: flex-end;
+    margin-top: var(--gutter-lg);
+    margin-right: calc(var(--gutter-xxl) + var(--gutter-md));
+    margin-bottom: var(--gutter-xs);
+
+    @mixin max-md {
+      justify-content: flex-start !important;
+      margin-left: var(--gutter-lg);
+    }
+
+    & .ep-profiles-total-title {
+      color: var(--gpe-red-1);
+      padding-right: var(--gutter-xxs);
+    }
+
+    & .ep-profiles-total-value {
+      color: var(--white);
     }
   }
 
   & .ep-profiles {
     display: flex;
-    flex-wrap: wrap;
-    background-color: var(--black);
-    padding: var(--gutter-xs);
+    flex-direction: column;
+    flex-wrap: nowrap;
+    background-color: var(--dark-3);
+    padding: var(--gutter-xs) 2rem;
+
+    @mixin max-md {
+      padding: var(--gutter-xs) var(--gutter-md);
+    }
 
     /* handle overflow on big screens */
     @mixin min-xs {
       @mixin vertical-overflow-container;
-      height: calc(100vh - var(--nav-height) - 260px);
+      height: 100%;
     }
   }
 
-  & .ep-loading-splash{
+  & .ep-loading-splash {
     position: absolute;
     display: none;
-    background-color: rgba(22,28,44,0.6);
+    background-color: var(--dark-3);
+    opacity: 0.3;
     top: 0;
     bottom:0;
     left: 0;

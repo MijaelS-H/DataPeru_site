@@ -1,0 +1,57 @@
+export const heroBackgrounds = {
+  "geo": "url(/images/homepage/geo.jpg)",
+  "industry": "url(/images/homepage/industry.jpeg)",
+  "cite": "url(/images/homepage/cite.jpg)",
+  "01": "url(/api/image?slug=geo&id=01)",
+  "02": "url(/api/image?slug=geo&id=02)",
+  "03": "url(/api/image?slug=geo&id=03)",
+  "04": "url(/api/image?slug=geo&id=04)",
+  "05": "url(/api/image?slug=geo&id=05)",
+  "06": "url(/api/image?slug=geo&id=06)",
+  "07": "url(/api/image?slug=geo&id=07)",
+  "08": "url(/api/image?slug=geo&id=08)",
+  "09": "url(/api/image?slug=geo&id=09)",
+  "10": "url(/api/image?slug=geo&id=10)",
+  "11": "url(/api/image?slug=geo&id=11)",
+  "12": "url(/api/image?slug=geo&id=12)",
+  "13": "url(/api/image?slug=geo&id=13)",
+  "14": "url(/api/image?slug=geo&id=14)",
+  "15": "url(/api/image?slug=geo&id=15)",
+  "16": "url(/api/image?slug=geo&id=16)",
+  "17": "url(/api/image?slug=geo&id=17)",
+  "18": "url(/api/image?slug=geo&id=18)",
+  "19": "url(/api/image?slug=geo&id=19)",
+  "20": "url(/api/image?slug=geo&id=20)",
+  "21": "url(/api/image?slug=geo&id=21)",
+  "22": "url(/api/image?slug=geo&id=22)",
+  "23": "url(/api/image?slug=geo&id=23)",
+  "24": "url(/api/image?slug=geo&id=24)",
+  "25": "url(/api/image?slug=geo&id=25)"
+};
+
+export const heroMapConfig = {
+  groupBy: "Departamento ID",
+  shapeConfig: {
+    Path: {
+      stroke: "#b3b3b4",
+      strokeWidth: 1
+    }
+  },
+  tooltipConfig: {
+    className: "d3plus-tooltip-explorer",
+    title: d => `<div class='d3plus-tooltip-home-title-wrapper'>
+<div class="title"><span>${d.Departamento}</span></div>
+<div class="subtitle"><span>Departamento</span></div>
+</div>`,
+    tbody: d => [
+      [`<span style="color: #bf0909;">${d["CITE Count"]}</span>`, "CITE"],
+      [`<span style="color: #bf0909;">${d["Provincia Count"]}</span>`, "Provincias"],
+      [`<span style="color: #bf0909;">${d["Distrito Count"]}</span>`, "Distritos"]
+    ]
+  },
+  topojson: "/topojson/Department.json",
+  topojsonFill: "#c9cacb",
+  topojsonId: d => d.properties.CCDD,
+  transition: 0,
+  zoom: false
+};

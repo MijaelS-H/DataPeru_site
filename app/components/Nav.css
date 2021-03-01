@@ -8,57 +8,78 @@
   height: var(--nav-height);
   justify-content: space-between;
   left: 0;
-  padding: 0 var(--gutter-md);
+  padding: var(--gutter-xs) var(--gutter-xxl) var(--gutter-xs);
   position: fixed;
-  text-align: center;
   top: 0;
-  transform: translateX(0);
   transition: background-color .75s;
   width: 100%;
   z-index: 21;
 
-  & .langs {
-    align-items: center;
+  @mixin max-md {
+    padding: var(--gutter-xs) var(--gutter-md) var(--gutter-xs);
+  }
+
+  & div {
     display: flex;
-    float: left;
-    list-style: none;
-    margin-left: -40px;
-    margin: 0;
-    & li {
-      margin: 0 5px;
-      & a {
-        color: var(--white);
-        &:hover, &:focus {
-          color: var(--accent-light);
-          text-decoration: none;
+    flex: 1;
+
+    &.nav-left {
+      align-items: center;
+
+      & img {
+        height: 2rem;
+        width: auto;
+      }
+
+      & .nav-left-info {
+        display: flex;
+        flex-direction: column;
+        letter-spacing: 0.5px;
+        margin-left: 1em;
+
+        & .nav-left-info-title {
+          color: var(--white);
+          font-size: var(--font-sm);
+          font-weight: 500;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          width: 18em;
+          display: block;
+          overflow: hidden;
+
+          &.solid {
+              color: #535552;
+            }
+        }
+
+        & .nav-left-info-hierarchy {
+          color: var(--gpe-red-1);
+          font-family: "Open Sans";
+          font-size: var(--font-xxs);
+          font-weight: 600;
         }
       }
     }
 
-  }
-
-  & div {
-    flex: 1;
-    display: flex;
-
     &.nav-center {
-      font-size: 1rem;
+      flex: 2;
+      font-size: var(--font-xl);
       justify-content: center;
       align-items: center;
-      & .nav-subtitle {
-        color: var(--accent-dark);
-        font-family: "Fira Sans Extra Condensed", sans-serif;
-        font-size: var(--font-sm);
-        line-height: 20px;
-        max-width: 500px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        vertical-align: middle;
-        white-space: nowrap;
+      white-space: nowrap;
+
+      & img {
+        height: 2.5rem;
+        width: auto;
       }
-      & .nav-logo {
-        color: var(--gpe-red-1);
-        font-weight: 600;
+
+      & h1 {
+        margin: 0;
+      }
+
+      & span {
+        display: inline-block;
+        vertical-align: top;
       }
     }
 
@@ -66,14 +87,27 @@
       justify-content: flex-end;
       & .search-button {
         align-items: center;
-        height: 30px;
-        max-width: 30px;
+        height: 2rem;
+        max-width: 2rem;
         transition: all .5s ease-in-out;
-        width: 30px;
+        width: 2rem;
+        position: absolute;
+        top: 1.5rem;
+
+        @mixin max-md {
+          top: 1.8rem;
+        }
+
+        & img {
+          height: 2rem !important;
+          width: auto;
+        }
 
         &.active {
           background-color: var(--dark-2);
           max-width: 250px;
+          padding: 20px 5px;
+          top: 1.7rem;
           transition: all .5s ease-in-out;
           width: 250px;
         }
@@ -97,13 +131,17 @@
           &:focus {
             outline: none;
           }
+
+          &::placeholder {
+            color: var(--white);
+          }
         }
       }
 
       & .results {
         position: fixed;
-        right: 20px;
-        top: var(--nav-height);
+        right: 120px;
+        top: 70px;
         margin: 0;
         width: 250px;
         margin-left: -40px;
@@ -113,6 +151,14 @@
         box-shadow: 0 1px 2px color(var(--black) a(0.5));
         @mixin vertical-overflow-container;
         display: none;
+
+        @mixin max-xl {
+          right: 107px;
+        }
+
+        @mixin max-md {
+          right: 24px;
+        }
 
         &.active {
           display: flex;
@@ -145,6 +191,19 @@
         }
       }
     }
+  }
+
+  &.solid {
+    background-color: var(--white);
+
+    & .nav-center .nav-subtitle {
+      max-width: 50%;
+    }
+  }
+
+  & svg {
+    height: var(--font-xl);
+    width: var(--font-xl);
   }
 
   & .menu {
