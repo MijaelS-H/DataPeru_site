@@ -1,14 +1,15 @@
 
 import React from "react";
+import clns from "classnames";
 import {withNamespaces} from "react-i18next";
 
 import "./SearchResult.css";
 
 class SearchResult extends React.Component {
   render() {
-    const {id, lng, slug, title, level, t} = this.props;
+    const {id, lng, slug, title, level, t, isNav} = this.props;
 
-    return <li className="search-result">
+    return <li className={clns("search-result", {small: isNav})}>
       <a className="search-result-link" href={`/profile/${slug}/${id}`}>
         {/* icon */}
         {slug &&

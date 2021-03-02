@@ -16,7 +16,7 @@ const NavSearch = props => {
   const {t, lng, icon} = props;
 
   const [isOpen, setIsOpen] = useState(false);
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState(false);
   const [content, setContent] = useState(<div>Sin resultados</div>);
 
   /** @type {React.MutableRefObject<import("axios").Canceler?>} */
@@ -49,6 +49,7 @@ const NavSearch = props => {
             {results.map((d, i) => <SearchResult
               key={`search_result_${d.id}_${i}`}
               id={d.id}
+              isNav={true}
               slug={d.slug}
               title={d.name}
               level={d.level}
@@ -63,7 +64,7 @@ const NavSearch = props => {
         });
     }
     else {
-      setResults([]);
+      setResults(false);
       setContent(<div>Sin resultados</div>);
     }
   };
@@ -91,7 +92,7 @@ const NavSearch = props => {
   useOutsideClick(ref, () => {
     if (isOpen) {
       setIsOpen(!isOpen);
-      setResults([]);
+      setResults(false);
       setContent(<div>Sin resultados</div>);
     }
   });
@@ -108,6 +109,21 @@ const NavSearch = props => {
           onChange={inputHandler}
         />
       </React.Fragment>
+
+      {isOpen && results && results.length === 0 &&
+      <Popover2
+        isOpen={results.length > 0 && isOpen}
+        minimal={true}
+        placement="bottom"
+        usePortal={false}
+      >
+        <ul className={clns("results", {active: isOpen})}>
+          <li className="no-search-result">
+            <span className="search-result-title" key="t">No hay resultados</span>
+          </li>
+        </ul>
+      </Popover2>
+      }
 
       {results.length > 0 &&
       <Popover2

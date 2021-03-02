@@ -99,7 +99,7 @@
         }
 
         & img {
-          height: 2rem !important;
+          height: 2rem;
           width: auto;
         }
 
@@ -187,6 +187,19 @@
           transition: background-color .25s;
           &:hover {
             background-color: var(--gray);
+          }
+        }
+
+        & .no-search-result {
+          background-color: var(--white);
+          color: var(--dark-3);
+          display: flex;
+          align-items: center;
+          height: 3.5em;
+          padding: 1em;
+
+          &:hover {
+            background-color: var(--white);
           }
         }
       }

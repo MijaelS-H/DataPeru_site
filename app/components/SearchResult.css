@@ -63,6 +63,13 @@
     margin-top: 0.5em;
     margin-bottom: 0.5em;
   }
+
+  &.small {
+    & .search-result-icon {
+      height: 1.8em !important;
+      width: 1.8em !important;
+    }
+  }
 }
 
 @keyframes fadeInSlowly {
