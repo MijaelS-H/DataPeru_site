@@ -29,6 +29,15 @@ module.exports = function(app) {
         const isNationOrDepartmentOrProvince = ["Nacion", "Departamento", "Provincia"].includes(hierarchy1) ? true : false;
         const isDepartmentOrProvince = ["Departamento", "Provincia"].includes(hierarchy1) ? true : false;
 
+        const subHierarchyDict = {
+          Nacion: "Departamento",
+          Departamento: "Provincia",
+          Provincia: "Distrito",
+          Distrito: "Distrito"
+        };
+
+        const subHierarchy = subHierarchyDict[hierarchy1];
+
         return res.json({
           isNation,
           isDepartment,
@@ -37,7 +46,8 @@ module.exports = function(app) {
           isNationOrDepartment,
           isNationOrProvince,
           isNationOrDepartmentOrProvince,
-          isDepartmentOrProvince
+          isDepartmentOrProvince,
+          subHierarchy
         });
 
         // CITE profile
