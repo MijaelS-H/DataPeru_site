@@ -48,7 +48,7 @@
           overflow: hidden;
 
           &.solid {
-              color: #fff;
+              color: var(--dark-1);
             }
         }
 

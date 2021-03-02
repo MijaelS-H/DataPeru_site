@@ -15,6 +15,11 @@
   }
   & .cp-hero-inner {
     padding: 0;
+
+    @mixin min-md {
+      flex-wrap: nowrap;
+    }
+
     & .cp-hero-caption {
       text-align: left;
       & .cp-hero-heading {
@@ -85,7 +90,6 @@
 
 .cp-subnav {
   & .cp-subnav-list {
-    background-color: var(--black);
     & .cp-subnav-item {
       font-weight: 600;
       text-transform: uppercase;
@@ -152,19 +156,35 @@
     padding: 0 !important;
     width: 400px;
   }
-  @mixin max-sm {
+  @mixin max-md {
     display: none;
   }
 }
 
 .cp-section.cp-grouping-section {
-  background-color: inherit;
+  display: flex;
+  align-items: center;
+  background-color: var(--dark-2);
   color: var(--black);
+  height: 150px;
+  padding: 0;
   & .cp-section-heading {
-    color: var(--dark-2);
+    color: var(--white);
     font-weight: 200;
     letter-spacing: 1px;
-    margin-top: var(--gutter-xl);
+    margin-top: 0;
+  }
+}
+
+.cp-section.cp-sub-grouping-section {
+  display: flex;
+  align-items: center;
+  background-color: var(--light-2);
+  height: 100px;
+  & .cp-sub-grouping-section-heading {
+    font-weight: 200;
+    letter-spacing: 1px;
+    margin-bottom: 0;
   }
 }
 
@@ -347,4 +367,39 @@
       }
     }
   }
+}
+
+.cp-var-reset-button[disabled] {
+  width: 1px !important;
+}
+
+.cp-main > .cp-grouping > .cp-multi-column-section {
+  & .cp-multi-column-section-caption {
+    columns: 2;
+
+    @mixin max-md {
+      columns: 1;
+    }
+
+    & .cp-graphic-viz-container {
+      min-height: 100px !important;
+      & .cp-graphic {
+        display: flex;
+        align-items: center;
+        & .cp-graphic-img {
+          height: 5rem;
+          padding-right: 1rem;
+        }
+        & .cp-stat-value-text {
+          color: var(--gpe-red-1);
+          font-weight: 500;
+        }
+        & .cp-stat-subtitle {
+          color: var(--dark-1);
+          font-size: var(--font-sm);
+        }
+      }
+    }
+  }
+
 }

@@ -7,8 +7,8 @@ import {withNamespaces} from "react-i18next";
 import {connect} from "react-redux";
 import HelmetWrapper from "../HelmetWrapper";
 import Nav from "$app/components/Nav";
-// import Error from "../Error/Error";
-// import Footer from "../../components/Footer";
+import Error from "../Error/Error";
+import Footer from "../../components/Footer";
 // import {spanishLabels} from "helpers/spanishLabels";
 
 import "./Profile.css";
@@ -50,7 +50,7 @@ class Profile extends React.Component {
     const {profile, t, baseUrl} = this.props;
     const {variables} = profile;
 
-    // if (profile && profile.errorCode && profile.errorCode === 404) return <Error />;
+    if (profile && profile.errorCode && profile.errorCode === 404) return <Error />;
 
     const slug = profile.meta
       ? profile.meta.map(d => d.slug).join("_")
@@ -95,7 +95,7 @@ class Profile extends React.Component {
         />
 
         <CMSProfile {...this.props} searchProps={searchProps} />
-        {/* <Footer /> */}
+        <Footer />
       </div>
     );
   }
