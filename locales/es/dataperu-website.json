@@ -63,5 +63,9 @@
     "Clear Filters": "Borrar",
     "Search Placeholder": "Buscar perfiles...",
     "Title": "Explorador de perfiles"
+  },
+  "Loading": {
+    "title": "Por favor espere",
+    "description": "Cargando {{progress}} de {{total}} datasets"
   }
 }

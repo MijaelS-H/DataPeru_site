@@ -58,6 +58,10 @@
           font-size: var(--font-xxs);
           font-weight: 600;
         }
+
+        @mixin max-md {
+          display: none;
+        }
       }
     }
 
@@ -69,7 +73,7 @@
       white-space: nowrap;
 
       & img {
-        height: 2.5rem;
+        height: 2rem;
         width: auto;
       }
 
@@ -92,10 +96,10 @@
         transition: all .5s ease-in-out;
         width: 2rem;
         position: absolute;
-        top: 1.5rem;
+        top: 1rem;
 
         @mixin max-md {
-          top: 1.8rem;
+          top: 1.3rem;
         }
 
         & img {
@@ -107,7 +111,7 @@
           background-color: var(--dark-2);
           max-width: 250px;
           padding: 20px 5px;
-          top: 1.7rem;
+          top: 1rem;
           transition: all .5s ease-in-out;
           width: 250px;
         }

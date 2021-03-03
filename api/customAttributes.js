@@ -4,6 +4,8 @@ const {CANON_CONST_BASE} = process.env;
 const verbose = yn(process.env.CANON_CMS_LOGGING);
 const BASE_API = `${CANON_CONST_BASE}data.jsonrecords`;
 
+const {max} = require("d3-array");
+
 const catcher = error => {
   if (verbose) console.error("Custom Attribute Error:", error);
   return [];
@@ -143,6 +145,63 @@ module.exports = function(app) {
           })
           .catch(catcher);
 
+        const citeClientsParams = {
+          cube: "itp_cite_empresas_tipo",
+          drilldowns: "Time",
+          measures: "Empresas",
+          CITE: id1
+        };
+
+        const latestClientsPerSizeDate = await axios
+          .get(BASE_API, {params: citeClientsParams}).then(resp => {
+            const data = resp.data.data;
+
+            const maxDate = data.length > 0 ? max(data.filter(d => d.Empresas), d => d.Time) : false;
+
+            return maxDate;
+          })
+          .catch(catcher);
+
+        const previousClientsPerSizeDate = latestClientsPerSizeDate ? latestClientsPerSizeDate - 100 : false;
+
+        const citeServicesParams = {
+          cube: "itp_cite_servicios_subcategorias",
+          drilldowns: "Time",
+          measures: "Servicios",
+          CITE: id1
+        };
+
+        const latestServicesDate = await axios
+          .get(BASE_API, {params: citeServicesParams}).then(resp => {
+            const data = resp.data.data;
+
+            const maxDate = data.length > 0 ? max(data.filter(d => d.Servicios), d => d.Time) : false;
+
+            return maxDate;
+          })
+          .catch(catcher);
+
+        const previousServicesDate = latestServicesDate ? latestServicesDate - 100 : false;
+
+        const citeBudgetParams = {
+          cube: "itp_cite_ejecucion_presupuestal",
+          drilldowns: "Time",
+          measures: "Ejecución presupuestal",
+          CITE: id1
+        };
+
+        const latestBudgetDate = await axios
+          .get(BASE_API, {params: citeBudgetParams}).then(resp => {
+            const data = resp.data.data;
+
+            const maxDate = data.length > 0 ? max(data.filter(d => d["Ejecución presupuestal"]), d => d.Time) : false;
+
+            return maxDate;
+          })
+          .catch(catcher);
+
+        const previousBudgetDate = latestBudgetDate ? latestBudgetDate - 100 : false;
+
         return res.json({
           citeCategory,
           isPublicCite,
@@ -150,7 +209,13 @@ module.exports = function(app) {
           isAgroindustrialOrProductiveCite,
           isCamelido,
           isCueroYCalzado,
-          isPesquero
+          isPesquero,
+          latestClientsPerSizeDate,
+          previousClientsPerSizeDate,
+          latestServicesDate,
+          previousServicesDate,
+          latestBudgetDate,
+          previousBudgetDate
         });
 
       // Industry profile
