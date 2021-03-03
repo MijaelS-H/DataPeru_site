@@ -356,6 +356,12 @@
             color: var(--gray);
             font-size: var(--font-md);
             margin-top: 3px;
+
+            & img {
+              height: auto!important;
+              width: 400px!important;
+              max-width: 400px!important;
+            }
           }
         }
       }
