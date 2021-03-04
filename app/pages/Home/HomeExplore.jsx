@@ -30,14 +30,14 @@ const HomeExplore = props => {
           <TileV2
             background={""}
             heightType={"large"}
-            id={d.ID}
+            id={d.id}
             ix={i}
             key={i}
             level={d.level}
-            link={`/profile/${d.slug}/${d.ID}`}
-            slug={d.slug}
+            link={`/profile/${d.profile}/${d.slug}`}
+            slug={d.profile}
             slugColor={"#e30a14"}
-            title={d.Label}
+            title={d.name}
           />)}
       </div>
     </div>
