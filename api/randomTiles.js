@@ -2,13 +2,13 @@ const axios = require("axios");
 const yn = require("yn");
 
 const {
-  CANON_CMS_CUBES = "",
+  CANON_API = "",
   CANON_CMS_LOGGING = ""
 } = process.env;
 
-const apiBase = CANON_CMS_CUBES.endsWith("/")
-  ? CANON_CMS_CUBES.substr(0, CANON_CMS_CUBES.length - 1)
-  : CANON_CMS_CUBES;
+const apiBase = CANON_API.endsWith("/")
+  ? CANON_API.substr(0, CANON_API.length - 1)
+  : CANON_API;
 const isVerboseMode = yn(CANON_CMS_LOGGING);
 
 const ENDPOINT = "/api/randomTiles";
@@ -16,15 +16,15 @@ const ENDPOINT = "/api/randomTiles";
 
 module.exports = function(app) {
   app.get(ENDPOINT, (req, res) => {
-    const nacionAPI = `${apiBase}/search?dimension=Dimension+geografica&cubeName=dimension_ubigeo_district&levels=Nacion&pslug=geo`;
-    const departmentAPI = `${apiBase}/search?dimension=Dimension+geografica&cubeName=dimension_ubigeo_district&levels=Departamento&pslug=geo`;
-    const provinceAPI = `${apiBase}/search?dimension=Dimension+geografica&cubeName=dimension_ubigeo_district&levels=Provincia&pslug=geo`;
-    const districtAPI = `${apiBase}/search?dimension=Dimension+geografica&cubeName=dimension_ubigeo_district&levels=Distrito&pslug=geo`;
+    const nacionAPI = `${apiBase}/api/search?dimension=Dimension+geografica&cubeName=dimension_ubigeo_district&levels=Nacion&pslug=geo`;
+    const departmentAPI = `${apiBase}/api/search?dimension=Dimension+geografica&cubeName=dimension_ubigeo_district&levels=Departamento&pslug=geo`;
+    const provinceAPI = `${apiBase}/api/search?dimension=Dimension+geografica&cubeName=dimension_ubigeo_district&levels=Provincia&pslug=geo`;
+    const districtAPI = `${apiBase}/api/search?dimension=Dimension+geografica&cubeName=dimension_ubigeo_district&levels=Distrito&pslug=geo`;
 
-    const sectionAPI = `${apiBase}/search?dimension=Dimension+CIIU&cubeName=dimension_ciiu&levels=Seccion&pslug=industry`;
-    const divisionAPI = `${apiBase}/search?dimension=Dimension+CIIU&cubeName=dimension_ciiu&levels=Division&pslug=industry`;
+    const sectionAPI = `${apiBase}/api/search?dimension=Dimension+CIIU&cubeName=dimension_ciiu&levels=Seccion&pslug=industry`;
+    const divisionAPI = `${apiBase}/api/search?dimension=Dimension+CIIU&cubeName=dimension_ciiu&levels=Division&pslug=industry`;
 
-    const citeAPI = `${apiBase}/search?dimension=CITE&cubeName=dimension_cite&levels=CITE&pslug=cite`;
+    const citeAPI = `${apiBase}/api/search?dimension=CITE&cubeName=dimension_cite&levels=CITE&pslug=cite`;
 
     Promise.all([
       axios.get(nacionAPI).then(response => {
