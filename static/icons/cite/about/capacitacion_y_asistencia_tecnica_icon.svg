@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFFFF;}
+	.st1{fill:none;stroke:#4C5868;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:0.5032,30.1922;}
+	.st2{fill:#EE3528;}
+	.st3{fill:#606060;}
+	.st4{fill:none;stroke:#EE3528;stroke-width:7.6545;stroke-miterlimit:10;}
+	.st5{fill:none;stroke:#EE3528;stroke-width:7.3889;stroke-miterlimit:10;}
+</style>
+<g>
+	<circle class="st0" cx="256" cy="257.1" r="249.1"/>
+	<circle class="st1" cx="256" cy="257.1" r="249.1"/>
+</g>
+<g>
+	<circle class="st2" cx="219.6" cy="172.8" r="22.3"/>
+	<circle class="st2" cx="283.3" cy="121.8" r="30"/>
+	<circle class="st2" cx="338.8" cy="188.8" r="33.2"/>
+	<rect x="136" y="200.3" class="st2" width="14" height="14"/>
+	<rect x="146.2" y="220.7" class="st3" width="14" height="14"/>
+	<rect x="146.2" y="220.7" class="st2" width="14" height="14"/>
+	<rect x="188.3" y="229.6" class="st2" width="14" height="14"/>
+	<rect x="208.7" y="218.1" class="st2" width="14" height="14"/>
+	<line class="st4" x1="203.5" y1="188.3" x2="178.1" y2="214.3"/>
+	<polygon class="st4" points="133.4,271.7 133.4,251.3 175.5,251.3 190.9,271.7 	"/>
+	<line class="st4" x1="116.9" y1="271.7" x2="202.3" y2="271.7"/>
+	<rect x="130.9" y="274.2" class="st2" width="60" height="16.6"/>
+	<polyline class="st4" points="122,326.6 122,292.1 198.5,292.1 198.5,326.6 	"/>
+	<rect x="118.1" y="322.7" class="st2" width="84.2" height="53.6"/>
+	<line class="st4" x1="109.2" y1="376.3" x2="398.8" y2="376.3"/>
+	<rect x="296.7" y="258.9" class="st2" width="82.9" height="31.9"/>
+	<polyline class="st4" points="291.6,375 291.6,292.1 386,292.1 386,375 	"/>
+	<circle class="st5" cx="338.2" cy="331" r="26.2"/>
+	<polygon class="st2" points="337.6,318.6 340.5,325.3 347.8,324.5 343.5,330.4 347.8,336.3 340.5,335.5 337.6,342.2 334.6,335.5 
+		327.3,336.3 331.7,330.4 327.3,324.5 334.6,325.3 	"/>
+	<line class="st4" x1="315.9" y1="195.1" x2="315.9" y2="261.5"/>
+	<line class="st4" x1="305.7" y1="118.2" x2="354.1" y2="175.6"/>
+	<line class="st4" x1="208.7" y1="162.7" x2="260.3" y2="112.7"/>
+	<polyline class="st4" points="234.2,177.7 275,136.8 322.3,191.7 	"/>
+	<line class="st4" x1="363.9" y1="195.1" x2="363.9" y2="261.5"/>
+</g>
+</svg>
