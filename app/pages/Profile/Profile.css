@@ -106,9 +106,21 @@
       background-color: var(--dark-1);
       flex: none;
       min-height: 40px;
+
+      @mixin max-md {
+        display: flex;
+        flex: none;
+        flex-grow: 1;
+        flex-wrap: wrap;
+      }
+      @mixin max-sm {
+        display: none;
+      }
+
       & .cp-subnav-item {
         font-weight: 600;
         text-transform: none;
+
         & .cp-subnav-link:before {
           content: "›";
           font-size: var(--font-md);
