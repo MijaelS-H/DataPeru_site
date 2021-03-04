@@ -3,7 +3,7 @@ import clns from "classnames";
 import {assign} from "d3plus-common";
 import {Geomap} from "d3plus-react";
 import React, {useEffect, useMemo, useState} from "react";
-import {heroBackgrounds, heroMapConfig} from "./constsHero";
+import {heroBackgrounds, slugDict, heroMapConfig} from "./constsHero";
 import TileV2 from "$app/components/TileV2";
 
 /**
@@ -62,9 +62,11 @@ const SectionHero = props => {
         : 1
     },
     on: {
-      click: d => mapDepartamento && mapDepartamento === d["Departamento ID"]
+      click: d => window.open(`/profile/geo/${slugDict[d["Departamento ID"]]}`)
+
+      /* click: d => mapDepartamento && mapDepartamento === d["Departamento ID"]
         ? pickDepartamento(0)
-        : pickDepartamento(d["Departamento ID"])
+        : pickDepartamento(d["Departamento ID"]) */
     }
   }), [mapDepartamento, mapData]);
 

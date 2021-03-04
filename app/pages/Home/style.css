@@ -283,6 +283,7 @@
   height: 165px !important;
   width: 200px !important;
   z-index: 101;
+  box-shadow: 7px 7px 5px 0px rgba(0,0,0,0.49);
   & .d3plus-tooltip-title {
     max-width: 100% !important;
     & .d3plus-tooltip-home-title-wrapper {

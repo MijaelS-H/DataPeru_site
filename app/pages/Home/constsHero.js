@@ -29,6 +29,34 @@ export const heroBackgrounds = {
   "25": "url(/api/image?slug=geo&id=25)"
 };
 
+export const slugDict = {
+  "01": "amazonas",
+  "02": "ancash",
+  "03": "apurimac",
+  "04": "arequipa",
+  "05": "ayacucho",
+  "06": "cajamarca",
+  "07": "callao",
+  "08": "cusco",
+  "09": "huancavelica",
+  "10": "huanuco",
+  "11": "ica",
+  "12": "junin",
+  "13": "la-libertad",
+  "14": "lambayeque",
+  "15": "lima",
+  "16": "loreto",
+  "17": "madre-de-dios",
+  "18": "moquegua",
+  "19": "pasco",
+  "20": "piura",
+  "21": "puno",
+  "22": "san-martin",
+  "23": "tacna",
+  "24": "tumbes",
+  "25": "ucayali"
+};
+
 export const heroMapConfig = {
   groupBy: "Departamento ID",
   shapeConfig: {
