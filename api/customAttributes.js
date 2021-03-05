@@ -251,11 +251,16 @@ module.exports = function(app) {
         const enaveHierarchy = "Industria";
         const enaveId = enaveIndustryDictionary[id1] || false;
 
+        const isSection = hierarchy1 === "Seccion" ? true : false;
+        const isDivision = hierarchy1 === "Division" ? true : false;
+
         return res.json({
           customHierarchy,
           customId,
           enaveHierarchy,
-          enaveId
+          enaveId,
+          isSection,
+          isDivision
         });
 
       default:
