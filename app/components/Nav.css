@@ -36,6 +36,7 @@
         flex-direction: column;
         letter-spacing: 0.5px;
         margin-left: 1em;
+        width: 80%;
 
         & .nav-left-info-title {
           color: var(--white);
