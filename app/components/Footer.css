@@ -264,7 +264,7 @@
               height: 2.3em;
             }
             @mixin max-xs {
-              height: 1.8em;
+              height: 1.5em;
             }
           }
 
@@ -289,7 +289,7 @@
               height: 2.3em;
             }
             @mixin max-xs {
-              height: 1.8em;
+              height: 1.5em;
             }
           }
 
@@ -314,7 +314,7 @@
               height: 2.3em;
             }
             @mixin max-xs {
-              height: 1.8em;
+              height: 1.5em;
             }
           }
 
@@ -343,7 +343,7 @@
               margin-top: 0.5em;
             }
             @mixin max-xs {
-              height: 3em;
+              height: 2.5em;
             }
           }
         }

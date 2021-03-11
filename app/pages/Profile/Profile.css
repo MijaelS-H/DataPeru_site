@@ -431,3 +431,72 @@
   color: var(--gpe-red-dark);
   font-weight: bold;
 }
+
+/**
+      Geo Profile Specific
+**/
+
+.cp-h-t-m-l-viz-container {
+  overflow-y: scroll;
+  min-width: auto;
+  padding: 0;
+  & .cp-viz-figure {
+    width: 100%;
+  }
+}
+
+.profile-cite-section {
+    display: flex;
+    flex-direction: column;
+
+    & .profile-cite-subsection {
+      display: flex;
+      flex-direction: column;
+      padding-bottom: var(--gutter-xs);
+
+      & .profile-cite-subsection-content {
+        display: flex;
+
+        @mixin max-md {
+          flex-direction: column;
+        }
+
+        & .profile-cite-subsection-box {
+          background: var(--light-2);
+          display: flex;
+          align-items: center;
+          margin: 3px 3px;
+          padding: var(--gutter-xs);
+          width: 400px;
+
+          @mixin max-md {
+            width: 100%;
+          }
+
+          & .profile-cite-subsection-image {
+            margin-right: var(--gutter-xs);
+            width: var(--gutter-xl);
+          }
+
+          & .profile-cite-subsection-value {
+            display: flex;
+            flex-direction: column-reverse;
+
+            & .profile-cite-subsection-value-subtitle {
+              color: var(--gpe-red-dark);
+              font-size: var(--font-xs);
+              font-weight: 700;
+              text-transform: uppercase;
+            }
+
+            & .profile-cite-subsection-value-title {
+              color: var(--gray);
+              font-size: var(--font-xs);
+              margin-top: 3px;
+            }
+          }
+        }
+      }
+    }
+}
+
