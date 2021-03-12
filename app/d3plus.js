@@ -12,8 +12,14 @@ const fontSizeLg = 16;
 const labelPadding = 5;
 const shapeLegend = 25;
 
-const icons = ["Continente", "Capítulo", "Contribuyente", "Seccion", "Subcategoria", "Trade Flow"];
-const activeIcons = ["Continente", "Capítulo", "Trade Flow"];
+const icons = [
+  "Actividades de innovacion", "Actividades de innovacion realizada", "Actividad economica", "Concepto", "Continente", "Capítulo", "Contribuyente", "Elemento FBC", "Indicador Tributo",
+  "Division", "Indice de precio", "Razon para innovar", "Seccion", "Sector", "Subcategoria", "Subconcepto", "Trade Flow"
+];
+const activeIcons = [
+  "Actividades de innovacion", "Actividades de innovacion realizada", "Actividad economica", "Concepto", "Continente", "Capítulo", "Division", "Elemento FBC", "Indicador Tributo", "Indice de precio",
+  "Razon para innovar", "Sector", "Subconcepto", "Trade Flow"
+];
 
 const getTooltipTitle = (d3plusConfig, d) => {
   const len = d3plusConfig._groupBy.length;
@@ -49,6 +55,11 @@ export const findColorV2 = (key, d) => {
     else return colors.Continente[d["Continente ID"]];
   }
 
+  if (key === "Indicador Tributo" && Object.keys(d).includes("Indicador Tributo Parent ID")) {
+    console.log(d["Indicador Tributo ID"]);
+    return colors["Subindicador Tributo"][d["Indicador Tributo ID"]];
+  }
+
   if (key === "Componente" && Object.keys(d).includes("Flujo")) {
     return colors["Componente PIP"][d["Componente ID"]];
   }
@@ -67,6 +78,43 @@ export const findColorV2 = (key, d) => {
 
   if (key === "Year" && Object.keys(d).includes("Producto") && Object.keys(d).includes("Unidad")) {
     return colors["Producto Cuero"][d["Producto ID"]];
+  }
+
+  if (key === "Categoria") {
+    if (d.Indicador === "Porcentaje de empresas manufactureras que han realizado alguna actividad de innovación") {
+      return colors["Actividades de innovacion"][d["Categoria ID"]];
+    }
+  }
+
+  if (key === "Indicador") {
+    if ([
+      "Investigación y desarrollo (I + D) internas",
+      "Investigación y desarrollo (I + D) externas",
+      "Ingeniería, diseño y otros procesos creativos",
+      "Marketing y valor de marca",
+      "Declaración de propiedad intelectual",
+      "Capacitación en temas de innovación",
+      "Desarrollo o adquisición de software y base de datos",
+      "Adquisición o alquiler de bienes de capital para innovar",
+      "Gestión de la innovación"
+    ].includes(d.Indicador)) {
+      return colors["Actividad de innovacion realizada"][d["Indicador ID"]];
+    }
+
+    else if ([
+      "Cultura empresarial desarrollada",
+      "Detección de una demanda total o parcialmente insatisfecha en el mercado",
+      "Aprovechamiento de una idea o novedad científica",
+      "Amenaza de la competencia",
+      "Pautas regulatorias",
+      "Cambios en normas de propiedad intelectual",
+      "Procesos de certificación",
+      "Problemas técnivcos",
+      "Aprovechamiento de una idea generada al interior de la empresa",
+      "Aprovechamiento de incentivos gubernamentales"
+    ].includes(d.Indicador)) {
+      return colors["Razon para innovar"][d["Indicador ID"]];
+    }
   }
 
   const id = d[`${key} ID`];
@@ -93,6 +141,48 @@ export const findIconV2 = (key, d) => {
     const icon = key === "Pais" && Array.isArray(d["Pais ID"]) ? d["Continente ID"] : d[`${key} ID`];
     return `/icons/visualizations/Pais/country_${icon}.png`;
   }
+
+  if (key === "Indicador Tributo" && Object.keys(d).includes("Indicador Tributo Parent ID")) {
+    return `/icons/visualizations/Subindicador Tributo/${d["Indicador Tributo ID"]}.png`;
+  }
+
+  if (key === "Categoria") {
+    if (d.Indicador === "Porcentaje de empresas manufactureras que han realizado alguna actividad de innovación") {
+      return `/icons/visualizations/Actividades de innovacion/${d["Categoria ID"]}.png`;
+    }
+    return colors.colorGrey;
+  }
+
+  if (key === "Indicador") {
+    if ([
+      "Investigación y desarrollo (I + D) internas",
+      "Investigación y desarrollo (I + D) externas",
+      "Ingeniería, diseño y otros procesos creativos",
+      "Marketing y valor de marca",
+      "Declaración de propiedad intelectual",
+      "Capacitación en temas de innovación",
+      "Desarrollo o adquisición de software y base de datos",
+      "Adquisición o alquiler de bienes de capital para innovar",
+      "Gestión de la innovación"
+    ].includes(d.Indicador)) {
+      return `/icons/visualizations/Actividad de innovacion realizada/${d["Indicador ID"]}.png`;
+    }
+
+    else if ([
+      "Cultura empresarial desarrollada",
+      "Detección de una demanda total o parcialmente insatisfecha en el mercado",
+      "Aprovechamiento de una idea o novedad científica",
+      "Amenaza de la competencia",
+      "Pautas regulatorias",
+      "Cambios en normas de propiedad intelectual",
+      "Procesos de certificación",
+      "Problemas técnivcos",
+      "Aprovechamiento de una idea generada al interior de la empresa"
+    ].includes(d.Indicador)) {
+      return `/icons/visualizations/Razon para innovar/${d["Indicador ID"]}.png`;
+    }
+  }
+
   const icon = key;
   const iconID = d[`${key} ID`];
 
