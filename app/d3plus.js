@@ -18,7 +18,7 @@ const icons = [
 ];
 const activeIcons = [
   "Actividades de innovacion", "Actividades de innovacion realizada", "Actividad economica", "Concepto", "Continente", "Capítulo", "Division", "Elemento FBC", "Indicador Tributo", "Indice de precio",
-  "Razon para innovar", "Sector", "Subconcepto", "Trade Flow"
+  "Razon para innovar", "Seccion", "Sector", "Subconcepto", "Trade Flow"
 ];
 
 const getTooltipTitle = (d3plusConfig, d) => {
@@ -43,6 +43,48 @@ const getTooltipTitle = (d3plusConfig, d) => {
     item = Object.entries(d).find(h => h[0] === itemId) || [undefined];
   }
 
+  if (itemId === "Categoria" && Object.keys(d).includes("Division") && [
+    "Escasez de personal calificado en el país",
+    "Insuficiente información sobre otras tecnologías",
+    "Insuficiente información sobre los mercados",
+    "Insuficiente información sobre tecnologías digitales",
+    "Deficiente sistema de propiedad intelectual",
+    "Insuficiente flexibilidad de la normativa y/o regulación del estado",
+    "Infraestructura inadecuada como un obstáculo a la innovación",
+    "Entorno macroeconómico  y político inestable",
+    "Dificultad de encontrar socios de cooperación como un obstáculo",
+    "Incertidumbre respecto a la demanda de bienes y servicios innovadores",
+    "Mercados dominados por empresas establecidas",
+    "Reducido tamaño de los mercados como un obstáculo",
+    "Acceso al financiamiento",
+    "Ausencia de personal calificado en la empresa",
+    "Falta de fondos en la empresa o grupo empresarial",
+    "Elevado costo de la innovación",
+    "Percepción de riesgos económicos excesivos",
+    "Rigidez organizativa dentro de la empresa"
+  ].includes(d.Indicador)) {
+    itemId = "Division";
+    item = Object.entries(d).find(h => h[0] === itemId) || [undefined];
+  }
+
+  if (itemId === "Categoria" && Object.keys(d).includes("Industria") && [
+    "Falta de información sobre los procesos de exportación",
+    "Costos logísticos",
+    "Identificación de mercados y compradores potenciales",
+    "Acceso al financiamiento de las operaciones de comercio exterior",
+    "Cumplimiento de normas o requisitos de calidad",
+    "Cumpliento con requisitos de cantidad de los compradores",
+    "Retrasos causados por el transporte internacional",
+    "Procedimientos aduaneros",
+    "Retrasos en aduanas",
+    "Barreras arancelarias en el extranjero",
+    "Corrupción en las fronteras",
+    "Porcentaje de empresas por tipo instrumentos de gestión ambiental"
+  ].includes(d.Indicador)) {
+    itemId = "Industria";
+    item = Object.entries(d).find(h => h[0] === itemId) || [undefined];
+  }
+
   return {item, itemId, parent, parentId};
 };
 
@@ -56,7 +98,6 @@ export const findColorV2 = (key, d) => {
   }
 
   if (key === "Indicador Tributo" && Object.keys(d).includes("Indicador Tributo Parent ID")) {
-    console.log(d["Indicador Tributo ID"]);
     return colors["Subindicador Tributo"][d["Indicador Tributo ID"]];
   }
 
@@ -64,8 +105,17 @@ export const findColorV2 = (key, d) => {
     return colors["Componente PIP"][d["Componente ID"]];
   }
 
-  if (key === "Seccion" && Object.keys(d).includes("Empresas")) {
-    return colors["Seccion CITE"][d["Seccion CITE ID"]];
+  if (key === "Short Division") {
+    return colors.Division[d["Division ID"]];
+  }
+
+  if (key === "Seccion") {
+    if (Object.keys(d).includes("Empresas")) {
+      return colors["Seccion CITE"][d["Seccion CITE ID"]];
+    }
+    else if (Object.keys(d).includes("Estimacion")) {
+      return colors["Seccion CIIU"][d["Seccion ID"]];
+    }
   }
 
   if (key === "Subcategoria" && Object.keys(d).includes("Servicios")) {
@@ -83,6 +133,10 @@ export const findColorV2 = (key, d) => {
   if (key === "Categoria") {
     if (d.Indicador === "Porcentaje de empresas manufactureras que han realizado alguna actividad de innovación") {
       return colors["Actividades de innovacion"][d["Categoria ID"]];
+    }
+
+    else if (d.Indicador === "Porcentaje de empresas manufactureras que han accedido a algún servicio brindado por los CITE públicos") {
+      return colors["Acceso CITE"][d["Categoria ID"]];
     }
   }
 
@@ -115,6 +169,117 @@ export const findColorV2 = (key, d) => {
     ].includes(d.Indicador)) {
       return colors["Razon para innovar"][d["Indicador ID"]];
     }
+
+    else if ([
+      "Inteligencia artificial o aprendizaje automático",
+      "Robótica avanzada",
+      "Transporte autónomo",
+      "Manufactura avanzada",
+      "Impresión 3D",
+      "Servicios avanzados en redes (ej: big data)"
+    ].includes(d.Indicador)) {
+      return colors["Tecnologias Produccion"][d["Indicador ID"]];
+    }
+
+    else if ([
+      "Agricultores, trabajadores calificados agropecuarios, forestales y pesqueros",
+      "Obreros, artesanos y electrisistas",
+      "Industriales y conductores",
+      "Trabajadores de ocupaciones elementales",
+      "Profesionales científicos e intelectuales",
+      "Profesionales técnicos",
+      "Trabajadores de servicios y vendedores",
+      "Jefes y empleados administrativos",
+      "Directores y gerentes"
+    ].includes(d.Indicador)) {
+      return colors["Capital Humano"][d["Indicador ID"]];
+    }
+
+    else if ([
+      "Apoyos gubernamentales",
+      "Banca comercial privada",
+      "Inversiones ángel o capital emprendedor",
+      "Otras empresas",
+      "Recursos propios",
+      "Cooperación internacional"
+    ].includes(d.Indicador)) {
+      return colors["Financiamiento Innovacion"][d["Indicador ID"]];
+    }
+
+    else if ([
+      "Capacitación",
+      "Certificación de competencias laborales",
+      "Información tecnológica especializada",
+      "Diseño y desarrollo de productos",
+      "Asistencia técnica",
+      "Soporte productivo",
+      "Ensayo de laboratorio"
+    ].includes(d.Indicador)) {
+      return colors["Servicios Brindados"][d["Indicador ID"]];
+    }
+
+    else if ([
+      "Mantenimiento y limpieza de calles",
+      "Alumbrado público",
+      "Aumento de patrullaje y vigilancia policíal",
+      "Instalación de videocámaras de vigilancias"
+    ].includes(d.Indicador)) {
+      return colors["Acciones Seguridad"][d["Indicador ID"]];
+    }
+
+    else if ([
+      "Operativos contra narcotráfico",
+      "Operativos contra la delincuencia"
+    ].includes(d.Indicador)) {
+      return colors.Operativos[d["Indicador ID"]];
+    }
+
+    else if ([
+      "No sabe",
+      "Declaración de Impacto Ambiental ( DIA)",
+      "Estudio de Impacto Ambiental (EIA)",
+      "Declaración ambiental para Actividades en curso (DAAC)",
+      "Programa de Adecuacion y Manejo Ambiental (PAMA)",
+      "Ninguno"
+    ].includes(d.Categoria)) {
+      return colors["Industria ENE"][d["Industria ID"]];
+    }
+  }
+
+  if (key === "Industria" && d["Indicador ID"] === 11 && [
+    "Disminuyeron",
+    "Aumentaron",
+    "No sabe",
+    "Siguieron igual"
+  ].includes(d.Categoria)) {
+    return colors["Percepcion delitos"][d["Categoria ID"]];
+  }
+
+  if (key === "Industria" && d.Indicador === "Porcentaje de empresas por principal mercado donde vende su principal producto o servicio") {
+    return colors["Composicion empresarial"][d["Categoria ID"]];
+  }
+
+  if (key === "Industria" && [
+    "Falta de información sobre los procesos de exportación",
+    "Costos logísticos",
+    "Identificación de mercados y compradores potenciales",
+    "Acceso al financiamiento de las operaciones de comercio exterior",
+    "Cumplimiento de normas o requisitos de calidad",
+    "Cumpliento con requisitos de cantidad de los compradores",
+    "Retrasos causados por el transporte internacional",
+    "Procedimientos aduaneros",
+    "Retrasos en aduanas",
+    "Barreras arancelarias en el extranjero",
+    "Corrupción en las fronteras",
+    "Porcentaje de empresas por tipo instrumentos de gestión ambiental"
+  ].includes(d.Indicador)) {
+    return colors["Industria ENE"][d["Industria ID"]];
+  }
+
+  if ((key === "Industria" || key === "Indicador") && [
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
+  ].includes(d["Industria ID"])) {
+    return colors["Industria ENAVE"][d["Industria ID"]];
   }
 
   const id = d[`${key} ID`];
@@ -136,7 +301,6 @@ export const tooltipTitle = (bgColor, imgUrl, title) => {
 
 export const findIconV2 = (key, d) => {
   // const options = {2: "export", 1: "import"};
-  // console.log(key, d);
   if (key === "Pais" || key === "ISO 3") {
     const icon = key === "Pais" && Array.isArray(d["Pais ID"]) ? d["Continente ID"] : d[`${key} ID`];
     return `/icons/visualizations/Pais/country_${icon}.png`;
@@ -150,7 +314,23 @@ export const findIconV2 = (key, d) => {
     if (d.Indicador === "Porcentaje de empresas manufactureras que han realizado alguna actividad de innovación") {
       return `/icons/visualizations/Actividades de innovacion/${d["Categoria ID"]}.png`;
     }
-    return colors.colorGrey;
+
+    else if (d.Indicador === "Porcentaje de empresas manufactureras que han accedido a algún servicio brindado por los CITE públicos") {
+      return `/icons/visualizations/Acceso CITE/${d["Categoria ID"]}.png`;
+    }
+  }
+
+  if (key === "Short Division") {
+    return `/icons/visualizations/Division/png/white/${d["Division ID"]}.png`;
+  }
+
+  if (key === "Seccion") {
+    if (Object.keys(d).includes("Empresas")) {
+      return `/icons/visualizations/Seccion CITE/${d["Categoria ID"]}.png`;
+    }
+    else if (Object.keys(d).includes("Estimacion")) {
+      return `/icons/visualizations/Seccion CIIU/${d["Seccion ID"]}.png`;
+    }
   }
 
   if (key === "Indicador") {
@@ -177,10 +357,122 @@ export const findIconV2 = (key, d) => {
       "Cambios en normas de propiedad intelectual",
       "Procesos de certificación",
       "Problemas técnivcos",
-      "Aprovechamiento de una idea generada al interior de la empresa"
+      "Aprovechamiento de una idea generada al interior de la empresa",
+      "Aprovechamiento de incentivos gubernamentales"
     ].includes(d.Indicador)) {
       return `/icons/visualizations/Razon para innovar/${d["Indicador ID"]}.png`;
     }
+
+    else if ([
+      "Inteligencia artificial o aprendizaje automático",
+      "Robótica avanzada",
+      "Transporte autónomo",
+      "Manufactura avanzada",
+      "Impresión 3D",
+      "Servicios avanzados en redes (ej: big data)"
+    ].includes(d.Indicador)) {
+      return `/icons/visualizations/Tecnologias Produccion/${d["Indicador ID"]}.png`;
+    }
+
+    else if ([
+      "Agricultores, trabajadores calificados agropecuarios, forestales y pesqueros",
+      "Obreros, artesanos y electrisistas",
+      "Industriales y conductores",
+      "Trabajadores de ocupaciones elementales",
+      "Profesionales científicos e intelectuales",
+      "Profesionales técnicos",
+      "Trabajadores de servicios y vendedores",
+      "Jefes y empleados administrativos",
+      "Directores y gerentes"
+    ].includes(d.Indicador)) {
+      return `/icons/visualizations/Capital Humano/${d["Indicador ID"]}.png`;
+    }
+
+    else if ([
+      "Apoyos gubernamentales",
+      "Banca comercial privada",
+      "Inversiones ángel o capital emprendedor",
+      "Otras empresas",
+      "Recursos propios",
+      "Cooperación internacional"
+    ].includes(d.Indicador)) {
+      return `/icons/visualizations/Financiamiento Innovacion/${d["Indicador ID"]}.png`;
+    }
+
+    else if ([
+      "Capacitación",
+      "Certificación de competencias laborales",
+      "Información tecnológica especializada",
+      "Diseño y desarrollo de productos",
+      "Asistencia técnica",
+      "Soporte productivo",
+      "Ensayo de laboratorio"
+    ].includes(d.Indicador)) {
+      return `/icons/visualizations/Servicios CITE/${d["Indicador ID"]}.png`;
+    }
+
+    else if ([
+      "Mantenimiento y limpieza de calles",
+      "Alumbrado público",
+      "Aumento de patrullaje y vigilancia policíal",
+      "Instalación de videocámaras de vigilancias"
+    ].includes(d.Indicador)) {
+      return `/icons/visualizations/Acciones Seguridad/${d["Indicador ID"]}.png`;
+    }
+
+    else if ([
+      "Operativos contra narcotráfico",
+      "Operativos contra la delincuencia"
+    ].includes(d.Indicador)) {
+      return `/icons/visualizations/Operativos/${d["Indicador ID"]}.png`;
+    }
+
+    else if ([
+      "No sabe",
+      "Declaración de Impacto Ambiental ( DIA)",
+      "Estudio de Impacto Ambiental (EIA)",
+      "Declaración ambiental para Actividades en curso (DAAC)",
+      "Programa de Adecuacion y Manejo Ambiental (PAMA)",
+      "Ninguno"
+    ].includes(d.Categoria)) {
+      return `/icons/visualizations/Industria ENE/${d["Industria ID"]}.png`;
+    }
+  }
+
+  if (key === "Industria" && d["Indicador ID"] === 11 && [
+    "Disminuyeron",
+    "Aumentaron",
+    "No sabe",
+    "Siguieron igual"
+  ].includes(d.Categoria)) {
+    return `/icons/visualizations/Percepcion delitos/${d["Categoria ID"]}.png`;
+  }
+
+  if (key === "Industria" && d.Indicador === "Porcentaje de empresas por principal mercado donde vende su principal producto o servicio") {
+    return `/icons/visualizations/Composicion empresarial/${d["Categoria ID"]}.png`;
+  }
+
+  if (key === "Industria" && [
+    "Falta de información sobre los procesos de exportación",
+    "Costos logísticos",
+    "Identificación de mercados y compradores potenciales",
+    "Acceso al financiamiento de las operaciones de comercio exterior",
+    "Cumplimiento de normas o requisitos de calidad",
+    "Cumpliento con requisitos de cantidad de los compradores",
+    "Retrasos causados por el transporte internacional",
+    "Procedimientos aduaneros",
+    "Retrasos en aduanas",
+    "Barreras arancelarias en el extranjero",
+    "Corrupción en las fronteras",
+    "Porcentaje de empresas por tipo instrumentos de gestión ambiental"
+  ].includes(d.Indicador)) {
+    return `/icons/visualizations/Industria ENE/${d["Industria ID"]}.png`;
+  }
+
+  if ((key === "Industria" || key === "Indicador") && [
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
+  ].includes(d["Industria ID"])) {
+    return `/icons/visualizations/Industria ENAVE/${d["Industria ID"]}.png`;
   }
 
   const icon = key;
@@ -233,6 +525,7 @@ const axisConfig = {
 export default {
   // global defaults
   aggs: {
+    "Categoria ID": mean,
     "CITE ID": mean,
     "Componente ID": mean,
     "Concepto ID": mean,
@@ -241,7 +534,7 @@ export default {
     "Elemento FBC ID": mean,
     "Indicador ID": mean,
     "Indicador Tributo ID": mean,
-    "Seccion ID": mean,
+    "Industria ID": mean,
     "Subconcepto ID": mean,
     "Trade Flow ID": mean,
     "Year": mean
