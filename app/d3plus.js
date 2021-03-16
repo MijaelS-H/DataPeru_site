@@ -14,11 +14,11 @@ const shapeLegend = 25;
 
 const icons = [
   "Actividades de innovacion", "Actividades de innovacion realizada", "Actividad economica", "Concepto", "Continente", "Capítulo", "Contribuyente", "Elemento FBC", "Indicador Tributo",
-  "Division", "Indice de precio", "Razon para innovar", "Seccion", "Sector", "Subcategoria", "Subconcepto", "Trade Flow"
+  "Credito Directo", "Division", "Indice de precio", "Razon para innovar", "Seccion", "Sector", "Subcategoria", "Subconcepto", "Trade Flow", "Type"
 ];
 const activeIcons = [
-  "Actividades de innovacion", "Actividades de innovacion realizada", "Actividad economica", "Concepto", "Continente", "Capítulo", "Division", "Elemento FBC", "Indicador Tributo", "Indice de precio",
-  "Razon para innovar", "Seccion", "Sector", "Subconcepto", "Trade Flow"
+  "Actividades de innovacion", "Actividades de innovacion realizada", "Actividad economica", "Concepto", "Continente", "Capítulo", "Credito Directo", "Division", "Elemento FBC", "Indicador Tributo", "Indice de precio",
+  "Razon para innovar", "Seccion", "Sector", "Subconcepto", "Trade Flow", "Type"
 ];
 
 const getTooltipTitle = (d3plusConfig, d) => {
@@ -138,6 +138,13 @@ export const findColorV2 = (key, d) => {
     else if (d.Indicador === "Porcentaje de empresas manufactureras que han accedido a algún servicio brindado por los CITE públicos") {
       return colors["Acceso CITE"][d["Categoria ID"]];
     }
+
+    else if ([
+      "Porcentaje de trabajadores mujeres que labora en el mercado de abastos",
+      "Porcentaje de trabajadores hombres que labora en el mercado de abastos"
+    ].includes(d.Categoria)) {
+      return colors["Gestion Administrativa"][d["Categoria ID"]];
+    }
   }
 
   if (key === "Indicador") {
@@ -241,8 +248,23 @@ export const findColorV2 = (key, d) => {
       "Declaración ambiental para Actividades en curso (DAAC)",
       "Programa de Adecuacion y Manejo Ambiental (PAMA)",
       "Ninguno"
-    ].includes(d.Categoria)) {
+    ].includes(d.Categoria) && !Object.keys(d).includes("id")) {
       return colors["Industria ENE"][d["Industria ID"]];
+    }
+
+    else if (["Ingresos", "Egresos"].includes(d.Type)) {
+      return colors["Gestion financiera"][d["Indicador ID"]];
+    }
+
+    else if ([
+      "Trámites engorrosos",
+      "Intereses elevados",
+      "Falta de garantía",
+      "Deudas pendientes",
+      "Accedió a otras fuentes de financiamento",
+      "Había accedido a crédito anteriormente"
+    ].includes(d.Indicador)) {
+      return colors["Solicitudes financiamiento"][d["Indicador ID"]];
     }
   }
 
@@ -282,6 +304,14 @@ export const findColorV2 = (key, d) => {
     return colors["Industria ENAVE"][d["Industria ID"]];
   }
 
+  if (key === "Tipo" && Object.keys(d).includes("Porcentaje morosidad de credito de la banca")) {
+    return colors.Morosidad[1];
+  }
+
+  if (key === "Type" && ["Ingresos", "Egresos"].includes(d.Type)) {
+    return colors["Gestion financiera"][d["Indicador ID"]];
+  }
+
   const id = d[`${key} ID`];
 
   const palette = colors[key];
@@ -317,6 +347,13 @@ export const findIconV2 = (key, d) => {
 
     else if (d.Indicador === "Porcentaje de empresas manufactureras que han accedido a algún servicio brindado por los CITE públicos") {
       return `/icons/visualizations/Acceso CITE/${d["Categoria ID"]}.png`;
+    }
+
+    else if ([
+      "Porcentaje de trabajadores mujeres que labora en el mercado de abastos",
+      "Porcentaje de trabajadores hombres que labora en el mercado de abastos"
+    ].includes(d.Categoria)) {
+      return `/icons/visualizations/Gestion Administrativa/${d["Categoria ID"]}.png`;
     }
   }
 
@@ -437,6 +474,21 @@ export const findIconV2 = (key, d) => {
     ].includes(d.Categoria)) {
       return `/icons/visualizations/Industria ENE/${d["Industria ID"]}.png`;
     }
+
+    else if (["Ingresos", "Egresos"].includes(d.Type)) {
+      return `/icons/visualizations/Gestion financiera/${d["Indicador ID"]}.png`;
+    }
+
+    else if ([
+      "Trámites engorrosos",
+      "Intereses elevados",
+      "Falta de garantía",
+      "Deudas pendientes",
+      "Accedió a otras fuentes de financiamento",
+      "Había accedido a crédito anteriormente"
+    ].includes(d.Indicador)) {
+      return `/icons/visualizations/Solicitudes financiamiento/${d["Indicador ID"]}.png`;
+    }
   }
 
   if (key === "Industria" && d["Indicador ID"] === 11 && [
@@ -473,6 +525,10 @@ export const findIconV2 = (key, d) => {
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
   ].includes(d["Industria ID"])) {
     return `/icons/visualizations/Industria ENAVE/${d["Industria ID"]}.png`;
+  }
+
+  if (key === "Tipo" && Object.keys(d).includes("Porcentaje morosidad de credito de la banca")) {
+    return "/icons/visualizations/Morosidad/1.png";
   }
 
   const icon = key;
@@ -620,12 +676,12 @@ export default {
       }
     },
     color: [
-      "#BF0909",
-      "#B6004C",
-      "#912A74",
-      "#5D4281",
-      "#4E73F0",
-      "#0095FC"
+      "#FFFFB2",
+      "#FED976",
+      "#FEB24C",
+      "#FD8D3C",
+      "#F03B20",
+      "#BD0026"
     ],
     legendConfig: {
       shapeConfig: {
