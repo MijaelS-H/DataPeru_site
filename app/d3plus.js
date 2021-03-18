@@ -198,7 +198,7 @@ export const findColorV2 = (key, d) => {
       "Trabajadores de servicios y vendedores",
       "Jefes y empleados administrativos",
       "Directores y gerentes"
-    ].includes(d.Indicador)) {
+    ].includes(d.Indicador) && [66, 70, 74, 78, 82, 86, 90, 94, 98].includes(d["Indicador ID"])) {
       return colors["Capital Humano"][d["Indicador ID"]];
     }
 
@@ -421,7 +421,7 @@ export const findIconV2 = (key, d) => {
       "Trabajadores de servicios y vendedores",
       "Jefes y empleados administrativos",
       "Directores y gerentes"
-    ].includes(d.Indicador)) {
+    ].includes(d.Indicador) && [66, 70, 74, 78, 82, 86, 90, 94, 98].includes(d["Indicador ID"])) {
       return `/icons/visualizations/Capital Humano/${d["Indicador ID"]}.png`;
     }
 
