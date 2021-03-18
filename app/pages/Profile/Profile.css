@@ -427,6 +427,30 @@
   }
 }
 
+.cp-main > .cp-grouping > .cp-default-section {
+  & .cp-default-section-figure {
+    & .cp-graphic-viz-container {
+      min-height: 150px !important;
+      & .cp-graphic {
+        display: flex;
+        align-items: center;
+        & .cp-graphic-img {
+          height: 5rem;
+          padding-right: 1rem;
+        }
+        & .cp-stat-value-text {
+          color: var(--gpe-red-1);
+          font-weight: 500;
+        }
+        & .cp-stat-subtitle {
+          color: var(--dark-1);
+          font-size: var(--font-sm);
+        }
+      }
+    }
+  }
+}
+
 .disclaimer-text {
   color: var(--gpe-red-dark);
   font-weight: bold;
