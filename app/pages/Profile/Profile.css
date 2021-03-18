@@ -293,6 +293,7 @@
       }
       & .Options {
         background-color: transparent;
+        top: 0;
         & .cp-button-group {
           width: auto;
         }
@@ -466,6 +467,17 @@
   padding: 0;
   & .cp-viz-figure {
     width: 100%;
+  }
+}
+
+.cp-default-section {
+  & .cp-viz-header {
+    flex-direction: column;
+
+    & .Options {
+      width: 100%;
+      position: relative;
+    }
   }
 }
 
