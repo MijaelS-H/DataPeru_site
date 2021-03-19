@@ -188,10 +188,35 @@ export const findColorV2 = (key, d) => {
     ].includes(d.Categoria)) {
       return colors["Gestion Administrativa"][d["Categoria ID"]];
     }
+
+    else if ([
+      "No se adaptan a las necesidades de su actividad",
+      "Dificultades con el manejo de la confidencialidad",
+      "Dificultades burocrátcias",
+      "No necesita apoyo para innovar",
+      "No le interesó",
+      "Otro"
+    ].includes(d.Categoria)) {
+      return colors["No accede CITE"][d["Categoria ID"]];
+    }
   }
 
   if (key === "Indicador") {
     if ([
+      "Falta de interés",
+      "No fué necesario",
+      "Intentaron pero al final desistieron",
+      "No contaron con los recursos económicos necesarios",
+      "No contaron con personal capacitado",
+      "No contaron con la infraestructura necesaria",
+      "Baja escala de producción",
+      "Son realizadas en la casa matriz",
+      "Desconocimiento del tema"
+    ].includes(d.Indicador)) {
+      return colors["Razones no innovar"][d["Indicador ID"]];
+    }
+
+    else if ([
       "Investigación y desarrollo (I + D) internas",
       "Investigación y desarrollo (I + D) externas",
       "Ingeniería, diseño y otros procesos creativos",
@@ -398,6 +423,17 @@ export const findIconV2 = (key, d) => {
     ].includes(d.Categoria)) {
       return `/icons/visualizations/Gestion Administrativa/${d["Categoria ID"]}.png`;
     }
+
+    else if ([
+      "No se adaptan a las necesidades de su actividad",
+      "Dificultades con el manejo de la confidencialidad",
+      "Dificultades burocrátcias",
+      "No necesita apoyo para innovar",
+      "No le interesó",
+      "Otro"
+    ].includes(d.Categoria)) {
+      return `/icons/visualizations/No accede CITE/${d["Categoria ID"]}.png`;
+    }
   }
 
   if (key === "Short Division") {
@@ -458,6 +494,20 @@ export const findIconV2 = (key, d) => {
 
   if (key === "Indicador") {
     if ([
+      "Falta de interés",
+      "No fué necesario",
+      "Intentaron pero al final desistieron",
+      "No contaron con los recursos económicos necesarios",
+      "No contaron con personal capacitado",
+      "No contaron con la infraestructura necesaria",
+      "Baja escala de producción",
+      "Son realizadas en la casa matriz",
+      "Desconocimiento del tema"
+    ].includes(d.Indicador)) {
+      return `/icons/visualizations/Razon no innovar/${d["Indicador ID"]}.png`;
+    }
+
+    else if ([
       "Investigación y desarrollo (I + D) internas",
       "Investigación y desarrollo (I + D) externas",
       "Ingeniería, diseño y otros procesos creativos",
