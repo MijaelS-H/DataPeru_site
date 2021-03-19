@@ -110,6 +110,7 @@
   &::placeholder {
     color: var(--dark-1);
     font-weight: 400;
+    font-size: var(--font-sm);
   }
 
   &:focus {
