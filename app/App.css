@@ -146,7 +146,6 @@ body {
     }
     &:last-child {
       text-align: right;
-      min-width: 100px;
       color: var(--gpe-red-dark);
       font-weight: 600;
       vertical-align: baseline;

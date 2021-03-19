@@ -13,11 +13,11 @@ const labelPadding = 5;
 const shapeLegend = 25;
 
 const icons = [
-  "Actividades de innovacion", "Actividades de innovacion realizada", "Actividad economica", "Concepto", "Continente", "Capítulo", "Contribuyente", "Elemento FBC", "Indicador Tributo",
+  "Actividades de innovacion", "Actividades de innovacion realizada", "Actividad economica", "Concepto", "Continente", "Capítulo", "Contribuyente", "Elemento FBC", "Elemento PIB", "Indicador Tributo",
   "Credito Directo", "Division", "Indice de precio", "Razon para innovar", "Seccion", "Sector", "Subcategoria", "Subconcepto", "Trade Flow", "Type"
 ];
 const activeIcons = [
-  "Actividades de innovacion", "Actividades de innovacion realizada", "Actividad economica", "Concepto", "Continente", "Capítulo", "Credito Directo", "Division", "Elemento FBC", "Indicador Tributo", "Indice de precio",
+  "Actividades de innovacion", "Actividades de innovacion realizada", "Actividad economica", "Concepto", "Continente", "Capítulo", "Credito Directo", "Division", "Elemento FBC", "Elemento PIB", "Indicador Tributo", "Indice de precio",
   "Razon para innovar", "Seccion", "Sector", "Subconcepto", "Trade Flow", "Type"
 ];
 
@@ -107,6 +107,49 @@ export const findColorV2 = (key, d) => {
 
   if (key === "Short Division") {
     return colors.Division[d["Division ID"]];
+  }
+
+  if (key === "Elemento PIB") {
+    if ([
+      "Gasto consumo final privado",
+      "Gasto consumo gobierno",
+      "Formación bruta capital",
+      "Exportaciones",
+      "Importaciones"
+    ].includes(d["Elemento PIB"])) {
+      return colors["Elemento PIB Gasto"][d["Elemento PIB ID"]];
+    }
+
+    else if ([
+      "Remuneraciones",
+      "Derechos de Importación",
+      "Impuestos a los Productos",
+      "Otros Impuestos",
+      "Excedente de explotación bruto",
+      "Ingreso mixto"
+    ].includes(d["Elemento PIB"])) {
+      return colors["Elemento PIB Ingreso"][d["Elemento PIB ID"]];
+    }
+
+    else if ([
+      "Derechos de Importación y Otros Impuestos",
+      "Agricultura, ganadería, caza y silvicultura",
+      "Pesca y acuicultura",
+      "Extracción de petróleo, gas, minerales y servicios conexos",
+      "Manufactura",
+      "Construcción",
+      "Electricidad, gas y agua",
+      "Comercio, mantenimiento y reparación de vehículos automotores y motocicletas",
+      "Transporte, almacenamiento, correo y mensajería",
+      "Alojamiento y restaurantes",
+      "Telecomunicaciones y otros servicios de información",
+      "Servicios financieros, seguros y pensiones",
+      "Servicios prestados a empresas",
+      "Administración pública y defensa",
+      "Otros servicios"
+    ].includes(d["Elemento PIB"])) {
+      return colors["Elemento PIB Actividad"][d["Elemento PIB ID"]];
+    }
   }
 
   if (key === "Seccion") {
@@ -359,6 +402,49 @@ export const findIconV2 = (key, d) => {
 
   if (key === "Short Division") {
     return `/icons/visualizations/Division/png/white/${d["Division ID"]}.png`;
+  }
+
+  if (key === "Elemento PIB") {
+    if ([
+      "Gasto consumo final privado",
+      "Gasto consumo gobierno",
+      "Formación bruta capital",
+      "Exportaciones",
+      "Importaciones"
+    ].includes(d["Elemento PIB"])) {
+      return `/icons/visualizations/Elemento PIB Gasto/${d["Elemento PIB ID"]}.png`;
+    }
+
+    else if ([
+      "Remuneraciones",
+      "Derechos de Importación",
+      "Impuestos a los Productos",
+      "Otros Impuestos",
+      "Excedente de explotación bruto",
+      "Ingreso mixto"
+    ].includes(d["Elemento PIB"])) {
+      return `/icons/visualizations/Elemento PIB Ingreso/${d["Elemento PIB ID"]}.png`;
+    }
+
+    else if ([
+      "Derechos de Importación y Otros Impuestos",
+      "Agricultura, ganadería, caza y silvicultura",
+      "Pesca y acuicultura",
+      "Extracción de petróleo, gas, minerales y servicios conexos",
+      "Manufactura",
+      "Construcción",
+      "Electricidad, gas y agua",
+      "Comercio, mantenimiento y reparación de vehículos automotores y motocicletas",
+      "Transporte, almacenamiento, correo y mensajería",
+      "Alojamiento y restaurantes",
+      "Telecomunicaciones y otros servicios de información",
+      "Servicios financieros, seguros y pensiones",
+      "Servicios prestados a empresas",
+      "Administración pública y defensa",
+      "Otros servicios"
+    ].includes(d["Elemento PIB"])) {
+      return `/icons/visualizations/Elemento PIB Actividad/${d["Elemento PIB ID"]}.png`;
+    }
   }
 
   if (key === "Seccion") {
