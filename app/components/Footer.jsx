@@ -35,14 +35,20 @@ class Footer extends React.Component {
             <div className="footer-logos-team">
               <span className="footer-logos-header">Desarrollado por</span>
               <div className="footer-logos-team-box">
-                <img className="footer-logo-itp" src="/icons/footer/ITP_blanco.svg" alt="ITP" />
+                <img className="footer-logo-itp" src="/icons/footer/ITP_color.png" alt="ITP" />
                 <img className="footer-logo-produce" src="/icons/footer/Min_produccion_logo.png" alt="PRODUCE" />
                 <img className="footer-logo-dw" src="/icons/footer/dw_blanco.svg" alt="Datawheel" />
               </div>
             </div>
             <div className="footer-logos-support">
-              <span className="footer-logos-header">Apoyado por</span>
-              <img className="footer-logo-bid" src="/icons/footer/BID_logo.png" alt="BID" />
+              <div className="footer-logos-support-box">
+                <span className="footer-logos-header">Apoyado por</span>
+                <img className="footer-logo-bid" src="/icons/footer/BID_logo.png" alt="BID" />
+              </div>
+              <div className="footer-logos-support-box">
+                <span className="footer-logos-header">En el marco de</span>
+                <img className="footer-logo-bicentenario" src="/icons/footer/logo_bicentenario_peru.png" alt="Bicentenario Perú" />
+              </div>
             </div>
           </div>
           <div className="footer-logos-right">
@@ -58,6 +64,10 @@ class Footer extends React.Component {
             <div className="footer-logos-support">
               <span className="footer-logos-header">Apoyado por</span>
               <img className="footer-logo-bid" src="/icons/footer/BID_logo.png" alt="BID" />
+            </div>
+            <div className="footer-logos-support">
+              <span className="footer-logos-header">En el marco de</span>
+              <img className="footer-logo-bicentenario" src="/icons/footer/logo_bicentenario_peru.png" alt="Bicentenario Perú" />
             </div>
             <div className="footer-contact">
               <img className="footer-contact-icon" src="/icons/footer/mail_icon.svg" />

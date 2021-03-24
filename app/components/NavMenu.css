@@ -121,16 +121,17 @@
   & .nav-menu-footer {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: center;
     padding-top: var(--gutter-sm);
   }
   & .nav-menu-footer-link {
     display: block;
-    margin-bottom: var(--gutter-xs);
+    margin: 0.1rem;
     text-align: center;
   }
   & .nav-menu-footer-img {
-    height: 2.25rem;
+    height: 1.75rem;
   }
   & .nav-social-media {
     display: flex;

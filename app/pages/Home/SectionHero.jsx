@@ -82,8 +82,9 @@ const SectionHero = props => {
           {props.children}
         </div>
         <div className="hero-logos">
-          <img className="hero-logo-itp" src="/icons/homepage/ITP_blanco.png" />
-          <img className="hero-logo-produccion" src="/icons/homepage/Min_produccion_logo.png" />
+          <img className="hero-logo-itp" src="/icons/homepage/logos_peru-itp.png" />
+          <img className="hero-logo-produccion" src="/icons/homepage/logos_peru-minproduccion.png" />
+          <img className="hero-logo-bicentenario" src="/icons/homepage/logos_peru-bicentenario.png" />
         </div>
       </div>
 

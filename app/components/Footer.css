@@ -128,47 +128,37 @@
           }
 
           & .footer-logo-itp {
-            height: 5em;
-            margin: 0 0 0 -14px;
+            height: 2.5em;
 
             @mixin max-xl {
-              height: 4em;
-              margin: 0 0 0 -14px;
+              height: 2em;
             }
             @mixin max-lg {
-              height: 3.5em;
-              margin: 0;
-              margin: 0 0 0 -10px;
+              height: 1.5em;
             }
             @mixin max-md {
-              height: 5em;
-              margin: 0;
+              height: 2.2em;
             }
             @mixin max-sm {
-              height: 2.7em;
-              margin: 0;
+              height: 1.4em;
             }
           }
 
           & .footer-logo-produce {
-            height: 2.3em;
+            height: 2.5em;
             width: auto;
 
             @mixin max-xl {
               height: 2em;
-              margin: 0;
             }
             @mixin max-lg {
-              height: 1.7em;
-              margin: 0;
+              height: 1.5em;
             }
             @mixin max-md {
               height: 2.2em;
-              margin: 0;
             }
             @mixin max-sm {
-              height: 1.5em;
-              margin: 0;
+              height: 1.4em;
             }
           }
 
@@ -184,10 +174,9 @@
             }
             @mixin max-md {
               height: 5em;
-              margin: 0;
             }
             @mixin max-sm {
-              height: 3.5em;
+              height: 2.5em;
             }
           }
         }
@@ -195,16 +184,27 @@
 
       & .footer-logos-support {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         height: 5rem;
+        justify-content: space-between;
+
+        & .footer-logos-support-box {
+          display: flex;
+          flex-direction: column;
+        }
 
         @mixin max-md {
           display: none;
         }
 
         & .footer-logo-bid {
-          height: 1.7rem;
-          width: 12rem;
+          height: 2rem;
+          width: auto;
+        }
+
+        & .footer-logo-bicentenario {
+          height: 3rem;
+          width: auto;
         }
       }
     }
@@ -360,8 +360,13 @@
         }
 
         & .footer-logo-bid {
-          height: 1.7rem;
-          width: 12rem;
+          height: 2rem;
+          width: auto;
+        }
+
+        & .footer-logo-bicentenario {
+          height: 4rem;
+          width: auto;
         }
       }
 
