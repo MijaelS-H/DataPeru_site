@@ -380,6 +380,32 @@ export const findColorV2 = (key, d) => {
     return colors["Gestion financiera"][d["Indicador ID"]];
   }
 
+  if (key === "Capacitacion") {
+    if ([
+      "Numero de mercados de abastos que recibieron capacitacion sobre gestion empresarial",
+      "Numero de mercados de abastos que recibieron capacitacion sobre seguridad y salud ocupacional",
+      "Numero de mercados de abastos que recibieron capacitacion sobre gestion de residuos solidos",
+      "Numero de mercados de abastos que recibieron capacitacion sobre habilidades socioemocionales",
+      "Numero de mercados de abastos que recibieron capacitacion sobre marketing",
+      "Numero de mercados de abastos que recibieron capacitacion sobre tecnologias de informacion y comunicacion",
+      "Numero de mercados de abastos que recibieron capacitacion sobre manipulacion de alimentos",
+      "Numero de mercados de abastos que recibieron capacitacion sobre defensa civil"
+    ].includes(d.Capacitacion)) {
+      return colors["Recibe capacitacion"][d["Capacitacion ID"]];
+    }
+
+    else if ([
+      "Numero de mercados de abastos que no recibieron capacitacion por falta de recursos",
+      "Numero de mercados de abastos que no recibieron capacitacion por falta de tiempo",
+      "Numero de mercados de abastos que no recibieron capacitacion por falta de interes",
+      "Numero de mercados de abastos que no recibieron capacitacion por falta de informacion",
+      "Numero de mercados de abastos que no recibieron capacitacion por poca concurrencia",
+      "Numero de mercados de abastos que no recibieron capacitacion porque no cuentan con ambientes para charlas"
+    ].includes(d.Capacitacion)) {
+      return colors["No recibe capacitacion"][d["Capacitacion ID"]];
+    }
+  }
+
   const id = d[`${key} ID`];
 
   const palette = colors[key];
@@ -667,6 +693,32 @@ export const findIconV2 = (key, d) => {
     return "/icons/visualizations/Morosidad/1.png";
   }
 
+  if (key === "Capacitacion") {
+    if ([
+      "Numero de mercados de abastos que recibieron capacitacion sobre gestion empresarial",
+      "Numero de mercados de abastos que recibieron capacitacion sobre seguridad y salud ocupacional",
+      "Numero de mercados de abastos que recibieron capacitacion sobre gestion de residuos solidos",
+      "Numero de mercados de abastos que recibieron capacitacion sobre habilidades socioemocionales",
+      "Numero de mercados de abastos que recibieron capacitacion sobre marketing",
+      "Numero de mercados de abastos que recibieron capacitacion sobre tecnologias de informacion y comunicacion",
+      "Numero de mercados de abastos que recibieron capacitacion sobre manipulacion de alimentos",
+      "Numero de mercados de abastos que recibieron capacitacion sobre defensa civil"
+    ].includes(d.Capacitacion)) {
+      return `/icons/visualizations/Recibe capacitacion/${d["Capacitacion ID"]}.png`;
+    }
+
+    else if ([
+      "Numero de mercados de abastos que no recibieron capacitacion por falta de recursos",
+      "Numero de mercados de abastos que no recibieron capacitacion por falta de tiempo",
+      "Numero de mercados de abastos que no recibieron capacitacion por falta de interes",
+      "Numero de mercados de abastos que no recibieron capacitacion por falta de informacion",
+      "Numero de mercados de abastos que no recibieron capacitacion por poca concurrencia",
+      "Numero de mercados de abastos que no recibieron capacitacion porque no cuentan con ambientes para charlas"
+    ].includes(d.Capacitacion)) {
+      return `/icons/visualizations/No recibe capacitacion/${d["Capacitacion ID"]}.png`;
+    }
+  }
+
   const icon = key;
   const iconID = d[`${key} ID`];
 
@@ -718,6 +770,7 @@ export default {
   // global defaults
   aggs: {
     "Categoria ID": mean,
+    "Capitulo ID": mean,
     "CITE ID": mean,
     "Componente ID": mean,
     "Concepto ID": mean,
