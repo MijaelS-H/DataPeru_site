@@ -85,6 +85,11 @@ const getTooltipTitle = (d3plusConfig, d) => {
     item = Object.entries(d).find(h => h[0] === itemId) || [undefined];
   }
 
+  if (itemId === "id" && Object.keys(d).includes("Indicador")) {
+    itemId = "Indicador";
+    item = Object.entries(d).find(h => h[0] === itemId) || [undefined];
+  }
+
   return {item, itemId, parent, parentId};
 };
 
@@ -107,6 +112,27 @@ export const findColorV2 = (key, d) => {
 
   if (key === "Short Division") {
     return colors.Division[d["Division ID"]];
+  }
+
+  if (key === "id") {
+    // Acceso a programas de innovación
+    if (d.Indicador === "Programa Nacional de Innovación para la Competitividad y Productividad - Innóvate Perú") return "#E8CA77";
+    if (d.Indicador === "Programas de Apoyo a la Ciencia, Tecnología e Innovación Tecnológica") return "#7FD6B6";
+    if (d.Indicador === "Incentivo tributario para proyectos de I + D + i (Ley N°30309)") return "#5390D9";
+
+    // Acceso a los servicios de la Red CITE
+    if (d.Indicador.includes("Conocen los servicios tecnológicos de los Centros de Innovación y Transferencia Tecnológica") && d["Categoria ID"] === 99) return "#5390D9";
+    if (d.Indicador.includes("Conocen los servicios tecnológicos de los Centros de Innovación y Transferencia Tecnológica") && d["Categoria ID"] === 11) return "#DF7373";
+    if (d.Indicador.includes("Conocen los servicios tecnológicos de los Centros de Innovación y Transferencia Tecnológica") && d["Categoria ID"] === 12) return "#68B0AB";
+    if (d.Indicador.includes("Han accedido a algún servicio brindado por los CITE") && d["Categoria ID"] === 11) return "#DF7373";
+    if (d.Indicador.includes("Han accedido a algún servicio brindado por los CITE") && d["Categoria ID"] === 12) return "#68B0AB";
+    if (d.Indicador.includes("Han accedido al servicio de capacitación brindado por los CITE")) return "#09747C";
+    if (d.Indicador.includes("Han accedido al servicio de certificación de competencias laborales brindado por los CITE")) return "#CED37A";
+    if (d.Indicador.includes("Han accedido al servicio de información tecnológica especializada brindado por los CITE")) return "#4E6766";
+    if (d.Indicador.includes("Han accedido al servicio de diseño y desarrollo de productos brindado por los CITE")) return "#A5C882";
+    if (d.Indicador.includes("Han accedido al servicio de asistencia técnica brindado por los CITE")) return "#80BD9F";
+    if (d.Indicador.includes("Han accedido al servicio de soporte productivo brindado por los CITE")) return "#5AB1BB";
+    if (d.Indicador.includes("Han accedido al servicio de ensayo de laboratorio brindado por los CITE")) return "#548C91";
   }
 
   if (key === "Elemento PIB") {
@@ -334,6 +360,19 @@ export const findColorV2 = (key, d) => {
     ].includes(d.Indicador)) {
       return colors["Solicitudes financiamiento"][d["Indicador ID"]];
     }
+
+    else if ([
+      "Robo o hurto",
+      "Intento de robo",
+      "Extorsión",
+      "Estafa o fraude",
+      "Daños a su negocio",
+      "Amenazas",
+      "Secuestro",
+      "Corrupción"
+    ].includes(d.Indicador)) {
+      return colors["Casos delictivos"][d["Indicador ID"]];
+    }
   }
 
   if (key === "Industria" && d["Indicador ID"] === 11 && [
@@ -464,6 +503,27 @@ export const findIconV2 = (key, d) => {
 
   if (key === "Short Division") {
     return `/icons/visualizations/Division/png/white/${d["Division ID"]}.png`;
+  }
+
+  if (key === "id") {
+    // Acceso a programas de innovación
+    if (d.Indicador === "Programa Nacional de Innovación para la Competitividad y Productividad - Innóvate Perú") return "/icons/visualizations/Sankey/programa_nacional_innovacion_competitividad_productividad.png";
+    if (d.Indicador === "Programas de Apoyo a la Ciencia, Tecnología e Innovación Tecnológica") return "/icons/visualizations/Sankey/programa_apoyo_ciencia_tecnologia_innovacion_tecnologica.png";
+    if (d.Indicador === "Incentivo tributario para proyectos de I + D + i (Ley N°30309)") return "/icons/visualizations/Sankey/incentivo_tributario_para_innovacion.png";
+
+    // Acceso a los servicios de la Red CITE
+    if (d.Indicador.includes("Conocen los servicios tecnológicos de los Centros de Innovación y Transferencia Tecnológica") && d["Categoria ID"] === 99) return "/icons/visualizations/Sankey/conoce_cite.png";
+    if (d.Indicador.includes("Conocen los servicios tecnológicos de los Centros de Innovación y Transferencia Tecnológica") && d["Categoria ID"] === 11) return "/icons/visualizations/Sankey/11.png";
+    if (d.Indicador.includes("Conocen los servicios tecnológicos de los Centros de Innovación y Transferencia Tecnológica") && d["Categoria ID"] === 12) return "/icons/visualizations/Sankey/12.png";
+    if (d.Indicador.includes("Han accedido a algún servicio brindado por los CITE") && d["Categoria ID"] === 11) return "/icons/visualizations/Sankey/11.png";
+    if (d.Indicador.includes("Han accedido a algún servicio brindado por los CITE") && d["Categoria ID"] === 12) return "/icons/visualizations/Sankey/12.png";
+    if (d.Indicador.includes("Han accedido al servicio de capacitación brindado por los CITE")) return "/icons/visualizations/Sankey/capacitacion.png";
+    if (d.Indicador.includes("Han accedido al servicio de certificación de competencias laborales brindado por los CITE")) return "/icons/visualizations/Sankey/competencias_laborales.png";
+    if (d.Indicador.includes("Han accedido al servicio de información tecnológica especializada brindado por los CITE")) return "/icons/visualizations/Sankey/informacion_tecnologica.png";
+    if (d.Indicador.includes("Han accedido al servicio de diseño y desarrollo de productos brindado por los CITE")) return "/icons/visualizations/Sankey/diseno_productos.png";
+    if (d.Indicador.includes("Han accedido al servicio de asistencia técnica brindado por los CITE")) return "/icons/visualizations/Sankey/asistencia_tecnica.png";
+    if (d.Indicador.includes("Han accedido al servicio de soporte productivo brindado por los CITE")) return "/icons/visualizations/Sankey/soporte_productivo.png";
+    if (d.Indicador.includes("Han accedido al servicio de ensayo de laboratorio brindado por los CITE")) return "/icons/visualizations/Sankey/laboratorio.png";
   }
 
   if (key === "Elemento PIB") {
@@ -650,6 +710,19 @@ export const findIconV2 = (key, d) => {
       "Había accedido a crédito anteriormente"
     ].includes(d.Indicador)) {
       return `/icons/visualizations/Solicitudes financiamiento/${d["Indicador ID"]}.png`;
+    }
+
+    else if ([
+      "Robo o hurto",
+      "Intento de robo",
+      "Extorsión",
+      "Estafa o fraude",
+      "Daños a su negocio",
+      "Amenazas",
+      "Secuestro",
+      "Corrupción"
+    ].includes(d.Indicador)) {
+      return `/icons/visualizations/Casos delictivos/${d["Indicador ID"]}.png`;
     }
   }
 
