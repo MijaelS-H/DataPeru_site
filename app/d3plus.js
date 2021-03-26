@@ -133,6 +133,27 @@ export const findColorV2 = (key, d) => {
     if (d.Indicador.includes("Han accedido al servicio de asistencia técnica brindado por los CITE")) return "#80BD9F";
     if (d.Indicador.includes("Han accedido al servicio de soporte productivo brindado por los CITE")) return "#5AB1BB";
     if (d.Indicador.includes("Han accedido al servicio de ensayo de laboratorio brindado por los CITE")) return "#548C91";
+
+    // Pérdidas por delitos
+    if (d.Indicador === "Empresas afectadas por hecho delictivo" && d["Categoria ID"] === 99) return "#5390D9";
+    if (d.Indicador === "Empresas afectadas por hecho delictivo" && d["Categoria ID"] === 1) return "#68B0AB";
+    if (d.Indicador === "Empresas afectadas por hecho delictivo" && d["Categoria ID"] === 2) return "#DF7373";
+    if (d.Indicador === "Pérdida de activos (maquinaria, equipos)") return "#89B0AE";
+    if (d.Indicador === "Pérdida de productos") return "#B8C457";
+    if (d.Indicador === "Pérdida de efectivo") return "#785594";
+
+    // Empresas que adoptaron medidas de seguridad
+    if (d.Indicador === "Adoptaron medidas de seguridad" && d["Categoria ID"] === 99) return "#5390D9";
+    if (d.Indicador === "Adoptaron medidas de seguridad" && d["Categoria ID"] === 1) return "#DF7373";
+    if (d.Indicador === "Adoptaron medidas de seguridad" && d["Categoria ID"] === 2) return "#68B0AB";
+    if (d.Indicador === "Incorporación de un sistema de video y captura de imágenes") return "#9FB8AD";
+    if (d.Indicador === "Mejora de infraestructura física") return "#128385";
+    if (d.Indicador === "Incorporación de un sistema de control de acceso de persona") return "#386B73";
+    if (d.Indicador === "Incorporación de un sistema de alarma de seguridad electrónica") return "#F7B801";
+    if (d.Indicador === "Adoptaron medidas de seguridad para el traslado de valores") return "#573132";
+    if (d.Indicador === "Adoptaron medidas de seguridad para el traslado de bienes") return "#76976A";
+    if (d.Indicador === "Incorporacion de personal para resguardo (guardaespaldas)") return "#845361";
+    if (d.Indicador === "Incorporacion de personal de seguridad de bienes e inmuebles") return "#FFA16B";
   }
 
   if (key === "Elemento PIB") {
@@ -373,6 +394,21 @@ export const findColorV2 = (key, d) => {
     ].includes(d.Indicador)) {
       return colors["Casos delictivos"][d["Indicador ID"]];
     }
+
+    else if ([
+      "Vandalismo y/o robos y asaltos contra empresas",
+      "Consumo y/o venta ilegal de alcohol",
+      "Existencia de pandillas o bandas",
+      "Casos de extorsiones",
+      "Venta o consumo de droga",
+      "Existencia de cobro de cupos",
+      "Extorsión de autoridades contra las empresas",
+      "Existencia de prostitución",
+      "Casos de homicidios",
+      "Casos de secuestros"
+    ].includes(d.Indicador)) {
+      return colors["Casos delictivos por industria"][d["Indicador ID"]];
+    }
   }
 
   if (key === "Industria" && d["Indicador ID"] === 11 && [
@@ -524,6 +560,27 @@ export const findIconV2 = (key, d) => {
     if (d.Indicador.includes("Han accedido al servicio de asistencia técnica brindado por los CITE")) return "/icons/visualizations/Sankey/asistencia_tecnica.png";
     if (d.Indicador.includes("Han accedido al servicio de soporte productivo brindado por los CITE")) return "/icons/visualizations/Sankey/soporte_productivo.png";
     if (d.Indicador.includes("Han accedido al servicio de ensayo de laboratorio brindado por los CITE")) return "/icons/visualizations/Sankey/laboratorio.png";
+
+    // Pérdidas por delitos
+    if (d.Indicador.includes("Empresas afectadas por hecho delictivo") && d["Categoria ID"] === 99) return "/icons/visualizations/Sankey/conoce_cite.png";
+    if (d.Indicador.includes("Empresas afectadas por hecho delictivo") && d["Categoria ID"] === 2) return "/icons/visualizations/Sankey/11.png";
+    if (d.Indicador.includes("Empresas afectadas por hecho delictivo") && d["Categoria ID"] === 1) return "/icons/visualizations/Sankey/12.png";
+    if (d.Indicador.includes("Pérdida de activos (maquinaria, equipos)")) return "/icons/visualizations/Sankey/herramientas.png";
+    if (d.Indicador.includes("Pérdida de productos")) return "/icons/visualizations/Sankey/productos.png";
+    if (d.Indicador.includes("Pérdida de efectivo")) return "/icons/visualizations/Sankey/efectivo.png";
+
+    // Empresas que adoptaron medidas de seguridad
+    if (d.Indicador === "Adoptaron medidas de seguridad" && d["Categoria ID"] === 99) return "/icons/visualizations/Sankey/conoce_cite.png";
+    if (d.Indicador === "Adoptaron medidas de seguridad" && d["Categoria ID"] === 1) return "/icons/visualizations/Sankey/11.png";
+    if (d.Indicador === "Adoptaron medidas de seguridad" && d["Categoria ID"] === 2) return "/icons/visualizations/Sankey/12.png";
+    if (d.Indicador === "Incorporación de un sistema de video y captura de imágenes") return  "/icons/visualizations/Sankey/sistema_video.png";
+    if (d.Indicador === "Mejora de infraestructura física") return "/icons/visualizations/Sankey/estructura_fisica.png";
+    if (d.Indicador === "Incorporación de un sistema de control de acceso de persona") return "/icons/visualizations/Sankey/control_acceso.png";
+    if (d.Indicador === "Incorporación de un sistema de alarma de seguridad electrónica") return "/icons/visualizations/Sankey/alarma.png";
+    if (d.Indicador === "Adoptaron medidas de seguridad para el traslado de valores") return "/icons/visualizations/Sankey/traslado_valores.png";
+    if (d.Indicador === "Adoptaron medidas de seguridad para el traslado de bienes") return "/icons/visualizations/Sankey/traslado_bienes.png";
+    if (d.Indicador === "Incorporacion de personal para resguardo (guardaespaldas)") return "/icons/visualizations/Sankey/guarda_espaldas.png";
+    if (d.Indicador === "Incorporacion de personal de seguridad de bienes e inmuebles") return "/icons/visualizations/Sankey/seguridad_bienes.png";
   }
 
   if (key === "Elemento PIB") {
@@ -723,6 +780,21 @@ export const findIconV2 = (key, d) => {
       "Corrupción"
     ].includes(d.Indicador)) {
       return `/icons/visualizations/Casos delictivos/${d["Indicador ID"]}.png`;
+    }
+
+    else if ([
+      "Vandalismo y/o robos y asaltos contra empresas",
+      "Consumo y/o venta ilegal de alcohol",
+      "Existencia de pandillas o bandas",
+      "Casos de extorsiones",
+      "Venta o consumo de droga",
+      "Existencia de cobro de cupos",
+      "Extorsión de autoridades contra las empresas",
+      "Existencia de prostitución",
+      "Casos de homicidios",
+      "Casos de secuestros"
+    ].includes(d.Indicador)) {
+      return `/icons/visualizations/Casos delictivos por industria/${d["Indicador ID"]}.png`;
     }
   }
 

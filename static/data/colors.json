@@ -48,6 +48,18 @@
     "25": "#F35B04",
     "26": "#B3B3B3"
   },
+  "Casos delictivos por industria": {
+    "1": "#3D348B",
+    "2": "#7678ED",
+    "3": "#5A56BC",
+    "4": "#FF8E71",
+    "5": "#F7B801",
+    "6": "#F35B04",
+    "7": "#F18701",
+    "8": "#FF4646",
+    "9": "#E5707E",
+    "10": "#B3B3B3"
+  },
   "colorGrey": "#ccc",
   "Composicion empresarial": {
     "21": "#FFB396",
