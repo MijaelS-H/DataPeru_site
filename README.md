@@ -1,8 +1,8 @@
-# DataPERU
+# ITPProducción
 
 Este repositorio contiene el código fuente para compilar el código del sitio web
 del lado del cliente, y ejecutar el proceso de renderizado de lado del servidor,
-para el sitio web de la plataforma DataPERU.
+para el sitio web de la plataforma ITPProducción.
 
 ## Ejecución
 
