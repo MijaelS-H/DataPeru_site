@@ -36,3 +36,6 @@ dataperu-gcp-bucket-token.json
 /static/topojson/patrimonio_inmaterial.json
 /static/topojson/reserva_indigena_.json
 /static/topojson/reserva_indigena.json
+
+# local proxy file
+/api/proxy.js
