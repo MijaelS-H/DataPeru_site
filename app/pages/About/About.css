@@ -15,17 +15,18 @@
     position: relative;
     justify-content: flex-end;
     transition: opacity 1s ease-in-out;
-    z-index: 20;
+    z-index: 10;
     &::before {
       @mixin absolute-expand;
       display: block;
       content: "";
       z-index: -1;
-      background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(25,23,26,0.4) rgba(38,41,46,0.6));
+      //background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(25,23,26,0.4) rgba(38,41,46,0.6));
+      background-image: linear-gradient(transparent, var(--dark-3) 450px);
     }
 
     & .about-header-title {
-      padding: var(--gutter-xl) var(--gutter-xxl);
+      padding: var(--gutter-xl) var(--gutter-xxxl);
       color: var(--white);
       font-family: "Open Sans";
       font-size: var(--font-xxl);
@@ -36,7 +37,7 @@
 
   & .about-content {
     background-color: var(--dark-3);
-    padding: var(--gutter-lg) var(--gutter-xxl);
+    padding: var(--gutter-xl) var(--gutter-xxxl);
     & .about-itp {
       display: flex;
       flex-direction: column;
@@ -44,6 +45,129 @@
       & .about-itp-title {
         color: var(--white);
         font-size: var(--font-xl);
+        padding-bottom: var(--gutter-lg);
+      }
+
+      & .about-itp-columns {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        & .about-itp-description {
+          flex: 1;
+          margin-right: var(--gutter-xxl);
+
+          & .about-itp-description-text {
+            color: var(--white);
+            font-size: var(--font-sm);
+            font-family: "Open Sans";
+            font-weight: 300;
+            padding-bottom: var(--gutter-sm);
+          }
+        }
+
+        & .about-itp-highlights {
+          flex: 1;
+
+          & .about-itp-highlights-box {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            background-color: #1c1f23;
+            color: var(--white);
+            margin-bottom: var(--gutter-lg);
+            padding: var(--gutter-xl);
+            height: 200px;
+            width: 100%;
+
+            & .about-itp-box-image {
+              height: 100px;
+              width: auto;
+            }
+
+            & .about-itp-box-description {
+              margin-left: var(--gutter-lg);
+
+              & .about-itp-box-title {
+                font-family: "Open Sans";
+                font-size: var(--font-xl);
+                font-weight: 300;
+              }
+
+              & .about-itp-box-value {
+                font-family: "Open Sans";
+                font-size: var(--font-xs);
+                font-weight: 300;
+                padding-top: var(--gutter-sm);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    & .about-itp-produccion {
+      display: flex;
+      flex-direction: column;
+      margin-top: var(--gutter-xl);
+
+      & .about-itp-produccion-title {
+        display: flex;
+        color: var(--white);
+        font-size: var(--gutter-md);
+        justify-content: center;
+        padding-bottom: var(--gutter-lg);
+      }
+
+      & .about-itp-produccion-description {
+        color: var(--white);
+        font-size: var(--font-sm);
+        font-family: "Open Sans";
+        font-weight: 300;
+        padding-bottom: var(--gutter-md);
+      }
+
+      & .about-topics-highlights-box {
+        display: flex;
+        flex-direction: column;
+
+        & .about-topics-item {
+          display: flex;
+          flex-direction: row;
+          margin-bottom: var(--gutter-sm);
+          width: 100%;
+          background-color: #1c1f23;
+          padding: var(--gutter-md);
+
+          & .about-topics-element {
+            display: flex;
+            align-items: center;
+            flex: 1;
+
+            & .about-topics-element-icon {
+              height: var(--gutter-xxl);
+              width: auto;
+              margin-right: var(--gutter-sm);
+            }
+
+            & .about-topics-element-title {
+              color: var(--white);
+              font-family: "Open Sans";
+              font-size: var(--font-lg);
+              font-weight: 300;
+            }
+          }
+
+          & .about-topics-description {
+            display: flex;
+            align-items: center;
+            flex: 2;
+            color: var(--white);
+            font-family: "Open Sans";
+            font-size: var(--font-sm);
+            font-weight: 300;
+          }
+        }
       }
     }
   }

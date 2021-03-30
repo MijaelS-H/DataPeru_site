@@ -20,7 +20,7 @@ function createRoute() {
       <IndexRoute component={Home} />
       <Route path="/profile/:slug/:id" component={Profile} />
       <Route path="/explore" component={Explore} />
-      {/* <Route path="/about" component={About} />*/}
+      <Route path="/about" component={About} />
       <Route path="/ayuda" component={Ayuda} />
       <Route path="/auth" component={Builder} />
       <Route path="*" component={Error} />
