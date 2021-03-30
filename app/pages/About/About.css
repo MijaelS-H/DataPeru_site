@@ -1,0 +1,50 @@
+@import "../../helpers/mixins.css";
+
+.about-container {
+  height: 100vh;
+  & .about-header {
+    background-image: url("/images/about/mckayla-crump-hjanvZlqoB8-unsplash.jpg");
+    background-size: 100vw 80vh;
+    background-repeat: no-repeat;
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    height: 50vh;
+    width: 100%;
+    object-fit: scale-down;
+    position: relative;
+    justify-content: flex-end;
+    transition: opacity 1s ease-in-out;
+    z-index: 20;
+    &::before {
+      @mixin absolute-expand;
+      display: block;
+      content: "";
+      z-index: -1;
+      background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(25,23,26,0.4) rgba(38,41,46,0.6));
+    }
+
+    & .about-header-title {
+      padding: var(--gutter-xl) var(--gutter-xxl);
+      color: var(--white);
+      font-family: "Open Sans";
+      font-size: var(--font-xxl);
+      font-weight: 300;
+      letter-spacing: 1px;
+    }
+  }
+
+  & .about-content {
+    background-color: var(--dark-3);
+    padding: var(--gutter-lg) var(--gutter-xxl);
+    & .about-itp {
+      display: flex;
+      flex-direction: column;
+
+      & .about-itp-title {
+        color: var(--white);
+        font-size: var(--font-xl);
+      }
+    }
+  }
+}

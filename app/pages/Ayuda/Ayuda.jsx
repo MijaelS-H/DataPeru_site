@@ -7,11 +7,12 @@ import Footer from "../../components/Footer";
 
 import {vizOptions} from "./constVizOptions.js";
 
-import "./Help.css";
+import "./Ayuda.css";
 
-const Help = () => {
+const Ayuda = () => {
 
   const [vizConfig, setVizConfig] = useState({
+    groupBy: ["_id"],
     height: 450,
     legendConfig: {
       shapeConfig: {
@@ -56,12 +57,12 @@ const Help = () => {
     }
   });
   const [data, setVizData] = useState([
-    {id: "alpha", x: 4, y: 7},
-    {id: "alpha", x: 5, y: 25},
-    {id: "alpha", x: 6, y: 13},
-    {id: "beta",  x: 4, y: 17},
-    {id: "beta",  x: 5, y: 8},
-    {id: "beta",  x: 6, y: 13}
+    {_id: "alpha", x: 4, y: 7},
+    {_id: "alpha", x: 5, y: 25},
+    {_id: "alpha", x: 6, y: 13},
+    {_id: "beta",  x: 4, y: 17},
+    {_id: "beta",  x: 5, y: 8},
+    {_id: "beta",  x: 6, y: 13}
   ]);
 
   const [howToRead, setHowtoReadText] = useState([
@@ -153,4 +154,4 @@ const Help = () => {
   );
 };
 
-export default Help;
+export default Ayuda;

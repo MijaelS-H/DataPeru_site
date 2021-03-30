@@ -6,7 +6,8 @@ import {App} from "./App";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile/Profile";
 import Explore from "./pages/Explore/Explore";
-import Help from "./pages/Help/Help";
+import About from "./pages/About/About";
+import Ayuda from "./pages/Ayuda/Ayuda";
 import Error from "./pages/Error/Error";
 
 /**
@@ -19,7 +20,8 @@ function createRoute() {
       <IndexRoute component={Home} />
       <Route path="/profile/:slug/:id" component={Profile} />
       <Route path="/explore" component={Explore} />
-      <Route path="/ayuda" component={Help} />
+      {/* <Route path="/about" component={About} />*/}
+      <Route path="/ayuda" component={Ayuda} />
       <Route path="/auth" component={Builder} />
       <Route path="*" component={Error} />
     </Route>

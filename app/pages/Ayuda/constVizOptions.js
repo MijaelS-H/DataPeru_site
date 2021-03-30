@@ -17,7 +17,7 @@ const defaultAxisConfig = {
 export const vizOptions = [
   {
     config: {
-      groupBy: ["id"],
+      groupBy: ["_id"],
       discrete: "x",
       height: 450,
       legendConfig: {
@@ -47,12 +47,12 @@ export const vizOptions = [
     nodes: [],
     links: [],
     data: [
-      {id: "alpha", x: 4, y: 7},
-      {id: "alpha", x: 5, y: 25},
-      {id: "alpha", x: 6, y: 13},
-      {id: "beta",  x: 4, y: 17},
-      {id: "beta",  x: 5, y: 8},
-      {id: "beta",  x: 6, y: 13}
+      {_id: "alpha", x: 4, y: 7},
+      {_id: "alpha", x: 5, y: 25},
+      {_id: "alpha", x: 6, y: 13},
+      {_id: "beta",  x: 4, y: 17},
+      {_id: "beta",  x: 5, y: 8},
+      {_id: "beta",  x: 6, y: 13}
     ],
     item: "Bar chart",
     type: "BarChart",
@@ -324,7 +324,10 @@ export const vizOptions = [
         }
       },
       shapeConfig: {
-        fill: "D3PLUS-COMMON-RESET"
+        fill: "D3PLUS-COMMON-RESET",
+        Bar: {
+          fill: "D3PLUS-COMMON-RESET"
+        }
       },
       tooltipConfig: {
         tbody: [
@@ -390,7 +393,7 @@ export const vizOptions = [
   },
   {
     config: {
-      groupBy: ["id"],
+      groupBy: ["_id"],
       height: 450,
       legendConfig: {
         shapeConfig: {
@@ -419,12 +422,12 @@ export const vizOptions = [
     nodes: [],
     links: [],
     data: [
-      {id: "alpha", x: 4, y: 7},
-      {id: "alpha", x: 5, y: 25},
-      {id: "alpha", x: 6, y: 13},
-      {id: "beta",  x: 4, y: 17},
-      {id: "beta",  x: 5, y: 8},
-      {id: "beta",  x: 6, y: 13}
+      {_id: "alpha", x: 4, y: 7},
+      {_id: "alpha", x: 5, y: 25},
+      {_id: "alpha", x: 6, y: 13},
+      {_id: "beta",  x: 4, y: 17},
+      {_id: "beta",  x: 5, y: 8},
+      {_id: "beta",  x: 6, y: 13}
     ],
     item: "Line chart",
     type: "LinePlot",
@@ -1033,7 +1036,7 @@ export const vizOptions = [
   },
   {
     config: {
-      groupBy: ["id"],
+      groupBy: ["_id"],
       height: 450,
       legendConfig: {
         shapeConfig: {
@@ -1060,12 +1063,12 @@ export const vizOptions = [
     nodes: [],
     links: [],
     data: [
-      {id: "alpha", x: 4, y: 7},
-      {id: "alpha", x: 5, y: 25},
-      {id: "alpha", x: 6, y: 13},
-      {id: "beta",  x: 4, y: 17},
-      {id: "beta",  x: 5, y: 8},
-      {id: "beta",  x: 6, y: 13}
+      {_id: "alpha", x: 4, y: 7},
+      {_id: "alpha", x: 5, y: 25},
+      {_id: "alpha", x: 6, y: 13},
+      {_id: "beta",  x: 4, y: 17},
+      {_id: "beta",  x: 5, y: 8},
+      {_id: "beta",  x: 6, y: 13}
     ],
     item: "Stacked area",
     type: "StackedArea",
@@ -1085,7 +1088,7 @@ export const vizOptions = [
   {
     config: {
       discrete: "x",
-      groupBy: ["id"],
+      groupBy: ["_id"],
       height: 450,
       legendConfig: {
         shapeConfig: {
@@ -1114,12 +1117,12 @@ export const vizOptions = [
     nodes: [],
     links: [],
     data: [
-      {id: "alpha", x: 4, y: 7},
-      {id: "alpha", x: 5, y: 25},
-      {id: "alpha", x: 6, y: 13},
-      {id: "beta",  x: 4, y: 17},
-      {id: "beta",  x: 5, y: 8},
-      {id: "beta",  x: 6, y: 13}
+      {_id: "alpha", x: 4, y: 7},
+      {_id: "alpha", x: 5, y: 25},
+      {_id: "alpha", x: 6, y: 13},
+      {_id: "beta",  x: 4, y: 17},
+      {_id: "beta",  x: 5, y: 8},
+      {_id: "beta",  x: 6, y: 13}
     ],
     item: "Stacked bar chart",
     type: "BarChart",
