@@ -29,6 +29,9 @@
       height: 40vh;
       min-height: 40vh;
       object-fit: cover;
+      &::before {
+        background-image: linear-gradient(transparent, var(--dark-3) 350px);
+      }
     }
 
     & .about-header-title {
