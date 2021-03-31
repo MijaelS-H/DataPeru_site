@@ -248,6 +248,17 @@ export const findColorV2 = (key, d) => {
     }
   }
 
+  if (key === "Departamento") {
+    if (d["Indicador ID"] === 11 && [
+      "Disminuyeron",
+      "Aumentaron",
+      "No sabe",
+      "Siguieron igual"
+    ].includes(d.Categoria)) {
+      return colors["Percepcion delitos"][d["Categoria ID"]];
+    }
+  }
+
   if (key === "Indicador") {
     if ([
       "Falta de interés",
@@ -632,6 +643,17 @@ export const findIconV2 = (key, d) => {
     }
     else if (Object.keys(d).includes("Estimacion")) {
       return `/icons/visualizations/Seccion CIIU/${d["Seccion ID"]}.png`;
+    }
+  }
+
+  if (key === "Departamento") {
+    if (d["Indicador ID"] === 11 && [
+      "Disminuyeron",
+      "Aumentaron",
+      "No sabe",
+      "Siguieron igual"
+    ].includes(d.Categoria)) {
+      return `/icons/visualizations/Percepcion delitos/${d["Categoria ID"]}.png`;
     }
   }
 
