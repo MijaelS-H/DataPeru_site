@@ -30,8 +30,8 @@ class About extends Component {
                 <p className="about-itp-description-text">
                   Contribuimos a la mejora de la productividad, calidad y
                   rentabilidad de las empresas a través de la provisión de
-                  servicios de investigación, desarrollo,innovación,
-                  adaptación, transformación y transferencia tecnológica
+                  servicios de investigación, desarrollo, innovación,
+                  adaptación, transformación y transferencia  tecnológica
                   ambientalmente sostenibles y accesibles, en coordinación
                   con entidades de soporte productivo y del ecosistema de
                   CTI (Ciencia Tecnología e Innovación).
@@ -68,7 +68,7 @@ class About extends Component {
                   <div className="about-itp-box-description">
                     <span className="about-itp-box-title">Visión</span>
                     <p className="about-itp-box-value">
-                      Queremos impulsar la innovación y transferenciatecnológica, facilitar la
+                      Queremos impulsar la innovación y transferencia tecnológica, facilitar la
                       investigación aplicada y la difusión de conocimientos tecnológicos para
                       fomentar el desarrollo productivo del país.
                     </p>

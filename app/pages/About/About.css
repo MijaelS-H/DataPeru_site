@@ -21,8 +21,14 @@
       display: block;
       content: "";
       z-index: -1;
-      //background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(25,23,26,0.4) rgba(38,41,46,0.6));
       background-image: linear-gradient(transparent, var(--dark-3) 450px);
+    }
+
+    @mixin max-md {
+      background-size: 150vw 40vh;
+      height: 40vh;
+      min-height: 40vh;
+      object-fit: cover;
     }
 
     & .about-header-title {
@@ -32,12 +38,35 @@
       font-size: var(--font-xxl);
       font-weight: 300;
       letter-spacing: 1px;
+
+      @mixin max-lg {
+        padding: var(--gutter-xl) var(--gutter-xxl);
+      }
+
+      @mixin max-md {
+        padding: 0;
+        padding-bottom: var(--gutter-md);
+        text-align: center;
+      }
     }
   }
 
   & .about-content {
     background-color: var(--dark-3);
     padding: var(--gutter-xl) var(--gutter-xxxl);
+
+    @mixin max-lg {
+      padding: var(--gutter-xxl) var(--gutter-xxl);
+    }
+
+    @mixin max-md {
+      padding: var(--gutter-md) var(--gutter-xxl);
+    }
+
+    @mixin max-sm {
+      padding: var(--gutter-md) var(--gutter-lg);
+    }
+
     & .about-itp {
       display: flex;
       flex-direction: column;
@@ -46,6 +75,10 @@
         color: var(--white);
         font-size: var(--font-xl);
         padding-bottom: var(--gutter-lg);
+
+        @mixin max-md {
+          text-align: center;
+        }
       }
 
       & .about-itp-columns {
@@ -53,9 +86,21 @@
         flex-direction: row;
         flex-wrap: wrap;
 
+        @mixin max-md {
+          flex-direction: column;
+        }
+
         & .about-itp-description {
           flex: 1;
           margin-right: var(--gutter-xxl);
+
+          @mixin max-lg {
+            margin-right: var(--gutter-xl);
+          }
+
+          @mixin max-md {
+            margin-right: 0;
+          }
 
           & .about-itp-description-text {
             color: var(--white);
@@ -69,6 +114,10 @@
         & .about-itp-highlights {
           flex: 1;
 
+          @mixin max-md {
+            margin-top: var(--gutter-md);
+          }
+
           & .about-itp-highlights-box {
             display: flex;
             align-items: center;
@@ -80,13 +129,54 @@
             height: 200px;
             width: 100%;
 
+            @media (max-width: 1799px) {
+              height: 300px;
+              padding: var(--gutter-md);
+            }
+
+            @mixin max-xl {
+              height: 300px;
+              padding: var(--gutter-md);
+            }
+
+            @mixin max-lg {
+              height: 300px;
+              padding: var(--gutter-md);
+            }
+
+            @mixin max-md {
+              padding: var(--gutter-md);
+            }
+
+            @mixin max-sm {
+              height: 250px;
+              padding: var(--gutter-md);
+            }
+
             & .about-itp-box-image {
               height: 100px;
               width: auto;
+              margin-right: var(--gutter-sm);
+
+              @mixin max-sm {
+                height: 70px;
+              }
+
+              @mixin max-sm {
+                height: 50px;
+              }
             }
 
             & .about-itp-box-description {
-              margin-left: var(--gutter-lg);
+              padding: var(--gutter-lg);
+
+              @media (max-width: 1799px) {
+                padding: var(--gutter-sm);
+              }
+
+              @mixin max-sm {
+                padding: var(--gutter-sm);
+              }
 
               & .about-itp-box-title {
                 font-family: "Open Sans";
@@ -96,9 +186,13 @@
 
               & .about-itp-box-value {
                 font-family: "Open Sans";
-                font-size: var(--font-xs);
+                font-size: var(--font-sm);
                 font-weight: 300;
                 padding-top: var(--gutter-sm);
+
+                @mixin max-sm {
+                  font-size: var(--font-xs);
+                }
               }
             }
           }
@@ -110,6 +204,10 @@
       display: flex;
       flex-direction: column;
       margin-top: var(--gutter-xl);
+
+      @mixin max-md {
+        margin-top: var(--gutter-sm);
+      }
 
       & .about-itp-produccion-title {
         display: flex;
@@ -139,15 +237,37 @@
           background-color: #1c1f23;
           padding: var(--gutter-md);
 
+          @mixin max-md {
+            flex-direction: column;
+            padding: var(--gutter-lg);
+          }
+
           & .about-topics-element {
             display: flex;
             align-items: center;
             flex: 1;
 
+            @mixin max-md {
+              justify-content: center;
+              margin-bottom: var(--gutter-md);
+            }
+
             & .about-topics-element-icon {
               height: var(--gutter-xxl);
               width: auto;
               margin-right: var(--gutter-sm);
+
+              @mixin max-lg {
+                height: 4rem;
+              }
+
+              @mixin max-md {
+                height: 4rem;
+              }
+
+              @mixin max-sm {
+                height: 4rem;
+              }
             }
 
             & .about-topics-element-title {
@@ -155,6 +275,10 @@
               font-family: "Open Sans";
               font-size: var(--font-lg);
               font-weight: 300;
+
+              @mixin max-sm {
+                font-size: var(--font-md);
+              }
             }
           }
 
@@ -166,6 +290,13 @@
             font-family: "Open Sans";
             font-size: var(--font-sm);
             font-weight: 300;
+
+            @mixin max-lg {
+              padding: var(--gutter-md);
+            }
+            @mixin max-md {
+              padding: var(--gutter-sm);
+            }
           }
         }
       }
