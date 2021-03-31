@@ -233,7 +233,11 @@
           justify-content: space-between;
           height: 5rem;
           margin-bottom: 1.5rem;
-          margin-top: 0;
+          margin-top: .5rem;
+
+          @mixin max-lg {
+            margin-top: .1rem;
+          }
 
           @mixin max-md {
             align-items: center;
