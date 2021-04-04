@@ -1,0 +1,91 @@
+@import "../../helpers/mixins.css";
+
+.data-container {
+  height: 100vh;
+
+  & .data-header {
+    background-image: url("/images/datos/willian-justen-de-vasconcellos-g_1mAmAAG0k-unsplash_1.jpg");
+    background-size: 100vw 80vh;
+    background-repeat: no-repeat;
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    height: 60vh;
+    width: 100%;
+    object-fit: scale-down;
+    position: relative;
+    justify-content: flex-end;
+    transition: opacity 1s ease-in-out;
+    z-index: 10;
+    &::before {
+      @mixin absolute-expand;
+      display: block;
+      content: "";
+      z-index: -1;
+      background-image: linear-gradient(transparent, var(--dark-3) 500px);
+    }
+
+    @mixin max-md {
+      background-size: 150vw 40vh;
+      height: 40vh;
+      min-height: 40vh;
+      object-fit: cover;
+      &::before {
+        background-image: linear-gradient(transparent, var(--dark-3) 350px);
+      }
+    }
+
+    & .data-header-title {
+      padding: var(--gutter-xl) var(--gutter-xxxl);
+      color: var(--white);
+      font-family: "Open Sans";
+      font-size: var(--font-xxl);
+      font-weight: 300;
+      letter-spacing: 1px;
+
+      @mixin max-lg {
+        padding: var(--gutter-xl) var(--gutter-xxl);
+      }
+
+      @mixin max-md {
+        padding: 0;
+        padding-bottom: var(--gutter-md);
+        text-align: center;
+      }
+    }
+  }
+
+  & .data-content {
+    background-color: var(--dark-3);
+    padding: var(--gutter-xl) var(--gutter-xxxl);
+
+    & .data-content-title {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      & .data-content-icon {
+        height: calc(var(--gutter-md) * 1.15);
+      }
+
+      & .data-content-span {
+        color: var(--white);
+        font-family: "Open Sans";
+        font-size: var(--font-lg);
+        font-weight: 400;
+        padding-left: var(--gutter-xs);
+      }
+    }
+
+    & .data-content-columns {
+      display: flex;
+      flex-direction: row;
+
+      & .data-content-sources {
+        display: flex;
+        flex-direction: column;
+        padding-left: var(--gutter-xl);
+      }
+    }
+  }
+}

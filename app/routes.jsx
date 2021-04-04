@@ -8,6 +8,7 @@ import Profile from "./pages/Profile/Profile";
 import Explore from "./pages/Explore/Explore";
 import About from "./pages/About/About";
 import Ayuda from "./pages/Ayuda/Ayuda";
+import Data from "./pages/Data/Data";
 import Error from "./pages/Error/Error";
 
 /**
@@ -22,6 +23,7 @@ function createRoute() {
       <Route path="/explore" component={Explore} />
       <Route path="/about" component={About} />
       <Route path="/ayuda" component={Ayuda} />
+      <Route path="/datos" component={Data} />
       <Route path="/auth" component={Builder} />
       <Route path="*" component={Error} />
     </Route>

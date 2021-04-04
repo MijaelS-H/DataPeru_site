@@ -2,14 +2,15 @@
 
 .about-container {
   height: 100vh;
+
   & .about-header {
     background-image: url("/images/about/mckayla-crump-hjanvZlqoB8-unsplash.jpg");
     background-size: 100vw 80vh;
     background-repeat: no-repeat;
-    min-height: 50vh;
+    min-height: 60vh;
     display: flex;
     flex-direction: column;
-    height: 50vh;
+    height: 60vh;
     width: 100%;
     object-fit: scale-down;
     position: relative;
@@ -21,7 +22,7 @@
       display: block;
       content: "";
       z-index: -1;
-      background-image: linear-gradient(transparent, var(--dark-3) 450px);
+      background-image: linear-gradient(transparent, var(--dark-3) 500px);
     }
 
     @mixin max-md {
