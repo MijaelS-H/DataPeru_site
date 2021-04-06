@@ -99,8 +99,11 @@ const Ayuda = () => {
     <div className="help-container">
       <Nav />
 
+      <div className="help-header">
+        <span className="help-header-title">Ayuda</span>
+      </div>
+
       <div className="help-content">
-        <h1 className="help-header">Ayuda</h1>
         <h2 className="help-sub-header">Catálogo de visualizaciones</h2>
 
         <div className="help-content-columns">

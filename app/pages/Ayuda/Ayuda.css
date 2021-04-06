@@ -1,15 +1,70 @@
 @import "helpers/mixins.css";
 
 .help-container {
-  background-color: var(--dark-3);
-  padding-top: var(--nav-height);
+
+  & .help-header {
+    background-image: url("/images/ayuda/Aerial_View_of_Ocra,_Part_2.jpg");
+    background-size: 100vw 80vh;
+    background-repeat: no-repeat;
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    height: 60vh;
+    width: 100%;
+    object-fit: scale-down;
+    position: relative;
+    justify-content: flex-end;
+    transition: opacity 1s ease-in-out;
+    z-index: 10;
+    &::before {
+      @mixin absolute-expand;
+      display: block;
+      content: "";
+      z-index: -1;
+      background-image: linear-gradient(transparent, var(--dark-3) 500px);
+    }
+
+    @mixin max-md {
+      background-size: 150vw 40vh;
+      height: 40vh;
+      min-height: 40vh;
+      object-fit: cover;
+      &::before {
+        background-image: linear-gradient(transparent, var(--dark-3) 350px);
+      }
+    }
+
+    & .help-header-title {
+      padding: var(--gutter-xxl) var(--gutter-xxxl);
+      color: var(--white);
+      font-family: "Open Sans";
+      font-size: var(--font-xxl);
+      font-weight: 300;
+      letter-spacing: 1px;
+
+      @mixin max-lg {
+        padding: var(--gutter-xl) var(--gutter-xxl);
+      }
+
+      @mixin max-md {
+        padding: 0;
+        padding-bottom: var(--gutter-md);
+        text-align: center;
+      }
+    }
+  }
 
   & .help-content {
     display: flex;
+    background-color: var(--dark-3);
     align-items: center;
     flex-direction: column;
-    padding: var(--gutter-xs) var(--gutter-xl);
+    padding: var(--gutter-md) var(--gutter-xxl);
     width: 100%;
+
+    @mixin max-lg {
+      padding: var(--gutter-md) var(--gutter-xl);
+    }
 
     & .help-header {
       color: var(--white);
