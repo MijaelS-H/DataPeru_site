@@ -59,6 +59,7 @@ export const slugDict = {
 
 export const heroMapConfig = {
   groupBy: "Departamento ID",
+  legend: false,
   shapeConfig: {
     Path: {
       stroke: "#b3b3b4",
