@@ -36,7 +36,7 @@
     }
 
     & .about-header-title {
-      padding: var(--gutter-xl) var(--gutter-xxxl);
+      padding: var(--gutter-xxl) var(--gutter-xxxl);
       color: var(--white);
       font-family: "Open Sans";
       font-size: var(--font-xxl);
