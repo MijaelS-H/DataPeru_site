@@ -257,6 +257,12 @@ export const findColorV2 = (key, d) => {
     ].includes(d.Categoria)) {
       return colors["Percepcion delitos"][d["Categoria ID"]];
     }
+    else if (["01", "02", "03", "04", "05", "06", "07", "08", "09", "10",
+              "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
+              "21", "22", "23", "24", "25"
+    ].includes(d["Departamento ID"])) {
+      return colors["Departamento"][d["Departamento ID"]];
+    }
   }
 
   if (key === "Indicador") {
@@ -654,6 +660,12 @@ export const findIconV2 = (key, d) => {
       "Siguieron igual"
     ].includes(d.Categoria)) {
       return `/icons/visualizations/Percepcion delitos/${d["Categoria ID"]}.png`;
+    }
+    else if (["01", "02", "03", "04", "05", "06", "07", "08", "09", "10",
+              "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
+              "21", "22", "23", "24", "25"
+    ].includes(d["Departamento ID"])) {
+      return `/icons/visualizations/Departamentos/${d["Departamento ID"]}.png`;
     }
   }
 
