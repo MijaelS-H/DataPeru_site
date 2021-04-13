@@ -14,62 +14,62 @@ module.exports = function(app) {
     const defaultTiles = {
       geo: [
         {
-          link: "/profile/geo/peru"
+          link: "/profile/geo/arequipa"
         },
         {
           link: "/profile/geo/lima"
         },
         {
+          link: "/profile/geo/la-libertad"
+        },
+        {
           link: "/profile/geo/cusco"
         },
         {
-          link: "/profile/geo/tacna"
+          link: "/profile/geo/moquegua"
         },
         {
-          link: "/profile/geo/lima-150101"
-        },
-        {
-          link: "/profile/geo/iquitos"
+          link: "/profile/geo/ucayali "
         }
       ],
       industry: [
         {
-          link: "/profile/industry/industrias-manufactureras"
+          link: "/profile/industry/agricultura-ganaderia-silvicultura-y-pesca"
         },
         {
-          link: "/profile/industry/agricultura-ganaderia-silvicultura-y-pesca"
+          link: "/profile/industry/comercio-al-por-mayor-y-al-por-menor-reparacion-de-vehiculos-automotores-y-motocicletas"
+        },
+        {
+          link: "/profile/industry/fabricacion-de-productos-de-cuero-y-productos-conexos"
         },
         {
           link: "/profile/industry/elaboracion-de-productos-alimenticios"
         },
         {
-          link: "/profile/industry/fabricacion-de-productos-textiles"
-        },
-        {
           link: "/profile/industry/fabricacion-de-otros-productos-minerales-no-metalicos"
         },
         {
-          link: "/profile/industry/comercio-al-por-mayor-y-al-por-menor-reparacion-de-vehiculos-automotores-y-motocicletas"
+          link: "/profile/industry/otras-actividades-de-servicios"
         }
       ],
       cite: [
         {
-          link: "/profile/cite/citemadera-lima"
-        },
-        {
-          link: "/profile/cite/citeacuicola-ahuashiyacu"
-        },
-        {
-          link: "/profile/cite/citeforestal-pucallpa"
-        },
-        {
-          link: "/profile/cite/utagroindustrial-ambo"
+          link: "/profile/cite/citeccal-lima"
         },
         {
           link: "/profile/cite/citetextil-camelidos-arequipa"
         },
         {
+          link: "/profile/cite/citeagroindustrial-chavimochic"
+        },
+        {
           link: "/profile/cite/citepesquero-callao"
+        },
+        {
+          link: "/profile/cite/citeproductivo-madre-de-dios"
+        },
+        {
+          link: "/profile/cite/citeagroindustrial-ica"
         }
       ]
     };
