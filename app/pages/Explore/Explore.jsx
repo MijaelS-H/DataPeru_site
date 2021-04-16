@@ -109,7 +109,7 @@ class Explore extends React.Component {
     }
 
     // Search actual query
-    if (profile === "filter" || query && query !== "" && query.length > 2) {
+    if (profile === "filter" || query && query !== "" && query.length >= 3) {
       axios.get("/api/profilesearch", {
         cancelToken: new CancelToken(c => {
           // An executor function receives a cancel function as a parameter
@@ -186,7 +186,7 @@ class Explore extends React.Component {
       })
         .then(resp => {
           const color = profilesList[profile].background;
-          this.setState({results: resp.data.results.map(profileItem => ({id: profileItem.slug, name: profileItem.name, slug: profileItem.profile, level: profileItem.hierarchy, background: color})), loading: false});
+          this.setState({results: resp.data.results.slice(0, 100).map(profileItem => ({id: profileItem.slug, name: profileItem.name, slug: profileItem.profile, level: profileItem.hierarchy, background: color})), loading: false});
         })
         .catch(error => {
           const result = error.response;
@@ -293,7 +293,7 @@ class Explore extends React.Component {
 
         <div className="ep-profiles-total">
           <span className="ep-profiles-total-title">Resultados: </span>
-          <span className="ep-profiles-total-value">{results.length}</span>
+          <span className="ep-profiles-total-value">{results.length > 100 ? 100 : results.length}</span>
         </div>
 
         <div className="ep-profiles">

@@ -32,7 +32,7 @@ const NavSearch = props => {
       cancelContainer.current = null;
     }
 
-    if (query.length > 1) {
+    if (query.length >= 3) {
       axios.get("/api/search", {
         cancelToken: new axios.CancelToken(canceler => {
           // An executor function receives a cancel function as a parameter

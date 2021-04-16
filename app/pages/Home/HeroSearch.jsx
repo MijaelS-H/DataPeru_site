@@ -180,7 +180,7 @@ class HeroSearch extends Component {
 
 HeroSearch.defaultProps = {
   limit: 20,
-  minQueryLength: 1,
+  minQueryLength: 3,
   locale: "es"
 };
 

@@ -23,9 +23,9 @@ function createRoute() {
       <Route path="/explore" component={Explore} />
       <Route path="/about" component={About} />
       <Route path="/ayuda" component={Ayuda} />
-      <Route path="/datos" component={Data} />
+      {/*<Route path="/datos" component={Data} /> */}
       <Route path="/auth" component={Builder} />
-      <Route path="*" component={Error} />
+      <Route path="*" component={Error} status={404} />
     </Route>
   );
 }

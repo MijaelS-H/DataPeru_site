@@ -129,7 +129,6 @@
     justify-content: center;
     padding: var(--gutter-xs);
 
-
     & .ep-profile-tab-header {
       display: flex;
       align-items: center;
@@ -211,6 +210,8 @@
     flex-wrap: nowrap;
     background-color: var(--dark-3);
     padding: var(--gutter-xs) 2rem;
+    overflow-y: scroll;
+    max-height: 50vh;
 
     @mixin max-md {
       padding: var(--gutter-xs) var(--gutter-md);

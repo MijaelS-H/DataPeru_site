@@ -29,7 +29,7 @@ module.exports = function(app) {
           link: "/profile/geo/moquegua"
         },
         {
-          link: "/profile/geo/ucayali "
+          link: "/profile/geo/ucayali"
         }
       ],
       industry: [
