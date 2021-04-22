@@ -154,6 +154,11 @@ export const findColorV2 = (key, d) => {
     if (d.Indicador === "Adoptaron medidas de seguridad para el traslado de bienes") return "#76976A";
     if (d.Indicador === "Incorporacion de personal para resguardo (guardaespaldas)") return "#845361";
     if (d.Indicador === "Incorporacion de personal de seguridad de bienes e inmuebles") return "#FFA16B";
+
+    // Afiliaciones a sistemas de salud
+    if (d.Indicador === "Pertenece a uno") return "#3282B8";
+    if (d.Indicador === "No pertenece a uno") return "#BBE1FA";
+    if (d.Indicador === "Total encuestado") return "#0F4C75";
   }
 
   if (key === "Elemento PIB") {
@@ -247,7 +252,7 @@ export const findColorV2 = (key, d) => {
       return colors["No accede CITE"][d["Categoria ID"]];
     }
 
-    // Empleo - Seccion Informalidad laboral
+    // Empleo
     else if (["Empleo informal"].includes(d.Categoria)) {
       return "#346B84";
     }
@@ -261,7 +266,6 @@ export const findColorV2 = (key, d) => {
       return colors["Informalidad laboral"][d["Categoria ID"]];
     }
 
-    // Empleo - Seccion Negocios o establecimientos
     else if ([
       "No está registrado (no tiene ruc)",
       "Persona jurídica (sociedad anónima; srl; sociedad civil; eirl; fundación u asociación, etc)",
@@ -284,6 +288,90 @@ export const findColorV2 = (key, d) => {
       return colors["Composicion por registrados en sunat"][d["Categoria ID"]];
     }
 
+    else if ([
+      "Otro",
+      "Como ambulante",
+      "Dentro de las habitaciones de su vivienda",
+      "En el domicilio de los clientes",
+      "En local fijo en mercado público (tienda, stand)",
+      "En puesto fijo en la vía pública",
+      "En puesto improvisado en la vía pública",
+      "En puesto improvisado en mercado público",
+      "En su taller comercial dentro de su vivienda y en una habitación de uso exclusivo",
+      "En taller, tienda, restaurante, hotel, oficina, consultorio, etc.",
+      "En vehículo para transporte de personas o mercaderías"
+    ].includes(d.Categoria) && (d["Indicador ID"] === 76)) {
+      return colors["Composicion por negocio o actividad"][d["Categoria ID"]];
+    }
+
+    else if ([
+      "No lleva cuentas",
+      "Por medio de apuntes, registros o anotaciones personales",
+      "Por medio de libros de ingresos y gastos exigidos por la sunat",
+      "Por medios de libros o sistema de contabilidad completa"
+    ].includes(d.Categoria) && (d["Indicador ID"] === 77)) {
+      return colors["Composicion por tipo de instrumento contable"][d["Categoria ID"]];
+    }
+
+    else if ([
+      "Agropecuario",
+      "Caza, silvicultura, extracción de madera y pesca",
+      "Comercio",
+      "Comunicaciones",
+      "Construcción",
+      "Electricidad, gas, agua",
+      "Finanzas y seguros",
+      "Hospedaje",
+      "Manufactura",
+      "Minería y petróleo",
+      "Otros servicios excl. públicos",
+      "Transporte"
+    ].includes(d.Categoria) && (d["Indicador ID"] === 52)) {
+      return colors["Poblacion economicamente ocupada por sector"][d["Categoria ID"]];
+    }
+
+    else if ([
+      "Contrato a plazo fijo (sujeto a modalidad)",
+      "Contrato indefinido, nombrado, permanente",
+      "Contrato por locación de servicios (honorarios profesionales, ruc), snp",
+      "Convenios de formación laboral juvenil /prácticas pre-profesioanles",
+      "Está en período de prueba",
+      "Regimen especial de contratación administrativa (cas)",
+      "Sin contrato",
+      "Otro"
+    ].includes(d.Categoria) && (d["Indicador ID"] === 53)) {
+      return colors["Distribucion poblacion ocupada por contrato"][d["Categoria ID"]];
+    }
+
+    else if ([
+      "De 101 a 500 personas",
+      "De 21 a 50 personas",
+      "De 51 a 100 personas",
+      "Hasta 20 personas",
+      "Más de 500 personas"
+    ].includes(d.Categoria) && (d["Indicador ID"] === 54)) {
+      return colors["Distribucion poblacion ocupada por tamaño"][d["Categoria ID"]];
+    }
+
+    // Salud
+    else if ([
+      "Essalud",
+      "Seguro privado de salud",
+      "Entidad prestadora de salud",
+      "Seguro ff.aa./policiales",
+      "Seguro integral de salud (sis)",
+      "Seguro universitario",
+      "Seguro escolar privado",
+      "Otro"
+    ].includes(d.Categoria)) {
+      return colors["Afiliados segun sistema de prestacion"][d["Categoria ID"]];
+    }
+  }
+
+  if (key === "Fuerza laboral") {
+    if (d["Indicador ID"] === 102) {
+      return colors["Vacantes dificiles de cubrir"][d["Fuerza laboral ID"]];
+    }
   }
 
   if (key === "Departamento") {
@@ -465,7 +553,7 @@ export const findColorV2 = (key, d) => {
       return colors["Casos delictivos por industria"][d["Indicador ID"]];
     }
 
-    // Empleo - Seccion Ingresos
+    // Empleo
     else if (["Ingreso laboral mensual total (monetario y no monetario)"].includes(d.Indicador)) {
       return "#732638";
     }
@@ -488,7 +576,6 @@ export const findColorV2 = (key, d) => {
       return colors["Tipos de ingresos actividad secundaria"][d["Indicador ID"]];
     }
 
-    // Empleo - Horas laborales
     else if ([
       "Horas semanales dedicadas al trabajo",
       "Horas semanales dedicadas al trabajo (ocupación principal)",
@@ -497,7 +584,39 @@ export const findColorV2 = (key, d) => {
       return colors["Horas laborales"][d["Indicador ID"]];
     }
 
+    else if(["Tiempo del negocio o establecimiento independiente"].includes(d.Indicador)) {
+      return "#709FB0";
+    }
 
+    else if(["Trabajadores asalariados en el negocio o establecimiento independiente"].includes(d.Indicador)) {
+      return "#3282B8";
+    }
+
+    else if(["Trabajadores no remunerados en el negocio o establecimiento independiente"].includes(d.Indicador)) {
+      return "#005086";
+    }
+
+    else if ([
+      "Lectura y escritura",
+      "Cálculo y numérica",
+      "Inglés",
+      "Técnicas específicas para la ocupación",
+      "Comunicación",
+      "Liderazgo",
+      "Trabajar en equipo",
+      "Pensamiento creativo y crítico",
+      "Trabajar independientemente",
+      "Manejo de tiempo",
+      "Estabilidad emocional",
+      "Extraversión"
+    ].includes(d.Indicador) ) {
+      return colors["Habilidades importantes para las empresas"][d["Indicador ID"]];
+    }
+
+    // Salud
+    if (d.Indicador === "Afiliado al sistema de prestación de salud" && d.Categoria === "Pertenece a uno" && d["Categoria ID"] === 37) return "#3282B8";
+    if (d.Indicador === "Afiliado al sistema de prestación de salud" && d.Categoria === "No pertenece a uno" && d["Categoria ID"] === 38) return "#BBE1FA";
+    if (d.Indicador === "Afiliado al sistema de prestación de salud" && d.Categoria === "Total de personas preguntadas" && d["Categoria ID"] === 99) return "#0F4C75";
 
   }
 
@@ -675,6 +794,86 @@ export const findIconV2 = (key, d) => {
       return `/icons/visualizations/Composicion por registrados en sunat/${d["Categoria ID"]}.png`;
     }
 
+    else if ([
+      "Otro",
+      "Como ambulante",
+      "Dentro de las habitaciones de su vivienda",
+      "En el domicilio de los clientes",
+      "En local fijo en mercado público (tienda, stand)",
+      "En puesto fijo en la vía pública",
+      "En puesto improvisado en la vía pública",
+      "En puesto improvisado en mercado público",
+      "En su taller comercial dentro de su vivienda y en una habitación de uso exclusivo",
+      "En taller, tienda, restaurante, hotel, oficina, consultorio, etc.",
+      "En vehículo para transporte de personas o mercaderías"
+    ].includes(d.Categoria) && (d["Indicador ID"] === 76)) {
+      return `/icons/visualizations/Composicion por negocio o actividad/${d["Categoria ID"]}.png`;
+    }
+
+    else if ([
+      "No lleva cuentas",
+      "Por medio de apuntes, registros o anotaciones personales",
+      "Por medio de libros de ingresos y gastos exigidos por la sunat",
+      "Por medios de libros o sistema de contabilidad completa"
+    ].includes(d.Categoria) && (d["Indicador ID"] === 77)) {
+      return `/icons/visualizations/Composicion por tipo de instrumento contable/${d["Categoria ID"]}.png`;
+    }
+
+    else if ([
+      "Agropecuario",
+      "Caza, silvicultura, extracción de madera y pesca",
+      "Comercio",
+      "Comunicaciones",
+      "Construcción",
+      "Electricidad, gas, agua",
+      "Finanzas y seguros",
+      "Hospedaje",
+      "Manufactura",
+      "Minería y petróleo",
+      "Otros servicios excl. públicos",
+      "Transporte"
+    ].includes(d.Categoria) && (d["Indicador ID"] === 52)) {
+      return `/icons/visualizations/Poblacion economicamente ocupada por sector/${d["Categoria ID"]}.png`;
+    }
+
+    else if ([
+      "Contrato a plazo fijo (sujeto a modalidad)",
+      "Contrato indefinido, nombrado, permanente",
+      "Contrato por locación de servicios (honorarios profesionales, ruc), snp",
+      "Convenios de formación laboral juvenil /prácticas pre-profesioanles",
+      "Está en período de prueba",
+      "Regimen especial de contratación administrativa (cas)",
+      "Sin contrato",
+      "Otro"
+    ].includes(d.Categoria) && (d["Indicador ID"] === 53)) {
+      return `/icons/visualizations/Distribucion poblacion ocupada por contrato/${d["Categoria ID"]}.png`;
+    }
+
+    else if ([
+      "De 101 a 500 personas",
+      "De 21 a 50 personas",
+      "De 51 a 100 personas",
+      "Hasta 20 personas",
+      "Más de 500 personas"
+    ].includes(d.Categoria) && (d["Indicador ID"] === 54)) {
+      return `/icons/visualizations/Distribucion poblacion ocupada por tamaño/${d["Categoria ID"]}.png`;
+    }
+
+    // Salud
+    else if ([
+      "Essalud",
+      "Seguro privado de salud",
+      "Entidad prestadora de salud",
+      "Seguro ff.aa./policiales",
+      "Seguro integral de salud (sis)",
+      "Seguro universitario",
+      "Seguro escolar privado",
+      "Otro"
+    ].includes(d.Categoria)) {
+      return `/icons/visualizations/Afiliados segun sistema de prestacion/${d["Categoria ID"]}.png`;
+    }
+
+
   }
 
   if (key === "Short Division") {
@@ -721,6 +920,7 @@ export const findIconV2 = (key, d) => {
     if (d.Indicador === "Adoptaron medidas de seguridad para el traslado de bienes") return "/icons/visualizations/Sankey/traslado_bienes.png";
     if (d.Indicador === "Incorporacion de personal para resguardo (guardaespaldas)") return "/icons/visualizations/Sankey/guarda_espaldas.png";
     if (d.Indicador === "Incorporacion de personal de seguridad de bienes e inmuebles") return "/icons/visualizations/Sankey/seguridad_bienes.png";
+
   }
 
   if (key === "Elemento PIB") {
@@ -772,6 +972,12 @@ export const findIconV2 = (key, d) => {
     }
     else if (Object.keys(d).includes("Estimacion")) {
       return `/icons/visualizations/Seccion CIIU/${d["Seccion ID"]}.png`;
+    }
+  }
+
+  if (key === "Fuerza laboral") {
+    if (d["Indicador ID"] === 102) {
+      return `/icons/visualizations/Vacantes dificiles de cubrir/${d["Fuerza laboral ID"]}.png`;
     }
   }
 
@@ -952,7 +1158,7 @@ export const findIconV2 = (key, d) => {
       return `/icons/visualizations/Casos delictivos por industria/${d["Indicador ID"]}.png`;
     }
 
-    // Empleo - Seccion Ingresos
+    // Empleo
     else if (["Ingreso laboral mensual total (monetario y no monetario)"].includes(d.Indicador)) {
       return `/icons/visualizations/Ingreso laboral total/55.png`
     }
@@ -975,7 +1181,6 @@ export const findIconV2 = (key, d) => {
       return `/icons/visualizations/Tipos de ingresos actividad secundaria/${d["Indicador ID"]}.png`;
     }
 
-    // Empleo - Horas laborales
     else if ([
       "Horas semanales dedicadas al trabajo",
       "Horas semanales dedicadas al trabajo (ocupación principal)",
@@ -983,6 +1188,40 @@ export const findIconV2 = (key, d) => {
     ].includes(d.Indicador)) {
       return `/icons/visualizations/Horas laborales/${d["Indicador ID"]}.png`;
     }
+
+    else if(["Tiempo del negocio o establecimiento independiente"].includes(d.Indicador)) {
+      return `/icons/visualizations/Empleo independiente otras caracteristicas/78.png`;
+    }
+
+    else if(["Trabajadores asalariados en el negocio o establecimiento independiente"].includes(d.Indicador)) {
+      return `/icons/visualizations/Empleo independiente otras caracteristicas/79.png`;
+    }
+
+    else if(["Trabajadores no remunerados en el negocio o establecimiento independiente"].includes(d.Indicador)) {
+      return `/icons/visualizations/Empleo independiente otras caracteristicas/80.png`;
+    }
+
+    else if ([
+      "Lectura y escritura",
+      "Cálculo y numérica",
+      "Inglés",
+      "Técnicas específicas para la ocupación",
+      "Comunicación",
+      "Liderazgo",
+      "Trabajar en equipo",
+      "Pensamiento creativo y crítico",
+      "Trabajar independientemente",
+      "Manejo de tiempo",
+      "Estabilidad emocional",
+      "Extraversión"
+    ].includes(d.Indicador) ) {
+      return `/icons/visualizations/Habilidades importantes para las empresas/${d["Indicador ID"]}.png`;
+    }
+
+    // Salud
+    if (d.Indicador === "Afiliado al sistema de prestación de salud" && d.Categoria === "Pertenece a uno" && d["Categoria ID"] === 37) return "/icons/visualizations/Afiliados segun si tienen prestacion/4837.png";
+    if (d.Indicador === "Afiliado al sistema de prestación de salud" && d.Categoria === "No pertenece a uno" && d["Categoria ID"] === 38) return "/icons/visualizations/Afiliados segun si tienen prestacion/4839.png";
+    if (d.Indicador === "Afiliado al sistema de prestación de salud" && d.Categoria === "Total de personas preguntadas" && d["Categoria ID"] === 99) return "/icons/visualizations/Afiliados segun si tienen prestacion/4899.png";
 
   }
 
