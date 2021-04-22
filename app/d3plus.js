@@ -243,9 +243,47 @@ export const findColorV2 = (key, d) => {
       "No necesita apoyo para innovar",
       "No le interesó",
       "Otro"
-    ].includes(d.Categoria)) {
+    ].includes(d.Categoria) && (d["Indicador ID"] === 66)) {
       return colors["No accede CITE"][d["Categoria ID"]];
     }
+
+    // Empleo - Seccion Informalidad laboral
+    else if (["Empleo informal"].includes(d.Categoria)) {
+      return "#346B84";
+    }
+
+    else if ([
+      "Trabajador independiente en la actividad principal",
+      "Trabajador independiente en la actividad principal y secundaria",
+      "Trabajador independiente en la actividad secundaria",
+      "Trabajador no independiente"
+    ].includes(d.Categoria)) {
+      return colors["Informalidad laboral"][d["Categoria ID"]];
+    }
+
+    // Empleo - Seccion Negocios o establecimientos
+    else if ([
+      "No está registrado (no tiene ruc)",
+      "Persona jurídica (sociedad anónima; srl; sociedad civil; eirl; fundación u asociación, etc)",
+      "Persona natural (con ruc, rus, rer, u otro régimen)"
+    ].includes(d.Categoria)) {
+      return colors["Negocios o establecimientos independientes"][d["Categoria ID"]];
+    }
+
+    else if ([
+      "Otro",
+      "Es un trabajo eventual",
+      "Le quita demasiado tiempo",
+      "Los trámites son muy complicados",
+      "No lo considera necesario",
+      "No podrá asumir la carga de impuestos si se registra",
+      "No sabe dónde o cómo registrarse",
+      "No sabe si debe registrarse",
+      "Su negocio es pequeño/produce poca cantidad"
+    ].includes(d.Categoria) && (d["Indicador ID"] === 75)) {
+      return colors["Composicion por registrados en sunat"][d["Categoria ID"]];
+    }
+
   }
 
   if (key === "Departamento") {
@@ -426,6 +464,41 @@ export const findColorV2 = (key, d) => {
     ].includes(d.Indicador)) {
       return colors["Casos delictivos por industria"][d["Indicador ID"]];
     }
+
+    // Empleo - Seccion Ingresos
+    else if (["Ingreso laboral mensual total (monetario y no monetario)"].includes(d.Indicador)) {
+      return "#732638";
+    }
+
+    else if ([
+      "Ingreso bruto de la actividad principal monetario (dependiente)",
+      "Ingreso por pago en especie de la actividad principal",
+      " Ingreso por actividad principal independiente",
+      "Ingreso por autoconsumo de la actividad principal independiente",
+    ].includes(d.Indicador)) {
+      return colors["Tipos de ingresos actividad principal"][d["Indicador ID"]];
+    }
+
+    else if ([
+      "Ingreso bruto de la actividad secundaria dependiente",
+      "Ingreso pago en especie de la actividad secundaria dependiente",
+      "Ingreso neto de la actividad secundaria independiente",
+      "Ingreso por autoconsumo de la actividad secundaria independiente",
+    ].includes(d.Indicador)) {
+      return colors["Tipos de ingresos actividad secundaria"][d["Indicador ID"]];
+    }
+
+    // Empleo - Horas laborales
+    else if ([
+      "Horas semanales dedicadas al trabajo",
+      "Horas semanales dedicadas al trabajo (ocupación principal)",
+      "Horas semanales dedicadas al trabajo (ocupación secundaria)",
+    ].includes(d.Indicador)) {
+      return colors["Horas laborales"][d["Indicador ID"]];
+    }
+
+
+
   }
 
   if (key === "Industria" && d["Indicador ID"] === 11 && [
@@ -498,6 +571,18 @@ export const findColorV2 = (key, d) => {
     }
   }
 
+  if (key === "Sub ambito geografico") {
+    if ([
+      "Urbana",
+      "Rural",
+      "Costa",
+      "Sierra",
+      "Selva",
+    ].includes(d["Sub ambito geografico"])) {
+      return colors["Poblacion economicamente activa segun region"][d["Sub ambito geografico ID"]];
+    }
+  }
+
   const id = d[`${key} ID`];
 
   const palette = colors[key];
@@ -510,6 +595,7 @@ export const tooltipTitle = (bgColor, imgUrl, title) => {
   if (imgUrl) {
     tooltip += `<div class="icon" style="background-color: ${bgColor}"><img src="${imgUrl}" /></div>`;
   }
+
   tooltip += `<div class="title"><span>${title}</span></div>`;
   tooltip += "</div>";
   return tooltip;
@@ -549,9 +635,46 @@ export const findIconV2 = (key, d) => {
       "No necesita apoyo para innovar",
       "No le interesó",
       "Otro"
-    ].includes(d.Categoria)) {
+    ].includes(d.Categoria) && (d["Indicador ID"] === 66)) {
       return `/icons/visualizations/No accede CITE/${d["Categoria ID"]}.png`;
     }
+
+    else if (["Empleo informal"].includes(d.Categoria)) {
+      return `/icons/visualizations/Informalidad laboral/43.png`;
+    }
+
+    // Empleo
+    else if ([
+      "Trabajador independiente en la actividad principal",
+      "Trabajador independiente en la actividad principal y secundaria",
+      "Trabajador independiente en la actividad secundaria",
+      "Trabajador no independiente"
+    ].includes(d.Categoria)) {
+      return `/icons/visualizations/Informalidad laboral/${d["Categoria ID"]}.png`;
+    }
+
+    else if ([
+      "No está registrado (no tiene ruc)",
+      "Persona jurídica (sociedad anónima; srl; sociedad civil; eirl; fundación u asociación, etc)",
+      "Persona natural (con ruc, rus, rer, u otro régimen)"
+    ].includes(d.Categoria)) {
+      return `/icons/visualizations/Negocios o establecimientos independientes/${d["Categoria ID"]}.png`;
+    }
+
+    else if ([
+      "Otro",
+      "Es un trabajo eventual",
+      "Le quita demasiado tiempo",
+      "Los trámites son muy complicados",
+      "No lo considera necesario",
+      "No podrá asumir la carga de impuestos si se registra",
+      "No sabe dónde o cómo registrarse",
+      "No sabe si debe registrarse",
+      "Su negocio es pequeño/produce poca cantidad"
+    ].includes(d.Categoria) && (d["Indicador ID"] === 75)) {
+      return `/icons/visualizations/Composicion por registrados en sunat/${d["Categoria ID"]}.png`;
+    }
+
   }
 
   if (key === "Short Division") {
@@ -683,7 +806,6 @@ export const findIconV2 = (key, d) => {
     ].includes(d.Indicador)) {
       return `/icons/visualizations/Razon no innovar/${d["Indicador ID"]}.png`;
     }
-
     else if ([
       "Investigación y desarrollo (I + D) internas",
       "Investigación y desarrollo (I + D) externas",
@@ -697,7 +819,6 @@ export const findIconV2 = (key, d) => {
     ].includes(d.Indicador)) {
       return `/icons/visualizations/Actividad de innovacion realizada/${d["Indicador ID"]}.png`;
     }
-
     else if ([
       "Cultura empresarial desarrollada",
       "Detección de una demanda total o parcialmente insatisfecha en el mercado",
@@ -830,6 +951,39 @@ export const findIconV2 = (key, d) => {
     ].includes(d.Indicador)) {
       return `/icons/visualizations/Casos delictivos por industria/${d["Indicador ID"]}.png`;
     }
+
+    // Empleo - Seccion Ingresos
+    else if (["Ingreso laboral mensual total (monetario y no monetario)"].includes(d.Indicador)) {
+      return `/icons/visualizations/Ingreso laboral total/55.png`
+    }
+
+    else if ([
+      "Ingreso bruto de la actividad principal monetario (dependiente)",
+      "Ingreso por pago en especie de la actividad principal",
+      " Ingreso por actividad principal independiente",
+      "Ingreso por autoconsumo de la actividad principal independiente",
+    ].includes(d.Indicador)) {
+      return `/icons/visualizations/Tipos de ingresos actividad principal/${d["Indicador ID"]}.png`;
+    }
+
+    else if ([
+      "Ingreso bruto de la actividad secundaria dependiente",
+      "Ingreso pago en especie de la actividad secundaria dependiente",
+      "Ingreso neto de la actividad secundaria independiente",
+      "Ingreso por autoconsumo de la actividad secundaria independiente",
+    ].includes(d.Indicador)) {
+      return `/icons/visualizations/Tipos de ingresos actividad secundaria/${d["Indicador ID"]}.png`;
+    }
+
+    // Empleo - Horas laborales
+    else if ([
+      "Horas semanales dedicadas al trabajo",
+      "Horas semanales dedicadas al trabajo (ocupación principal)",
+      "Horas semanales dedicadas al trabajo (ocupación secundaria)",
+    ].includes(d.Indicador)) {
+      return `/icons/visualizations/Horas laborales/${d["Indicador ID"]}.png`;
+    }
+
   }
 
   if (key === "Industria" && d["Indicador ID"] === 11 && [
@@ -895,6 +1049,18 @@ export const findIconV2 = (key, d) => {
       "Numero de mercados de abastos que no recibieron capacitacion porque no cuentan con ambientes para charlas"
     ].includes(d.Capacitacion)) {
       return `/icons/visualizations/No recibe capacitacion/${d["Capacitacion ID"]}.png`;
+    }
+  }
+
+  if (key === "Sub ambito geografico") {
+    if ([
+      "Urbana",
+      "Rural",
+      "Costa",
+      "Sierra",
+      "Selva",
+    ].includes(d["Sub ambito geografico"])) {
+      return `/icons/visualizations/Poblacion economicamente activa segun region/${d["Sub ambito geografico ID"]}.png`
     }
   }
 

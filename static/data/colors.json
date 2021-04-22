@@ -133,6 +133,17 @@
     "21": "#D8D260",
     "99": "#B3B3B3"
   },
+  "Composicion por registrados en sunat": {
+    "36": "#D2E69C",
+    "83": "#8AB6D6",
+    "84": "#8FD9A8",
+    "85": "#28B5B5",
+    "86": "#0061A8",
+    "87": "#9DBEB9",
+    "88": "#7ECA9C",
+    "89": "#1E6F5C",
+    "90": "#4B778D"
+  },
   "Credito Directo": {
     "1": "#8DD7D1",
     "2": "#ABC4FF",
@@ -264,6 +275,11 @@
     "36": "#CE6A6F",
     "37": "#A33A64"
   },
+  "Horas laborales": {
+    "64": "#5180A1",
+    "65": "#ECAF4B",
+    "66": "#B64E3D"
+  },
   "Indicador Tributo": {
     "1": "#E76F51",
     "2": "#F4A261"
@@ -294,6 +310,17 @@
     "6": "#AE69BC",
     "7": "#BC3346",
     "8": "#2C5388"
+  },
+  "Informalidad laboral": {
+    "44": "#57394B",
+    "45": "#8F5775",
+    "46": "#5C64C7",
+    "47": "#5A786F"
+  },
+  "Negocios o establecimientos independientes": {
+    "80": "#4E9B8F",
+    "81": "#749757",
+    "82": "#CBB45C"
   },
   "Subindicador Tributo": {
     "1": "#E9C46A",
@@ -406,6 +433,13 @@
     "5": "#839B97",
     "6": "#D1C145"
   },
+  "Poblacion economicamente activa segun region": {
+    "1": "#5180A1",
+    "2": "#ECAF4B",
+    "3": "#82B0B2",
+    "4": "#B64E3D",
+    "5": "#507261"
+  },
   "Razon para innovar": {
     "22": "#2A6589",
     "23": "#4AA596",
@@ -515,6 +549,18 @@
     "4": "#D6AD47",
     "5": "#D97C2B",
     "6": "#A65E44"
+  },
+  "Tipos de ingresos actividad principal": {
+    "56": "#B78797",
+    "57": "#905A33",
+    "58": "#CBB45C",
+    "59": "#5B568A"
+  },
+  "Tipos de ingresos actividad secundaria": {
+    "60": "#223554",
+    "61": "#C68E67",
+    "62": "#653245",
+    "63": "#93B09D"
   },
   "Tecnologias Produccion": {
     "51": "#4059AD",
