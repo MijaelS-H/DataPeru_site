@@ -177,6 +177,26 @@
   margin-top: 0;
 }
 
+.cp-hero-search .cms-profilesearch .cms-profilesearch-container {
+  background-color: var(--white);
+}
+
+.cp-hero-search .cms-profilesearch-list-item-link {
+  color: var(--black) !important;
+}
+
+.cp-hero-search .cms-profilesearch-list-item-sub {
+  color: var(--gpe-red) !important;
+}
+
+.cms-profilesearch .cms-profilesearch-list .cms-profilesearch-list-item .cms-profilesearch-list-item-link::after {
+  content: "";
+  display: block;
+  height: 1px;
+  width: var(--gutter-xs);
+  background: var(--gpe-red);
+}
+
 .cp-section.cp-grouping-section {
   display: flex;
   align-items: center;

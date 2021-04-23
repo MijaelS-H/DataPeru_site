@@ -25,6 +25,12 @@
   @mixin max-md {
     background-size: cover;
     background-position: right;
+
+    @media (max-width: 991px){
+      background-attachment: fixed !important;
+      background-position: center center !important;
+    }
+
   }
 
   & .hero-index {

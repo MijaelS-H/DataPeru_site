@@ -35,19 +35,29 @@ class Footer extends React.Component {
             <div className="footer-logos-team">
               <span className="footer-logos-header">Desarrollado por</span>
               <div className="footer-logos-team-box">
-                <img className="footer-logo-itp" src="/icons/footer/ITP_color.png" alt="ITP" />
-                <img className="footer-logo-produce" src="/icons/footer/Min_produccion_logo.png" alt="PRODUCE" />
-                <img className="footer-logo-dw" src="/icons/footer/dw_blanco.svg" alt="Datawheel" />
+                <a href="https://www.gob.pe/itp" target="_blank">
+                  <img className="footer-logo-itp" src="/icons/footer/ITP_color.png" alt="ITP"/>
+                </a>
+                <a href="https://www.gob.pe/produce" target="_blank">
+                  <img className="footer-logo-produce" src="/icons/footer/Min_produccion_logo.png" alt="PRODUCE" />
+                </a>
+                <a href="https://www.datawheel.us/" target="_blank">
+                  <img className="footer-logo-dw" src="/icons/footer/dw_blanco.svg" alt="Datawheel" />
+                </a>
               </div>
             </div>
             <div className="footer-logos-support">
               <div className="footer-logos-support-box">
                 <span className="footer-logos-header">Apoyado por</span>
-                <img className="footer-logo-bid" src="/icons/footer/BID_logo.png" alt="BID" />
+                <a href="https://www.iadb.org/es" target="_blank">
+                  <img className="footer-logo-bid" src="/icons/footer/BID_logo.png" alt="BID" />
+                </a>
               </div>
               <div className="footer-logos-support-box">
                 <span className="footer-logos-header">En el marco de</span>
-                <img className="footer-logo-bicentenario" src="/icons/footer/logo_bicentenario_peru.png" alt="Bicentenario Perú" />
+                <a href="https://bicentenario.gob.pe/" target="_blank">
+                  <img className="footer-logo-bicentenario" src="/icons/footer/logo_bicentenario_peru.png" alt="Bicentenario Perú" />
+                </a>
               </div>
             </div>
           </div>
@@ -55,10 +65,18 @@ class Footer extends React.Component {
             <div className="footer-logos-partners">
               <span className="footer-logos-header">En coordinación con</span>
               <div className="footer-logos-partners-box">
-                <img className="footer-logo-mef" src="/icons/footer/Min_economia_y_finanzas_logo.png" alt="MEF" />
-                <img className="footer-logo-mincul" src="/icons/footer/Min_Cultura_logo.png" alt="MINCUL" />
-                <img className="footer-logo-midagri" src="/icons/footer/Min_Agricultura_logo.png" alt="MIDAGRI" />
-                <img className="footer-logo-inei" src="/icons/footer/INEI_logo.png" alt="INEI" />
+                <a href="https://www.gob.pe/mef" target="_blank">
+                  <img className="footer-logo-mef" src="/icons/footer/Min_economia_y_finanzas_logo.png" alt="MEF" />
+                </a>
+                <a href="https://www.gob.pe/cultura" target="_blank">
+                  <img className="footer-logo-mincul" src="/icons/footer/Min_Cultura_logo.png" alt="MINCUL" />
+                </a>
+                <a href="https://www.gob.pe/midagri" target="_blank">
+                  <img className="footer-logo-midagri" src="/icons/footer/Min_Agricultura_logo.png" alt="MIDAGRI" />
+                </a>
+                <a href="https://www.inei.gob.pe/" target="_blank">
+                  <img className="footer-logo-inei" src="/icons/footer/INEI_logo.png" alt="INEI" />
+                </a>
               </div>
             </div>
             <div className="footer-logos-support">
