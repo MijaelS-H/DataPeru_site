@@ -24,14 +24,24 @@ const activeIcons = [
 const getTooltipTitle = (d3plusConfig, d) => {
   const len = d3plusConfig._groupBy.length;
   const parentName = d3plusConfig._groupBy[0](d);
-  let parent = Object.entries(d).find(h => h[1] === parentName) || [undefined];
+  const availableParents = Object.entries(d).filter(h => h[1] === parentName);
+
+  let parent = availableParents.length > 1 ? availableParents[1] : availableParents[0] || [undefined];
+  //let parent = Object.entries(d).find(h => h[1] === parentName) || [undefined];
   let parentId = parent[0];
   if (parentId.includes(" ID")) {
     parentId = parentId.slice(0, -3);
     parent = Object.entries(d).find(h => h[0] === parentId) || [undefined];
   }
   const itemName = d3plusConfig._groupBy[len - 1](d);
-  let item = Object.entries(d).find(h => h[1] === itemName) || [undefined];
+
+  //const availableItems = Object.entries(d).filter(h => h[1] === item);
+  //let itemId = availableItems.length > 1 ? availableItems[1][0] : availableItems[0][0]
+
+  const availableItems = Object.entries(d).filter(h => h[1] === itemName);
+  let item = availableItems.length > 1 ? availableItems[1] : availableItems[0] || [undefined];
+
+  //let item = Object.entries(d).find(h => h[1] === itemName) || [undefined];
   let itemId = item[0];
   if (itemId.includes(" ID")) {
     itemId = itemId.slice(0, -3);
@@ -366,6 +376,37 @@ export const findColorV2 = (key, d) => {
     ].includes(d.Categoria)) {
       return colors["Afiliados segun sistema de prestacion"][d["Categoria ID"]];
     }
+
+    else if ([
+      "Acude a establecimiento en su distrito",
+      "Acude a establecimiento en otro distrito",
+      "No acude a establecimiento de salud"
+    ].includes(d.Categoria) && (d["Indicador ID"] === 49)) {
+      return colors["Centros de prestacion de salud"][d["Categoria ID"]];
+    }
+
+    // Educacion
+    else if ([
+      "Asiste a un centro de educación técnico productiva",
+      "De vacaciones",
+      "Estoy trabajando",
+      "No existe centro de educación básica o superior en el centro poblado",
+      "No me interesa/no me gusta el estudio",
+      "No tiene la edad suficiente (para el grupo 3-5 años)",
+      "Otra razón",
+      "Problemas económicos",
+      "Problemas familiares",
+      "Se dedica a los quehaceres del hogar",
+      "Terminó sus estudios: secundarios/ superiores /asiste a academia preuniversitaria"
+    ].includes(d.Categoria) && (d["Indicador ID"] === 20)) {
+      return colors["Poblacion no matriculada"][d["Categoria ID"]];
+    }
+
+    else if (d.Indicador === "Porcentaje de menores de 18 a_os matriculados que asisten y tienen atraso escolar") {
+      return colors["Atraso escolar"][d["Categoria ID"]];
+    }
+
+
   }
 
   if (key === "Fuerza laboral") {
@@ -618,6 +659,64 @@ export const findColorV2 = (key, d) => {
     if (d.Indicador === "Afiliado al sistema de prestación de salud" && d.Categoria === "No pertenece a uno" && d["Categoria ID"] === 38) return "#BBE1FA";
     if (d.Indicador === "Afiliado al sistema de prestación de salud" && d.Categoria === "Total de personas preguntadas" && d["Categoria ID"] === 99) return "#0F4C75";
 
+    // Educacion
+    if (d.Indicador === "Gasto Promedio mensual en educación del hogar") return "#6B48FF";
+
+  }
+
+  if (key === "Measure") {
+    // Educacion
+    if ([
+      "Primaria o inferior",
+      "Secundaria",
+      "Superior no universitaria",
+      "Universitaria"
+    ].includes(d.Measure)) {
+      return colors["Nivel academico alcanzado"][d["Measure ID"]];
+    }
+
+    if ([
+      "Analfabetismo entre 15 a 19 años",
+      "Analfabetismo entre 20 a 29 años",
+      "Analfabetismo entre 30 a 39 años",
+      "Analfabetismo entre 40 a 49 años",
+      "Analfabetismo entre 50 a 59 años",
+      "Analfabetismo en edad de 60 años y mas",
+    ].includes(d.Measure)) {
+      return colors["Analfabetismo segun grupo etario"][d["Measure ID"]];
+    }
+
+    // Demografia
+    if ([
+      "Población masculina",
+      "Población femenina"
+    ].includes(d.Measure)) {
+      return colors["Composicion demografica por genero"][d["Measure ID"]];
+    }
+
+    if ([
+      "Nacimientos anuales",
+      "Defunciones anuales",
+      "Crecimiento natural"
+    ].includes(d["Measure"])) {
+      return colors["Crecimiento natural"][d["Measure ID"]];
+    }
+  }
+
+  if (key === "Tipo de indicador"){
+    // Demografia
+    if([
+      "Evolución poblacion censada urbana",
+      "Evolución poblacion censada rural"
+    ].includes(d["Tipo de indicador"])) {
+      return colors["Composicion demografica urbana rural"][d["Tipo de indicador ID"]];
+    }
+
+  }
+
+  if (key === "Sexo_Tipo"){
+    // Demografia
+    return colors["Proyeccion demografica urbano rural"][d["Sexo_Tipo ID"]];
   }
 
   if (key === "Industria" && d["Indicador ID"] === 11 && [
@@ -688,6 +787,12 @@ export const findColorV2 = (key, d) => {
     ].includes(d.Capacitacion)) {
       return colors["No recibe capacitacion"][d["Capacitacion ID"]];
     }
+  }
+
+  // Educacion
+  if (key === "Tipo de indicador") {
+    if (d["Tipo de indicador"] === "Matriculados sistema educativo rural") return "#87DDAC";
+    if (d["Tipo de indicador"] === "Matriculados sistema educativo urbano") return "#7AD9F5";
   }
 
   if (key === "Sub ambito geografico") {
@@ -873,6 +978,34 @@ export const findIconV2 = (key, d) => {
       return `/icons/visualizations/Afiliados segun sistema de prestacion/${d["Categoria ID"]}.png`;
     }
 
+    else if ([
+      "Acude a establecimiento en su distrito",
+      "Acude a establecimiento en otro distrito",
+      "No acude a establecimiento de salud"
+    ].includes(d.Categoria) && (d["Indicador ID"] === 49)) {
+      return `/icons/visualizations/Centros de prestacion de salud/${d["Categoria ID"]}.png`;
+    }
+
+    // Educacion
+    else if ([
+      "Asiste a un centro de educación técnico productiva",
+      "De vacaciones",
+      "Estoy trabajando",
+      "No existe centro de educación básica o superior en el centro poblado",
+      "No me interesa/no me gusta el estudio",
+      "No tiene la edad suficiente (para el grupo 3-5 años)",
+      "Otra razón",
+      "Problemas económicos",
+      "Problemas familiares",
+      "Se dedica a los quehaceres del hogar",
+      "Terminó sus estudios: secundarios/ superiores /asiste a academia preuniversitaria"
+    ].includes(d.Categoria) && (d["Indicador ID"] === 20)) {
+      return `/icons/visualizations/Poblacion no matriculada/${d["Categoria ID"]}.png`;
+    }
+
+    else if (d.Indicador === "Porcentaje de menores de 18 a_os matriculados que asisten y tienen atraso escolar") {
+      return `/icons/visualizations/Atraso escolar/${d["Categoria ID"]}.png`;
+    }
 
   }
 
@@ -1223,6 +1356,67 @@ export const findIconV2 = (key, d) => {
     if (d.Indicador === "Afiliado al sistema de prestación de salud" && d.Categoria === "No pertenece a uno" && d["Categoria ID"] === 38) return "/icons/visualizations/Afiliados segun si tienen prestacion/4839.png";
     if (d.Indicador === "Afiliado al sistema de prestación de salud" && d.Categoria === "Total de personas preguntadas" && d["Categoria ID"] === 99) return "/icons/visualizations/Afiliados segun si tienen prestacion/4899.png";
 
+    // Educacion
+    if (d.Indicador === "Gasto Promedio mensual en educación del hogar") return "/icons/visualizations/Gasto del hogar en educacion/gasto_promedio_hogar.png";
+
+  }
+
+
+  if (key === "Measure") {
+    // Educacion
+    if ([
+      "Primaria o inferior",
+      "Secundaria",
+      "Superior no universitaria",
+      "Universitaria"
+    ].includes(d.Measure)) {
+      return `/icons/visualizations/Nivel academico alcanzado/${d["Measure ID"]}.png`;
+    }
+
+    if ([
+      "Analfabetismo entre 15 a 19 años",
+      "Analfabetismo entre 20 a 29 años",
+      "Analfabetismo entre 30 a 39 años",
+      "Analfabetismo entre 40 a 49 años",
+      "Analfabetismo entre 50 a 59 años",
+      "Analfabetismo en edad de 60 años y mas",
+    ].includes(d.Measure)) {
+      return `/icons/visualizations/Analfabetismo segun grupo etario/${d["Measure ID"]}.png`;
+    }
+
+    // Demografia
+    if ([
+      "Población masculina",
+      "Población femenina"
+    ].includes(d.Measure)) {
+      return `/icons/visualizations/Composicion demografica por genero/${d["Measure ID"]}.png`;
+    }
+
+    if ([
+      "Nacimientos anuales",
+      "Defunciones anuales",
+      "Crecimiento natural"
+    ].includes(d["Measure"])) {
+      return `/icons/visualizations/Crecimiento natural/${d["Measure ID"]}.png`;
+    }
+
+
+  }
+
+  if (key === "Tipo de indicador"){
+    // Demografia
+    if ([
+      "Evolución poblacion censada urbana",
+      "Evolución poblacion censada rural"
+    ].includes(d["Tipo de indicador"])) {
+      return `/icons/visualizations/Composicion demografica urbana rural/${d["Tipo de indicador ID"]}.png`;
+    }
+
+  }
+
+  if (key === "Sexo_Tipo"){
+    // Demografia
+    return `/icons/visualizations/Proyeccion demografica urbano rural/${d["Sexo_Tipo ID"]}.png`;
   }
 
   if (key === "Industria" && d["Indicador ID"] === 11 && [
@@ -1289,6 +1483,12 @@ export const findIconV2 = (key, d) => {
     ].includes(d.Capacitacion)) {
       return `/icons/visualizations/No recibe capacitacion/${d["Capacitacion ID"]}.png`;
     }
+  }
+
+  // Educacion
+  if (key === "Tipo de indicador") {
+    if (d["Tipo de indicador"] === "Matriculados sistema educativo rural") return "/icons/visualizations/Matriculas por region geografica/3.png";
+    if (d["Tipo de indicador"] === "Matriculados sistema educativo urbano") return "/icons/visualizations/Matriculas por region geografica/4.png";
   }
 
   if (key === "Sub ambito geografico") {
@@ -1362,6 +1562,7 @@ export default {
     "Elemento PIB ID": mean,
     "Elemento FBC ID": mean,
     "Indicador ID": mean,
+    "Measure ID": mean,
     "Indicador Tributo ID": mean,
     "Industria ID": mean,
     "Subconcepto ID": mean,
@@ -1384,14 +1585,18 @@ export default {
     shapeConfig: {
       fill(d) {
         const item = this._parent._groupBy[0](d);
-        let itemId = Object.entries(d).find(h => h[1] === item)[0];
+        const availableItems = Object.entries(d).filter(h => h[1] === item);
+        let itemId = availableItems.length > 1 ? availableItems[1][0] : availableItems[0][0]
+        //let itemId = Object.entries(d).find(h => h[1] === item)[0];
         if (itemId.includes(" ID")) itemId = itemId.replace(" ID", "");
 
         return findColorV2(itemId, d);
       },
       backgroundImage(d, i) {
         const item = this._parent._groupBy[0](d);
-        let itemId = Object.entries(d).find(h => h[1] === item)[0];
+        const availableItems = Object.entries(d).filter(h => h[1] === item);
+        let itemId = availableItems.length > 1 ? availableItems[1][0] : availableItems[0][0]
+        //let itemId = Object.entries(d).find(h => h[1] === item)[0];
         if (itemId.includes(" ID")) itemId = itemId.replace(" ID", "");
         return findIconV2(itemId, d);
       },
@@ -1519,7 +1724,9 @@ export default {
       stroke(d) {
         if (this && this._groupBy) {
           const item = this._groupBy[0](d);
-          let itemId = Object.entries(d).find(h => h[1] === item)[0];
+          const availableItems = Object.entries(d).filter(h => h[1] === item);
+          let itemId = availableItems.length > 1 ? availableItems[1][0] : availableItems[0][0]
+          //let itemId = Object.entries(d).find(h => h[1] === item)[0];
           if (itemId.includes(" ID")) itemId = itemId.replace(" ID", "");
           return findColorV2(itemId, d);
         }
@@ -1543,13 +1750,14 @@ export default {
       if (this && this._groupBy) {
         const parentName = this._groupBy[0](d);
         if (parentName) {
-          let parent = Object.entries(d).find(h => h[1] === parentName) || [undefined];
+          const availableParents = Object.entries(d).filter(h => h[1] === parentName);
+          let parent = availableParents.length > 1 ? availableParents[1] : availableParents[0] || [undefined];
+          //let parent = Object.entries(d).find(h => h[1] === parentName) || [undefined];
           let parentId = parent[0];
           if (parentId.includes(" ID")) {
             parentId = parentId.slice(0, -3);
             parent = Object.entries(d).find(h => h[0] === parentId) || [undefined];
           }
-
           const bgColor = findColorV2(parentId, d);
           return bgColor;
         }

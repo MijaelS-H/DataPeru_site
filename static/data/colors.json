@@ -48,6 +48,18 @@
     "35": "#276D68",
     "36": "#2E279D"
   },
+  "Analfabetismo segun grupo etario": {
+    "1": "#C70039",
+    "2": "#665C84",
+    "3": "#FACF5A",
+    "4": "#E4734F",
+    "5": "#FF8484",
+    "6": "#6D3580"
+  },
+  "Atraso escolar": {
+    "16": "#DF7373",
+    "17": "#68B0AB"
+  },
   "Casos delictivos": {
     "19": "#5A56BC",
     "20": "#8F4068",
@@ -70,6 +82,11 @@
     "9": "#E5707E",
     "10": "#B3B3B3"
   },
+  "Centros de prestacion de salud": {
+    "39": "#C6CBEF",
+    "40": "#5EDFFF",
+    "41": "#3E64FF"
+  },
   "colorGrey": "#ccc",
   "Composicion empresarial": {
     "21": "#FFB396",
@@ -84,6 +101,7 @@
     "eu": "#8093f1",
     "as": "#c8553d",
     "sa": "#57cc99",
+    "ca": "#DD9B31",
     "af": "#f1c453",
     "oc": "#89c2d9",
     "na": "#006ba6",
@@ -107,6 +125,14 @@
     "4": "#5E091A",
     "5": "#BF4C41",
     "6": "#9B6765"
+  },
+  "Composicion demografica por genero": {
+    "1": "#7DD8C7",
+    "2": "#7971EA"
+  },
+  "Composicion demografica urbana rural": {
+    "1": "#FFCD60",
+    "2": "#FF8162"
   },
   "Capital Humano": {
     "66": "#4B5F8C",
@@ -172,6 +198,11 @@
     "102": "#FF8E71",
     "103": "#9F5F80",
     "104": "#583D72"
+  },
+  "Crecimiento natural": {
+    "1": "#EA9085",
+    "2": "#455D7A",
+    "3": "#57A99A"
   },
   "Credito Directo": {
     "1": "#8DD7D1",
@@ -382,6 +413,12 @@
     "81": "#749757",
     "82": "#CBB45C"
   },
+  "Nivel academico alcanzado": {
+    "1": "#FFB228",
+    "2": "#BD512F",
+    "3": "#99235C",
+    "4": "#6F0765"
+  },
   "Subindicador Tributo": {
     "1": "#E9C46A",
     "2": "#ED635D",
@@ -513,6 +550,25 @@
     "57": "#ADC6AB",
     "58": "#4F5D75",
     "59": "#BC3346"
+  },
+  "Poblacion no matriculada": {
+    "18": "#B8B2A6",
+    "19": "#AA7070",
+    "20": "#D65A31",
+    "21": "#EE7777",
+    "22": "#D9D872",
+    "23": "#FDCB6E",
+    "24": "#8ADFDC",
+    "25": "#4592AF",
+    "26": "#8F71FF",
+    "27": "#82ACFF",
+    "28": "#366ED8"
+  },
+  "Proyeccion demografica urbano rural": {
+    "1_1": "#0C907D",
+    "1_2": "#509AAF",
+    "2_1": "#CB9B42",
+    "2_2": "#E88C5D"
   },
   "Razon para innovar": {
     "22": "#2A6589",
