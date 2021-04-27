@@ -60,6 +60,11 @@
     "16": "#DF7373",
     "17": "#68B0AB"
   },
+  "Bibliotecas y servicios bibliotecarios": {
+    "1": "#EACF79",
+    "2": "#638CCC",
+    "3": "#FF7575"
+  },
   "Casos delictivos": {
     "19": "#5A56BC",
     "20": "#8F4068",
@@ -198,6 +203,11 @@
     "102": "#FF8E71",
     "103": "#9F5F80",
     "104": "#583D72"
+  },
+  "Conectividad": {
+    "2": "#07689F",
+    "3": "#5A92AF",
+    "4": "#86C1D4"
   },
   "Crecimiento natural": {
     "1": "#EA9085",
@@ -344,6 +354,13 @@
     "5": "#D88C9A",
     "6": "#D77A61"
   },
+  "Equipamiento": {
+    "1": "#D2E48E",
+    "2": "#658361",
+    "3": "#62D2A2",
+    "4": "#1FAB89",
+    "5": "#3D93A3"
+  },
   "Financiamiento Innovacion": {
     "32": "#CE9265",
     "33": "#DDAEB0",
@@ -351,6 +368,16 @@
     "35": "#B49286",
     "36": "#CE6A6F",
     "37": "#A33A64"
+  },
+  "Fiscalizacion municipal": {
+    "1": "#658361",
+    "2": "#F19584",
+    "3": "#F9DE79",
+    "4": "#D0DD97",
+    "5": "#971549",
+    "6": "#7098DA",
+    "7": "#7D5E3F",
+    "8": "#34495E"
   },
   "Habilidades importantes para las empresas": {
     "37": "#D8B9C3",
@@ -370,6 +397,17 @@
     "64": "#5180A1",
     "65": "#ECAF4B",
     "66": "#B64E3D"
+  },
+  "Hogares por tipo de ingresos laborales": {
+    "12": "#1160AA",
+    "13": "#9BB4DA",
+    "14": "#624464",
+    "15": "#C238B5"
+  },
+  "Hogares productores": {
+    "105": "#C6CD78",
+    "108": "#EC9454",
+    "109": "#8E3343"
   },
   "Indicador Tributo": {
     "1": "#E76F51",
@@ -407,6 +445,16 @@
     "45": "#8F5775",
     "46": "#5C64C7",
     "47": "#5A786F"
+  },
+  "Internet segun uso": {
+    "22": "#60366F",
+    "23": "#5F72B2",
+    "24": "#6FA3A9",
+    "25": "#FFD2A5",
+    "26": "#D988BC",
+    "27": "#FFA8B8",
+    "28": "#E78775",
+    "29": "#95A792"
   },
   "Negocios o establecimientos independientes": {
     "80": "#4E9B8F",
@@ -512,6 +560,13 @@
   "Morosidad": {
     "1": "#94AEFF"
   },
+  "Necesidades basicas insatisfechas": {
+    "1": "#AED09E",
+    "2": "#EDE862",
+    "3": "#0081C6",
+    "4": "#7E6752",
+    "5": "#FBAC91"
+  },
   "No accede CITE": {
     "13": "#5F5A5F",
     "14": "#B0B97A",
@@ -564,11 +619,30 @@
     "27": "#82ACFF",
     "28": "#366ED8"
   },
+  "Portal de transparencia y sistemas informaticos": {
+    "1" : "#CB8589",
+    "2" : "#B77B46",
+    "3" : "#455D7A",
+    "4" : "#C84771",
+    "5" : "#5C8D89",
+    "6" : "#E4C478",
+    "7" : "#DD8968",
+    "8" : "#A44A4A",
+    "9" : "#86C1D4",
+    "10" : "#BE3144",
+    "11" : "#8C3163",
+    "12" : "#796465"
+  },
   "Proyeccion demografica urbano rural": {
     "1_1": "#0C907D",
     "1_2": "#509AAF",
     "2_1": "#CB9B42",
     "2_2": "#E88C5D"
+  },
+  "Si hace uso de internet": {
+    "27": "#0D1B4C",
+    "28": "#3F6699",
+    "29": "#78C2C3"
   },
   "Razon para innovar": {
     "22": "#2A6589",

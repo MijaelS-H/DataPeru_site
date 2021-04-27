@@ -107,6 +107,7 @@ const growthPct = d => `${formatAbbreviate(d * 100)}%`;
 const pesoPE = d => `S/ ${formatAbbreviate(d * 100)}`;
 
 export const findColorV2 = (key, d) => {
+
   if (key === "Pais" || key === "ISO 3") {
     if (!Array.isArray(d["Pais ID"])) return "transparent";
     else return colors.Continente[d["Continente ID"]];
@@ -169,6 +170,8 @@ export const findColorV2 = (key, d) => {
     if (d.Indicador === "Pertenece a uno") return "#3282B8";
     if (d.Indicador === "No pertenece a uno") return "#BBE1FA";
     if (d.Indicador === "Total encuestado") return "#0F4C75";
+
+
   }
 
   if (key === "Elemento PIB") {
@@ -236,6 +239,9 @@ export const findColorV2 = (key, d) => {
   }
 
   if (key === "Categoria") {
+
+    if (d.Indicador === "No tiene" && d["Categoria ID"] === 73) return "#F7C873";
+
     if (d.Indicador === "Porcentaje de empresas manufactureras que han realizado alguna actividad de innovación") {
       return colors["Actividades de innovacion"][d["Categoria ID"]];
     }
@@ -404,6 +410,30 @@ export const findColorV2 = (key, d) => {
 
     else if (d.Indicador === "Porcentaje de menores de 18 a_os matriculados que asisten y tienen atraso escolar") {
       return colors["Atraso escolar"][d["Categoria ID"]];
+    }
+
+
+    // Hogares
+    else if ([
+      "Hogar con ingresos independientes",
+      "Hogar sin ingresos independientes"
+    ].includes(d.Categoria) && (d["Indicador ID"] === 9)) {
+      return colors["Hogares por tipo de ingresos laborales"][d["Categoria ID"]];
+    }
+
+    else if ([
+      "Hogar con ingresos dependientes",
+      "Hogar sin ingresos dependientes"
+    ].includes(d.Categoria) && (d["Indicador ID"] === 7)) {
+      return colors["Hogares por tipo de ingresos laborales"][d["Categoria ID"]];
+    }
+
+    else if ([
+      "Hogar productor agricola",
+      "Hogar productor pecuario",
+      "Hogar productor forestal"
+    ].includes(d.Categoria)) {
+      return colors["Hogares productores"][d["Categoria ID"]];
     }
 
 
@@ -650,7 +680,7 @@ export const findColorV2 = (key, d) => {
       "Manejo de tiempo",
       "Estabilidad emocional",
       "Extraversión"
-    ].includes(d.Indicador) ) {
+    ].includes(d.Indicador) && d["Categoria ID"] === 4) {
       return colors["Habilidades importantes para las empresas"][d["Indicador ID"]];
     }
 
@@ -662,6 +692,57 @@ export const findColorV2 = (key, d) => {
     // Educacion
     if (d.Indicador === "Gasto Promedio mensual en educación del hogar") return "#6B48FF";
 
+    // Hogares
+    if (d.Indicador === "Ingreso promedio mensual de actividades dependientes del hogar") return "#AC005D";
+    if (d.Indicador === "Ingreso promedio mensual de actividades independientes del hogar") return "#F85959";
+    if (d.Indicador === "Gasto Promedio mensual monetario del hogar") return "#FF9F68";
+
+    // Hogares - Sankeys
+    if (d.Indicador === "No hace uso"     && d["Indicador ID"] === 21 && d["Categoria ID"] === 16) return "#78C2C3";
+    if (d.Indicador === "Si hace uso"     && d["Indicador ID"] === 21 && d["Categoria ID"] === 17) return "#3F6699";
+    if (d.Indicador === "Total población" && d["Indicador ID"] === 21 && d["Categoria ID"] === 99) return "#0D1B4C";
+
+    if (d.Indicador === "Si hace uso" && d["Indicador ID"] === 22 && d["Categoria ID"] === 17) return "#A0DBDB";
+    if (d.Indicador === "Si hace uso" && d["Indicador ID"] === 23 && d["Categoria ID"] === 17) return "#1E6B7F";
+    if (d.Indicador === "Si hace uso" && d["Indicador ID"] === 24 && d["Categoria ID"] === 17) return "#01AAC1";
+    if (d.Indicador === "Si hace uso" && d["Indicador ID"] === 25 && d["Categoria ID"] === 17) return "#97ECC5";
+    if (d.Indicador === "Si hace uso" && d["Indicador ID"] === 26 && d["Categoria ID"] === 17) return "#56A7A7";
+    if (d.Indicador === "Si hace uso" && d["Indicador ID"] === 27 && d["Categoria ID"] === 17) return "#2E89BA";
+    if (d.Indicador === "Si hace uso" && d["Indicador ID"] === 28 && d["Categoria ID"] === 17) return "#A5BFDD";
+    if (d.Indicador === "Si hace uso" && d["Indicador ID"] === 29 && d["Categoria ID"] === 17) return "#6E828A";
+
+    // Instrumentos financieros
+    if (d.Indicador === "Total con instrumento financiero" && d["Indicador ID"] === 66 && d["Categoria ID"] === 99) return "#6E5773";
+    if (d.Indicador === "Total sin instrumento financiero" && d["Indicador ID"] === 73 && d["Categoria ID"] === 99) return "#D45D79";
+
+    if (d.Indicador === "Si tiene" && d["Indicador ID"] === 67 && d["Categoria"] === "Tiene una cuenta de ahorros"            ) return "#EA9085";
+    if (d.Indicador === "Si tiene" && d["Indicador ID"] === 68 && d["Categoria"] === "Tiene una cuenta de ahorro a plazo fijo") return "#8F8787";
+    if (d.Indicador === "Si tiene" && d["Indicador ID"] === 69 && d["Categoria"] === "Tiene una cuenta corriente"             ) return "#A64452";
+    if (d.Indicador === "Si tiene" && d["Indicador ID"] === 70 && d["Categoria"] === "Tiene una tarjeta de credito"           ) return "#470031";
+    if (d.Indicador === "Si tiene" && d["Indicador ID"] === 71 && d["Categoria"] === "Tiene una tarjeta de débito"            ) return "#C02727";
+
+    if (d.Indicador === "No tiene" && d["Categoria ID"] === 36) return "#65799B";
+    if (d.Indicador === "No tiene" && d["Categoria ID"] === 72) return "#A12559";
+    // if (d.Indicador === "No tiene" && d["Categoria ID"] === 73) return "#F7C873";
+    if (d.Indicador === "No tiene" && d["Categoria ID"] === 74) return "#978D58";
+    if (d.Indicador === "No tiene" && d["Categoria ID"] === 75) return "#5A5D9D";
+    if (d.Indicador === "No tiene" && d["Categoria ID"] === 76) return "#346473";
+    if (d.Indicador === "No tiene" && d["Categoria ID"] === 77) return "#DAD773";
+    if (d.Indicador === "No tiene" && d["Categoria ID"] === 78) return "#7ECBA1";
+    if (d.Indicador === "No tiene" && d["Categoria ID"] === 79) return "#90B2E4";
+
+    else if ([
+      "Información",
+      "Comunicación",
+      "Comprar productos y/o servicios",
+      "Operaciones de banca electrónica",
+      "Educación formal y actividades de capacitación",
+      "Transacciones con organizaciones estatales/autoridades públicas",
+      "Actividades de entretenimiento",
+      "Vender productos y/o servicios"
+    ].includes(d.Indicador)) {
+      return colors["Internet segun uso"][d["Indicador ID"]];
+    }
   }
 
   if (key === "Measure") {
@@ -675,7 +756,7 @@ export const findColorV2 = (key, d) => {
       return colors["Nivel academico alcanzado"][d["Measure ID"]];
     }
 
-    if ([
+    else if ([
       "Analfabetismo entre 15 a 19 años",
       "Analfabetismo entre 20 a 29 años",
       "Analfabetismo entre 30 a 39 años",
@@ -687,20 +768,88 @@ export const findColorV2 = (key, d) => {
     }
 
     // Demografia
-    if ([
+    else if ([
       "Población masculina",
       "Población femenina"
     ].includes(d.Measure)) {
       return colors["Composicion demografica por genero"][d["Measure ID"]];
     }
 
-    if ([
+    else if ([
       "Nacimientos anuales",
       "Defunciones anuales",
       "Crecimiento natural"
     ].includes(d["Measure"])) {
       return colors["Crecimiento natural"][d["Measure ID"]];
     }
+
+    else if ([
+      "Vivienda inadecuada",
+      "Vivienda hacinada",
+      "Carecen servicios higiénicos",
+      "Menores sin escuela",
+      "Alta dependencia económica"
+    ].includes(d["Measure"])) {
+      return colors["Necesidades basicas insatisfechas"][d["Measure ID"]];
+    }
+
+    // Gobierno
+    else if ([
+      "Municipalidades con bibliotecas",
+      "Municipalidades que disponen de servicio bibliotecario",
+      "Municipalidades que disponen de computadoras operativos en la biblioteca"
+    ].includes(d["Measure"])) {
+      return colors["Bibliotecas y servicios bibliotecarios"][d["Measure ID"]];
+    }
+
+    else if ([
+      "Gestión de los tramites documentarios",
+      "Gestión de las licencias de edificación y habilitación urbana",
+      "Gestión de las bibliotecas",
+      "Gestión del registro civil",
+      "Gestión del presupuesto",
+      "Gestión de abastecimiento",
+      "Gestión de la contabilidad",
+      "Gestión de la tesoreria",
+      "Gestión del personal",
+      "Gestión de la renta y administración tributaria",
+      "Gestión del catastro",
+      "Gestión de las licencias de funcionamiento"
+    ].includes(d["Measure"])) {
+      return colors["Portal de transparencia y sistemas informaticos"][d["Measure ID"]];
+    }
+
+    else if ([
+      "Linea de telefonía fija en servicio",
+      "Linea de telefonía móvil en servicio",
+      "Servicio de internet"
+    ].includes(d["Measure"])) {
+      return colors["Conectividad"][d["Measure ID"]];
+    }
+
+    else if ([
+      "Fotocopiadora",
+      "Escáner",
+      "Impresora básica",
+      "Impresora multifuncional",
+      "Proyector multimedia"
+    ].includes(d["Measure"])) {
+      return colors["Equipamiento"][d["Measure ID"]];
+    }
+
+    else if ([
+      "Control de aseo; higiene y salubridad",
+      "Control de pesas y medidas de mercado",
+      "Control de comercio ambulatorio",
+      "Control de licencia de funcionamiento",
+      "Control de licencia de edificación",
+      "Control de certificado de inspección de seguridad en edificaciones",
+      "Control de anuncios publicitario",
+      "Control de transporte urbano"
+    ].includes(d["Measure"])) {
+      return colors["Fiscalizacion municipal"][d["Measure ID"]];
+    }
+
   }
 
   if (key === "Tipo de indicador"){
@@ -827,6 +976,7 @@ export const tooltipTitle = (bgColor, imgUrl, title) => {
 
 export const findIconV2 = (key, d) => {
   // const options = {2: "export", 1: "import"};
+  console.log(key)
   if (key === "Pais" || key === "ISO 3") {
     const icon = key === "Pais" && Array.isArray(d["Pais ID"]) ? d["Continente ID"] : d[`${key} ID`];
     return `/icons/visualizations/Pais/country_${icon}.png`;
@@ -837,6 +987,9 @@ export const findIconV2 = (key, d) => {
   }
 
   if (key === "Categoria") {
+
+    if (d.Indicador === "No tiene" && d["Categoria ID"] === 73) return `/icons/visualizations/Instrumentos financieros/7373.png`;
+
     if (d.Indicador === "Porcentaje de empresas manufactureras que han realizado alguna actividad de innovación") {
       return `/icons/visualizations/Actividades de innovacion/${d["Categoria ID"]}.png`;
     }
@@ -1006,6 +1159,31 @@ export const findIconV2 = (key, d) => {
     else if (d.Indicador === "Porcentaje de menores de 18 a_os matriculados que asisten y tienen atraso escolar") {
       return `/icons/visualizations/Atraso escolar/${d["Categoria ID"]}.png`;
     }
+
+    // Hogares
+    else if ([
+      "Hogar con ingresos independientes",
+      "Hogar sin ingresos independientes"
+    ].includes(d.Categoria) && (d["Indicador ID"] === 9)) {
+      return `/icons/visualizations/Hogares por tipo de ingresos laborales/${d["Categoria ID"]}.png`;
+    }
+
+    else if ([
+      "Hogar con ingresos dependientes",
+      "Hogar sin ingresos dependientes"
+    ].includes(d.Categoria) && (d["Indicador ID"] === 7)) {
+      return `/icons/visualizations/Hogares por tipo de ingresos laborales/${d["Categoria ID"]}.png`;
+    }
+
+    else if ([
+      "Hogar productor agricola",
+      "Hogar productor pecuario",
+      "Hogar productor forestal"
+    ].includes(d.Categoria)) {
+      return `/icons/visualizations/Hogares productores/${d["Categoria ID"]}.png`;
+    }
+
+
 
   }
 
@@ -1347,7 +1525,7 @@ export const findIconV2 = (key, d) => {
       "Manejo de tiempo",
       "Estabilidad emocional",
       "Extraversión"
-    ].includes(d.Indicador) ) {
+    ].includes(d.Indicador) && d["Categoria ID"] === 4) {
       return `/icons/visualizations/Habilidades importantes para las empresas/${d["Indicador ID"]}.png`;
     }
 
@@ -1358,6 +1536,59 @@ export const findIconV2 = (key, d) => {
 
     // Educacion
     if (d.Indicador === "Gasto Promedio mensual en educación del hogar") return "/icons/visualizations/Gasto del hogar en educacion/gasto_promedio_hogar.png";
+
+    // Hogares
+    if (d.Indicador === "Ingreso promedio mensual de actividades dependientes del hogar") return "/icons/visualizations/Economia del hogar/8.png";
+    if (d.Indicador === "Ingreso promedio mensual de actividades independientes del hogar") return "/icons/visualizations/Economia del hogar/10.png";
+    if (d.Indicador === "Gasto Promedio mensual monetario del hogar") return "/icons/visualizations/Economia del hogar/11.png";
+
+    // Hogares - Sankeys
+    if (d.Indicador === "No hace uso" && d["Indicador ID"] === 21 && d["Categoria ID"] === 16) return `/icons/visualizations/Razones del uso de internet/no_hace_uso.png`;
+    if (d.Indicador === "Si hace uso" && d["Indicador ID"] === 21 && d["Categoria ID"] === 17) return `/icons/visualizations/Razones del uso de internet/si_hace_uso.png`;
+    if (d.Indicador === "Total población" && d["Indicador ID"] === 21 && d["Categoria ID"] === 99) return `/icons/visualizations/Razones del uso de internet/total_poblacion.png`;
+
+    if (d.Indicador === "Si hace uso" && d["Indicador ID"] === 22 && d["Categoria ID"] === 17) return `/icons/visualizations/Razones del uso de internet/22.png`;
+    if (d.Indicador === "Si hace uso" && d["Indicador ID"] === 23 && d["Categoria ID"] === 17) return `/icons/visualizations/Razones del uso de internet/23.png`;
+    if (d.Indicador === "Si hace uso" && d["Indicador ID"] === 24 && d["Categoria ID"] === 17) return `/icons/visualizations/Razones del uso de internet/24.png`;
+    if (d.Indicador === "Si hace uso" && d["Indicador ID"] === 25 && d["Categoria ID"] === 17) return `/icons/visualizations/Razones del uso de internet/25.png`;
+    if (d.Indicador === "Si hace uso" && d["Indicador ID"] === 26 && d["Categoria ID"] === 17) return `/icons/visualizations/Razones del uso de internet/26.png`;
+    if (d.Indicador === "Si hace uso" && d["Indicador ID"] === 27 && d["Categoria ID"] === 17) return `/icons/visualizations/Razones del uso de internet/27.png`;
+    if (d.Indicador === "Si hace uso" && d["Indicador ID"] === 28 && d["Categoria ID"] === 17) return `/icons/visualizations/Razones del uso de internet/28.png`;
+    if (d.Indicador === "Si hace uso" && d["Indicador ID"] === 29 && d["Categoria ID"] === 17) return `/icons/visualizations/Razones del uso de internet/29.png`;
+
+    // Instrumentos financieros
+    if (d.Indicador === "Total con instrumento financiero" && d["Indicador ID"] === 66 && d["Categoria ID"] === 99) return `/icons/visualizations/Instrumentos financieros/6699.png`;
+    if (d.Indicador === "Total sin instrumento financiero" && d["Indicador ID"] === 73 && d["Categoria ID"] === 99) return `/icons/visualizations/Instrumentos financieros/7399.png`;
+
+    if (d.Indicador === "Si tiene" && d["Indicador ID"] === 67 && d["Categoria"] === "Tiene una cuenta de ahorros"            ) return `/icons/visualizations/Instrumentos financieros/6717.png`;
+    if (d.Indicador === "Si tiene" && d["Indicador ID"] === 68 && d["Categoria"] === "Tiene una cuenta de ahorro a plazo fijo") return `/icons/visualizations/Instrumentos financieros/6817.png`;
+    if (d.Indicador === "Si tiene" && d["Indicador ID"] === 69 && d["Categoria"] === "Tiene una cuenta corriente"             ) return `/icons/visualizations/Instrumentos financieros/6917.png`;
+    if (d.Indicador === "Si tiene" && d["Indicador ID"] === 70 && d["Categoria"] === "Tiene una tarjeta de credito"           ) return `/icons/visualizations/Instrumentos financieros/7017.png`;
+    if (d.Indicador === "Si tiene" && d["Indicador ID"] === 71 && d["Categoria"] === "Tiene una tarjeta de débito"            ) return `/icons/visualizations/Instrumentos financieros/7117.png`;
+
+    if (d.Indicador === "No tiene" && d["Categoria ID"] === 36) return `/icons/visualizations/Instrumentos financieros/7336.png`;
+    if (d.Indicador === "No tiene" && d["Categoria ID"] === 72) return `/icons/visualizations/Instrumentos financieros/7372.png`;
+    //if (d.Indicador === "No tiene" && d["Categoria ID"] === 73) return `/icons/visualizations/Instrumentos financieros/7373.png`;
+    if (d.Indicador === "No tiene" && d["Categoria ID"] === 74) return `/icons/visualizations/Instrumentos financieros/7374.png`;
+    if (d.Indicador === "No tiene" && d["Categoria ID"] === 75) return `/icons/visualizations/Instrumentos financieros/7375.png`;
+    if (d.Indicador === "No tiene" && d["Categoria ID"] === 76) return `/icons/visualizations/Instrumentos financieros/7376.png`;
+    if (d.Indicador === "No tiene" && d["Categoria ID"] === 77) return `/icons/visualizations/Instrumentos financieros/7377.png`;
+    if (d.Indicador === "No tiene" && d["Categoria ID"] === 78) return `/icons/visualizations/Instrumentos financieros/7378.png`;
+    if (d.Indicador === "No tiene" && d["Categoria ID"] === 79) return `/icons/visualizations/Instrumentos financieros/7379.png`;
+
+    else if ([
+      "Información",
+      "Comunicación",
+      "Comprar productos y/o servicios",
+      "Operaciones de banca electrónica",
+      "Educación formal y actividades de capacitación",
+      "Transacciones con organizaciones estatales/autoridades públicas",
+      "Actividades de entretenimiento",
+      "Vender productos y/o servicios"
+    ].includes(d.Indicador)) {
+      return `/icons/visualizations/Internet segun uso/${d["Indicador ID"]}.png`;
+    }
+
 
   }
 
@@ -1373,7 +1604,7 @@ export const findIconV2 = (key, d) => {
       return `/icons/visualizations/Nivel academico alcanzado/${d["Measure ID"]}.png`;
     }
 
-    if ([
+    else if ([
       "Analfabetismo entre 15 a 19 años",
       "Analfabetismo entre 20 a 29 años",
       "Analfabetismo entre 30 a 39 años",
@@ -1385,19 +1616,87 @@ export const findIconV2 = (key, d) => {
     }
 
     // Demografia
-    if ([
+    else if ([
       "Población masculina",
       "Población femenina"
     ].includes(d.Measure)) {
       return `/icons/visualizations/Composicion demografica por genero/${d["Measure ID"]}.png`;
     }
 
-    if ([
+    else if ([
       "Nacimientos anuales",
       "Defunciones anuales",
       "Crecimiento natural"
     ].includes(d["Measure"])) {
       return `/icons/visualizations/Crecimiento natural/${d["Measure ID"]}.png`;
+    }
+
+    // Hogares
+    else if ([
+      "Vivienda inadecuada",
+      "Vivienda hacinada",
+      "Carecen servicios higiénicos",
+      "Menores sin escuela",
+      "Alta dependencia económica"
+    ].includes(d["Measure"])) {
+      return `/icons/visualizations/Necesidades basicas insatisfechas/${d["Measure ID"]}.png`;
+    }
+
+    // Gobierno
+    else if ([
+      "Municipalidades con bibliotecas",
+      "Municipalidades que disponen de servicio bibliotecario",
+      "Municipalidades que disponen de computadoras operativos en la biblioteca"
+    ].includes(d["Measure"])) {
+      return `/icons/visualizations/Bibliotecas y servicios bibliotecarios/${d["Measure ID"]}.png`;
+    }
+
+    else if ([
+      "Gestión de los tramites documentarios",
+      "Gestión de las licencias de edificación y habilitación urbana",
+      "Gestión de las bibliotecas",
+      "Gestión del registro civil",
+      "Gestión del presupuesto",
+      "Gestión de abastecimiento",
+      "Gestión de la contabilidad",
+      "Gestión de la tesoreria",
+      "Gestión del personal",
+      "Gestión de la renta y administración tributaria",
+      "Gestión del catastro",
+      "Gestión de las licencias de funcionamiento"
+    ].includes(d["Measure"])) {
+      return `/icons/visualizations/Portal de transparencia y sistemas informaticos/${d["Measure ID"]}.png`;
+    }
+
+    else if ([
+      "Linea de telefonía fija en servicio",
+      "Linea de telefonía móvil en servicio",
+      "Servicio de internet"
+    ].includes(d["Measure"])) {
+      return `/icons/visualizations/Conectividad/${d["Measure ID"]}.png`;
+    }
+
+    else if ([
+      "Fotocopiadora",
+      "Escáner",
+      "Impresora básica",
+      "Impresora multifuncional",
+      "Proyector multimedia"
+    ].includes(d["Measure"])) {
+      return `/icons/visualizations/Equipamiento/${d["Measure ID"]}.png`;
+    }
+
+    else if ([
+      "Control de aseo; higiene y salubridad",
+      "Control de pesas y medidas de mercado",
+      "Control de comercio ambulatorio",
+      "Control de licencia de funcionamiento",
+      "Control de licencia de edificación",
+      "Control de certificado de inspección de seguridad en edificaciones",
+      "Control de anuncios publicitario",
+      "Control de transporte urbano"
+    ].includes(d["Measure"])) {
+      return `/icons/visualizations/Fiscalizacion municipal/${d["Measure ID"]}.png`;
     }
 
 
