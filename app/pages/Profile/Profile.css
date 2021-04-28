@@ -474,7 +474,8 @@
 
 .disclaimer-text {
   color: var(--gpe-red-dark);
-  font-weight: bold;
+  font-weight: 900;
+  font-size: 80%;
 }
 
 /**
