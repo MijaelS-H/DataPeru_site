@@ -107,7 +107,6 @@ const growthPct = d => `${formatAbbreviate(d * 100)}%`;
 const pesoPE = d => `S/ ${formatAbbreviate(d * 100)}`;
 
 export const findColorV2 = (key, d) => {
-
   if (key === "Pais" || key === "ISO 3") {
     if (!Array.isArray(d["Pais ID"])) return "transparent";
     else return colors.Continente[d["Continente ID"]];
@@ -850,6 +849,47 @@ export const findColorV2 = (key, d) => {
       return colors["Fiscalizacion municipal"][d["Measure ID"]];
     }
 
+    else if (d.Measure === "Licencias para actividades comerciales"              ) return "#09A8FA";
+    else if (d.Measure === "Licencias para actividades artesanías y manufactura" ) return "#DD5B82";
+    else if (d.Measure === "Licencias para actividades agropecuarias"            ) return "#3D93A3";
+
+    else if ([
+      "Funcionarios y/o directivos",
+      "Profesionales",
+      "Técnicos",
+      "Auxiliares",
+      "Obreros"
+    ].includes(d["Measure"])) {
+      return colors["Composicion de empleados municipales segun tipo de trabajador"][d["Measure ID"]];
+    }
+
+    else if ([
+      "Frecuencia diaria",
+      "Frecuencia interdiaria",
+      "Frecuencia de dos veces por semana",
+      "Frecuencia de una vez por semana"
+    ].includes(d["Measure"])) {
+      return colors["Frecuencia de recojo de residuos solidos"][d["Measure ID"]];
+    }
+
+    else if ([
+      "Cobertura inferior al 25%",
+      "Cobertura con más del 25% y menos del 49%",
+      "Cobertura con más del 50% y menos del 74%",
+      "Cobertura superior al 75%"
+    ].includes(d["Measure"])) {
+      return colors["Cobertura de recojo de residuos solidos"][d["Measure ID"]];
+    }
+
+    else if ([
+      "Unidades moviles de serenazgo operativos",
+      "Equipos de comunicación y videovigilancia"
+    ].includes(d["Measure"])) {
+      return colors["Equipos de seguridad y unidades de serenazgo"][d["Measure ID"]];
+    }
+
+
+
   }
 
   if (key === "Tipo de indicador"){
@@ -956,6 +996,68 @@ export const findColorV2 = (key, d) => {
     }
   }
 
+  if (key === "Value") {
+    if      (d.Measure === "Licencias para actividades comerciales"              ) return "#09A8FA";
+    else if (d.Measure === "Licencias para actividades artesanías y manufactura" ) return "#DD5B82";
+    else if (d.Measure === "Licencias para actividades agropecuarias"            ) return "#3D93A3";
+
+    else if ([
+      "Inscripciones de hechos vitales en la Oficina de Registro de Estado Civil (OREC)",
+      "Recojo de residuos solidos (basura)",
+      "Servicio público de anuncios y propaganda",
+      "Servicio público de agua potable y desagüe",
+      "Servicio de limpieza púbilca",
+      "Servicio público de uso de cementerios",
+      "Control del comercio ambulatorio",
+      "Realizan contro de pesas y medidas",
+      "Construcción de cercos",
+      "Construcción de caminos rurales",
+      "Permiso de ocupación de vía pública",
+      "Servicio de registro civil",
+      "Servicio bibliotecario",
+      "Servicio de conservación de areas verdes",
+      "Cobran tasas y arbitrios",
+      "Brindan licencias"
+    ].includes(d["Type"])) {
+      return colors["Servicios publicos"][d["Type ID"]];
+
+    }
+  }
+
+  if (key === "Type") {
+    if ([
+      "Posee servicio de Internet",
+      "No posee servicio de Internet"
+    ].includes(d["Type"])) {
+      return colors["Conectividad gobiernos locales"][d["Type ID"]];
+    }
+
+    else if ([
+      "Inscripciones de hechos vitales en la Oficina de Registro de Estado Civil (OREC)",
+      "Recojo de residuos solidos (basura)",
+      "Servicio público de anuncios y propaganda",
+      "Servicio público de agua potable y desagüe",
+      "Servicio de limpieza púbilca",
+      "Servicio público de uso de cementerios",
+      "Control del comercio ambulatorio",
+      "Realizan contro de pesas y medidas",
+      "Construcción de cercos",
+      "Construcción de caminos rurales",
+      "Permiso de ocupación de vía pública",
+      "Servicio de registro civil",
+      "Servicio bibliotecario",
+      "Servicio de conservación de areas verdes",
+      "Cobran tasas y arbitrios",
+      "Brindan licencias"
+    ].includes(d["Type"])) {
+      return colors["Servicios publicos"][d["Type ID"]];
+
+    }
+
+
+  }
+
+
   const id = d[`${key} ID`];
 
   const palette = colors[key];
@@ -976,7 +1078,6 @@ export const tooltipTitle = (bgColor, imgUrl, title) => {
 
 export const findIconV2 = (key, d) => {
   // const options = {2: "export", 1: "import"};
-  console.log(key)
   if (key === "Pais" || key === "ISO 3") {
     const icon = key === "Pais" && Array.isArray(d["Pais ID"]) ? d["Continente ID"] : d[`${key} ID`];
     return `/icons/visualizations/Pais/country_${icon}.png`;
@@ -1699,6 +1800,47 @@ export const findIconV2 = (key, d) => {
       return `/icons/visualizations/Fiscalizacion municipal/${d["Measure ID"]}.png`;
     }
 
+    else if (d.Measure === "Licencias para actividades comerciales"              ) return `/icons/visualizations/Planificacion municipal/1.png`;
+    else if (d.Measure === "Licencias para actividades artesanías y manufactura" ) return `/icons/visualizations/Planificacion municipal/2.png`;
+    else if (d.Measure === "Licencias para actividades agropecuarias"            ) return `/icons/visualizations/Planificacion municipal/3.png`;
+
+    else if ([
+      "Funcionarios y/o directivos",
+      "Profesionales",
+      "Técnicos",
+      "Auxiliares",
+      "Obreros"
+    ].includes(d["Measure"])) {
+      return `/icons/visualizations/Composicion de empleados municipales segun tipo de trabajador/${d["Measure ID"]}.png`;
+    }
+
+    else if ([
+      "Frecuencia diaria",
+      "Frecuencia interdiaria",
+      "Frecuencia de dos veces por semana",
+      "Frecuencia de una vez por semana"
+    ].includes(d["Measure"])) {
+      return `/icons/visualizations/Frecuencia de recojo de residuos solidos/${d["Measure ID"]}.png`;
+    }
+
+    else if ([
+      "Cobertura inferior al 25%",
+      "Cobertura con más del 25% y menos del 49%",
+      "Cobertura con más del 50% y menos del 74%",
+      "Cobertura superior al 75%"
+    ].includes(d["Measure"])) {
+      return `/icons/visualizations/Cobertura de recojo de residuos solidos/${d["Measure ID"]}.png`;
+    }
+
+    else if ([
+      "Unidades moviles de serenazgo operativos",
+      "Equipos de comunicación y videovigilancia"
+    ].includes(d["Measure"])) {
+      return `/icons/visualizations/Equipos de seguridad y unidades de serenazgo/${d["Measure ID"]}.png`;
+    }
+
+
+
 
   }
 
@@ -1802,6 +1944,66 @@ export const findIconV2 = (key, d) => {
     }
   }
 
+  if (key === "Value") {
+    if      (d.Measure === "Licencias para actividades comerciales"              ) return `/icons/visualizations/Planificacion municipal/1.png`;
+    else if (d.Measure === "Licencias para actividades artesanías y manufactura" ) return `/icons/visualizations/Planificacion municipal/2.png`;
+    else if (d.Measure === "Licencias para actividades agropecuarias"            ) return `/icons/visualizations/Planificacion municipal/3.png`;
+
+    else if ([
+      "Inscripciones de hechos vitales en la Oficina de Registro de Estado Civil (OREC)",
+      "Recojo de residuos solidos (basura)",
+      "Servicio público de anuncios y propaganda",
+      "Servicio público de agua potable y desagüe",
+      "Servicio de limpieza púbilca",
+      "Servicio público de uso de cementerios",
+      "Control del comercio ambulatorio",
+      "Realizan contro de pesas y medidas",
+      "Construcción de cercos",
+      "Construcción de caminos rurales",
+      "Permiso de ocupación de vía pública",
+      "Servicio de registro civil",
+      "Servicio bibliotecario",
+      "Servicio de conservación de areas verdes",
+      "Cobran tasas y arbitrios",
+      "Brindan licencias"
+    ].includes(d["Type"])) {
+      return `/icons/visualizations/Servicios publicos/${d["Type ID"]}.png`
+    }
+
+
+  }
+
+  if (key === "Type") {
+    if ([
+      "Posee servicio de Internet",
+      "No posee servicio de Internet"
+    ].includes(d["Type"])) {
+      return `/icons/visualizations/Conectividad gobiernos locales/${d["Type ID"]}.png`
+    }
+
+    else if ([
+      "Inscripciones de hechos vitales en la Oficina de Registro de Estado Civil (OREC)",
+      "Recojo de residuos solidos (basura)",
+      "Servicio público de anuncios y propaganda",
+      "Servicio público de agua potable y desagüe",
+      "Servicio de limpieza púbilca",
+      "Servicio público de uso de cementerios",
+      "Control del comercio ambulatorio",
+      "Realizan contro de pesas y medidas",
+      "Construcción de cercos",
+      "Construcción de caminos rurales",
+      "Permiso de ocupación de vía pública",
+      "Servicio de registro civil",
+      "Servicio bibliotecario",
+      "Servicio de conservación de areas verdes",
+      "Cobran tasas y arbitrios",
+      "Brindan licencias"
+    ].includes(d["Type"])) {
+      return `/icons/visualizations/Servicios publicos/${d["Type ID"]}.png`
+    }
+
+  }
+
   const icon = key;
   const iconID = d[`${key} ID`];
 
@@ -1885,7 +2087,7 @@ export default {
       fill(d) {
         const item = this._parent._groupBy[0](d);
         const availableItems = Object.entries(d).filter(h => h[1] === item);
-        let itemId = availableItems.length > 1 ? availableItems[1][0] : availableItems[0][0]
+        let itemId = availableItems.length > 1 ? availableItems[1][0] : availableItems[0][0];
         //let itemId = Object.entries(d).find(h => h[1] === item)[0];
         if (itemId.includes(" ID")) itemId = itemId.replace(" ID", "");
 

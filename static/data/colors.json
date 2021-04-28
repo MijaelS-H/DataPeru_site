@@ -93,6 +93,13 @@
     "41": "#3E64FF"
   },
   "colorGrey": "#ccc",
+  "Composicion de empleados municipales segun tipo de trabajador": {
+    "1": "#658361",
+    "2": "#DCE775",
+    "3": "#09A8FA",
+    "4": "#41C5D3",
+    "5": "#616EEF"
+  },
   "Composicion empresarial": {
     "21": "#FFB396",
     "22": "#FF8585",
@@ -174,6 +181,12 @@
     "21": "#D8D260",
     "99": "#B3B3B3"
   },
+  "Cobertura de recojo de residuos solidos": {
+    "1": "#5C2626",
+    "2": "#B74242",
+    "3": "#EA7362",
+    "4": "#9E7E44"
+  },
   "Composicion por registrados en sunat": {
     "36": "#D2E69C",
     "83": "#8AB6D6",
@@ -208,6 +221,10 @@
     "2": "#07689F",
     "3": "#5A92AF",
     "4": "#86C1D4"
+  },
+  "Conectividad gobiernos locales": {
+    "1": "#07689F",
+    "2": "#86C1D4"
   },
   "Crecimiento natural": {
     "1": "#EA9085",
@@ -361,6 +378,10 @@
     "4": "#1FAB89",
     "5": "#3D93A3"
   },
+  "Equipos de seguridad y unidades de serenazgo": {
+    "1": "#9F71DB",
+    "2": "#78BBE6"
+  },
   "Financiamiento Innovacion": {
     "32": "#CE9265",
     "33": "#DDAEB0",
@@ -378,6 +399,12 @@
     "6": "#7098DA",
     "7": "#7D5E3F",
     "8": "#34495E"
+  },
+  "Frecuencia de recojo de residuos solidos": {
+    "1": "#9ED763",
+    "2": "#2C9E4B",
+    "3": "#0A4650",
+    "4": "#E6AF2E"
   },
   "Habilidades importantes para las empresas": {
     "37": "#D8B9C3",
@@ -745,6 +772,24 @@
     "53": "#80BD9F",
     "54": "#5AB1BB",
     "55": "#548C91"
+  },
+  "Servicios publicos": {
+    "1": "#85A6B1",
+    "2": "#7E94BF",
+    "3": "#B3A78C",
+    "4": "#284184",
+    "5": "#118A7E",
+    "6": "#D9B650",
+    "7": "#A20A0A",
+    "8": "#3EC8AC",
+    "9": "#810749",
+    "10": "#FFB26B",
+    "11": "#3F72AF",
+    "12": "#8BD7D1",
+    "13": "#B64926",
+    "14": "#1FB57B",
+    "15": "#CCD51A",
+    "16": "#83580B"
   },
   "Solicitudes financiamiento": {
     "1": "#629BB3",
