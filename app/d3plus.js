@@ -411,7 +411,6 @@ export const findColorV2 = (key, d) => {
       return colors["Atraso escolar"][d["Categoria ID"]];
     }
 
-
     // Hogares
     else if ([
       "Hogar con ingresos independientes",
@@ -435,6 +434,15 @@ export const findColorV2 = (key, d) => {
       return colors["Hogares productores"][d["Categoria ID"]];
     }
 
+    else if ([
+      "Pelágicos",
+      "Demersales",
+      "Costeros (pelágicos y demersales)",
+      "Crustáceos",
+      "Moluscos"
+    ].includes(d.Categoria)) {
+      return colors["Desembarque de recursos maritimos segun especies"][d["Categoria ID"]];
+    }
 
   }
 
@@ -742,6 +750,23 @@ export const findColorV2 = (key, d) => {
     ].includes(d.Indicador)) {
       return colors["Internet segun uso"][d["Indicador ID"]];
     }
+
+    else if ([
+      "Anchoveta",
+      "Otros"
+    ].includes(d.Indicador) && d["Tipo"] === "Pesca marítima") {
+      return colors["Desembarque de recursos maritimos por utilizacion"][d["Indicador ID"]];
+    }
+
+  }
+
+  if (key === "Tipo") {
+    if ([
+      "Pesca marítima",
+      "Pesca continental"
+    ].includes(d.Tipo)) {
+      return colors["Desembarque de recursos maritimos por utilizacion"][d["Tipo ID"]];
+    }
   }
 
   if (key === "Measure") {
@@ -888,7 +913,16 @@ export const findColorV2 = (key, d) => {
       return colors["Equipos de seguridad y unidades de serenazgo"][d["Measure ID"]];
     }
 
-
+    else if ([
+      "Personal femenino",
+      "Personal masculino",
+      "Personal nombrado femenino",
+      "Personal nombrado masculino",
+      "Personal contratado femenino",
+      "Personal contratado masculino"
+    ].includes(d["Measure"])) {
+      return colors["Recursos humanos"][d["Measure ID"]];
+    }
 
   }
 
@@ -1051,9 +1085,89 @@ export const findColorV2 = (key, d) => {
       "Brindan licencias"
     ].includes(d["Type"])) {
       return colors["Servicios publicos"][d["Type ID"]];
-
     }
 
+  }
+
+  if (key === "Subactividad economica") {
+    if ([
+      "Procesamiento y conservación de carnes",
+      "Elaboración y preservación de pescado",
+      "Elaboración de harina y aceite de pescado",
+      "Procesamiento y conservación de frutas y vegetales",
+      "Elaboración de aceites y grasas de origen vegetal y animal",
+      "Fabricación de productos lácteos",
+      "Molinería, fideos, panadería y otros",
+      "Elaboración y refinación de azúcar",
+      "Elaboración de otros productos alimenticios",
+      "Elaboración de alimentos preparados para animales",
+      "Elaboración de bebidas y productos del tabaco",
+      "Fabricación de textiles",
+      "Fabricación de prendas de vestir",
+      "Fabricación de cuero y calzado",
+      "Fabricación de madera y productos de madera",
+      "Fabricación de papel y productos de papel",
+      "Impresión y reproducción de grabaciones",
+      "Refinación de petróleo",
+      "Fabricación de sustancias químicas básicas y abonos",
+      "Fabricación de productos químicos",
+      "Fabricación de productos farmacéuticos y medicamentos",
+      "Fabricacion de productos de caucho y plástico",
+      "Fabricación de productos minerales no metálicos",
+      "Industria básica de hierro y acero",
+      "Industria de metales preciosos y de metales no ferrosos",
+      "Fabricación de productos metálicos diversos",
+      "Fabricación de productos informáticos, electrónicos y ópticos",
+      "Fabricación de maquinaria y equipo",
+      "Construcción de material de transporte",
+      "Fabricación de muebles",
+      "Otras industrias manufactureras"
+    ].includes(d["Subactividad economica"])) {
+      return colors["Valor agregado bruto"][d["Subactividad economica ID"]];
+    }
+
+  }
+
+  if (key === "Grupo economico") {
+    if ([
+      "Elaboración y conservación de carne",
+      "Elaboración y conservación de pescado, crustáceos y moluscos",
+      "Elaboración y conservación de frutas, legumbres y hortalizas",
+      "Elaboración de aceites y grasas de origen vegetal y animal",
+      "Elaboración de productos lácteos",
+      "Elaboración de productos de molinería",
+      "Elaboración de otros productos alimenticios",
+      "Elaboración de piensos preparados para animales",
+      "Elaboración de Bebidas"
+    ].includes(d["Grupo economico"])) {
+      return colors["Produccion de la industria de productos alimenticios y bebidas"][d["Grupo economico ID"]];
+    }
+
+    else if ([
+      "Hilatura, Tejedura y Acabados de Productos Textiles",
+      "Fabricación de Otros Productos Textiles",
+      "Fabricación de prendas de vestir, excepto prendas de piel",
+      "Fabricación de prendas de tejidos y de punto crochet",
+      "Curtido y Adobo de Cueros",
+      "Fabricación de Calzado",
+      "Productos de madera",
+      "Fabricación de Papel y de Productos de Papel"
+    ].includes(d["Grupo economico"])) {
+      return colors["Produccion de las industrias textiles y otros"][d["Grupo economico ID"]];
+    }
+
+    else if ([
+      "Fabricación de Productos Metálicos para Uso Estructural",
+      "Fabricación de Otros Productos Elaborados de Metal",
+      "Fabricación de Motores, Generadores y Transformadores Eléctricos",
+      "Fabricación de baterías y acumuladores",
+      "Fabricación de cables y dispositivos de cable",
+      "Fabricación de maquinaria de uso general",
+      "Fabricación de carrocerías para vehículos automotores",
+      "Fabricación de otros tipos de equipo de transporte"
+    ].includes(d["Grupo economico"])) {
+      return colors["Produccion de las industrias de elaborados de metal y otros"][d["Grupo economico ID"]];
+    }
 
   }
 
@@ -1284,6 +1398,15 @@ export const findIconV2 = (key, d) => {
       return `/icons/visualizations/Hogares productores/${d["Categoria ID"]}.png`;
     }
 
+    else if ([
+      "Pelágicos",
+      "Demersales",
+      "Costeros (pelágicos y demersales)",
+      "Crustáceos",
+      "Moluscos"
+    ].includes(d.Categoria)) {
+      return `/icons/visualizations/Desembarque de recursos maritimos segun especies/${d["Categoria ID"]}.png`;
+    }
 
 
   }
@@ -1690,9 +1813,23 @@ export const findIconV2 = (key, d) => {
       return `/icons/visualizations/Internet segun uso/${d["Indicador ID"]}.png`;
     }
 
+    else if ([
+      "Anchoveta",
+      "Otros"
+    ].includes(d.Indicador) && d["Tipo"] === "Pesca marítima") {
+      return `/icons/visualizations/Desembarque de recursos maritimos por utilizacion/${d["Indicador ID"]}.png`;
+    }
 
   }
 
+  if (key === "Tipo") {
+    if ([
+      "Pesca marítima",
+      "Pesca continental"
+    ].includes(d.Tipo)) {
+      return `/icons/visualizations/Desembarque de recursos maritimos por utilizacion/${d["Tipo ID"]}.png`;
+    }
+  }
 
   if (key === "Measure") {
     // Educacion
@@ -1839,7 +1976,16 @@ export const findIconV2 = (key, d) => {
       return `/icons/visualizations/Equipos de seguridad y unidades de serenazgo/${d["Measure ID"]}.png`;
     }
 
-
+    else if ([
+      "Personal femenino",
+      "Personal masculino",
+      "Personal nombrado femenino",
+      "Personal nombrado masculino",
+      "Personal contratado femenino",
+      "Personal contratado masculino"
+    ].includes(d["Measure"])) {
+      return `/icons/visualizations/Recursos humanos/${d["Measure ID"]}.png`;
+    }
 
 
   }
@@ -1970,6 +2116,12 @@ export const findIconV2 = (key, d) => {
       return `/icons/visualizations/Servicios publicos/${d["Type ID"]}.png`
     }
 
+    else if ([
+      "Posee servicio de Internet",
+      "No posee servicio de Internet"
+    ].includes(d["Type"])) {
+      return `/icons/visualizations/Conectividad gobiernos locales/${d["Type ID"]}.png`
+    }
 
   }
 
@@ -2003,6 +2155,94 @@ export const findIconV2 = (key, d) => {
     }
 
   }
+
+  if (key === "Subactividad economica") {
+    if ([
+      "Procesamiento y conservación de carnes",
+      "Elaboración y preservación de pescado",
+      "Elaboración de harina y aceite de pescado",
+      "Procesamiento y conservación de frutas y vegetales",
+      "Elaboración de aceites y grasas de origen vegetal y animal",
+      "Fabricación de productos lácteos",
+      "Molinería, fideos, panadería y otros",
+      "Elaboración y refinación de azúcar",
+      "Elaboración de otros productos alimenticios",
+      "Elaboración de alimentos preparados para animales",
+      "Elaboración de bebidas y productos del tabaco",
+      "Fabricación de textiles",
+      "Fabricación de prendas de vestir",
+      "Fabricación de cuero y calzado",
+      "Fabricación de madera y productos de madera",
+      "Fabricación de papel y productos de papel",
+      "Impresión y reproducción de grabaciones",
+      "Refinación de petróleo",
+      "Fabricación de sustancias químicas básicas y abonos",
+      "Fabricación de productos químicos",
+      "Fabricación de productos farmacéuticos y medicamentos",
+      "Fabricacion de productos de caucho y plástico",
+      "Fabricación de productos minerales no metálicos",
+      "Industria básica de hierro y acero",
+      "Industria de metales preciosos y de metales no ferrosos",
+      "Fabricación de productos metálicos diversos",
+      "Fabricación de productos informáticos, electrónicos y ópticos",
+      "Fabricación de maquinaria y equipo",
+      "Construcción de material de transporte",
+      "Fabricación de muebles",
+      "Otras industrias manufactureras"
+    ].includes(d["Subactividad economica"])) {
+      return `/icons/visualizations/Valor agregado bruto/${d["Subactividad economica ID"]}.png`
+    }
+
+  }
+
+  if (key === "Grupo economico") {
+    if ([
+      "Elaboración y conservación de carne",
+      "Elaboración y conservación de pescado, crustáceos y moluscos",
+      "Elaboración y conservación de frutas, legumbres y hortalizas",
+      "Elaboración de aceites y grasas de origen vegetal y animal",
+      "Elaboración de productos lácteos",
+      "Elaboración de productos de molinería",
+      "Elaboración de otros productos alimenticios",
+      "Elaboración de piensos preparados para animales",
+      "Elaboración de Bebidas"
+    ].includes(d["Grupo economico"])) {
+      return `/icons/visualizations/Produccion de la industria de productos alimenticios y bebidas/${d["Grupo economico ID"]}.png`
+    }
+
+    else if ([
+      "Hilatura, Tejedura y Acabados de Productos Textiles",
+      "Fabricación de Otros Productos Textiles",
+      "Hilatura, Tejedura y Acabados de Productos Textiles",
+      "Fabricación de Otros Productos Textiles",
+      "Fabricación de prendas de vestir, excepto prendas de piel",
+      "Fabricación de prendas de tejidos y de punto crochet",
+      "Curtido y Adobo de Cueros",
+      "Fabricación de Calzado",
+      "Productos de madera",
+      "Fabricación de Papel y de Productos de Papel"
+    ].includes(d["Grupo economico"])) {
+      return `/icons/visualizations/Produccion de las industrias textiles y otros/${d["Grupo economico ID"]}.png`
+    }
+
+    else if ([
+      "Fabricación de Productos Metálicos para Uso Estructural",
+      "Fabricación de Otros Productos Elaborados de Metal",
+      "Fabricación de Motores, Generadores y Transformadores Eléctricos",
+      "Fabricación de baterías y acumuladores",
+      "Fabricación de cables y dispositivos de cable",
+      "Fabricación de maquinaria de uso general",
+      "Fabricación de carrocerías para vehículos automotores",
+      "Fabricación de otros tipos de equipo de transporte"
+    ].includes(d["Grupo economico"])) {
+      return `/icons/visualizations/Produccion de las industrias de elaborados de metal y otros/${d["Grupo economico ID"]}.png`
+    }
+
+
+  }
+
+
+
 
   const icon = key;
   const iconID = d[`${key} ID`];
@@ -2067,6 +2307,7 @@ export default {
     "Indicador Tributo ID": mean,
     "Industria ID": mean,
     "Subconcepto ID": mean,
+    //"Subactividad economica ID": mean,
     "Trade Flow ID": mean,
     "Year": mean
   },
