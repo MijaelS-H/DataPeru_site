@@ -30,20 +30,8 @@
       min-height: 40vh;
       object-fit: cover;
       &::before {
-        background-image: linear-gradient(transparent, var(--dark-3) 350px);
-      }
+        background-image: linear-gradient(transparent, var(--dark-3) 240px);
     }
-
-    @media (max-width: 991px) {
-      @mixin max-md {
-        background-size: 150vw 40vh;
-        height: 40vh;
-        min-height: 40vh;
-        object-fit: cover;
-        &::before {
-          background-image: linear-gradient(transparent, var(--dark-3) 240px);
-        }
-      }
     }
 
     & .help-header-title {

@@ -24,8 +24,7 @@ const Nav = props => {
 
   useScrollPosition(({prevPos, currPos}) => {
     if (prevPos.y < -20 && currPos.y > -20) setScrolled(false);
-    else if (prevPos.y > -20 && currPos.y < -20) setScrolled(true);
-    else if (currPos.y < -20) setScrolled(true);
+    else if (prevPos.y > -20 && currPos.y < -20 || currPos.y < -20) setScrolled(true);
   });
 
   return (
