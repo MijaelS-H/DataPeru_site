@@ -301,6 +301,8 @@ class Explore extends React.Component {
             filterPanel={profile === "filter"}
             results={results}
             loading={loading}
+            profile={profile}
+            tab={tab}
           />
         </div>
       </div>
