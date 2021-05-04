@@ -1,12 +1,14 @@
 
 import React from "react";
+import axios from "axios";
 import {withNamespaces} from "react-i18next";
 import TileV2 from "./TileV2";
 import "./ExploreProfile.css";
 
-import ProvinceParents from "../../static/data/Provincia_dict.json";
-import DistrictParents from "../../static/data/Distrito_dict.json";
-import DivisionParents from "../../static/data/Division_dict.json";
+import provinceParents from "../../static/data/Provincia_dict.json";
+import districtParents from "../../static/data/Distrito_dict.json";
+import divisionParents from "../../static/data/Division_dict.json";
+import citeCategories from "../../static/data/CITE_dict.json";
 
 class ExploreProfile extends React.Component {
   render() {
@@ -16,7 +18,7 @@ class ExploreProfile extends React.Component {
 
     if (profile === "geo" && tab === "2") {
       results.length > 0 && results.forEach(d => {
-        const partentObject = ProvinceParents.find(h => h.slug === d.id);
+        const partentObject = provinceParents.find(h => h.slug === d.id);
         d["Departamento"] = partentObject ? partentObject["Departamento"] : false;
         d["Departamento ID"] = partentObject ? partentObject["Departamento ID"] : false;
       });
@@ -29,7 +31,7 @@ class ExploreProfile extends React.Component {
 
     if (profile === "geo" && tab === "3") {
       results.length > 0 && results.forEach(d => {
-        const partentObject = DistrictParents.find(h => h.slug === d.id);
+        const partentObject = districtParents.find(h => h.slug === d.id);
         d["Departamento"] = partentObject ? partentObject["Departamento"] : false;
         d["Departamento ID"] = partentObject ? partentObject["Departamento ID"] : false;
         d["Provincia"] = partentObject ? partentObject["Provincia"] : false;
@@ -44,7 +46,7 @@ class ExploreProfile extends React.Component {
 
     if (profile === "industry" && tab === "1") {
       results.length > 0 && results.forEach(d => {
-        const partentObject = DivisionParents.find(h => h.slug === d.id);
+        const partentObject = divisionParents.find(h => h.slug === d.id);
         d["Seccion"] = partentObject ? partentObject["Seccion"] : false;
         d["Seccion ID"] = partentObject ? partentObject["Seccion ID"] : false;
       });
@@ -53,6 +55,14 @@ class ExploreProfile extends React.Component {
         a[b.Seccion] = [...a[b.Seccion] || [], b];
         return a;
       }, {});
+    }
+
+    if (profile === "cite" && (tab === 0 || tab === 1)) {
+      results.length > 0 && results.forEach(d => {
+        d["tipo"] = citeCategories.find(h => h.slug === d.id)["Categoria"];
+      });
+
+      results.sort((a, b) => a.tipo < b.tipo ? 1 : -1);
     }
 
     if (nestedResults) {
