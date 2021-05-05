@@ -1171,6 +1171,77 @@ export const findColorV2 = (key, d) => {
 
   }
 
+    // Gobierno
+    if (key === "Nivel Gobierno") {
+      if ([
+        "Gobierno nacional",
+        "Gobiernos locales",
+        "Gobiernos regionales"
+      ].includes(d["Nivel Gobierno"])) {
+        return colors["Presupuestos por tipo de gobierno"][d["Nivel Gobierno ID"]];
+      }
+    }
+
+    if ( key === "Fuente de Financiamiento") {
+      if ([
+        "Recursos directamente recaudados",
+        "Recursos por operaciones oficiales de credito",
+        "Donaciones y transferencias",
+        "Recursos determinados"
+      ].includes(d["Fuente de Financiamiento"])) {
+        return colors["Recaudacion segun composicion geografica"][d["Fuente de Financiamiento ID"]];
+      }
+    }
+
+    if ( key === "Sector") {
+      if ([
+        "Presidencia consejo ministros",
+        "Cultura",
+        "Ambiental",
+        "Justicia",
+        "Interior",
+        "Relaciones exteriores",
+        "Economia y finanzas",
+        "Educacion",
+        "Salud",
+        "Trabajo y promocion del empleo",
+        "Agrario y de riego",
+        "Energia y minas",
+        "Contraloria general",
+        "Defensoria del pueblo",
+        "Junta nacional de justicia",
+        "Ministerio publico",
+        "Tribunal constitucional",
+        "Defensa",
+        "Fuero militar policial",
+        "Congreso de la republica",
+        "Jurado nacional de elecciones",
+        "Oficina nacional de procesos electorales",
+        "Registro nacional de identificacion y estado civil",
+        "Comercio exterior y turismo",
+        "Transportes y comunicaciones",
+        "Vivienda construccion y saneamiento",
+        "Produccion",
+        "Mujer y poblaciones vulnerables",
+        "Desarrollo e inclusion social"
+      ].includes(d["Sector"])) {
+        return colors["Recaudacion por sector economico"][d["Sector ID"]];
+      }
+    }
+/*
+    if ( key === "Rubro") {
+      if ([
+        "Contribuciones a fondos",
+        "Recursos directamente recaudados",
+        "Donaciones y transferencias",
+        "Canon y sobrecanon, regalias, renta de aduanas y participaciones",
+        "Recursos por operaciones oficiales de credito"
+      ].includes(d["Rubro"])) {
+        return colors["Recaudacion por sector economico"][d["Sector ID"]];
+      }
+    }
+    */
+
 
   const id = d[`${key} ID`];
 
@@ -1191,6 +1262,7 @@ export const tooltipTitle = (bgColor, imgUrl, title) => {
 };
 
 export const findIconV2 = (key, d) => {
+  console.log(key,d)
   // const options = {2: "export", 1: "import"};
   if (key === "Pais" || key === "ISO 3") {
     const icon = key === "Pais" && Array.isArray(d["Pais ID"]) ? d["Continente ID"] : d[`${key} ID`];
@@ -2241,9 +2313,76 @@ export const findIconV2 = (key, d) => {
 
   }
 
+  // Gobierno
+  if (key === "Nivel Gobierno") {
+    if ([
+      "Gobierno nacional",
+      "Gobiernos locales",
+      "Gobiernos regionales"
+    ].includes(d["Nivel Gobierno"])) {
+      return `/icons/visualizations/Presupuestos por tipo de gobierno/${d["Nivel Gobierno ID"]}.png`
+    }
+  }
 
+  if ( key === "Fuente de Financiamiento") {
+    if ([
+      "Recursos directamente recaudados",
+      "Recursos por operaciones oficiales de credito",
+      "Donaciones y transferencias",
+      "Recursos determinados"
+    ].includes(d["Fuente de Financiamiento"])) {
+      return `/icons/visualizations/Recaudacion segun composicion geografica/${d["Fuente de Financiamiento ID"]}.png`
+    }
+  }
 
-
+  if ( key === "Sector") {
+    if ([
+      "Presidencia consejo ministros",
+      "Cultura",
+      "Ambiental",
+      "Justicia",
+      "Interior",
+      "Relaciones exteriores",
+      "Economia y finanzas",
+      "Educacion",
+      "Salud",
+      "Trabajo y promocion del empleo",
+      "Agrario y de riego",
+      "Energia y minas",
+      "Contraloria general",
+      "Defensoria del pueblo",
+      "Junta nacional de justicia",
+      "Ministerio publico",
+      "Tribunal constitucional",
+      "Defensa",
+      "Fuero militar policial",
+      "Congreso de la republica",
+      "Jurado nacional de elecciones",
+      "Oficina nacional de procesos electorales",
+      "Registro nacional de identificacion y estado civil",
+      "Comercio exterior y turismo",
+      "Transportes y comunicaciones",
+      "Vivienda construccion y saneamiento",
+      "Produccion",
+      "Mujer y poblaciones vulnerables",
+      "Desarrollo e inclusion social"
+    ].includes(d["Sector"])) {
+      return `/icons/visualizations/Recaudacion por sector economico/${d["Sector ID"]}.png`
+    }
+  }
+/*
+  if ( key === "Rubro") {
+    if ([
+      "Contribuciones a fondos",
+      "Recursos directamente recaudados",
+      "Donaciones y transferencias",
+      "Canon y sobrecanon, regalias, renta de aduanas y participaciones",
+      "Recursos por operaciones oficiales de credito"
+    ].includes(d["Rubro"])) {
+      return `/icons/visualizations/Recaudacion por sector economico/${d["Sector ID"]}.png`
+    }
+  }
+*/
   const icon = key;
   const iconID = d[`${key} ID`];
 
@@ -2306,6 +2445,8 @@ export default {
     "Measure ID": mean,
     "Indicador Tributo ID": mean,
     "Industria ID": mean,
+    //"Rubro ID": mean,
+    "Sector ID": mean,
     "Subconcepto ID": mean,
     //"Subactividad economica ID": mean,
     "Trade Flow ID": mean,
