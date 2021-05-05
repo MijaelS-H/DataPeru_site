@@ -403,6 +403,17 @@
     "36": "#CE6A6F",
     "37": "#A33A64"
   },
+  "Financiamiento municipal": {
+    "1.1": "#91C788",
+    "1.2": "#52734D"
+  },
+  "Finanzas por municipio": {
+    "1": "#28527A",
+    "2": "#8AC4D0",
+    "3": "#F4D160",
+    "4": "#99BBAD",
+    "5": "#9A8194"
+  },
   "Fiscalizacion municipal": {
     "1": "#658361",
     "2": "#F19584",
@@ -625,6 +636,10 @@
     "5": "#839B97",
     "6": "#D1C145"
   },
+  "Planificacion municipal distrital" : {
+    "1.1": "#EAAC7F",
+    "1.2": "#11698E"
+  },
   "Poblacion economicamente activa segun region": {
     "1": "#5180A1",
     "2": "#ECAF4B",
@@ -719,7 +734,7 @@
     "5" : "#56CFD2"
   },
   "Recaudacion por sector economico": {
-    "0" : "#ccc",
+    "0" : "#FF9D7B",
     "1" : "#2E3A87",
     "3" : "#951556",
     "4" : "#942E88",
@@ -889,6 +904,14 @@
     "55": "#97D8C4",
     "56": "#406E8E"
   },
+  "Transformacion de productos pesqueros": {
+    "1": "#679CEB",
+    "2": "#44AEC2",
+    "3": "#62BFB8",
+    "4": "#4262C5",
+    "5": "#362999",
+    "6": "#203E5F"
+  },
   "Type": {
     "1": "#03658C",
     "2": "#2384CC",
@@ -1003,5 +1026,9 @@
     "0429": "#E25D4E",
     "0430": "#594057",
     "0431": "#0099FF"
+  },
+  "Venta interna de productos pesqueros": {
+    "1": "#5847AD",
+    "2": "#8293E3"
   }
 }

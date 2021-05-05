@@ -107,6 +107,7 @@ const growthPct = d => `${formatAbbreviate(d * 100)}%`;
 const pesoPE = d => `S/ ${formatAbbreviate(d * 100)}`;
 
 export const findColorV2 = (key, d) => {
+
   if (key === "Pais" || key === "ISO 3") {
     if (!Array.isArray(d["Pais ID"])) return "transparent";
     else return colors.Continente[d["Continente ID"]];
@@ -751,12 +752,36 @@ export const findColorV2 = (key, d) => {
       return colors["Internet segun uso"][d["Indicador ID"]];
     }
 
+    // Gobierno
+    else if ([
+      "Financiamiento total promedio recibido de municipios provinciales y/o distritales",
+      "Gasto total promedio por municipios",
+      "Gasto total promedio en personal y obligaciones sociales por municipios",
+      "Gasto total promedio en bienes y servicios por municipios",
+      "Gasto total promedio en inversión"
+    ].includes(d.Indicador)) {
+      return colors["Finanzas por municipio"][d["Indicador ID"]];
+    }
+
+    // Industrias
     else if ([
       "Anchoveta",
       "Otros"
     ].includes(d.Indicador) && d["Tipo"] === "Pesca marítima") {
       return colors["Desembarque de recursos maritimos por utilizacion"][d["Indicador ID"]];
     }
+
+    else if ([
+      "Productos enlatados",
+      "Productos congelados",
+      "Productos curados",
+      "Harina de pescado",
+      "Aceite crudo de pescado"
+    ].includes(d.Indicador)) {
+      return colors["Transformacion de productos pesqueros"][d["Indicador ID"]];
+    }
+
+    if (d.Indicador === "Productos frescos") return colors["Transformacion de productos pesqueros"][d["Indicador ID"]];
 
   }
 
@@ -767,6 +792,17 @@ export const findColorV2 = (key, d) => {
     ].includes(d.Tipo)) {
       return colors["Desembarque de recursos maritimos por utilizacion"][d["Tipo ID"]];
     }
+
+    else if ([
+      "Consumo humano directo",
+      "Consumo humano indirecto"
+    ].includes(d.Tipo)) {
+      return colors["Venta interna de productos pesqueros"][d["Tipo ID"]];
+    }
+
+
+
+
   }
 
   if (key === "Measure") {
@@ -1040,10 +1076,10 @@ export const findColorV2 = (key, d) => {
       "Recojo de residuos solidos (basura)",
       "Servicio público de anuncios y propaganda",
       "Servicio público de agua potable y desagüe",
-      "Servicio de limpieza púbilca",
+      "Servicio de limpieza pública",
       "Servicio público de uso de cementerios",
       "Control del comercio ambulatorio",
-      "Realizan contro de pesas y medidas",
+      "Realizan control de pesas y medidas",
       "Construcción de cercos",
       "Construcción de caminos rurales",
       "Permiso de ocupación de vía pública",
@@ -1054,8 +1090,8 @@ export const findColorV2 = (key, d) => {
       "Brindan licencias"
     ].includes(d["Type"])) {
       return colors["Servicios publicos"][d["Type ID"]];
-
     }
+
   }
 
   if (key === "Type") {
@@ -1071,10 +1107,10 @@ export const findColorV2 = (key, d) => {
       "Recojo de residuos solidos (basura)",
       "Servicio público de anuncios y propaganda",
       "Servicio público de agua potable y desagüe",
-      "Servicio de limpieza púbilca",
+      "Servicio de limpieza pública",
       "Servicio público de uso de cementerios",
       "Control del comercio ambulatorio",
-      "Realizan contro de pesas y medidas",
+      "Realizan control de pesas y medidas",
       "Construcción de cercos",
       "Construcción de caminos rurales",
       "Permiso de ocupación de vía pública",
@@ -1085,6 +1121,20 @@ export const findColorV2 = (key, d) => {
       "Brindan licencias"
     ].includes(d["Type"])) {
       return colors["Servicios publicos"][d["Type ID"]];
+    }
+
+    else if ([
+      "Recibe Financiamiento",
+      "No Recibe Financiamiento"
+    ].includes(d["Type"])) {
+      return colors["Financiamiento municipal"][d["Type ID"]];
+    }
+
+    else if ([
+      "Brinda licencias",
+      "No brinda licencias"
+    ].includes(d["Type"])) {
+      return colors["Planificacion municipal distrital"][d["Type ID"]];
     }
 
   }
@@ -1195,6 +1245,7 @@ export const findColorV2 = (key, d) => {
 
     if ( key === "Sector") {
       if ([
+        "Gobierno local",
         "Presidencia consejo ministros",
         "Cultura",
         "Ambiental",
@@ -1223,7 +1274,10 @@ export const findColorV2 = (key, d) => {
         "Vivienda construccion y saneamiento",
         "Produccion",
         "Mujer y poblaciones vulnerables",
-        "Desarrollo e inclusion social"
+        "Desarrollo e inclusion social",
+        "Mancomunidades",
+        "Mancomunidades regionales",
+        "Gobiernos regionales"
       ].includes(d["Sector"])) {
         return colors["Recaudacion por sector economico"][d["Sector ID"]];
       }
@@ -1262,7 +1316,7 @@ export const tooltipTitle = (bgColor, imgUrl, title) => {
 };
 
 export const findIconV2 = (key, d) => {
-  console.log(key,d)
+
   // const options = {2: "export", 1: "import"};
   if (key === "Pais" || key === "ISO 3") {
     const icon = key === "Pais" && Array.isArray(d["Pais ID"]) ? d["Continente ID"] : d[`${key} ID`];
@@ -1885,12 +1939,36 @@ export const findIconV2 = (key, d) => {
       return `/icons/visualizations/Internet segun uso/${d["Indicador ID"]}.png`;
     }
 
+    // Gobierno
+    else if ([
+      "Financiamiento total promedio recibido de municipios provinciales y/o distritales",
+      "Gasto total promedio por municipios",
+      "Gasto total promedio en personal y obligaciones sociales por municipios",
+      "Gasto total promedio en bienes y servicios por municipios",
+      "Gasto total promedio en inversión"
+    ].includes(d.Indicador)) {
+      return `/icons/visualizations/Finanzas por municipio/${d["Indicador ID"]}.png`;
+    }
+
+    // Industria
     else if ([
       "Anchoveta",
       "Otros"
     ].includes(d.Indicador) && d["Tipo"] === "Pesca marítima") {
       return `/icons/visualizations/Desembarque de recursos maritimos por utilizacion/${d["Indicador ID"]}.png`;
     }
+
+    else if ([
+      "Productos enlatados",
+      "Productos congelados",
+      "Productos curados",
+      "Harina de pescado",
+      "Aceite crudo de pescado"
+    ].includes(d.Indicador)) {
+      return `/icons/visualizations/Transformacion de productos pesqueros/${d["Indicador ID"]}.png`;
+    }
+
+    if (d.Indicador === "Productos frescos") return "/icons/visualizations/Transformacion de productos pesqueros/6.png";
 
   }
 
@@ -1901,6 +1979,14 @@ export const findIconV2 = (key, d) => {
     ].includes(d.Tipo)) {
       return `/icons/visualizations/Desembarque de recursos maritimos por utilizacion/${d["Tipo ID"]}.png`;
     }
+
+    else if ([
+      "Consumo humano directo",
+      "Consumo humano indirecto"
+    ].includes(d.Tipo)) {
+      return `/icons/visualizations/Venta interna de productos pesqueros/${d["Tipo ID"]}.png`;
+    }
+
   }
 
   if (key === "Measure") {
@@ -2172,10 +2258,10 @@ export const findIconV2 = (key, d) => {
       "Recojo de residuos solidos (basura)",
       "Servicio público de anuncios y propaganda",
       "Servicio público de agua potable y desagüe",
-      "Servicio de limpieza púbilca",
+      "Servicio de limpieza pública",
       "Servicio público de uso de cementerios",
       "Control del comercio ambulatorio",
-      "Realizan contro de pesas y medidas",
+      "Realizan control de pesas y medidas",
       "Construcción de cercos",
       "Construcción de caminos rurales",
       "Permiso de ocupación de vía pública",
@@ -2210,10 +2296,10 @@ export const findIconV2 = (key, d) => {
       "Recojo de residuos solidos (basura)",
       "Servicio público de anuncios y propaganda",
       "Servicio público de agua potable y desagüe",
-      "Servicio de limpieza púbilca",
+      "Servicio de limpieza pública",
       "Servicio público de uso de cementerios",
       "Control del comercio ambulatorio",
-      "Realizan contro de pesas y medidas",
+      "Realizan control de pesas y medidas",
       "Construcción de cercos",
       "Construcción de caminos rurales",
       "Permiso de ocupación de vía pública",
@@ -2224,6 +2310,20 @@ export const findIconV2 = (key, d) => {
       "Brindan licencias"
     ].includes(d["Type"])) {
       return `/icons/visualizations/Servicios publicos/${d["Type ID"]}.png`
+    }
+
+    else if ([
+      "Recibe Financiamiento",
+      "No Recibe Financiamiento"
+    ].includes(d["Type"])) {
+      return `/icons/visualizations/Financiamiento municipal/${d["Type ID"]}.png`
+    }
+
+    else if ([
+      "Brinda licencias",
+      "No brinda licencias"
+    ].includes(d["Type"])) {
+      return `/icons/visualizations/Planificacion municipal distrital/${d["Type ID"]}.png`
     }
 
   }
@@ -2337,6 +2437,7 @@ export const findIconV2 = (key, d) => {
 
   if ( key === "Sector") {
     if ([
+      "Gobierno local",
       "Presidencia consejo ministros",
       "Cultura",
       "Ambiental",
@@ -2365,7 +2466,10 @@ export const findIconV2 = (key, d) => {
       "Vivienda construccion y saneamiento",
       "Produccion",
       "Mujer y poblaciones vulnerables",
-      "Desarrollo e inclusion social"
+      "Desarrollo e inclusion social",
+      "Mancomunidades",
+      "Mancomunidades regionales",
+      "Gobiernos regionales"
     ].includes(d["Sector"])) {
       return `/icons/visualizations/Recaudacion por sector economico/${d["Sector ID"]}.png`
     }
