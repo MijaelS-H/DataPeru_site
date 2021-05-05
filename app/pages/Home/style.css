@@ -12,7 +12,7 @@
   background-repeat: no-repeat;
   min-height: 80vh;
   position: relative;
-  transition: 0.75s, color 0.75s !important;
+  transition: opacity 0.75s, color 0.75s !important;
   z-index: 2;
   &::before {
     @mixin absolute-expand;
