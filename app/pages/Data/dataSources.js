@@ -1,43 +1,6 @@
 export const dataSources = [
   {
     id: 1,
-    name: "Consejo Nacional de Ciencia, Tecnología e Innovación Tecnológica",
-    shortname: "CONCYTEC",
-    summary: [
-      "El CONCYTEC es el órgano rector del SINACYT, encargado de dirigir, fomentar, coordinar, supervisar y evaluar las acciones de Estado en todo el país en el ámbito de la ciencia, tecnología e innovación tecnológica; orienta las acciones del sector privado; y ejecuta acciones de soporte que impulsen el desarrollo científico y tecnológico del país.",
-      "Consejo Nacional de Ciencia, Tecnología e Innovación Tecnológica (CONCYTEC) es una entidad adscrita a Presidencia del Consejo de Ministros."
-    ],
-    datasets: [
-      {
-        name: "Censo Nacional de Investigación y Desarrollo",
-        link: "#",
-        indicators: [
-          {
-            name: "Número de Centros de Investigación según clasificación",
-            link: "#"
-          },
-          {
-            name: "Gasto promedio en I+D en Centros de Investigación",
-            link: "#"
-          },
-          {
-            name: "Centros de Investigación que incurrieron en gastos de I+D",
-            link: "#"
-          },
-          {
-            name: "Total gasto corriente y de inversión en I+D según destino en 2014 y 2015",
-            link: "#"
-          },
-          {
-            name: "Número de proyectos de investigación iniciados en 2014 y 2015, según área de conocimiento",
-            link: "#"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    id: 2,
     name: "Instituto Nacional de Estadística e Informática",
     shortname: "INEI",
     summary: [
@@ -46,61 +9,169 @@ export const dataSources = [
     ],
     datasets: [
       {
-        name: "Censo Nacional de Investigación y Desarrollo",
+        name: "Encuesta Nacional de Empresas",
         link: "#",
         indicators: [
           {
-            name: "Número de Centros de Investigación según clasificación",
-            link: "#"
+            name: "Organización, contribuyentes y rango de ventas",
+            link: "/profile/industry/industrias-manufactureras?regimen_or_organization=organization#indicadores-composicion-empresarial"
           },
           {
-            name: "Gasto promedio en I+D en Centros de Investigación",
-            link: "#"
+            name: "Créditos para iniciar el negocio",
+            link: "/profile/industry/industrias-manufactureras#creditos-para-iniciar-negocio"
           },
           {
-            name: "Centros de Investigación que incurrieron en gastos de I+D",
-            link: "#"
+            name: "Capacitaciones y sus costos",
+            link: "/profile/industry/industrias-manufactureras#capacitaciones-y-costos"
           },
           {
-            name: "Total gasto corriente y de inversión en I+D según destino en 2014 y 2015",
-            link: "#"
+            name: "Composición empresarial por tipo de tecnología",
+            link: "/profile/industry/industrias-manufactureras#tipo-de-tecnologias"
           },
           {
-            name: "Número de proyectos de investigación iniciados en 2014 y 2015, según área de conocimiento",
-            link: "#"
+            name: "Ventas por internet",
+            link: "/profile/industry/industrias-manufactureras#ventas-por-internet"
+          },
+          {
+            name: "Exportaciones y dificultades",
+            link: "/profile/industry/industrias-manufactureras#exportaciones-y-dificultades"
           }
         ]
       },
       {
-        name: "Censo Nacional de Investigación y Desarrollo",
+        name: "Encuesta Nacinoal de Hogares",
         link: "#",
         indicators: [
           {
-            name: "Número de Centros de Investigación según clasificación",
-            link: "#"
+            name: "Gasto promedio mensual en educación del hogar",
+            link: "/profile/geo/peru#inversion-del-hogar"
           },
           {
-            name: "Gasto promedio en I+D en Centros de Investigación",
-            link: "#"
+            name: "Afiliados según sistema de prestación",
+            link: "/profile/geo/peru#salud-afiliacion"
           },
           {
-            name: "Centros de Investigación que incurrieron en gastos de I+D",
-            link: "#"
+            name: "Ingreso laboral total",
+            link: "/profile/geo/peru#empleo-ingreso-laboral"
           },
           {
-            name: "Total gasto corriente y de inversión en I+D según destino en 2014 y 2015",
-            link: "#"
+            name: "Horas laborales",
+            link: "/profile/geo/peru#empleo-horas"
           },
           {
-            name: "Número de proyectos de investigación iniciados en 2014 y 2015, según área de conocimiento",
-            link: "#"
+            name: "Porcentaje de hogares agrícola con riego tecnificado",
+            link: "/profile/geo/peru#tecnologia-agricola"
+          }
+        ]
+      },
+      {
+        name: "Encuesta Nacional de Victimización de Empresas",
+        link: "#",
+        indicators: [
+          {
+            name: "Porcentaje de empresas que sabe o ha escuchado si en los alrededores de la empresa existe u observa algún hecho delictivo",
+            link: "/profile/geo/peru#criminal-cases"
+          },
+          {
+            name: "Porcentaje de empresas que fueron víctimas de algún acto ilícito",
+            link: "/profile/geo/peru#victimas-delito"
+          },
+          {
+            name: "Porcentaje de empresas que se vieron afectado por el hecho delictivo",
+            link: "/profile/geo/peru#perdidas"
+          },
+          {
+            name: "Gasto porcentual promedio en seguridad",
+            link: "/profile/geo/peru#gasto-seguridad"
+          },
+          {
+            name: "Porcentaje de empresas según su percepción sobre los delitos contra las empresas en el 2018",
+            link: "/profile/geo/peru#percepcion-delitos"
+          }
+        ]
+      },
+      {
+        name: "Encuesta Nacional de Innovación en la Industria Manufacturera",
+        link: "#",
+        indicators: [
+          {
+            name: "Actividades de innovación",
+            link: "/profile/geo/peru#actividades-innovacion"
+          },
+          {
+            name: "Razones para no innovar",
+            link: "/profile/geo/peru#razones-no-innovar"
+          },
+          {
+            name: "Obstáculos para la innovación empresarial",
+            link: "/profile/geo/peru#obstaculos-innovacion"
+          },
+          {
+            name: "Acceso a programas de innovación",
+            link: "/profile/geo/peru#acceso-programas"
+          },
+          {
+            name: "Caracterización de los servicios brindados por la Red CITE",
+            link: "/profile/geo/peru#acceso-servicios-cite"
+          },
+          {
+            name: "Métodos de protección para las innovaciones empresariales",
+            link: "/profile/geo/peru#metodos-proteccion"
+          }
+        ]
+      },
+      {
+        name: "Encuesta Nacional de Habilidades al Trabajo",
+        link: "#",
+        indicators: [
+          {
+            name: "Habilidades más importantes en empleados",
+            link: "/profile/geo/peru#empleo-habilidades-importantes"
+          },
+          {
+            name: "Distribución del capital humano en las firmas",
+            link: "/profile/geo/peru#empleo-capital-humano"
+          },
+          {
+            name: "Vacantes difíciles de cubrir según ocupación",
+            link: "/profile/geo/peru#empleo-vacantes-dificiles"
+          },
+          {
+            name: "Composición empresarial y brechas en habilidades para el trabajo",
+            link: "/profile/geo/peru#empleo-composicion-empresarial"
+          }
+        ]
+      },
+      {
+        name: "Censo Nacional de Mercados de Abasto",
+        link: "#",
+        indicators: [
+          {
+            name: "Características de mercados de abasto",
+            link: "/profile/geo/peru#caracteristicas-mercados-abasto"
+          },
+          {
+            name: "Formalidad en los mercados de abasto",
+            link: "/profile/geo/peru#economia-institucional"
+          },
+          {
+            name: "Gestión financiera",
+            link: "/profile/geo/peru#gestion-financiera"
+          },
+          {
+            name: "Gestión administrativa",
+            link: "/profile/geo/peru#gestion-administrativa"
+          },
+          {
+            name: "Salubridad pública",
+            link: "/profile/geo/peru#salubridad-publica"
           }
         ]
       }
     ]
   },
   {
-    id: 3,
+    id: 2,
     name: "Instituto Tecnológico de la Producción",
     shortname: "ITP",
     summary: [
@@ -112,72 +183,35 @@ export const dataSources = [
     ],
     datasets: [
       {
-        name: "Censo Nacional de Investigación y Desarrollo",
+        name: "Red CITE",
         link: "#",
         indicators: [
           {
-            name: "Número de Centros de Investigación según clasificación",
-            link: "#"
+            name: "CITE y UT en Perú",
+            link: "/profile/geo/peru#distribucion-cite"
           },
           {
-            name: "Gasto promedio en I+D en Centros de Investigación",
-            link: "#"
+            name: "Principales cadenas atendidas",
+            link: "/profile/geo/peru#principales-cadenas-atendidas-cite"
           },
           {
-            name: "Centros de Investigación que incurrieron en gastos de I+D",
-            link: "#"
+            name: "Servicios brindados, acumulados por mes",
+            link: "/profile/geo/peru#servicios-brindados-mes-cite"
           },
           {
-            name: "Total gasto corriente y de inversión en I+D según destino en 2014 y 2015",
-            link: "#"
+            name: "Clientes atendidos, acumulados por mes",
+            link: "/profile/geo/peru#clientes-atendidos-mes-cite"
           },
           {
-            name: "Número de proyectos de investigación iniciados en 2014 y 2015, según área de conocimiento",
-            link: "#"
+            name: "Ejecución financiera",
+            link: "/profile/geo/peru#ejecucion-financiera-cite"
           }
         ]
       }
     ]
   },
   {
-    id: 4,
-    name: "Ministerio de Cultura",
-    shortname: "MINCUL",
-    summary: [
-      "El MINCUL es el órgano del Poder Ejecutivo del Perú encargado del sector de cultura.",
-      "Sus principales funciones son formular, ejecutar y establecer estrategias de promoción cultural de manera inclusiva y accesible, realizar acciones de conservación y protección del patrimonio cultural, fomentar toda forma de expresiones artísticas, convocar y reconocer el mérito de quienes aporten al desarrollo cultural del país, planificar y gestionar con todos los niveles de gobierno actividades que permitan el desarrollo de los pueblos amazónicos, andinos y afroperuanos, todo ello propiciando el fortalecimiento de la ciudadanía e identidad cultural y abriendo espacios de participación de todas las culturas, mediante lo cual se democratiza la cultura para acercarla al ciudadano."
-    ],
-    datasets: [
-      {
-        name: "Censo Nacional de Investigación y Desarrollo",
-        link: "#",
-        indicators: [
-          {
-            name: "Número de Centros de Investigación según clasificación",
-            link: "#"
-          },
-          {
-            name: "Gasto promedio en I+D en Centros de Investigación",
-            link: "#"
-          },
-          {
-            name: "Centros de Investigación que incurrieron en gastos de I+D",
-            link: "#"
-          },
-          {
-            name: "Total gasto corriente y de inversión en I+D según destino en 2014 y 2015",
-            link: "#"
-          },
-          {
-            name: "Número de proyectos de investigación iniciados en 2014 y 2015, según área de conocimiento",
-            link: "#"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    id: 5,
+    id: 3,
     name: "Ministerio de Desarrollo Agrario y Riego",
     shortname: "MIDAGRI",
     summary: [
@@ -186,180 +220,99 @@ export const dataSources = [
     ],
     datasets: [
       {
-        name: "Censo Nacional de Investigación y Desarrollo",
+        name: "Dinámica Agrícola",
         link: "#",
         indicators: [
           {
-            name: "Número de Centros de Investigación según clasificación",
-            link: "#"
-          },
+            name: "Dinámica Agrícola: Principales cultivos",
+            link: "/profile/industry/agricultura-ganaderia-silvicultura-y-pesca#principales-cultivos"
+          }
+        ]
+      },
+      {
+        name: "Dinámica Pecuaria",
+        link: "#",
+        indicators: [
           {
-            name: "Gasto promedio en I+D en Centros de Investigación",
-            link: "#"
-          },
-          {
-            name: "Centros de Investigación que incurrieron en gastos de I+D",
-            link: "#"
-          },
-          {
-            name: "Total gasto corriente y de inversión en I+D según destino en 2014 y 2015",
-            link: "#"
-          },
-          {
-            name: "Número de proyectos de investigación iniciados en 2014 y 2015, según área de conocimiento",
-            link: "#"
+            name: "Dinámica Pecuaria: Variación de la producción mensual",
+            link: "/profile/industry/agricultura-ganaderia-silvicultura-y-pesca#produccion-mensual"
           }
         ]
       }
     ]
   },
   {
-    id: 6,
-    name: "Ministerio de Economía y Finanzas",
-    shortname: "MEF",
+    id: 4,
+    name: "Instituto Nacional de Estadística e Informática (Sistema de Información Económica)",
+    shortname: "INEI (Sistema de Información Económica)",
     summary: [
-      "El MEF corresponde al sector público que impulsa el crecimiento económico sostenido, que contribuye a una mejor calidad de vida de los peruanos, garantizando una política fiscal responsable y transparente, en el marco de la estabilidad macroeconómica.",
-      "Su misión es armonizar la política económica y financiera, a través de la transparencia y responsabilidad fiscal, contribuyendo al crecimiento económico sostenido del país.",
-      "Sus principales objetivos están orientados hacia la consolidación del equlibrio y sostenibilidad fiscal, el mejoramiento del nivel de estabilidad de los ingresos públicos, fomentar una apertura económica y una armonización del mercado de bienes y servicios, mejorar la calidad del gasto público en los diversos niveles de gobierno, optimizar la transparencia y rendición de cuentas en el sector público y modernizar la gestión institucional del Ministerio."
+      "El INEI es un oragnísmo técnico especializado responsable de producir y difundir información estadística oficial que el país necesita con calidad, oportunidad y cobertura requerida, con el propósito de contribuir al diseño, monitoreo y evaluación de políticas públicas y al proceso de toma de decisiones de los agentes socioeconómicos, el sector público y la comunidad en general.",
+      "Instituto Nacional de Estadística e Informática (INEI) es una entidad adscrita a Presidencia del Consejo de Ministros."
     ],
     datasets: [
       {
-        name: "Censo Nacional de Investigación y Desarrollo",
+        name: "Estadísticas Sectoriales - Manufactura",
         link: "#",
         indicators: [
           {
-            name: "Número de Centros de Investigación según clasificación",
-            link: "#"
+            name: "Valor agregado bruto",
+            link: "/profile/geo/peru#valor-agregado-bruto"
           },
           {
-            name: "Gasto promedio en I+D en Centros de Investigación",
-            link: "#"
+            name: "Producción de la industria de productos alimenticios y bebidas",
+            link: "/profile/geo/peru#productos-alimenticios-y-bebidas"
           },
           {
-            name: "Centros de Investigación que incurrieron en gastos de I+D",
-            link: "#"
+            name: "Producción de las industrias textiles, cuero y calzado, papel, edición e impresión",
+            link: "/profile/geo/peru#industrias-textiles"
           },
           {
-            name: "Total gasto corriente y de inversión en I+D según destino en 2014 y 2015",
-            link: "#"
-          },
-          {
-            name: "Número de proyectos de investigación iniciados en 2014 y 2015, según área de conocimiento",
-            link: "#"
+            name: "Producción de las industrias de elaborados de metal, maquinaria, equipo, aparatos eléctricos y vehículos",
+            link: "/profile/geo/peru#elaborados-de-metal"
           }
         ]
-      }
-    ]
-  },
-  {
-    id: 7,
-    name: "Ministerio de la Producción",
-    shortname: "PRODUCE",
-    summary: [
-      "El PRODUCE es el organismo público encargado de formular, diseñar, ejecutar y supervisar la política nacional y sectorial de la Pesca, Acuicultura, MYPE e Industria.",
-      "Ejerce competencia en el ordenamiento pesquero y acuícola, pesquería industrial, acuicultura de mediana y gran empresa, normalización industrial; así como de productos fiscalizados, innovación productiva y transferencia tecnológica.",
-      "Provee el desarrollo de manera armónica de los ecosistemas productivos de pesquería, acuicultura, industria, micro, pequeña, mediana y gran empresa, comercio interno y cooperativas.",
-      "Revalora la pesca artesanal, promueve la producción para consumo humano directo y busca mejorar las condiciones de vida del pescador.",
-      "El sector está integrado por el Fondo Nacional de Desarrollo Pesquero (FONDEPES); Instituto del Mar del Perú (IMARPE); Organismo de Sanidad Pesquera (SANIPES); Instituto Tecnológico de la Producción (ITP); Instituto Nacional de la Calidad (INACAL); Programa Nacional A Comer Pescado, Programa INNÓVATE PERÚ; Programa de Innovación en Pesca y Acuicultura; Programa de Diversificación Productiva, Programa Tu Empresa y las comisiones, iniciativas, proyectos bajo el ámbito de su competencia, responsabilidad política y funcional."
-    ],
-    datasets: [
+      },
       {
-        name: "Censo Nacional de Investigación y Desarrollo",
+        name: "Estadísticas Sectoriales - Pesca",
         link: "#",
         indicators: [
           {
-            name: "Número de Centros de Investigación según clasificación",
-            link: "#"
+            name: "Principales indicadores del sector pesquero",
+            link: "/profile/geo/peru#pesca-indicadores"
           },
           {
-            name: "Gasto promedio en I+D en Centros de Investigación",
-            link: "#"
+            name: "Transformación de productos pesqueros",
+            link: "/profile/geo/peru#transformacion-productos-pesqueros"
           },
           {
-            name: "Centros de Investigación que incurrieron en gastos de I+D",
-            link: "#"
+            name: "Venta interna de productos pesqueros",
+            link: "/profile/geo/peru#venta-interna"
           },
           {
-            name: "Total gasto corriente y de inversión en I+D según destino en 2014 y 2015",
-            link: "#"
+            name: "Consumo interno de productos pesqueros",
+            link: "/profile/geo/peru#consumo-interno"
           },
           {
-            name: "Número de proyectos de investigación iniciados en 2014 y 2015, según área de conocimiento",
-            link: "#"
+            name: "Capacidad instalada de la industria pesquera",
+            link: "/profile/geo/peru#capacidad-instalada"
           }
         ]
-      }
-    ]
-  },
-  {
-    id: 8,
-    name: "Plataforma de Información Estadística del Sector Cultura",
-    shortname: "INFOCULTURA",
-    summary: [
-      "INFOCULTURA es una herramienta que permite un mejor conocimiento del quehacer del sector cultura a través de un conjunto de indicadores cuya información se encuentra desagregada a nivel de departamento, provincia y distrito.",
-      "De este modo, INFOCULTURA presenta información actualizada respecto a los bienes arqueológicos e históricos integrantes del patrimonio cultural de la nación, las expresiones culturales declaradas patrimonio cultural de la nación, la cantidad de público asistente a las presentaciones de los elencos nacionales, las personalidades que han sido reconocidas por su aporte a la cultura, los procesos de consulta previa en curso, los pueblos indígenas en aislamiento y contacto inicial, el registro de traductores e intérpretes, así como información sociodemográfica sobre la población afrodescendiente, entre otros aspectos."
-    ],
-    datasets: [
+      },
       {
-        name: "Censo Nacional de Investigación y Desarrollo",
+        name: "Estadísticas Sectoriales - Turismo",
         link: "#",
         indicators: [
           {
-            name: "Número de Centros de Investigación según clasificación",
-            link: "#"
+            name: "Principales indicadores del sector turismo",
+            link: "/profile/geo/peru#indicadores-sector-turismo"
           },
           {
-            name: "Gasto promedio en I+D en Centros de Investigación",
-            link: "#"
+            name: "Ingreso de turistas internacionales",
+            link: "/profile/geo/peru#turistas-internacionales"
           },
           {
-            name: "Centros de Investigación que incurrieron en gastos de I+D",
-            link: "#"
-          },
-          {
-            name: "Total gasto corriente y de inversión en I+D según destino en 2014 y 2015",
-            link: "#"
-          },
-          {
-            name: "Número de proyectos de investigación iniciados en 2014 y 2015, según área de conocimiento",
-            link: "#"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    id: 9,
-    name: "Superintendencia Nacional de Aduanas y de Administración Tributaria",
-    shortname: "SUNAT",
-    summary: [
-      "La SUNAT administra los tributos del gobierno nacional (con excepción de las municipales) y facilita el comercio exterior promoviendo el cumplimiento tributario y aduanero mediante el uso de la tecnología y el fortalecimiento de la conciencia tributaria. SUNAT trabaja con un equipo humano íntegro, unificado, competente y comprometido con el país para brindar un servicio de excelencia.",
-      "Superintendencia Nacional de Aduanas y de Administración Tributaria (SUNAT) es una entidad adscrita a Ministerio de Economía y Finanzas."
-    ],
-    datasets: [
-      {
-        name: "Censo Nacional de Investigación y Desarrollo",
-        link: "#",
-        indicators: [
-          {
-            name: "Número de Centros de Investigación según clasificación",
-            link: "#"
-          },
-          {
-            name: "Gasto promedio en I+D en Centros de Investigación",
-            link: "#"
-          },
-          {
-            name: "Centros de Investigación que incurrieron en gastos de I+D",
-            link: "#"
-          },
-          {
-            name: "Total gasto corriente y de inversión en I+D según destino en 2014 y 2015",
-            link: "#"
-          },
-          {
-            name: "Número de proyectos de investigación iniciados en 2014 y 2015, según área de conocimiento",
-            link: "#"
+            name: "Indicadores de capacidad de alojamiento",
+            link: "/profile/geo/peru#capacidad-de-alojamiento"
           }
         ]
       }

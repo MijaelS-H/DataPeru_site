@@ -11,43 +11,7 @@ import "./Data.css";
 
 const Data = () => {
 
-  const [selectedDataSource, setDatasource] = useState({
-    id: 1,
-    name: "Consejo Nacional de Ciencia, Tecnología e Innovación Tecnológica",
-    shortname: "CONCYTEC",
-    summary: [
-      "El CONCYTEC es el órgano rector del SINACYT, encargado de dirigir, fomentar, coordinar, supervisar y evaluar las acciones de Estado en todo el país en el ámbito de la ciencia, tecnología e innovación tecnológica; orienta las acciones del sector privado; y ejecuta acciones de soporte que impulsen el desarrollo científico y tecnológico del país.",
-      "Consejo Nacional de Ciencia, Tecnología e Innovación Tecnológica (CONCYTEC) es una entidad adscrita a Presidencia del Consejo de Ministros."
-    ],
-    datasets: [
-      {
-        name: "Censo Nacional de Investigación y Desarrollo",
-        link: "",
-        indicators: [
-          {
-            name: "Número de Centros de Investigación según clasificación",
-            link: ""
-          },
-          {
-            name: "Gasto promedio en I+D en Centros de Investigación",
-            link: ""
-          },
-          {
-            name: "Centros de Investigación que incurrieron en gastos de I+D",
-            link: ""
-          },
-          {
-            name: "Total gasto corriente y de inversión en I+D según destino en 2014 y 2015",
-            link: ""
-          },
-          {
-            name: "Número de proyectos de investigación iniciados en 2014 y 2015, según área de conocimiento",
-            link: ""
-          }
-        ]
-      }
-    ]
-  });
+  const [selectedDataSource, setDatasource] = useState(dataSources[0]);
 
   return (
     <div className="data-container container">
@@ -74,9 +38,10 @@ const Data = () => {
             {selectedDataSource.datasets.map((d, i) => <div className="data-content-dataset-container" key={`data-content-dataset-${i}`}>
               <div className="data-content-dataset-box">
                 <img className="data-content-dataset-box-icon" src="/icons/data/nombre_dataset_icon.png" alt="Dataset" />
-                <a className="data-content-dataset-box-title" href={d.link}>{d.name}</a>
+                {/* <a className="data-content-dataset-box-title" href={d.link}>{d.name}</a> */}
+                <span className="data-content-dataset-box-title">{d.name}</span>
               </div>
-              <h3 className="data-content-summary-datasets-title">¿Qué indicadores puedo encontrar desde esta fuente</h3>
+              <h3 className="data-content-summary-datasets-title">¿Qué indicadores puedo encontrar desde esta fuente?</h3>
               <ul className="data-content-dataset-indicator-list">
                 {d.indicators.map((h, j) => <a className="data-content-dataset-indicator-name" href={h.link} key={`indicator-${j}`} target="_blank" rel="noreferrer"><li>{h.name}</li></a>)}
               </ul>
