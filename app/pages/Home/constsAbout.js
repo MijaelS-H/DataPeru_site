@@ -24,7 +24,7 @@ export const aboutSections = [
     icon: "/icons/homepage/svg/marketing_y_logistica_icon.svg"
   },
   {
-    item: "Industrias creativas",
+    item: "Industrias culturales y creativas",
     icon: "/icons/homepage/svg/industrias_creativas_icon.svg"
   }
 ];
