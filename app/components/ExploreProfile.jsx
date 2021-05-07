@@ -57,9 +57,10 @@ class ExploreProfile extends React.Component {
       }, {});
     }
 
-    if (profile === "cite" && (tab === 0 || tab === 1)) {
+    if (profile === "cite" && (tab === "0" || tab === "1")) {
       results.length > 0 && results.forEach(d => {
-        d["tipo"] = citeCategories.find(h => h.slug === d.id)["Categoria"];
+        const citeObject = d["tipo"] = citeCategories.find(h => h.slug === d.id);
+        d["tipo"] = citeObject ? citeObject["Categoria"] : false;
       });
 
       results.sort((a, b) => a.tipo < b.tipo ? 1 : -1);
@@ -97,7 +98,7 @@ class ExploreProfile extends React.Component {
             </div>
             </>
           )}
-        {results.length > 99 && <p className="message">La consulta supera el límite de resultados, intente ingresar filtros adicionales para refinar la búsqueda.</p>}
+        {/*results.length > 99 && <p className="message">La consulta supera el límite de resultados, intente ingresar filtros adicionales para refinar la búsqueda.</p>*/}
       </div>;
     }
 
@@ -132,7 +133,7 @@ class ExploreProfile extends React.Component {
                 />
               )}
             </ul>
-            {results.length > 99 && <p className="message">La consulta supera el límite de resultados, intente ingresar filtros adicionales para refinar la búsqueda.</p>}
+            {/*results.length > 99 && <p className="message">La consulta supera el límite de resultados, intente ingresar filtros adicionales para refinar la búsqueda.</p>*/}
           </>
         }
       </div>;
