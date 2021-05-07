@@ -98,7 +98,7 @@ class ExploreProfile extends React.Component {
             </div>
             </>
           )}
-        {/*results.length > 99 && <p className="message">La consulta supera el límite de resultados, intente ingresar filtros adicionales para refinar la búsqueda.</p>*/}
+        {results.length > 99 && <p className="message">La consulta supera el límite de resultados, intente ingresar filtros adicionales para refinar la búsqueda.</p>}
       </div>;
     }
 
@@ -133,7 +133,7 @@ class ExploreProfile extends React.Component {
                 />
               )}
             </ul>
-            {/*results.length > 99 && <p className="message">La consulta supera el límite de resultados, intente ingresar filtros adicionales para refinar la búsqueda.</p>*/}
+            {results.length > 99 && <p className="message">La consulta supera el límite de resultados, intente ingresar filtros adicionales para refinar la búsqueda.</p>}
           </>
         }
       </div>;
