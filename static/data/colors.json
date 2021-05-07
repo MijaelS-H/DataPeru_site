@@ -424,6 +424,10 @@
     "7": "#7D5E3F",
     "8": "#34495E"
   },
+  "Flujo de huespedes en establecimientos": {
+    "1": "#F46D6D",
+    "2": "#354ABF"
+  },
   "Frecuencia de recojo de residuos solidos": {
     "1": "#9ED763",
     "2": "#2C9E4B",
@@ -459,6 +463,16 @@
     "105": "#C6CD78",
     "108": "#EC9454",
     "109": "#8E3343"
+  },
+  "Indicadores de capacidad de alojamiento": {
+    "1": "#4F4E79",
+    "2": "#678EB4",
+    "3": "#7BCACE",
+    "4": "#9FE6DC",
+    "5": "#6C95EC",
+    "6": "#9A69E1",
+    "7": "#81E1AF",
+    "8": "#41A06F"
   },
   "Indicador Tributo": {
     "1": "#E76F51",
@@ -496,6 +510,11 @@
     "45": "#8F5775",
     "46": "#5C64C7",
     "47": "#5A786F"
+  },
+  "Ingreso de turistas internacionales": {
+    "1": "#E7272D",
+    "2": "#EF8F6B",
+    "3": "#F75B5B"
   },
   "Internet segun uso": {
     "22": "#60366F",
@@ -692,6 +711,14 @@
     "E" : "#FF8A98",
     "R" : "#AB3124",
     "M" : "#FF9D7B"
+  },
+  "Principales indicadores del sector turismo": {
+    "1" : "#5F1B00",
+    "2" : "#91300A",
+    "3" : "#ECA106",
+    "4" : "#EEC550",
+    "5" : "#C3A655",
+    "6" : "#70560D"
   },
   "Proyeccion demografica urbano rural": {
     "1_1": "#0C907D",
@@ -911,6 +938,14 @@
     "4": "#4262C5",
     "5": "#362999",
     "6": "#203E5F"
+  },
+  "Turistas en establecimientos de hospedaje": {
+    "1": "#C45D3E",
+    "2": "#4E62B7",
+    "3": "#DF3554",
+    "4": "#485791",
+    "5": "#D4C07A",
+    "6": "#E0AB5B"
   },
   "Type": {
     "1": "#03658C",

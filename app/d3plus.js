@@ -783,6 +783,45 @@ export const findColorV2 = (key, d) => {
 
     if (d.Indicador === "Productos frescos") return colors["Transformacion de productos pesqueros"][d["Indicador ID"]];
 
+    else if ([
+      "Entrada de turistas",
+      "Salida de turistas",
+      "Ingreso de divisas (millones de dólares)",
+      "Egreso de divisas (millones de dólares)",
+      "Ingreso de divisas (dólares per cápita)",
+      "Egreso de divisas (dólares per cápita)"
+    ].includes(d.Indicador)) {
+      return colors["Principales indicadores del sector turismo"][d["Indicador ID"]];
+    }
+
+    else if ([
+      "Aeropuerto Jorge Chávez",
+      "Puesto de control Santa Rosa",
+      "Otros puntos"
+    ].includes(d.Indicador)) {
+      return colors["Ingreso de turistas internacionales"][d["Indicador ID"]];
+    }
+
+    else if ([
+      "Nacionales",
+      "Extranjeros"
+    ].includes(d.Indicador)) {
+      return colors["Flujo de huespedes en establecimientos"][d["Indicador ID"]];
+    }
+
+    else if ([
+      "Arribos nacionales",
+      "Arribos extranjeros",
+      "Pernoctaciones nacionales",
+      "Pernoctaciones extranjeros",
+      "Permanencia promedio nacionales",
+      "Permanencia promedio extranjeros"
+    ].includes(d.Indicador)) {
+      return colors["Turistas en establecimientos de hospedaje"][d["Indicador ID"]];
+    }
+
+
+
   }
 
   if (key === "Tipo") {
@@ -1282,19 +1321,21 @@ export const findColorV2 = (key, d) => {
         return colors["Recaudacion por sector economico"][d["Sector ID"]];
       }
     }
-/*
-    if ( key === "Rubro") {
+
+    if ( key === "Categoria de hospedaje") {
       if ([
-        "Contribuciones a fondos",
-        "Recursos directamente recaudados",
-        "Donaciones y transferencias",
-        "Canon y sobrecanon, regalias, renta de aduanas y participaciones",
-        "Recursos por operaciones oficiales de credito"
-      ].includes(d["Rubro"])) {
-        return colors["Recaudacion por sector economico"][d["Sector ID"]];
+        "1 Estrella",
+        "2 Estrellas",
+        "3 Estrellas",
+        "4 Estrellas",
+        "5 Estrellas",
+        "Albergue",
+        "Ecolodge",
+        "No Categorizados"
+      ].includes(d["Categoria de hospedaje"])) {
+        return colors["Indicadores de capacidad de alojamiento"][d["Categoria de hospedaje ID"]];
       }
     }
-    */
 
 
   const id = d[`${key} ID`];
@@ -1970,6 +2011,45 @@ export const findIconV2 = (key, d) => {
 
     if (d.Indicador === "Productos frescos") return "/icons/visualizations/Transformacion de productos pesqueros/6.png";
 
+    else if ([
+      "Entrada de turistas",
+      "Salida de turistas",
+      "Ingreso de divisas (millones de dólares)",
+      "Egreso de divisas (millones de dólares)",
+      "Ingreso de divisas (dólares per cápita)",
+      "Egreso de divisas (dólares per cápita)"
+    ].includes(d.Indicador)) {
+      return `/icons/visualizations/Principales indicadores del sector turismo/${d["Indicador ID"]}.png`;
+    }
+
+    else if ([
+      "Aeropuerto Jorge Chávez",
+      "Puesto de control Santa Rosa",
+      "Otros puntos"
+    ].includes(d.Indicador)) {
+      return `/icons/visualizations/Ingreso de turistas internacionales/${d["Indicador ID"]}.png`;
+    }
+
+    else if ([
+      "Nacionales",
+      "Extranjeros"
+    ].includes(d.Indicador)) {
+      return `/icons/visualizations/Flujo de huespedes en establecimientos/${d["Indicador ID"]}.png`;
+    }
+
+    else if ([
+      "Arribos nacionales",
+      "Arribos extranjeros",
+      "Pernoctaciones nacionales",
+      "Pernoctaciones extranjeros",
+      "Permanencia promedio nacionales",
+      "Permanencia promedio extranjeros"
+    ].includes(d.Indicador)) {
+      return `/icons/visualizations/Turistas en establecimientos de hospedaje/${d["Indicador ID"]}.png`;
+    }
+
+
+
   }
 
   if (key === "Tipo") {
@@ -2474,19 +2554,26 @@ export const findIconV2 = (key, d) => {
       return `/icons/visualizations/Recaudacion por sector economico/${d["Sector ID"]}.png`
     }
   }
-/*
-  if ( key === "Rubro") {
+
+  if ( key === "Categoria de hospedaje") {
     if ([
-      "Contribuciones a fondos",
-      "Recursos directamente recaudados",
-      "Donaciones y transferencias",
-      "Canon y sobrecanon, regalias, renta de aduanas y participaciones",
-      "Recursos por operaciones oficiales de credito"
-    ].includes(d["Rubro"])) {
-      return `/icons/visualizations/Recaudacion por sector economico/${d["Sector ID"]}.png`
+      "1 Estrella",
+      "2 Estrellas",
+      "3 Estrellas",
+      "4 Estrellas",
+      "5 Estrellas",
+      "Albergue",
+      "Ecolodge",
+      "No Categorizados"
+    ].includes(d["Categoria de hospedaje"])) {
+      return `/icons/visualizations/Indicadores de capacidad de alojamiento/${d["Categoria de hospedaje ID"]}.png`
     }
   }
-*/
+
+
+
+
+
   const icon = key;
   const iconID = d[`${key} ID`];
 
