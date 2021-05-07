@@ -15,7 +15,7 @@
   "dependencies": {
     "@blueprintjs/core": "^3.44.2",
     "@blueprintjs/popover2": "^0.2.0",
-    "@datawheel/canon-cms": "^0.18.18",
+    "@datawheel/canon-cms": "^0.18.16",
     "@datawheel/canon-core": "^0.21.4",
     "@n8tb1t/use-scroll-position": "^2.0.3",
     "axios": "^0.21.1",
