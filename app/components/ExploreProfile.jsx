@@ -74,8 +74,8 @@ class ExploreProfile extends React.Component {
               {profile === "geo" ? <img src={`/icons/visualizations/Departamentos/${d[1][0]["Departamento ID"]}.png`} className="ep-profile-parent-icon" /> : ""}
               {profile === "industry" ? <img src={`/icons/visualizations/Seccion CIIU/${d[1][0]["Seccion ID"]}.png`} className="ep-profile-parent-icon" /> : ""}
               <h3 className="ep-profile-parent-title">
-                {profile === "geo" && tab === "2" ? `Departamento de ${d[0]}` : ""}
-                {profile === "geo" && tab === "3" ? `Departamento de ${d[0]} / Provincia de ${d[1][0]["Provincia"]}` : ""}
+                {profile === "geo" && tab === "2" ? `${d[0].includes("Callao") ? "Provincia Constitucional" : "Departamento"} de ${d[0]}` : ""}
+                {profile === "geo" && tab === "3" ? `${d[0].includes("Callao") ? "" : "Departamento de"} ${d[0]} / ${d[1][0] ? d[1][0]["Provincia"] === "Prov. Const. del Callao" ? "" : "Provincia de" : ""} ${d[1][0]["Provincia"]}` : ""}
                 {profile === "industry" && tab === "1" ? `Sección de ${d[0]}` : ""}
               </h3>
             </div>
@@ -98,7 +98,7 @@ class ExploreProfile extends React.Component {
             </div>
             </>
           )}
-        {/*results.length > 99 && <p className="message">La consulta supera el límite de resultados, intente ingresar filtros adicionales para refinar la búsqueda.</p>*/}
+        {results.length > 99 && <p className="message">La consulta supera el límite de resultados, intente ingresar filtros adicionales para refinar la búsqueda.</p>}
       </div>;
     }
 
@@ -133,7 +133,7 @@ class ExploreProfile extends React.Component {
                 />
               )}
             </ul>
-            {/*results.length > 99 && <p className="message">La consulta supera el límite de resultados, intente ingresar filtros adicionales para refinar la búsqueda.</p>*/}
+            {results.length > 99 && <p className="message">La consulta supera el límite de resultados, intente ingresar filtros adicionales para refinar la búsqueda.</p>}
           </>
         }
       </div>;
