@@ -445,6 +445,214 @@ export const findColorV2 = (key, d) => {
       return colors["Desembarque de recursos maritimos segun especies"][d["Categoria ID"]];
     }
 
+    else if (d.Categoria === "Nacional" && d["Categoria ID"] === 1) return "#FF847C";
+    else if (d.Categoria === "Extranjero" && d["Categoria ID"] === 2) return "#E84A5F";
+
+  }
+
+  if (key === "Subcategoria") {
+    if ([
+      `Museo Arqueológico de Áncash "Augusto Soriano Infante"`,
+      `Museo Regional de Casma "Max Uhle"`,
+      "Museo de Antropolgía, Arqueología e Historia Natural de Ranrahirca",
+      "Museo Nacional Chavín",
+      "Museo Arqueológico Zonal de Cabana",
+      "Museo Arqueológico, Antropológico de Apurímac",
+      "Museo de Sitio Wari",
+      "Museo de Sitio de Quinua",
+      `Museo Histórico Regional "Hipólito Unanue"`,
+      "Museo Arqueológico y Etnográfico del Conjunto Monumental Belén",
+      "Museo Histórico Regional del Cusco",
+      "Museo de Sitio de Chinchero",
+      `Museo de Sitio "Manuel Chávez Ballón"`,
+      "Museo Amazónico Andino Qhapaq Ñan Quillabamba",
+      "Museo de los Pueblos de Paucartambo",
+      `Museo Regional "Daniel Hernández Morillo"`,
+      `Museo Arqueológico "Samuel Humberto Espinoza Lozano"`,
+      `Museo Regional de Ica "Adolfo Bermúdez Jenkins"`,
+      `Museo de Sitio "Julio C. Tello" de Paracas`,
+      "Museo Regional de Arqueología de Junín",
+      "Museo de Sitio de Wariwillka",
+      "Museo de Sitio de Chan Chan",
+      "Museo Arqueológico Nacional Brüning",
+      "Museo Tumbas Reales de Sipán",
+      "Museo Nacional de Sicán",
+      "Museo de Sitio Túcume",
+      "Museo de Sitio Huaca Rajada - Sipán",
+      "Museo de Sitio Huaca Chotuna - Chornancap",
+      `Museo de Sitio "Arturo Jiménez Borja" - Puruchuco`,
+      "Museo de Sitio Huallamarca",
+      "Museo de Sitio Pachacamac",
+      `Museo de Sitio "El Mirador del Cerro San Cristóbal"`,
+      "Museo de Arte Italiano",
+      "Museo de Sitio Huaca Pucllana",
+      "Museo de la Nación",
+      `Casa Museo "José Carlos Mariátegui"`,
+      "Museo Nacional de Arqueología, Antropología e Historia del Perú",
+      "Museo Nacional de la Cultura Peruana",
+      "Museo Amazónico",
+      "Museo de Sitio de Narihualá",
+      "Sala de Oro del Museo Municipal Vicús",
+      `Templo Museo "San Juan de Letrán"`,
+      `Templo Museo "Nuestra Señora de la Asunción"`,
+      "Museo Lítico de Pukara",
+      "Museo Departamental San Martín",
+      "Museo de Sitio Las Peañas",
+      "Museo Histórico Regional de Tacna",
+      `Museo de Sitio Cabeza de Vaca "Gran Chilimasa"`,
+      "Lugar de la Memoria, la tolerancia y la inclusión social"
+    ].includes(d.Subcategoria) && (d["Categoria ID"] === 3)) {
+      return colors["Museos y salas de exposicion visitados"][d["Subcategoria ID"]];
+    }
+
+    else if ([
+      "Parque Arqueológico Machu Picchu",
+      "Monumento Arqueológico de Moray",
+      "Zona Arqueológica Monumental Huaca del Sol y de la Luna",
+      "Complejo Arqueológico Chan Chan (Palacio Nik-an)",
+      "Zona Arqueológica Monumental Chavín de Huantar",
+      "Parque Arqueológico Tipon",
+      "Centro Arqueológico Ventanilla de Otuzco",
+      "Sitio Arqueológico de Sillustani",
+      "Reserva Arqueológica Líneas y Geoglifos de Nazca",
+      "Paisaje Cultural Arqueológico Cumbemayo",
+      "Zona Arqueológica Monumental Kuélap",
+      "Zona Arqueológica Monumental Chavín de Huantar",
+      "Sitio Arqueológico Pañamarca",
+      "Sitio Arqueológico Saihuite",
+      "Complejo Arqueológico Toro Muerto",
+      "Complejo Arqueológico de Uyo Uyo",
+      "Sitio Arqueológico Intihuatana",
+      "Paisaje Cultural Arqueológico Cumbemayo",
+      "Centro Arqueológico Ventanilla de Otuzco",
+      "Monumento Arqueologico Kuntur Wasi",
+      "Parque Arqueológico Macchu Picchu (Ruta 1: Camino Inka: Piscacucho Km. 82)",
+      "Parque Arqueológico Macchu Picchu (Ruta 2: Camino Inka: Km. 88)",
+      "Parque Arqueológico Macchu Picchu (Ruta 5: Camino Iinka: Chanchabamba Km. 104)",
+      "Monumento Arqueológico de Raqchi",
+      "Monumento Arqueológico de Moray",
+      "Parque Arqueológico Tipon",
+      "Monumento Arqueológico de Tarawasi",
+      "Parque Arqueológico Nacional de Vilcabamba (Choquequirao)",
+      "Conjunto Arqueológico de Huchuy Qosco",
+      "Parque Arqueológico Machu Picchu",
+      "Parque Arqueológico Macchu Picchu (Ingreso Salkantay-Paucarcancha)",
+      "Zona Arqueológica Monumental de Garu",
+      "Huanucopampa",
+      "Sitio Arqueológico Pampas de Huayurí",
+      "Monumento Arqueológico de Palpa (Lineas y Geoglifos de Sacramento)",
+      "Sitio Arqueológico Centinela",
+      "Reserva Arqueológica Líneas y Geoglifos de Nazca",
+      "Complejo Arqueológico Chan Chan (Palacio Nik-an)",
+      "Zona Arqueológica Monumental Huaca del Sol y de la Luna",
+      "Zona Arqueológica Monumental El Brujo",
+      "Sitio Arqueológico Huaca Arco Iris (Huaca El Dragón)",
+      "Sitio Arqueológico Cerro Ventarrón",
+      "Sitio Arqueológico Caral",
+      "Zona Arqueológica de Huaycan de Cieneguilla",
+      "Complejo Arqueológico Mateo Salado",
+      "Sitio Arqueológico de Cerro Baúl",
+      "Monumento Arqueológico de Cutimbo",
+      "Sitio Arqueológico de Sillustani"
+    ].includes(d.Subcategoria)) {
+      return colors["Patrimonio cultural segun lugar arqueologico"][d["Subcategoria ID"]];
+    }
+
+    else if ([
+      "Museo Nacional de Arqueología, Antropología e Historia del Perú",
+      "Museo Tumbas Reales de Sipán",
+      "Museo de Sitio Pucllana",
+      "Museo de Sitio Pachacamac",
+      "Museo Histórico Regional de Cusco",
+      "Museo Arqueológico y Etnográfico del Conjunto Monumental Belén",
+      "Museo de Sitio Wari",
+      "Museo Nacional Chavín",
+      "Museo Lítico de Pukara",
+      "Museo de Sitio Túcume",
+      "Museo de la Nación",
+      "Lugar de la Memoria, la Tolerancia y la Inclusión Social",
+      "Sala de Exhibición de la Zona Arqueológica Monumental de Kotosh",
+      "Sala de Exhibición del Monumento Arqueológico de Willkawaín",
+      `Sala de Exhibición "Gilberto Tenorio Ruiz"`,
+      "Sala de Exhibición de Pikillaqta",
+      `Sala de Exhibición del Sitio Arqueológico "Tambo Colorado"`,
+      "Sala de Oro del Museo Municipal Vicús",
+      "Casa de la Gastronomía Peruana y Museo Postal y Filatélico del Perú"
+    ].includes(d.Subcategoria)) {
+      return colors["Museos y salas de exposicion mas visitados"][d["Subcategoria ID"]];
+    }
+
+
+
+
+/*
+    else if ([
+      `Museo Arqueológico de Áncash "Augusto Soriano Infante"`,
+      `Museo Regional de Casma "Max Uhle"`,
+      "Museo de Antropolgía, Arqueología e Historia Natural de Ranrahirca",
+      "Museo Nacional Chavín",
+      "Museo Arqueológico Zonal de Cabana",
+      "Museo Arqueológico, Antropológico de Apurímac",
+      "Museo de Sitio Wari",
+      "Museo de Sitio de Quinua",
+      `Museo Histórico Regional "Hipólito Unanue"`,
+      "Museo Arqueológico y Etnográfico del Conjunto Monumental Belén",
+      "Museo Histórico Regional del Cusco",
+      "Museo de Sitio de Chinchero",
+      `Museo de Sitio "Manuel Chávez Ballón"`,
+      "Museo Amazónico Andino Qhapaq Ñan Quillabamba",
+      "Museo de los Pueblos de Paucartambo",
+      `Museo Regional "Daniel Hernández Morillo"`,
+      `Museo Arqueológico "Samuel Humberto Espinoza Lozano"`,
+      `Museo Regional de Ica "Adolfo Bermúdez Jenkins"`,
+      `Museo de Sitio "Julio C. Tello" de Paracas`,
+      "Museo Regional de Arqueología de Junín",
+      "Museo de Sitio de Wariwillka",
+      "Museo de Sitio de Chan Chan",
+      "Museo Arqueológico Nacional Brüning",
+      "Museo Tumbas Reales de Sipán",
+      "Museo Nacional de Sicán",
+      "Museo de Sitio Túcume",
+      "Museo de Sitio Huaca Rajada - Sipán",
+      "Museo de Sitio Huaca Chotuna - Chornancap",
+      `Museo de Sitio "Arturo Jiménez Borja" - Puruchuco`,
+      "Museo de Sitio Huallamarca",
+      "Museo de Sitio Pachacamac",
+      `Museo de Sitio "El Mirador del Cerro San Cristóbal"`,
+      "Museo de Arte Italiano",
+      "Museo de Sitio Huaca Pucllana",
+      "Museo de la Nación",
+      `Casa Museo "José Carlos Mariátegui"`,
+      "Museo Nacional de Arqueología, Antropología e Historia del Perú",
+      "Museo Nacional de la Cultura Peruana",
+      "Museo Amazónico",
+      "Museo de Sitio de Narihualá",
+      "Sala de Oro del Museo Municipal Vicús",
+      `Templo Museo "San Juan de Letrán"`,
+      `Templo Museo "Nuestra Señora de la Asunción"`,
+      "Museo Lítico de Pukara",
+      "Museo Departamental San Martín",
+      "Museo de Sitio Las Peañas",
+      "Museo Histórico Regional de Tacna",
+      `Museo de Sitio Cabeza de Vaca "Gran Chilimasa"`,
+      "Lugar de la Memoria, la tolerancia y la inclusión social"
+    ].includes(d.Subcategoria) && (d["Categoria ID"] === 2)){
+      return "#E84A5F";
+    }
+/*
+    else if ([
+      `Sala de Exhibición "Gilberto Tenorio Ruiz"`,
+      "Sala de Exhibición de Pikillaqta",
+      "Sala de Exhibición de la Zona Arqueológica Monumental de Kotosh",
+      `Sala de Exhibición del Sitio Arqueológico "Tambo Colorado"`,
+      "Sala de Oro del Museo Municipal Vicús",
+      "Sala de Exhibición del Monumento Arqueológico Willkawaín",
+      "Casa de la Gastronomía Peruana y Museo Postal y Filatélico del Perú"
+    //].includes(d.Subcategoria) && ([39, 51, 59, 61, 85, 101, 102].includes(d["Subcategoria ID"]))) {
+    ].includes(d.Subcategoria) && (["Total", "Nacional", "Extranjero"].includes(d["Categoria"]))) {
+      return `/icons/visualizations/Museos y salas de exposicion visitados/sala_de_exposicion.png`;
+    }
+*/
   }
 
   if (key === "Fuerza laboral") {
@@ -462,12 +670,27 @@ export const findColorV2 = (key, d) => {
     ].includes(d.Categoria)) {
       return colors["Percepcion delitos"][d["Categoria ID"]];
     }
+
+    if (d["Indicador ID"] === 18 && [
+      "No sabe",
+      "Continuará igual de bien",
+      "Continuará igual de mal",
+      "Empeorará",
+      "Mejorará"
+    ].includes(d.Categoria)) {
+      return colors["Percepcion delitos 2019"][d["Categoria ID"]];
+    }
+
     else if (["01", "02", "03", "04", "05", "06", "07", "08", "09", "10",
               "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
               "21", "22", "23", "24", "25"
     ].includes(d["Departamento ID"])) {
       return colors["Departamento"][d["Departamento ID"]];
     }
+  }
+
+  if (key === "Nacion") {
+    return "#F08A5D";
   }
 
   if (key === "Indicador") {
@@ -820,6 +1043,20 @@ export const findColorV2 = (key, d) => {
       return colors["Turistas en establecimientos de hospedaje"][d["Indicador ID"]];
     }
 
+    else if ([
+      "Hogares agrícolas con riego tecnificado",
+      "Hogares agrícolas que tuvieron inversión (gasto en fertilizantes, insecticidas y semillas)",
+      "Hogares agrícolas que tuvieron inversión en asistencia técnica"
+    ].includes(d.Indicador)) {
+      return colors["Tecnologia agricola"][d["Indicador ID"]];
+    }
+
+    else if ([
+      "Hogares agrícolas que producen subproductos agrícolas",
+      "Hogares pecuarios que producen subproductos pecuarios"
+    ].includes(d.Indicador)) {
+      return colors["Subproductos agropecuarios"][d["Indicador ID"]];
+    }
 
 
   }
@@ -839,7 +1076,12 @@ export const findColorV2 = (key, d) => {
       return colors["Venta interna de productos pesqueros"][d["Tipo ID"]];
     }
 
-
+    else if ([
+      "Nacional",
+      "Extranjero"
+    ].includes(d.Tipo)) {
+      return colors["Patrimonio cultural segun tipo de visita"][d["Tipo ID"]];
+    }
 
 
   }
@@ -1025,6 +1267,18 @@ export const findColorV2 = (key, d) => {
   ].includes(d.Categoria)) {
     return colors["Percepcion delitos"][d["Categoria ID"]];
   }
+
+  if (key === "Industria" && d["Indicador ID"] === 18 && [
+    "No sabe",
+    "Continuará igual de bien",
+    "Continuará igual de mal",
+    "Empeorará",
+    "Mejorará"
+  ].includes(d.Categoria)) {
+    return colors["Percepcion delitos 2019"][d["Categoria ID"]];
+  }
+
+
 
   if (key === "Industria" && d.Indicador === "Porcentaje de empresas por principal mercado donde vende su principal producto o servicio") {
     return colors["Composicion empresarial"][d["Categoria ID"]];
@@ -1575,8 +1829,170 @@ export const findIconV2 = (key, d) => {
       return `/icons/visualizations/Desembarque de recursos maritimos segun especies/${d["Categoria ID"]}.png`;
     }
 
+    else if (d.Categoria === "Nacional" && d["Categoria ID"] === 1) return `/icons/visualizations/Museos y salas de exposicion visitados/1.png`;
+    else if (d.Categoria === "Extranjero" && d["Categoria ID"] === 2) return `/icons/visualizations/Museos y salas de exposicion visitados/2.png`;
 
   }
+
+  if (key === "Subcategoria") {
+    if ([
+      "Parque Arqueológico Machu Picchu",
+      "Monumento Arqueológico de Moray",
+      "Zona Arqueológica Monumental Huaca del Sol y de la Luna",
+      "Complejo Arqueológico Chan Chan (Palacio Nik-an)",
+      "Zona Arqueológica Monumental Chavín de Huantar",
+      "Parque Arqueológico Tipon",
+      "Centro Arqueológico Ventanilla de Otuzco",
+      "Sitio Arqueológico de Sillustani",
+      "Reserva Arqueológica Líneas y Geoglifos de Nazca",
+      "Paisaje Cultural Arqueológico Cumbemayo"
+    ].includes(d.Subcategoria) && ([87, 88, 89, 91, 93, 94, 95, 96, 97, 98].includes(d["Subcategoria ID"]))) {
+      return `/icons/visualizations/Patrimonio cultural segun lugar arqueologico/sitio_arqueologico.png`;
+    }
+
+    else if ([
+      "Zona Arqueológica Monumental Kuélap",
+      "Zona Arqueológica Monumental Chavín de Huantar",
+      "Sitio Arqueológico Pañamarca",
+      "Sitio Arqueológico Saihuite",
+      "Complejo Arqueológico Toro Muerto",
+      "Complejo Arqueológico de Uyo Uyo",
+      "Sitio Arqueológico Intihuatana",
+      "Paisaje Cultural Arqueológico Cumbemayo",
+      "Centro Arqueológico Ventanilla de Otuzco",
+      "Monumento Arqueologico Kuntur Wasi",
+      "Parque Arqueológico Macchu Picchu (Ruta 1: Camino Inka: Piscacucho Km. 82)",
+      "Parque Arqueológico Macchu Picchu (Ruta 2: Camino Inka: Km. 88)",
+      "Parque Arqueológico Macchu Picchu (Ruta 5: Camino Iinka: Chanchabamba Km. 104)",
+      "Monumento Arqueológico de Raqchi",
+      "Monumento Arqueológico de Moray",
+      "Parque Arqueológico Tipon",
+      "Monumento Arqueológico de Tarawasi",
+      "Parque Arqueológico Nacional de Vilcabamba (Choquequirao)",
+      "Conjunto Arqueológico de Huchuy Qosco",
+      "Parque Arqueológico Machu Picchu",
+      "Parque Arqueológico Macchu Picchu (Ingreso Salkantay-Paucarcancha)",
+      "Zona Arqueológica Monumental de Garu",
+      "Huanucopampa",
+      "Sitio Arqueológico Pampas de Huayurí",
+      "Monumento Arqueológico de Palpa (Lineas y Geoglifos de Sacramento)",
+      "Sitio Arqueológico Centinela",
+      "Reserva Arqueológica Líneas y Geoglifos de Nazca",
+      "Complejo Arqueológico Chan Chan (Palacio Nik-an)",
+      "Zona Arqueológica Monumental Huaca del Sol y de la Luna",
+      "Zona Arqueológica Monumental El Brujo",
+      "Sitio Arqueológico Huaca Arco Iris (Huaca El Dragón)",
+      "Sitio Arqueológico Cerro Ventarrón",
+      "Sitio Arqueológico Caral",
+      "Zona Arqueológica de Huaycan de Cieneguilla",
+      "Complejo Arqueológico Mateo Salado",
+      "Sitio Arqueológico de Cerro Baúl",
+      "Monumento Arqueológico de Cutimbo",
+      "Sitio Arqueológico de Sillustani"
+    ].includes(d.Subcategoria) && ([
+      1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+      21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38].includes(d["Subcategoria ID"]))) {
+      return `/icons/visualizations/Patrimonio cultural segun lugar arqueologico/complejo_arqueologico.png`;
+    }
+
+    else if ([
+      "Museo Nacional de Arqueología, Antropología e Historia del Perú",
+      "Museo Tumbas Reales de Sipán",
+      "Museo de Sitio Pucllana",
+      "Museo de Sitio Pachacamac",
+      "Museo Histórico Regional de Cusco",
+      "Museo Arqueológico y Etnográfico del Conjunto Monumental Belén",
+      "Museo de Sitio Wari",
+      "Museo Nacional Chavín",
+      "Museo Lítico de Pukara",
+      "Museo de Sitio Túcume",
+      "Lugar de la Memoria, la Tolerancia y la Inclusión Social",
+      "Museo de la Nación"
+    ].includes(d.Subcategoria) && ([99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109].includes(d["Subcategoria ID"]))) {
+      return `/icons/visualizations/Museos y salas de exposicion mas visitados/museo.png`;
+    }
+
+    else if ([
+      "Sala de Exhibición de la Zona Arqueológica Monumental de Kotosh",
+      "Sala de Exhibición del Monumento Arqueológico de Willkawaín",
+      `Sala de Exhibición "Gilberto Tenorio Ruiz"`,
+      "Sala de Exhibición de Pikillaqta",
+      `Sala de Exhibición del Sitio Arqueológico "Tambo Colorado"`,
+      "Sala de Oro del Museo Municipal Vicús",
+      "Casa de la Gastronomía Peruana y Museo Postal y Filatélico del Perú"
+    ].includes(d.Subcategoria) && ([110, 111, 112, 113, 114, 115, 116, 117].includes(d["Subcategoria ID"]))) {
+      return `/icons/visualizations/Museos y salas de exposicion mas visitados/sala_de_exposicion.png`;
+    }
+/*
+    else if ([
+      `Museo Arqueológico de Áncash "Augusto Soriano Infante"`,
+      `Museo Regional de Casma "Max Uhle"`,
+      "Museo de Antropolgía, Arqueología e Historia Natural de Ranrahirca",
+      "Museo Nacional Chavín",
+      "Museo Arqueológico Zonal de Cabana",
+      "Museo Arqueológico, Antropológico de Apurímac",
+      "Museo de Sitio Wari",
+      "Museo de Sitio de Quinua",
+      `Museo Histórico Regional "Hipólito Unanue"`,
+      "Museo Arqueológico y Etnográfico del Conjunto Monumental Belén",
+      "Museo Histórico Regional del Cusco",
+      "Museo de Sitio de Chinchero",
+      `Museo de Sitio "Manuel Chávez Ballón"`,
+      "Museo Amazónico Andino Qhapaq Ñan Quillabamba",
+      "Museo de los Pueblos de Paucartambo",
+      `Museo Regional "Daniel Hernández Morillo"`,
+      `Museo Arqueológico "Samuel Humberto Espinoza Lozano"`,
+      `Museo Regional de Ica "Adolfo Bermúdez Jenkins"`,
+      `Museo de Sitio "Julio C. Tello" de Paracas`,
+      "Museo Regional de Arqueología de Junín",
+      "Museo de Sitio de Wariwillka",
+      "Museo de Sitio de Chan Chan",
+      "Museo Arqueológico Nacional Brüning",
+      "Museo Tumbas Reales de Sipán",
+      "Museo Nacional de Sicán",
+      "Museo de Sitio Túcume",
+      "Museo de Sitio Huaca Rajada - Sipán",
+      "Museo de Sitio Huaca Chotuna - Chornancap",
+      `Museo de Sitio "Arturo Jiménez Borja" - Puruchuco`,
+      "Museo de Sitio Huallamarca",
+      "Museo de Sitio Pachacamac",
+      `Museo de Sitio "El Mirador del Cerro San Cristóbal"`,
+      "Museo de Arte Italiano",
+      "Museo de Sitio Huaca Pucllana",
+      "Museo de la Nación",
+      `Casa Museo "José Carlos Mariátegui"`,
+      "Museo Nacional de Arqueología, Antropología e Historia del Perú",
+      "Museo Nacional de la Cultura Peruana",
+      "Museo Amazónico",
+      "Museo de Sitio de Narihualá",
+      "Sala de Oro del Museo Municipal Vicús",
+      `Templo Museo "San Juan de Letrán"`,
+      `Templo Museo "Nuestra Señora de la Asunción"`,
+      "Museo Lítico de Pukara",
+      "Museo Departamental San Martín",
+      "Museo de Sitio Las Peañas",
+      "Museo Histórico Regional de Tacna",
+      `Museo de Sitio Cabeza de Vaca "Gran Chilimasa"`,
+      "Lugar de la Memoria, la tolerancia y la inclusión social"
+    ].includes(d.Subcategoria) && (["Total", "Nacional", "Extranjero"].includes(d["Categoria"]))) {
+      return `/icons/visualizations/Museos y salas de exposicion visitados/museo.png`;
+    }
+
+    else if ([
+      `Sala de Exhibición "Gilberto Tenorio Ruiz"`,
+      "Sala de Exhibición de Pikillaqta",
+      "Sala de Exhibición de la Zona Arqueológica Monumental de Kotosh",
+      `Sala de Exhibición del Sitio Arqueológico "Tambo Colorado"`,
+      "Sala de Oro del Museo Municipal Vicús",
+      "Sala de Exhibición del Monumento Arqueológico Willkawaín",
+      "Casa de la Gastronomía Peruana y Museo Postal y Filatélico del Perú"
+    //].includes(d.Subcategoria) && ([39, 51, 59, 61, 85, 101, 102].includes(d["Subcategoria ID"]))) {
+    ].includes(d.Subcategoria) && (["Total", "Nacional", "Extranjero"].includes(d["Categoria"]))) {
+      return `/icons/visualizations/Museos y salas de exposicion visitados/sala_de_exposicion.png`;
+    }
+*/
+  }
+
 
   if (key === "Short Division") {
     return `/icons/visualizations/Division/png/white/${d["Division ID"]}.png`;
@@ -1692,12 +2108,27 @@ export const findIconV2 = (key, d) => {
     ].includes(d.Categoria)) {
       return `/icons/visualizations/Percepcion delitos/${d["Categoria ID"]}.png`;
     }
+
+    else if (d["Indicador ID"] === 18 && [
+      "No sabe",
+      "Continuará igual de bien",
+      "Continuará igual de mal",
+      "Empeorará",
+      "Mejorará"
+    ].includes(d.Categoria)) {
+      return `/icons/visualizations/Percepcion delitos 2019/${d["Categoria ID"]}.png`;
+    }
+
     else if (["01", "02", "03", "04", "05", "06", "07", "08", "09", "10",
               "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
               "21", "22", "23", "24", "25"
     ].includes(d["Departamento ID"])) {
       return `/icons/visualizations/Departamentos/${d["Departamento ID"]}.png`;
     }
+  }
+
+  if (key === "Nacion") {
+      return `/icons/visualizations/Nacion/per.png`;
   }
 
   if (key === "Indicador") {
@@ -2048,7 +2479,20 @@ export const findIconV2 = (key, d) => {
       return `/icons/visualizations/Turistas en establecimientos de hospedaje/${d["Indicador ID"]}.png`;
     }
 
+    else if ([
+      "Hogares agrícolas con riego tecnificado",
+      "Hogares agrícolas que tuvieron inversión (gasto en fertilizantes, insecticidas y semillas)",
+      "Hogares agrícolas que tuvieron inversión en asistencia técnica"
+    ].includes(d.Indicador)) {
+      return `/icons/visualizations/Tecnologia agricola/${d["Indicador ID"]}.png`;
+    }
 
+    else if ([
+      "Hogares agrícolas que producen subproductos agrícolas",
+      "Hogares pecuarios que producen subproductos pecuarios"
+    ].includes(d.Indicador)) {
+      return `/icons/visualizations/Subproductos agropecuarios/${d["Indicador ID"]}.png`;
+    }
 
   }
 
@@ -2066,6 +2510,14 @@ export const findIconV2 = (key, d) => {
     ].includes(d.Tipo)) {
       return `/icons/visualizations/Venta interna de productos pesqueros/${d["Tipo ID"]}.png`;
     }
+
+    else if ([
+      "Nacional",
+      "Extranjero"
+    ].includes(d.Tipo)) {
+      return `/icons/visualizations/Patrimonio cultural segun tipo de visita/${d["Tipo ID"]}.png`;
+    }
+
 
   }
 
@@ -2251,6 +2703,16 @@ export const findIconV2 = (key, d) => {
     "Siguieron igual"
   ].includes(d.Categoria)) {
     return `/icons/visualizations/Percepcion delitos/${d["Categoria ID"]}.png`;
+  }
+
+  if (key === "Industria" && d["Indicador ID"] === 18 && [
+    "No sabe",
+    "Continuará igual de bien",
+    "Continuará igual de mal",
+    "Empeorará",
+    "Mejorará"
+  ].includes(d.Categoria)) {
+    return `/icons/visualizations/Percepcion delitos 2019/${d["Categoria ID"]}.png`;
   }
 
   if (key === "Industria" && d.Indicador === "Porcentaje de empresas por principal mercado donde vende su principal producto o servicio") {
@@ -2463,8 +2925,6 @@ export const findIconV2 = (key, d) => {
     }
 
     else if ([
-      "Hilatura, Tejedura y Acabados de Productos Textiles",
-      "Fabricación de Otros Productos Textiles",
       "Hilatura, Tejedura y Acabados de Productos Textiles",
       "Fabricación de Otros Productos Textiles",
       "Fabricación de prendas de vestir, excepto prendas de piel",
