@@ -185,9 +185,7 @@
     font-size: var(--font-xs);
     font-weight: 400;
     justify-content: flex-end;
-    margin-top: var(--gutter-lg);
-    margin-right: calc(var(--gutter-xxl) + var(--gutter-md));
-    margin-bottom: var(--gutter-xs);
+    margin: var(--gutter-xs) 2rem;
 
     @mixin max-md {
       justify-content: flex-start !important;
@@ -213,12 +211,6 @@
 
     @mixin max-md {
       padding: var(--gutter-xs) var(--gutter-md);
-    }
-
-    /* handle overflow on big screens */
-    @mixin min-xs {
-      @mixin vertical-overflow-container;
-      height: 100%;
     }
   }
 

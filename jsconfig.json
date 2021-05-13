@@ -6,9 +6,10 @@
     "jsx": "react",
     "moduleResolution": "node",
     "strictNullChecks": true,
+    "resolveJsonModule": true,
     "paths": {
-      "$root/*": ["./*"],
-      "$app/*": ["./app/*"]
+      "$app/*": ["./app/*"],
+      "$root/*": ["./*"]
     },
     "target": "es2015"
   },

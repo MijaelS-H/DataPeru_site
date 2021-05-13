@@ -1,9 +1,13 @@
-@import "../helpers/mixins.css";
+@import "../../helpers/mixins.css";
 
 .ep-profile {
   flex: 1 1 12.5rem;
   color: var(--dark-1);
   text-align: center;
+
+  &.virtual-list {
+    padding-bottom: 160px;
+  }
 
   & .ep-profile-no-results {
     height: 100%;
@@ -35,6 +39,7 @@
     grid-gap: var(--gutter-md) var(--gutter-md);
     grid-auto-flow: row dense;
     padding: 0 0 var(--gutter-sm);
+    overflow: visible;
 
     @mixin max-md {
       padding: 0 !important;
