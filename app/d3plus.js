@@ -107,7 +107,7 @@ const growthPct = d => `${formatAbbreviate(d * 100)}%`;
 const pesoPE = d => `S/ ${formatAbbreviate(d * 100)}`;
 
 export const findColorV2 = (key, d) => {
-
+  //console.log(key,d);
   if (key === "Pais" || key === "ISO 3") {
     if (!Array.isArray(d["Pais ID"])) return "transparent";
     else return colors.Continente[d["Continente ID"]];
@@ -236,6 +236,16 @@ export const findColorV2 = (key, d) => {
 
   if (key === "Year" && Object.keys(d).includes("Producto") && Object.keys(d).includes("Unidad")) {
     return colors["Producto Cuero"][d["Producto ID"]];
+  }
+
+  if (key === "Year" && Object.keys(d).includes("Tipo de Gasto")) {
+    if (d.Year === 2014) return "#DE4463";
+    if (d.Year === 2015) return "#821752";
+  }
+
+  if (key === "Year" && Object.keys(d).includes("Area de conocimiento")) {
+    if (d.Year === 2014) return "#C3AED6";
+    if (d.Year === 2015) return "#5D54A4";
   }
 
   if (key === "Categoria") {
@@ -448,6 +458,46 @@ export const findColorV2 = (key, d) => {
     else if (d.Categoria === "Nacional" && d["Categoria ID"] === 1) return "#FF847C";
     else if (d.Categoria === "Extranjero" && d["Categoria ID"] === 2) return "#E84A5F";
 
+    else if ([
+      "Falta de tiempo",
+      "Falta de interés",
+      "Falta de dinero",
+      "No tiene información oportuna",
+      "No hay ofertas",
+      "Otra"
+    ].includes(d.Categoria)) {
+      return colors["Razones no acceder elementos culturales"][d["Categoria ID"]];
+    }
+
+    else if ([
+      "Muy baja diversidad en el consumo",
+      "Baja diversidad en el consumo",
+      "Media diversidad en el consumo",
+      "Alta diversidad en el consumo"
+    ].includes(d.Categoria)) {
+      return colors["Diversidad de la demanda cultural"][d["Categoria ID"]];
+    }
+
+    else if ([
+      "Hombres",
+      "Mujeres"
+    ].includes(d.Categoria)) {
+      return colors["Cultura pueblos indigenas"][d["Categoria ID"]];
+    }
+
+    else if ([
+      "Otros",
+      "Entidades Públicas",
+      "Medio De Comunicación",
+      "Espacios Públicos",
+      "Redes Sociales",
+      "Lugares De Consumo",
+      "Centros Laborales",
+      "Centros Educativos"
+    ].includes(d.Categoria)) {
+      return colors["Alertas contra el racismo"][d["Categoria ID"]];
+    }
+
   }
 
   if (key === "Subcategoria") {
@@ -582,77 +632,17 @@ export const findColorV2 = (key, d) => {
       return colors["Museos y salas de exposicion mas visitados"][d["Subcategoria ID"]];
     }
 
-
-
-
-/*
     else if ([
-      `Museo Arqueológico de Áncash "Augusto Soriano Infante"`,
-      `Museo Regional de Casma "Max Uhle"`,
-      "Museo de Antropolgía, Arqueología e Historia Natural de Ranrahirca",
-      "Museo Nacional Chavín",
-      "Museo Arqueológico Zonal de Cabana",
-      "Museo Arqueológico, Antropológico de Apurímac",
-      "Museo de Sitio Wari",
-      "Museo de Sitio de Quinua",
-      `Museo Histórico Regional "Hipólito Unanue"`,
-      "Museo Arqueológico y Etnográfico del Conjunto Monumental Belén",
-      "Museo Histórico Regional del Cusco",
-      "Museo de Sitio de Chinchero",
-      `Museo de Sitio "Manuel Chávez Ballón"`,
-      "Museo Amazónico Andino Qhapaq Ñan Quillabamba",
-      "Museo de los Pueblos de Paucartambo",
-      `Museo Regional "Daniel Hernández Morillo"`,
-      `Museo Arqueológico "Samuel Humberto Espinoza Lozano"`,
-      `Museo Regional de Ica "Adolfo Bermúdez Jenkins"`,
-      `Museo de Sitio "Julio C. Tello" de Paracas`,
-      "Museo Regional de Arqueología de Junín",
-      "Museo de Sitio de Wariwillka",
-      "Museo de Sitio de Chan Chan",
-      "Museo Arqueológico Nacional Brüning",
-      "Museo Tumbas Reales de Sipán",
-      "Museo Nacional de Sicán",
-      "Museo de Sitio Túcume",
-      "Museo de Sitio Huaca Rajada - Sipán",
-      "Museo de Sitio Huaca Chotuna - Chornancap",
-      `Museo de Sitio "Arturo Jiménez Borja" - Puruchuco`,
-      "Museo de Sitio Huallamarca",
-      "Museo de Sitio Pachacamac",
-      `Museo de Sitio "El Mirador del Cerro San Cristóbal"`,
-      "Museo de Arte Italiano",
-      "Museo de Sitio Huaca Pucllana",
-      "Museo de la Nación",
-      `Casa Museo "José Carlos Mariátegui"`,
-      "Museo Nacional de Arqueología, Antropología e Historia del Perú",
-      "Museo Nacional de la Cultura Peruana",
-      "Museo Amazónico",
-      "Museo de Sitio de Narihualá",
-      "Sala de Oro del Museo Municipal Vicús",
-      `Templo Museo "San Juan de Letrán"`,
-      `Templo Museo "Nuestra Señora de la Asunción"`,
-      "Museo Lítico de Pukara",
-      "Museo Departamental San Martín",
-      "Museo de Sitio Las Peañas",
-      "Museo Histórico Regional de Tacna",
-      `Museo de Sitio Cabeza de Vaca "Gran Chilimasa"`,
-      "Lugar de la Memoria, la tolerancia y la inclusión social"
-    ].includes(d.Subcategoria) && (d["Categoria ID"] === 2)){
-      return "#E84A5F";
+      "Orquesta Sinfónica Nacional del Perú",
+      "Orquesta Sinfónica Nacional Juvenil Bicentenario del Perú",
+      "Coro Nacional del Perú",
+      "Coro Nacional de Niños del Perú",
+      "Ballet Folclórico Nacional del Perú",
+      "Ballet Nacional del Perú"
+    ].includes(d.Subcategoria)) {
+      return colors["Espectaculos de cultura"][d["Subcategoria ID"]];
     }
-/*
-    else if ([
-      `Sala de Exhibición "Gilberto Tenorio Ruiz"`,
-      "Sala de Exhibición de Pikillaqta",
-      "Sala de Exhibición de la Zona Arqueológica Monumental de Kotosh",
-      `Sala de Exhibición del Sitio Arqueológico "Tambo Colorado"`,
-      "Sala de Oro del Museo Municipal Vicús",
-      "Sala de Exhibición del Monumento Arqueológico Willkawaín",
-      "Casa de la Gastronomía Peruana y Museo Postal y Filatélico del Perú"
-    //].includes(d.Subcategoria) && ([39, 51, 59, 61, 85, 101, 102].includes(d["Subcategoria ID"]))) {
-    ].includes(d.Subcategoria) && (["Total", "Nacional", "Extranjero"].includes(d["Categoria"]))) {
-      return `/icons/visualizations/Museos y salas de exposicion visitados/sala_de_exposicion.png`;
-    }
-*/
+
   }
 
   if (key === "Fuerza laboral") {
@@ -1591,6 +1581,146 @@ export const findColorV2 = (key, d) => {
       }
     }
 
+    if ( key === "Manifestacion 1") {
+      if ([
+        "No reportado",
+        "Animación/mediación sociocultural",
+        "Artes escénicas - circo, teatro",
+        "Audiovisuales - cine, video y/u otros",
+        "Artes escénicas - danza",
+        "Artes visuales y artesanía",
+        "Interpretación ambiental",
+        "Celebración de festividades, fiestas tradicionales y/o rituales",
+        "Libro, lectura y/o escritura",
+        "Protección del patrimonio cultural y proyección de cultura local",
+        "Títeres",
+        "Comida / Gastronomía",
+        "Música",
+        "Deporte, recreación y/o juego",
+        "Comunicaciones (periodismo, radio, podcast y/u otra)",
+        "Tradición oral propia de pueblos indígenas u originarios"
+      ].includes(d["Manifestacion 1"]) && (
+        [99,  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16
+      ].includes(d["Manifestacion 1 ID"]))) {
+        return colors["Organizaciones que trabajan el arte y la cultura"][d["Manifestacion 1 ID"]];
+      }
+    }
+
+    if ( key === "Actividad 1") {
+      if ([
+        "Productora",
+        "Servicios conexos",
+        "Exhibidora",
+        "Distribuidora",
+        "Formación"
+      ].includes(d["Actividad 1"]) && (
+        ["1_1", "1_2", "1_3", "1_4", "1_5"
+      ].includes(d["Actividad 1 ID"]))) {
+        return colors["Empresas y organizaciones cinematograficas"][d["Actividad 1 ID"]];
+      }
+
+      else if ([
+        "Editorial",
+        "Cartonera",
+        "Librería",
+        "Distribuidora",
+        "Revista",
+        "Imprenta",
+        "Fondos Universitarios",
+        "Prensa",
+        "Autor-editor",
+        "Fanzine"
+      ].includes(d["Actividad 1"])) {
+        return colors["Agentes del ecosistema del libro"][d["Actividad 1 ID"]];
+      }
+
+    }
+
+    if ( key === "Cantidad Agentes") {
+      if ([
+        "Editorial",
+        "Cartonera",
+        "Librería",
+        "Distribuidora",
+        "Revista",
+        "Imprenta",
+        "Fondos Universitarios",
+        "Prensa",
+        "Autor-editor",
+        "Fanzine"
+      ].includes(d["Actividad 1"])) {
+        return colors["Agentes del ecosistema del libro"][d["Actividad 1 ID"]];
+      }
+    }
+
+    if ( key === "Names") {
+      if ([
+        "Espectáculos de teatro",
+        "Espectáculos de danza",
+        "Espectáculos de circo",
+        "Espectáculos musicales",
+        "Funciones de cine",
+        "Exposiciones de fotografía, pintura o galerías de arte",
+        "Ferias artesanales",
+        "Bibliotecas y/o salas de lectura",
+        "Ferias de libros",
+        "Festivales locales-tradicionales"
+      ].includes(d["Names"])) {
+        return colors["Demanda de servicios culturales"][d["Indicador ID"]];
+      }
+
+    }
+
+    if (key === "Estado Beneficio" && Object.keys(d).includes("Fase Cadena Valor")) {
+      return colors["Postulaciones segun fase de la cadena"][d["Estado Beneficio ID"]];
+    }
+
+    /*
+    if ( key === "Estado Beneficio") {
+      if ([
+        "No beneficiario",
+        "Beneficiario"
+      ].includes(d["Estado Beneficio"])) {
+        return colors["Postulaciones segun fase de la cadena"][d["Estado Beneficio ID"]];
+      }
+
+    }
+*/
+    if ( key === "Fase Cadena Valor") {
+      if ([
+        "Producción",
+        "Acceso",
+        "Creación",
+        "Circulación",
+        "Formación"
+      ].includes(d["Fase Cadena Valor"])) {
+        return colors["Postulaciones a estimulos economicos"][d["Fase Cadena Valor ID"]];
+      }
+    }
+
+    if ( key === "Clasificacion") {
+      if ([
+        "Institutos Públicos",
+        "Institutos de Educación Superior",
+        "Institutos de Salud",
+        "Centros de Investigación Privada sin Fines de Lucro",
+        "Sociedad de Responsabilidad Limitada",
+        "Sociedad Colectiva",
+        "Sociedad Anónima Cerrada",
+        "Sociedad Anónima Abierta",
+        "Pública",
+        "Asociación",
+        "Otra"
+      ].includes(d["Clasificacion"])) {
+        return colors["Centros de investigacion"][d["Clasificacion ID"]];
+      }
+
+    }
+
+    if ( key === "Tipo de gasto label") {
+      if      (d["Tipo de gasto label"] === "Gasto interno promedio en I+D") return "#FFD57E";
+      else if (d["Tipo de gasto label"] === "Gasto externo promedio en I+D") return "#FCA652";
+    }
 
   const id = d[`${key} ID`];
 
@@ -1611,7 +1741,7 @@ export const tooltipTitle = (bgColor, imgUrl, title) => {
 };
 
 export const findIconV2 = (key, d) => {
-
+  console.log(key, d);
   // const options = {2: "export", 1: "import"};
   if (key === "Pais" || key === "ISO 3") {
     const icon = key === "Pais" && Array.isArray(d["Pais ID"]) ? d["Continente ID"] : d[`${key} ID`];
@@ -1621,6 +1751,15 @@ export const findIconV2 = (key, d) => {
   if (key === "Indicador Tributo" && Object.keys(d).includes("Indicador Tributo Parent ID")) {
     return `/icons/visualizations/Subindicador Tributo/${d["Indicador Tributo ID"]}.png`;
   }
+
+  if (key === "Year" && Object.keys(d).includes("Tipo de Gasto")) {
+    return `/icons/visualizations/Presupuesto para investigacion/1.png`;
+  }
+
+  if (key === "Year" && Object.keys(d).includes("Area de conocimiento")) {
+    return `/icons/visualizations/Proyectos de investigacion/1.png`;
+  }
+
 
   if (key === "Categoria") {
 
@@ -1832,10 +1971,105 @@ export const findIconV2 = (key, d) => {
     else if (d.Categoria === "Nacional" && d["Categoria ID"] === 1) return `/icons/visualizations/Museos y salas de exposicion visitados/1.png`;
     else if (d.Categoria === "Extranjero" && d["Categoria ID"] === 2) return `/icons/visualizations/Museos y salas de exposicion visitados/2.png`;
 
+    else if ([
+      "Falta de tiempo",
+      "Falta de interés",
+      "Falta de dinero",
+      "No tiene información oportuna",
+      "No hay ofertas",
+      "Otra"
+    ].includes(d.Categoria)) {
+      return `/icons/visualizations/Razones no acceder elementos culturales/${d["Categoria ID"]}.png`;
+    }
+
+    else if ([
+      "Muy baja diversidad en el consumo",
+      "Baja diversidad en el consumo",
+      "Media diversidad en el consumo",
+      "Alta diversidad en el consumo"
+    ].includes(d.Categoria)) {
+      return `/icons/visualizations/Diversidad de la demanda cultural/${d["Categoria ID"]}.png`;
+    }
+
+    else if ([
+      "Hombres",
+      "Mujeres"
+    ].includes(d.Categoria)) {
+      return `/icons/visualizations/Cultura pueblos indigenas/${d["Categoria ID"]}.png`;
+    }
+
+    else if ([
+      "Otros",
+      "Entidades Públicas",
+      "Medio De Comunicación",
+      "Espacios Públicos",
+      "Redes Sociales",
+      "Lugares De Consumo",
+      "Centros Laborales",
+      "Centros Educativos"
+    ].includes(d.Categoria)) {
+      return `/icons/visualizations/Alertas contra el racismo/${d["Categoria ID"]}.png`;
+    }
+
+
   }
 
   if (key === "Subcategoria") {
     if ([
+      `Museo Arqueológico de Áncash "Augusto Soriano Infante"`,
+      `Museo Regional de Casma "Max Uhle"`,
+      "Museo de Antropolgía, Arqueología e Historia Natural de Ranrahirca",
+      "Museo Nacional Chavín",
+      "Museo Arqueológico Zonal de Cabana",
+      "Museo Arqueológico, Antropológico de Apurímac",
+      "Museo de Sitio Wari",
+      "Museo de Sitio de Quinua",
+      `Museo Histórico Regional "Hipólito Unanue"`,
+      "Museo Arqueológico y Etnográfico del Conjunto Monumental Belén",
+      "Museo Histórico Regional del Cusco",
+      "Museo de Sitio de Chinchero",
+      `Museo de Sitio "Manuel Chávez Ballón"`,
+      "Museo Amazónico Andino Qhapaq Ñan Quillabamba",
+      "Museo de los Pueblos de Paucartambo",
+      `Museo Regional "Daniel Hernández Morillo"`,
+      `Museo Arqueológico "Samuel Humberto Espinoza Lozano"`,
+      `Museo Regional de Ica "Adolfo Bermúdez Jenkins"`,
+      `Museo de Sitio "Julio C. Tello" de Paracas`,
+      "Museo Regional de Arqueología de Junín",
+      "Museo de Sitio de Wariwillka",
+      "Museo de Sitio de Chan Chan",
+      "Museo Arqueológico Nacional Brüning",
+      "Museo Tumbas Reales de Sipán",
+      "Museo Nacional de Sicán",
+      "Museo de Sitio Túcume",
+      "Museo de Sitio Huaca Rajada - Sipán",
+      "Museo de Sitio Huaca Chotuna - Chornancap",
+      `Museo de Sitio "Arturo Jiménez Borja" - Puruchuco`,
+      "Museo de Sitio Huallamarca",
+      "Museo de Sitio Pachacamac",
+      `Museo de Sitio "El Mirador del Cerro San Cristóbal"`,
+      "Museo de Arte Italiano",
+      "Museo de Sitio Huaca Pucllana",
+      "Museo de la Nación",
+      `Casa Museo "José Carlos Mariátegui"`,
+      "Museo Nacional de Arqueología, Antropología e Historia del Perú",
+      "Museo Nacional de la Cultura Peruana",
+      "Museo Amazónico",
+      "Museo de Sitio de Narihualá",
+      "Sala de Oro del Museo Municipal Vicús",
+      `Templo Museo "San Juan de Letrán"`,
+      `Templo Museo "Nuestra Señora de la Asunción"`,
+      "Museo Lítico de Pukara",
+      "Museo Departamental San Martín",
+      "Museo de Sitio Las Peañas",
+      "Museo Histórico Regional de Tacna",
+      `Museo de Sitio Cabeza de Vaca "Gran Chilimasa"`,
+      "Lugar de la Memoria, la tolerancia y la inclusión social"
+    ].includes(d.Subcategoria) && (d["Categoria ID"] === 3)) {
+      return `/icons/visualizations/Museos y salas de exposicion mas visitados/museo.png`;
+    }
+
+    else if ([
       "Parque Arqueológico Machu Picchu",
       "Monumento Arqueológico de Moray",
       "Zona Arqueológica Monumental Huaca del Sol y de la Luna",
@@ -1908,7 +2142,7 @@ export const findIconV2 = (key, d) => {
       "Museo de Sitio Túcume",
       "Lugar de la Memoria, la Tolerancia y la Inclusión Social",
       "Museo de la Nación"
-    ].includes(d.Subcategoria) && ([99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109].includes(d["Subcategoria ID"]))) {
+    ].includes(d.Subcategoria) && ([99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110].includes(d["Subcategoria ID"]))) {
       return `/icons/visualizations/Museos y salas de exposicion mas visitados/museo.png`;
     }
 
@@ -1923,74 +2157,22 @@ export const findIconV2 = (key, d) => {
     ].includes(d.Subcategoria) && ([110, 111, 112, 113, 114, 115, 116, 117].includes(d["Subcategoria ID"]))) {
       return `/icons/visualizations/Museos y salas de exposicion mas visitados/sala_de_exposicion.png`;
     }
-/*
-    else if ([
-      `Museo Arqueológico de Áncash "Augusto Soriano Infante"`,
-      `Museo Regional de Casma "Max Uhle"`,
-      "Museo de Antropolgía, Arqueología e Historia Natural de Ranrahirca",
-      "Museo Nacional Chavín",
-      "Museo Arqueológico Zonal de Cabana",
-      "Museo Arqueológico, Antropológico de Apurímac",
-      "Museo de Sitio Wari",
-      "Museo de Sitio de Quinua",
-      `Museo Histórico Regional "Hipólito Unanue"`,
-      "Museo Arqueológico y Etnográfico del Conjunto Monumental Belén",
-      "Museo Histórico Regional del Cusco",
-      "Museo de Sitio de Chinchero",
-      `Museo de Sitio "Manuel Chávez Ballón"`,
-      "Museo Amazónico Andino Qhapaq Ñan Quillabamba",
-      "Museo de los Pueblos de Paucartambo",
-      `Museo Regional "Daniel Hernández Morillo"`,
-      `Museo Arqueológico "Samuel Humberto Espinoza Lozano"`,
-      `Museo Regional de Ica "Adolfo Bermúdez Jenkins"`,
-      `Museo de Sitio "Julio C. Tello" de Paracas`,
-      "Museo Regional de Arqueología de Junín",
-      "Museo de Sitio de Wariwillka",
-      "Museo de Sitio de Chan Chan",
-      "Museo Arqueológico Nacional Brüning",
-      "Museo Tumbas Reales de Sipán",
-      "Museo Nacional de Sicán",
-      "Museo de Sitio Túcume",
-      "Museo de Sitio Huaca Rajada - Sipán",
-      "Museo de Sitio Huaca Chotuna - Chornancap",
-      `Museo de Sitio "Arturo Jiménez Borja" - Puruchuco`,
-      "Museo de Sitio Huallamarca",
-      "Museo de Sitio Pachacamac",
-      `Museo de Sitio "El Mirador del Cerro San Cristóbal"`,
-      "Museo de Arte Italiano",
-      "Museo de Sitio Huaca Pucllana",
-      "Museo de la Nación",
-      `Casa Museo "José Carlos Mariátegui"`,
-      "Museo Nacional de Arqueología, Antropología e Historia del Perú",
-      "Museo Nacional de la Cultura Peruana",
-      "Museo Amazónico",
-      "Museo de Sitio de Narihualá",
-      "Sala de Oro del Museo Municipal Vicús",
-      `Templo Museo "San Juan de Letrán"`,
-      `Templo Museo "Nuestra Señora de la Asunción"`,
-      "Museo Lítico de Pukara",
-      "Museo Departamental San Martín",
-      "Museo de Sitio Las Peañas",
-      "Museo Histórico Regional de Tacna",
-      `Museo de Sitio Cabeza de Vaca "Gran Chilimasa"`,
-      "Lugar de la Memoria, la tolerancia y la inclusión social"
-    ].includes(d.Subcategoria) && (["Total", "Nacional", "Extranjero"].includes(d["Categoria"]))) {
-      return `/icons/visualizations/Museos y salas de exposicion visitados/museo.png`;
-    }
 
     else if ([
-      `Sala de Exhibición "Gilberto Tenorio Ruiz"`,
-      "Sala de Exhibición de Pikillaqta",
-      "Sala de Exhibición de la Zona Arqueológica Monumental de Kotosh",
-      `Sala de Exhibición del Sitio Arqueológico "Tambo Colorado"`,
-      "Sala de Oro del Museo Municipal Vicús",
-      "Sala de Exhibición del Monumento Arqueológico Willkawaín",
-      "Casa de la Gastronomía Peruana y Museo Postal y Filatélico del Perú"
-    //].includes(d.Subcategoria) && ([39, 51, 59, 61, 85, 101, 102].includes(d["Subcategoria ID"]))) {
-    ].includes(d.Subcategoria) && (["Total", "Nacional", "Extranjero"].includes(d["Categoria"]))) {
-      return `/icons/visualizations/Museos y salas de exposicion visitados/sala_de_exposicion.png`;
+      "Orquesta Sinfónica Nacional del Perú",
+      "Orquesta Sinfónica Nacional Juvenil Bicentenario del Perú",
+      "Coro Nacional del Perú",
+      "Coro Nacional de Niños del Perú",
+      "Ballet Folclórico Nacional del Perú",
+      "Ballet Nacional del Perú"
+    ].includes(d.Subcategoria)) {
+      return `/icons/visualizations/Espectaculos de cultura/${d["Subcategoria ID"]}.png`;
     }
-*/
+
+    else if (d.Categoria === "Localidades" && d["Categoria ID"] === 33) return `/icons/visualizations/Cultura pueblos indigenas/33.png`;
+
+
+
   }
 
 
@@ -2440,7 +2622,7 @@ export const findIconV2 = (key, d) => {
       return `/icons/visualizations/Transformacion de productos pesqueros/${d["Indicador ID"]}.png`;
     }
 
-    if (d.Indicador === "Productos frescos") return "/icons/visualizations/Transformacion de productos pesqueros/6.png";
+    else if (d.Indicador === "Productos frescos") return "/icons/visualizations/Transformacion de productos pesqueros/6.png";
 
     else if ([
       "Entrada de turistas",
@@ -3030,7 +3212,146 @@ export const findIconV2 = (key, d) => {
     }
   }
 
+  if ( key === "Manifestacion 1") {
+    if ([
+      "No reportado",
+      "Animación/mediación sociocultural",
+      "Artes escénicas - circo, teatro",
+      "Audiovisuales - cine, video y/u otros",
+      "Artes escénicas - danza",
+      "Artes visuales y artesanía",
+      "Interpretación ambiental",
+      "Celebración de festividades, fiestas tradicionales y/o rituales",
+      "Libro, lectura y/o escritura",
+      "Protección del patrimonio cultural y proyección de cultura local",
+      "Títeres",
+      "Comida / Gastronomía",
+      "Música",
+      "Deporte, recreación y/o juego",
+      "Comunicaciones (periodismo, radio, podcast y/u otra)",
+      "Tradición oral propia de pueblos indígenas u originarios"
+    ].includes(d["Manifestacion 1"]) && (
+      [99,  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16
+    ].includes(d["Manifestacion 1 ID"]))) {
+      return `/icons/visualizations/Organizaciones que trabajan el arte y la cultura/${d["Manifestacion 1 ID"]}.png`
+    }
+  }
 
+  if ( key === "Actividad 1") {
+    if ([
+      "Productora",
+      "Servicios conexos",
+      "Exhibidora",
+      "Distribuidora",
+      "Formación"
+    ].includes(d["Actividad 1"]) && (
+      ["1_1", "1_2", "1_3", "1_4", "1_5"
+    ].includes(d["Actividad 1 ID"]))) {
+      return `/icons/visualizations/Empresas y organizaciones cinematograficas/${d["Actividad 1 ID"]}.png`
+    }
+
+    else if ([
+      "Editorial",
+      "Cartonera",
+      "Librería",
+      "Distribuidora",
+      "Revista",
+      "Imprenta",
+      "Fondos Universitarios",
+      "Prensa",
+      "Autor-editor",
+      "Fanzine"
+    ].includes(d["Actividad 1"])) {
+      return `/icons/visualizations/Agentes del ecosistema del libro/${d["Actividad 1 ID"]}.png`
+    }
+
+  }
+
+  if ( key === "Cantidad Agentes") {
+    if ([
+      "Editorial",
+      "Cartonera",
+      "Librería",
+      "Distribuidora",
+      "Revista",
+      "Imprenta",
+      "Fondos Universitarios",
+      "Prensa",
+      "Autor-editor",
+      "Fanzine"
+    ].includes(d["Actividad 1"])) {
+      return `/icons/visualizations/Agentes del ecosistema del libro/${d["Actividad 1 ID"]}.png`
+    }
+
+  }
+
+  if ( key === "Names") {
+    if ([
+      "Espectáculos de teatro",
+      "Espectáculos de danza",
+      "Espectáculos de circo",
+      "Espectáculos musicales",
+      "Funciones de cine",
+      "Exposiciones de fotografía, pintura o galerías de arte",
+      "Ferias artesanales",
+      "Bibliotecas y/o salas de lectura",
+      "Ferias de libros",
+      "Festivales locales-tradicionales"
+    ].includes(d["Names"])) {
+      return `/icons/visualizations/Demanda de servicios culturales/${d["Indicador ID"]}.png`
+    }
+
+  }
+
+  if (key === "Estado Beneficio" && Object.keys(d).includes("Fase Cadena Valor")) {
+    return `/icons/visualizations/Postulaciones segun fase de la cadena/${d["Estado Beneficio ID"]}.png`;
+  }
+/*
+  if ( key === "Estado Beneficio") {
+    if ([
+      "No beneficiario",
+      "Beneficiario"
+    ].includes(d["Estado Beneficio"])) {
+      return `/icons/visualizations/Postulaciones segun fase de la cadena/${d["Estado Beneficio ID"]}.png`
+    }
+
+  }
+*/
+  if ( key === "Fase Cadena Valor") {
+    if ([
+      "Producción",
+      "Acceso",
+      "Creación",
+      "Circulación",
+      "Formación"
+    ].includes(d["Fase Cadena Valor"])) {
+      return `/icons/visualizations/Postulaciones a estimulos economicos/${d["Fase Cadena Valor ID"]}.png`
+    }
+  }
+
+  if ( key === "Clasificacion") {
+    if ([
+      "Institutos Públicos",
+      "Institutos de Educación Superior",
+      "Institutos de Salud",
+      "Centros de Investigación Privada sin Fines de Lucro",
+      "Sociedad de Responsabilidad Limitada",
+      "Sociedad Colectiva",
+      "Sociedad Anónima Cerrada",
+      "Sociedad Anónima Abierta",
+      "Pública",
+      "Asociación",
+      "Otra"
+    ].includes(d["Clasificacion"])) {
+      return `/icons/visualizations/Centros de investigacion/${d["Clasificacion ID"]}.png`
+    }
+
+  }
+
+  if ( key === "Tipo de gasto label") {
+    if      (d["Tipo de gasto label"] === "Gasto interno promedio en I+D") return `/icons/visualizations/Tipo de centro de investigacion/Interno.png`;
+    else if (d["Tipo de gasto label"] === "Gasto externo promedio en I+D") return `/icons/visualizations/Tipo de centro de investigacion/Externo.png`;
+  }
 
 
 
@@ -3099,6 +3420,7 @@ export default {
     //"Rubro ID": mean,
     "Sector ID": mean,
     "Subconcepto ID": mean,
+    "Estado Beneficio ID": mean,
     //"Subactividad economica ID": mean,
     "Trade Flow ID": mean,
     "Year": mean
