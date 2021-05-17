@@ -12,7 +12,6 @@ import "./HomeExplore.css";
 
 /** @type {React.FC<OwnProps>} */
 const HomeExplore = props => {
-
   const [tiles, setExplorerTiles] = useState([]);
 
   useEffect(() => {
@@ -28,10 +27,9 @@ const HomeExplore = props => {
       <div className="home-explore-tiles-elements">
         {tiles.map((d, i) =>
           <TileV2
-            background={""}
-            heightType={"large"}
+            color={""}
+            isLarge
             id={d.id}
-            ix={i}
             key={i}
             level={d.level}
             link={`/profile/${d.profile}/${d.slug}`}
