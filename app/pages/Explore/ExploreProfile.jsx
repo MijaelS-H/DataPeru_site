@@ -81,7 +81,7 @@ const ExploreProfile = props => {
     return (
       <div className="ep-profile">
         <div className="ep-profile-no-results">
-          {!isLoading && <img className="icon" src="/icons/no-results.png" alt="[Icon for no results]" />}
+          {!isLoading && <img className="icon" src="/icons/no-data.png" alt="[Icon for no results]" />}
           <p className="message">{message}</p>
         </div>
       </div>
