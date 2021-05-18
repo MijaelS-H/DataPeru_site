@@ -107,7 +107,7 @@ const growthPct = d => `${formatAbbreviate(d * 100)}%`;
 const pesoPE = d => `S/ ${formatAbbreviate(d * 100)}`;
 
 export const findColorV2 = (key, d) => {
-  //console.log(key,d);
+
   if (key === "Pais" || key === "ISO 3") {
     if (!Array.isArray(d["Pais ID"])) return "transparent";
     else return colors.Continente[d["Continente ID"]];
@@ -116,9 +116,26 @@ export const findColorV2 = (key, d) => {
   if (key === "Indicador Tributo" && Object.keys(d).includes("Indicador Tributo Parent ID")) {
     return colors["Subindicador Tributo"][d["Indicador Tributo ID"]];
   }
-
+/*
   if (key === "Componente" && Object.keys(d).includes("Flujo")) {
     return colors["Componente PIP"][d["Componente ID"]];
+  }
+*/
+  if (key === "Componente" && Object.keys(d).includes("Order")) {
+    if ([
+      "Capacitación y Asistencia Técnica",
+      "Equipamiento",
+      "Estudio de Impacto Ambiental",
+      "Estudio de Línea de Base",
+      "Expediente Técnico",
+      "Fortalecimiento de capacidades",
+      "Gestión del Proyecto",
+      "Infraestructura",
+      "Supervisión",
+      "Transferencia Tecnológica"
+    ].includes(d["Componente"])) {
+      return colors["Ejecucion Financiera"][d["Componente ID"]];
+    }
   }
 
   if (key === "Short Division") {
@@ -226,6 +243,26 @@ export const findColorV2 = (key, d) => {
     }
   }
 
+  if (key === "Seccion CITE") {
+    if      (d["Seccion CITE"] === "Agricultura, ganadería, caza y silvicultura"                                                                                   ) return "#8DD7D1"
+    else if (d["Seccion CITE"] === "Pesca"                                                                                                                         ) return "#ABC4FF"
+    else if (d["Seccion CITE"] === "Explotación de minas y canteras"                                                                                               ) return "#BC7D71"
+    else if (d["Seccion CITE"] === "Industrias manufactureras"                                                                                                     ) return "#FF7B61"
+    else if (d["Seccion CITE"] === "Producción y distribución de electricidad, gas y agua"                                                                         ) return "#E2D756"
+    else if (d["Seccion CITE"] === "Construcción"                                                                                                                  ) return "#C8B176"
+    else if (d["Seccion CITE"] === "Comercio al por mayor y al por menor; reparación de vehículos de motor, motocicletas, efectos personales y enseres domésticos" ) return "#AE69BC"
+    else if (d["Seccion CITE"] === "Hoteles y restaurantes"                                                                                                        ) return "#4E938E"
+    else if (d["Seccion CITE"] === "Transporte, almacenamiento y comunicaciones"                                                                                   ) return "#BC3346"
+    else if (d["Seccion CITE"] === "Intermediación financiera"                                                                                                     ) return "#785594"
+    else if (d["Seccion CITE"] === "Actividades inmobiliarias, empresariales y de alquiler"                                                                        ) return "#6E5E5F"
+    else if (d["Seccion CITE"] === "Administración pública y defensa; planes de seguridad social de afiliación obligatoria"                                        ) return "#36A2D7"
+    else if (d["Seccion CITE"] === "Enseñanza"                                                                                                                     ) return "#E290D1"
+    else if (d["Seccion CITE"] === "Servicios sociales y de salud"                                                                                                 ) return "#2C5388"
+    else if (d["Seccion CITE"] === "Otras actividades de servicios comunitarios, sociales y personales"                                                            ) return "#414A4F"
+    else if (d["Seccion CITE"] === "Organizaciones y órganos extraterritoriales"                                                                                   ) return "#A6B1E1"
+    else if (d["Seccion CITE"] === "No determinado"                                                                                                                ) return "#F7C59F"
+  }
+
   if (key === "Subcategoria" && Object.keys(d).includes("Servicios")) {
     return colors["Servicio CITE"][d["Subcategoria ID"]];
   }
@@ -237,7 +274,11 @@ export const findColorV2 = (key, d) => {
   if (key === "Year" && Object.keys(d).includes("Producto") && Object.keys(d).includes("Unidad")) {
     return colors["Producto Cuero"][d["Producto ID"]];
   }
-
+/*
+  if (key === "Producto" && Object.keys(d).includes("Produccion")) {
+    return colors["Dinamica Pecuaria"][d["Producto ID"]];
+  }
+*/
   if (key === "Year" && Object.keys(d).includes("Tipo de Gasto")) {
     if (d.Year === 2014) return "#DE4463";
     if (d.Year === 2015) return "#821752";
@@ -641,6 +682,19 @@ export const findColorV2 = (key, d) => {
       "Ballet Nacional del Perú"
     ].includes(d.Subcategoria)) {
       return colors["Espectaculos de cultura"][d["Subcategoria ID"]];
+    }
+
+    else if ([
+      "Asistencia técnica",
+      "Capacitación",
+      "Certificación de competencias laborales",
+      "Diseño y desarrollo de productos",
+      "Ensayos de laboratorio",
+      "Información tecnológica especializada",
+      "Promoción de investigación, desarrollo y gestión de la innovación (I+D+i)",
+      "Soporte productivo"
+    ].includes(d.Subcategoria)) {
+      return colors["Servicios brindados acumulados por mes"][d["Subcategoria ID"]];
     }
 
   }
@@ -1073,7 +1127,17 @@ export const findColorV2 = (key, d) => {
       return colors["Patrimonio cultural segun tipo de visita"][d["Tipo ID"]];
     }
 
+  }
 
+  if (key === "tipo") {
+    if      (d.tipo === "Salas de Teatro"               ) return "#5A5D9D";
+    else if (d.tipo === "Salas de Cine"                 ) return "#346473";
+    else if (d.tipo === "Centro / organización Cultura" ) return "#DAD773";
+    else if (d.tipo === "Escuelas de Arte"              ) return "#7ECBA1";
+    else if (d.tipo === "Editoriales"                   ) return "#AA8976";
+    else if (d.tipo === "Galerías"                      ) return "#DF7861";
+    else if (d.tipo === "Librerías"                     ) return "#AF0069";
+    else if (d.tipo === "Archivos"                      ) return "#A685E2";
   }
 
   if (key === "Measure") {
@@ -1267,8 +1331,6 @@ export const findColorV2 = (key, d) => {
   ].includes(d.Categoria)) {
     return colors["Percepcion delitos 2019"][d["Categoria ID"]];
   }
-
-
 
   if (key === "Industria" && d.Indicador === "Porcentaje de empresas por principal mercado donde vende su principal producto o servicio") {
     return colors["Composicion empresarial"][d["Categoria ID"]];
@@ -1675,17 +1737,6 @@ export const findColorV2 = (key, d) => {
       return colors["Postulaciones segun fase de la cadena"][d["Estado Beneficio ID"]];
     }
 
-    /*
-    if ( key === "Estado Beneficio") {
-      if ([
-        "No beneficiario",
-        "Beneficiario"
-      ].includes(d["Estado Beneficio"])) {
-        return colors["Postulaciones segun fase de la cadena"][d["Estado Beneficio ID"]];
-      }
-
-    }
-*/
     if ( key === "Fase Cadena Valor") {
       if ([
         "Producción",
@@ -1722,6 +1773,107 @@ export const findColorV2 = (key, d) => {
       else if (d["Tipo de gasto label"] === "Gasto externo promedio en I+D") return "#FCA652";
     }
 
+    if ( key === "Tipo empresa") {
+      if ([
+        "Gran empresa",
+        "Mediana empresa",
+        "Microempresa",
+        "Otros",
+        "Pequeña empresa",
+        "Persona natural"
+      ].includes(d["Tipo empresa"])) {
+        return colors["Clientes atendidos acumulados por mes"][d["Tipo empresa ID"]];
+      }
+    }
+
+    if ( key === "CITE") {
+      if ([
+        "CITEacuícola Ahuashiyacu",
+        "CITEagroindustrial Chavimochic",
+        "CITEagroindustrial Huallaga",
+        "CITEagroindustrial Ica",
+        "CITEagroindustrial Majes",
+        "CITEagroindustrial Moquegua",
+        "CITEagroindustrial Oxapampa",
+        "CITEagroindustrial VRAEM",
+        "CITEccal Lima",
+        "CITEcuero y calzado Arequipa",
+        "CITEcuero y calzado Trujillo",
+        "CITEforestal Maynas",
+        "CITEforestal Pucallpa",
+        "CITEmadera Lima",
+        "CITEpesquero Callao",
+        "CITEpesquero Ilo",
+        "CITEpesquero Piura",
+        "CITEpesquero amazónico Ahuashiyacu",
+        "CITEpesquero amazónico Pucallpa",
+        "CITEproductivo Madre de Dios",
+        "CITEproductivo Maynas",
+        "CITEtextil camélidos Arequipa",
+        "CITEtextil camélidos Cusco",
+        "CITEtextil camélidos Puno",
+        "UTagroindustrial Ambo",
+        "UTagroindustrial Huaura"
+      ].includes(d["CITE"])) {
+        return colors["CITE y UT en Peru"][d["CITE ID"]];
+      }
+  }
+
+  if (key === "nombre" && d.administracion === "Ministerio de Cultura") {
+    return "#86ABA1";
+  }
+
+  if (key === "tipo_paisaje") {
+    return "#DE8971"
+  }
+
+  if (key === "expresiones" && d.declaratorias) {
+    return "#C5A880";
+  }
+
+  if (key === "categoria") {
+    if      (d["categoria"] === "Solicitud de creación") return "#09667F";
+    else if (d["categoria"] === "Reserva Territorial")   return "#456268";
+    else if (d["categoria"] === "Reserva Indígena")      return "#77C6D8";
+  }
+
+  if ( key === "Contribuyente") {
+    if ([
+      "Asociacion",
+      "Asociacion en participacion",
+      "Comunidad campesina, nativa",
+      "Contratos colaboracion empresarial",
+      "Cooperativas, sais, caps",
+      "Empresa de economia mixta",
+      "Empresa estatal de derecho privado",
+      "Empresa individual de resp. ltda",
+      "Ent.inst.cooperac.tecnica - eniex",
+      "Fundacion",
+      "Gobierno central",
+      "Gobierno regional, local",
+      "Instituciones publicas",
+      "Instituciones religiosas",
+      "Junta de propietarios",
+      "No determinado",
+      "Persona natural con negocio",
+      "Persona natural sin negocio",
+      "Sindicatos y federaciones",
+      "Soc.com.respons. ltda",
+      "Sociedad anonima",
+      "Sociedad anonima abierta",
+      "Sociedad anonima cerrada",
+      "Sociedad civil",
+      "Sociedad conyugal con negocio",
+      "Sociedad irregular",
+      "Sucesion indivisa con negocio",
+      "Sucursales o ag. de emp. extranj.",
+      "Univers. centros educat. y cult."
+    ].includes(d["Contribuyente"])) {
+      return colors["Clientes atendidos segun CIIU y tipo de contribuyente"][d["Contribuyente ID"]];
+    }
+  }
+
+
   const id = d[`${key} ID`];
 
   const palette = colors[key];
@@ -1741,7 +1893,7 @@ export const tooltipTitle = (bgColor, imgUrl, title) => {
 };
 
 export const findIconV2 = (key, d) => {
-  console.log(key, d);
+
   // const options = {2: "export", 1: "import"};
   if (key === "Pais" || key === "ISO 3") {
     const icon = key === "Pais" && Array.isArray(d["Pais ID"]) ? d["Continente ID"] : d[`${key} ID`];
@@ -1760,6 +1912,41 @@ export const findIconV2 = (key, d) => {
     return `/icons/visualizations/Proyectos de investigacion/1.png`;
   }
 
+  if (key === "Producto") {
+    if ([
+      "Fibra de Llama",
+      "Fibra de Alpaca",
+      "Lana de Ovino",
+      "Carne de Llama",
+      "Carne de Alpaca",
+      "Carne de Caprino",
+      "Carne de Vacuno",
+      "Carne de Ovino",
+      "Leche Fresca de Vaca",
+      "Huevo de Gallina",
+      "Carne de Porcino",
+      "Carne de Ave"
+    ].includes(d["Producto"])) {
+      return `/icons/visualizations/Dinamica Pecuaria/${d["Producto ID"]}.png`;
+    }
+  }
+
+  if (key === "Componente") {
+    if ([
+      "Capacitación y Asistencia Técnica",
+      "Equipamiento",
+      "Estudio de Impacto Ambiental",
+      "Estudio de Línea de Base",
+      "Expediente Técnico",
+      "Fortalecimiento de capacidades",
+      "Gestión del Proyecto",
+      "Infraestructura",
+      "Supervisión",
+      "Transferencia Tecnológica"
+    ].includes(d["Componente"])) {
+      return `/icons/visualizations/Ejecucion Financiera/${d["Componente ID"]}.png`;
+    }
+  }
 
   if (key === "Categoria") {
 
@@ -2171,7 +2358,18 @@ export const findIconV2 = (key, d) => {
 
     else if (d.Categoria === "Localidades" && d["Categoria ID"] === 33) return `/icons/visualizations/Cultura pueblos indigenas/33.png`;
 
-
+    else if ([
+      "Asistencia técnica",
+      "Capacitación",
+      "Certificación de competencias laborales",
+      "Diseño y desarrollo de productos",
+      "Ensayos de laboratorio",
+      "Información tecnológica especializada",
+      "Promoción de investigación, desarrollo y gestión de la innovación (I+D+i)",
+      "Soporte productivo"
+    ].includes(d.Subcategoria)) {
+      return `/icons/visualizations/Servicios brindados acumulados por mes/${d["Subcategoria ID"]}.png`;
+    }
 
   }
 
@@ -2273,6 +2471,26 @@ export const findIconV2 = (key, d) => {
     else if (Object.keys(d).includes("Estimacion")) {
       return `/icons/visualizations/Seccion CIIU/${d["Seccion ID"]}.png`;
     }
+  }
+
+  if (key === "Seccion CITE") {
+    if      (d["Seccion CITE"] === "Agricultura, ganadería, caza y silvicultura"                                                                                   ) return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/A.png"
+    else if (d["Seccion CITE"] === "Pesca"                                                                                                                         ) return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/B.png"
+    else if (d["Seccion CITE"] === "Explotación de minas y canteras"                                                                                               ) return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/C.png"
+    else if (d["Seccion CITE"] === "Industrias manufactureras"                                                                                                     ) return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/D.png"
+    else if (d["Seccion CITE"] === "Producción y distribución de electricidad, gas y agua"                                                                         ) return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/E.png"
+    else if (d["Seccion CITE"] === "Construcción"                                                                                                                  ) return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/F.png"
+    else if (d["Seccion CITE"] === "Comercio al por mayor y al por menor; reparación de vehículos de motor, motocicletas, efectos personales y enseres domésticos" ) return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/G.png"
+    else if (d["Seccion CITE"] === "Hoteles y restaurantes"                                                                                                        ) return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/H.png"
+    else if (d["Seccion CITE"] === "Transporte, almacenamiento y comunicaciones"                                                                                   ) return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/I.png"
+    else if (d["Seccion CITE"] === "Intermediación financiera"                                                                                                     ) return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/J.png"
+    else if (d["Seccion CITE"] === "Actividades inmobiliarias, empresariales y de alquiler"                                                                        ) return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/K.png"
+    else if (d["Seccion CITE"] === "Administración pública y defensa; planes de seguridad social de afiliación obligatoria"                                        ) return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/L.png"
+    else if (d["Seccion CITE"] === "Enseñanza"                                                                                                                     ) return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/M.png"
+    else if (d["Seccion CITE"] === "Servicios sociales y de salud"                                                                                                 ) return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/N.png"
+    else if (d["Seccion CITE"] === "Otras actividades de servicios comunitarios, sociales y personales"                                                            ) return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/O.png"
+    else if (d["Seccion CITE"] === "Organizaciones y órganos extraterritoriales"                                                                                   ) return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/Q.png"
+    else if (d["Seccion CITE"] === "No determinado"                                                                                                                ) return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/Z.png"
   }
 
   if (key === "Fuerza laboral") {
@@ -2700,7 +2918,17 @@ export const findIconV2 = (key, d) => {
       return `/icons/visualizations/Patrimonio cultural segun tipo de visita/${d["Tipo ID"]}.png`;
     }
 
+  }
 
+  if (key === "tipo") {
+    if      (d.tipo === "Salas de Teatro"               ) return `/icons/visualizations/Industrias culturales y artes/salas_de_teatro.png`;
+    else if (d.tipo === "Salas de Cine"                 ) return `/icons/visualizations/Industrias culturales y artes/salas_de_cine.png`;
+    else if (d.tipo === "Centro / organización Cultura" ) return `/icons/visualizations/Industrias culturales y artes/centro_organizacion_cultura.png`;
+    else if (d.tipo === "Escuelas de Arte"              ) return `/icons/visualizations/Industrias culturales y artes/escuelas_de_arte.png`;
+    else if (d.tipo === "Editoriales"                   ) return `/icons/visualizations/Industrias culturales y artes/editoriales.png`;
+    else if (d.tipo === "Galerías"                      ) return `/icons/visualizations/Industrias culturales y artes/galerias.png`;
+    else if (d.tipo === "Librerías"                     ) return `/icons/visualizations/Industrias culturales y artes/librerias.png`;
+    else if (d.tipo === "Archivos"                      ) return `/icons/visualizations/Industrias culturales y artes/archivos.png`;
   }
 
   if (key === "Measure") {
@@ -3306,17 +3534,7 @@ export const findIconV2 = (key, d) => {
   if (key === "Estado Beneficio" && Object.keys(d).includes("Fase Cadena Valor")) {
     return `/icons/visualizations/Postulaciones segun fase de la cadena/${d["Estado Beneficio ID"]}.png`;
   }
-/*
-  if ( key === "Estado Beneficio") {
-    if ([
-      "No beneficiario",
-      "Beneficiario"
-    ].includes(d["Estado Beneficio"])) {
-      return `/icons/visualizations/Postulaciones segun fase de la cadena/${d["Estado Beneficio ID"]}.png`
-    }
 
-  }
-*/
   if ( key === "Fase Cadena Valor") {
     if ([
       "Producción",
@@ -3352,6 +3570,107 @@ export const findIconV2 = (key, d) => {
     if      (d["Tipo de gasto label"] === "Gasto interno promedio en I+D") return `/icons/visualizations/Tipo de centro de investigacion/Interno.png`;
     else if (d["Tipo de gasto label"] === "Gasto externo promedio en I+D") return `/icons/visualizations/Tipo de centro de investigacion/Externo.png`;
   }
+
+  if ( key === "Tipo empresa") {
+    if ([
+      "Gran empresa",
+      "Mediana empresa",
+      "Microempresa",
+      "Otros",
+      "Pequeña empresa",
+      "Persona natural"
+    ].includes(d["Tipo empresa"])) {
+      return `/icons/visualizations/Clientes atendidos acumulados por mes/${d["Tipo empresa ID"]}.png`
+    }
+  }
+
+  if ( key === "CITE") {
+    if ([
+      "CITEacuícola Ahuashiyacu",
+      "CITEagroindustrial Chavimochic",
+      "CITEagroindustrial Huallaga",
+      "CITEagroindustrial Ica",
+      "CITEagroindustrial Majes",
+      "CITEagroindustrial Moquegua",
+      "CITEagroindustrial Oxapampa",
+      "CITEagroindustrial VRAEM",
+      "CITEccal Lima",
+      "CITEcuero y calzado Arequipa",
+      "CITEcuero y calzado Trujillo",
+      "CITEforestal Maynas",
+      "CITEforestal Pucallpa",
+      "CITEmadera Lima",
+      "CITEpesquero Callao",
+      "CITEpesquero Ilo",
+      "CITEpesquero Piura",
+      "CITEpesquero amazónico Ahuashiyacu",
+      "CITEpesquero amazónico Pucallpa",
+      "CITEproductivo Madre de Dios",
+      "CITEproductivo Maynas",
+      "CITEtextil camélidos Arequipa",
+      "CITEtextil camélidos Cusco",
+      "CITEtextil camélidos Puno",
+      "UTagroindustrial Ambo",
+      "UTagroindustrial Huaura"
+    ].includes(d["CITE"])) {
+      return `/icons/visualizations/CITE y UT en Peru/${d["CITE ID"]}.png`
+    }
+  }
+
+  if (key === "nombre" && d.administracion === "Ministerio de Cultura") {
+    return `/icons/visualizations/Cultura museos/museos.png`;
+  }
+
+  if (key === "expresiones" && d.declaratorias) {
+    return `/icons/visualizations/Patrimonio Inmaterial/declaratorias.png`;
+  }
+
+  if (key === "categoria") {
+    if      (d["categoria"] === "Solicitud de creación") return `/icons/visualizations/Reserva indigena/solicitud_de_creacion.png`;
+    else if (d["categoria"] === "Reserva Territorial")   return `/icons/visualizations/Reserva indigena/reserva_territorial.png`;
+    else if (d["categoria"] === "Reserva Indígena")      return `/icons/visualizations/Reserva indigena/reserva_indigena.png`;
+  }
+
+  if ( key === "Contribuyente") {
+    if ([
+      "Asociacion",
+      "Asociacion en participacion",
+      "Comunidad campesina, nativa",
+      "Contratos colaboracion empresarial",
+      "Cooperativas, sais, caps",
+      "Empresa de economia mixta",
+      "Empresa estatal de derecho privado",
+      "Empresa individual de resp. ltda",
+      "Ent.inst.cooperac.tecnica - eniex",
+      "Fundacion",
+      "Gobierno central",
+      "Gobierno regional, local",
+      "Instituciones publicas",
+      "Instituciones religiosas",
+      "Junta de propietarios",
+      "No determinado",
+      "Persona natural con negocio",
+      "Persona natural sin negocio",
+      "Sindicatos y federaciones",
+      "Soc.com.respons. ltda",
+      "Sociedad anonima",
+      "Sociedad anonima abierta",
+      "Sociedad anonima cerrada",
+      "Sociedad civil",
+      "Sociedad conyugal con negocio",
+      "Sociedad irregular",
+      "Sucesion indivisa con negocio",
+      "Sucursales o ag. de emp. extranj.",
+      "Univers. centros educat. y cult."
+    ].includes(d["Contribuyente"])) {
+      return `/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/${d["Contribuyente ID"]}.png`
+    }
+  }
+
+
+
+
+
 
 
 
