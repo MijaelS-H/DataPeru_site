@@ -4,7 +4,7 @@ export const dataSources = [
     name: "Instituto Nacional de Estadística e Informática",
     shortname: "INEI",
     summary: [
-      "El INEI es un oragnísmo técnico especializado responsable de producir y difundir información estadística oficial que el país necesita con calidad, oportunidad y cobertura requerida, con el propósito de contribuir al diseño, monitoreo y evaluación de políticas públicas y al proceso de toma de decisiones de los agentes socioeconómicos, el sector público y la comunidad en general.",
+      "El INEI es un organismo técnico especializado responsable de producir y difundir información estadística oficial que el país necesita con calidad, oportunidad y cobertura requerida, con el propósito de contribuir al diseño, monitoreo y evaluación de políticas públicas y al proceso de toma de decisiones de los agentes socioeconómicos, el sector público y la comunidad en general.",
       "Instituto Nacional de Estadística e Informática (INEI) es una entidad adscrita a Presidencia del Consejo de Ministros."
     ],
     datasets: [
@@ -246,7 +246,7 @@ export const dataSources = [
     name: "Instituto Nacional de Estadística e Informática (Sistema de Información Económica)",
     shortname: "INEI (Sistema de Información Económica)",
     summary: [
-      "El INEI es un oragnísmo técnico especializado responsable de producir y difundir información estadística oficial que el país necesita con calidad, oportunidad y cobertura requerida, con el propósito de contribuir al diseño, monitoreo y evaluación de políticas públicas y al proceso de toma de decisiones de los agentes socioeconómicos, el sector público y la comunidad en general.",
+      "El INEI es un organismo técnico especializado responsable de producir y difundir información estadística oficial que el país necesita con calidad, oportunidad y cobertura requerida, con el propósito de contribuir al diseño, monitoreo y evaluación de políticas públicas y al proceso de toma de decisiones de los agentes socioeconómicos, el sector público y la comunidad en general.",
       "Instituto Nacional de Estadística e Informática (INEI) es una entidad adscrita a Presidencia del Consejo de Ministros."
     ],
     datasets: [
