@@ -267,18 +267,50 @@ export const findColorV2 = (key, d) => {
     return colors["Servicio CITE"][d["Subcategoria ID"]];
   }
 
-  if (key === "Producto" && Object.keys(d).includes("Desembarque")) {
-    return colors["Producto Pesquero"][d["Producto ID"]];
+  if (key === "Producto") {
+    if ([
+      "Anchoveta",
+      "Atún ",
+      "Bonito",
+      "Caballa",
+      "Jurel",
+      "Perico",
+      "Sardina",
+      "Lenguado",
+      "Merluza",
+      "Corvina",
+      "Lorna",
+      "Langostino",
+      "Choro",
+      "Conchas de abanico",
+      "Pota",
+      "Pulpo"
+    ].includes(d["Producto"])) {
+      return colors["Mercado interno pesquero"][d["Producto ID"]];
+    }
+
+    else if ([
+      "Fibra de Llama",
+      "Fibra de Alpaca",
+      "Lana de Ovino",
+      "Carne de Llama",
+      "Carne de Alpaca",
+      "Carne de Caprino",
+      "Carne de Vacuno",
+      "Carne de Ovino",
+      "Leche Fresca de Vaca",
+      "Huevo de Gallina",
+      "Carne de Porcino",
+      "Carne de Ave"
+    ].includes(d["Producto"])) {
+      return colors["Dinamica Pecuaria"][d["Producto ID"]];
+    }
   }
 
   if (key === "Year" && Object.keys(d).includes("Producto") && Object.keys(d).includes("Unidad")) {
-    return colors["Producto Cuero"][d["Producto ID"]];
+    return colors["Mercado interno cuero calzado"][d["Producto ID"]];
   }
-/*
-  if (key === "Producto" && Object.keys(d).includes("Produccion")) {
-    return colors["Dinamica Pecuaria"][d["Producto ID"]];
-  }
-*/
+
   if (key === "Year" && Object.keys(d).includes("Tipo de Gasto")) {
     if (d.Year === 2014) return "#DE4463";
     if (d.Year === 2015) return "#821752";
@@ -288,6 +320,8 @@ export const findColorV2 = (key, d) => {
     if (d.Year === 2014) return "#C3AED6";
     if (d.Year === 2015) return "#5D54A4";
   }
+
+
 
   if (key === "Categoria") {
 
@@ -537,6 +571,14 @@ export const findColorV2 = (key, d) => {
       "Centros Educativos"
     ].includes(d.Categoria)) {
       return colors["Alertas contra el racismo"][d["Categoria ID"]];
+    }
+
+    else if ([
+      "Arqueológico",
+      "Histórico",
+      "Paleontológico"
+    ].includes(d.Categoria)) {
+      return colors["Alerta de atentados patrimoniales"][d["Categoria ID"]];
     }
 
   }
@@ -1437,6 +1479,37 @@ export const findColorV2 = (key, d) => {
       return colors["Servicios publicos"][d["Type ID"]];
     }
 
+    else if ([
+      "Porcentaje de trabajadores mujeres que labora en el mercado de abastos",
+      "Porcentaje de trabajadores hombres que labora en el mercado de abastos"
+    ].includes(d.Categoria)) {
+      return colors["Gestion Administrativa"][d["Categoria ID"]];
+    }
+
+    else if ([
+      "Numero de mercados de abastos que recibieron capacitacion sobre gestion empresarial",
+      "Numero de mercados de abastos que recibieron capacitacion sobre seguridad y salud ocupacional",
+      "Numero de mercados de abastos que recibieron capacitacion sobre gestion de residuos solidos",
+      "Numero de mercados de abastos que recibieron capacitacion sobre habilidades socioemocionales",
+      "Numero de mercados de abastos que recibieron capacitacion sobre marketing",
+      "Numero de mercados de abastos que recibieron capacitacion sobre tecnologias de informacion y comunicacion",
+      "Numero de mercados de abastos que recibieron capacitacion sobre manipulacion de alimentos",
+      "Numero de mercados de abastos que recibieron capacitacion sobre defensa civil"
+    ].includes(d.Capacitacion)) {
+      return colors["Recibe capacitacion"][d["Capacitacion ID"]];
+    }
+
+    else if ([
+      "Numero de mercados de abastos que no recibieron capacitacion por falta de recursos",
+      "Numero de mercados de abastos que no recibieron capacitacion por falta de tiempo",
+      "Numero de mercados de abastos que no recibieron capacitacion por falta de interes",
+      "Numero de mercados de abastos que no recibieron capacitacion por falta de informacion",
+      "Numero de mercados de abastos que no recibieron capacitacion por poca concurrencia",
+      "Numero de mercados de abastos que no recibieron capacitacion porque no cuentan con ambientes para charlas"
+    ].includes(d.Capacitacion)) {
+      return colors["No recibe capacitacion"][d["Capacitacion ID"]];
+    }
+
   }
 
   if (key === "Type") {
@@ -1731,6 +1804,21 @@ export const findColorV2 = (key, d) => {
         return colors["Demanda de servicios culturales"][d["Indicador ID"]];
       }
 
+      else if ([
+        "Periódicos impresos",
+        "Música a través de descargas o acceso a internet",
+        "Películas a través de descargas o acceso a internet",
+        "Libros impresos",
+        "Películas a través de CDs, bluray u otros dispositivos",
+        "Periódicos digitales",
+        "Libros digitales",
+        "Productos artesanales",
+        "Videojuegos desde dispositivos móviles a través de descargas o acceso a internet",
+        "Música a través de CDs, bluray u otros dispositivos"
+      ].includes(d["Names"])) {
+        return colors["Demanda de bienes culturales"][d["Indicador ID"]];
+      }
+
     }
 
     if (key === "Estado Beneficio" && Object.keys(d).includes("Fase Cadena Valor")) {
@@ -1904,6 +1992,10 @@ export const findIconV2 = (key, d) => {
     return `/icons/visualizations/Subindicador Tributo/${d["Indicador Tributo ID"]}.png`;
   }
 
+  if (key === "Year" && Object.keys(d).includes("Producto") && Object.keys(d).includes("Unidad")) {
+    return `/icons/visualizations/Mercado interno cuero calzado/${d["Producto ID"]}.png`;
+  }
+
   if (key === "Year" && Object.keys(d).includes("Tipo de Gasto")) {
     return `/icons/visualizations/Presupuesto para investigacion/1.png`;
   }
@@ -1913,7 +2005,30 @@ export const findIconV2 = (key, d) => {
   }
 
   if (key === "Producto") {
+
     if ([
+      "Anchoveta",
+      "Atún ",
+      "Bonito",
+      "Caballa",
+      "Jurel",
+      "Perico",
+      "Sardina",
+      "Lenguado",
+      "Merluza",
+      "Corvina",
+      "Lorna",
+      "Langostino",
+      "Choro",
+      "Conchas de abanico",
+      "Pota",
+      "Pulpo"
+    ].includes(d["Producto"])) {
+      return `/icons/visualizations/Mercado interno pesquero/${d["Producto ID"]}.png`;
+      //return colors["Mercado interno pesquero"][d["Producto ID"]];
+    }
+
+    else if ([
       "Fibra de Llama",
       "Fibra de Alpaca",
       "Lana de Ovino",
@@ -2198,6 +2313,13 @@ export const findIconV2 = (key, d) => {
       return `/icons/visualizations/Alertas contra el racismo/${d["Categoria ID"]}.png`;
     }
 
+    else if ([
+      "Arqueológico",
+      "Histórico",
+      "Paleontológico"
+    ].includes(d.Categoria)) {
+      return `/icons/visualizations/Alerta de atentados patrimoniales/${d["Categoria ID"]}.png`;
+    }
 
   }
 
@@ -3233,6 +3355,37 @@ export const findIconV2 = (key, d) => {
       return `/icons/visualizations/Conectividad gobiernos locales/${d["Type ID"]}.png`
     }
 
+    else if ([
+      "Porcentaje de trabajadores mujeres que labora en el mercado de abastos",
+      "Porcentaje de trabajadores hombres que labora en el mercado de abastos"
+    ].includes(d.Categoria)) {
+      return `/icons/visualizations/Gestion Administrativa/${d["Categoria ID"]}.png`
+    }
+
+    else if ([
+      "Numero de mercados de abastos que recibieron capacitacion sobre gestion empresarial",
+      "Numero de mercados de abastos que recibieron capacitacion sobre seguridad y salud ocupacional",
+      "Numero de mercados de abastos que recibieron capacitacion sobre gestion de residuos solidos",
+      "Numero de mercados de abastos que recibieron capacitacion sobre habilidades socioemocionales",
+      "Numero de mercados de abastos que recibieron capacitacion sobre marketing",
+      "Numero de mercados de abastos que recibieron capacitacion sobre tecnologias de informacion y comunicacion",
+      "Numero de mercados de abastos que recibieron capacitacion sobre manipulacion de alimentos",
+      "Numero de mercados de abastos que recibieron capacitacion sobre defensa civil"
+    ].includes(d.Capacitacion)) {
+      return `/icons/visualizations/Recibe capacitacion/${d["Capacitacion ID"]}.png`
+    }
+
+    else if ([
+      "Numero de mercados de abastos que no recibieron capacitacion por falta de recursos",
+      "Numero de mercados de abastos que no recibieron capacitacion por falta de tiempo",
+      "Numero de mercados de abastos que no recibieron capacitacion por falta de interes",
+      "Numero de mercados de abastos que no recibieron capacitacion por falta de informacion",
+      "Numero de mercados de abastos que no recibieron capacitacion por poca concurrencia",
+      "Numero de mercados de abastos que no recibieron capacitacion porque no cuentan con ambientes para charlas"
+    ].includes(d.Capacitacion)) {
+      return `/icons/visualizations/No recibe capacitacion/${d["Capacitacion ID"]}.png`
+    }
+
   }
 
   if (key === "Type") {
@@ -3529,6 +3682,22 @@ export const findIconV2 = (key, d) => {
       return `/icons/visualizations/Demanda de servicios culturales/${d["Indicador ID"]}.png`
     }
 
+    else if ([
+      "Periódicos impresos",
+      "Música a través de descargas o acceso a internet",
+      "Películas a través de descargas o acceso a internet",
+      "Libros impresos",
+      "Películas a través de CDs, bluray u otros dispositivos",
+      "Periódicos digitales",
+      "Libros digitales",
+      "Productos artesanales",
+      "Videojuegos desde dispositivos móviles a través de descargas o acceso a internet",
+      "Música a través de CDs, bluray u otros dispositivos"
+    ].includes(d["Names"])) {
+      return `/icons/visualizations/Demanda de bienes culturales/${d["Indicador ID"]}.png`;
+    }
+
+
   }
 
   if (key === "Estado Beneficio" && Object.keys(d).includes("Fase Cadena Valor")) {
@@ -3737,6 +3906,7 @@ export default {
     "Indicador Tributo ID": mean,
     "Industria ID": mean,
     //"Rubro ID": mean,
+    //"Producto ID": mean,
     "Sector ID": mean,
     "Subconcepto ID": mean,
     "Estado Beneficio ID": mean,
