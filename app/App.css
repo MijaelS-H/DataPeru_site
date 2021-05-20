@@ -69,7 +69,7 @@ body {
 
 /* Tooltip */
 .d3plus-tooltip {
-  width: 220px !important;
+  width: 250px !important;
   padding: 7px !important;
   box-shadow: 7px 7px 5px 0px rgba(0,0,0,0.49);
   & .d3plus-tooltip-title {
