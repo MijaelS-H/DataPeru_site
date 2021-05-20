@@ -1046,7 +1046,7 @@ export const findColorV2 = (key, d) => {
 
     if (d.Indicador === "No tiene" && d["Categoria ID"] === 36) return "#65799B";
     if (d.Indicador === "No tiene" && d["Categoria ID"] === 72) return "#A12559";
-    // if (d.Indicador === "No tiene" && d["Categoria ID"] === 73) return "#F7C873";
+    if (d.Indicador === "No tiene" && d["Categoria ID"] === 73) return "#F7C873";
     if (d.Indicador === "No tiene" && d["Categoria ID"] === 74) return "#978D58";
     if (d.Indicador === "No tiene" && d["Categoria ID"] === 75) return "#5A5D9D";
     if (d.Indicador === "No tiene" && d["Categoria ID"] === 76) return "#346473";
@@ -2924,7 +2924,7 @@ export const findIconV2 = (key, d) => {
 
     if (d.Indicador === "No tiene" && d["Categoria ID"] === 36) return "/icons/visualizations/Instrumentos financieros/7336.png";
     if (d.Indicador === "No tiene" && d["Categoria ID"] === 72) return "/icons/visualizations/Instrumentos financieros/7372.png";
-    // if (d.Indicador === "No tiene" && d["Categoria ID"] === 73) return `/icons/visualizations/Instrumentos financieros/7373.png`;
+    if (d.Indicador === "No tiene" && d["Categoria ID"] === 73) return `/icons/visualizations/Instrumentos financieros/7373.png`;
     if (d.Indicador === "No tiene" && d["Categoria ID"] === 74) return "/icons/visualizations/Instrumentos financieros/7374.png";
     if (d.Indicador === "No tiene" && d["Categoria ID"] === 75) return "/icons/visualizations/Instrumentos financieros/7375.png";
     if (d.Indicador === "No tiene" && d["Categoria ID"] === 76) return "/icons/visualizations/Instrumentos financieros/7376.png";
