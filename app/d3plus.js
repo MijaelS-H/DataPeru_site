@@ -22,40 +22,35 @@ const activeIcons = [
 ];
 
 const getTooltipTitle = (d3plusConfig, d) => {
-  const len = Array.isArray(d3plusConfig._groupByRaw) ? d3plusConfig._groupByRaw.length : 1;
-  // const parentName = d3plusConfig._groupBy[0](d);
-  const parentName = Array.isArray(d3plusConfig._groupByRaw) ? d3plusConfig._groupByRaw[0] : d3plusConfig._groupByRaw;
-  // const availableParents = Object.entries(d).filter(h => h[1] === parentName);
+  const len = d3plusConfig._groupBy.length;
+  const parentName = d3plusConfig._groupBy[0](d);
+  const availableParents = Object.entries(d).filter(h => h[1] === parentName);
 
-  // let parent = availableParents.length > 1 ? availableParents[1] : availableParents[0] || [undefined];
-
-  let parent = Object.entries(d).find(h => h[0] === parentName)[1] || [undefined];
-  let parentId = parentName;
-
+  let parent = availableParents.length > 1 ? availableParents[1] : availableParents[0] || [undefined];
+  //let parent = Object.entries(d).find(h => h[1] === parentName) || [undefined];
+  let parentId = parent[0];
   if (parentId.includes(" ID")) {
     parentId = parentId.slice(0, -3);
-    parent = Object.entries(d).find(h => h[0] === parentId)[1] || [undefined];
+    parent = Object.entries(d).find(h => h[0] === parentId) || [undefined];
   }
+  const itemName = d3plusConfig._groupBy[len - 1](d);
 
-  const itemName = Array.isArray(d3plusConfig._groupByRaw) ? d3plusConfig._groupByRaw[len - 1] : d3plusConfig._groupByRaw;
+  //const availableItems = Object.entries(d).filter(h => h[1] === item);
+  //let itemId = availableItems.length > 1 ? availableItems[1][0] : availableItems[0][0]
 
-  // const availableItems = Object.entries(d).filter(h => h[1] === item);
-  // let itemId = availableItems.length > 1 ? availableItems[1][0] : availableItems[0][0]
+  const availableItems = Object.entries(d).filter(h => h[1] === itemName);
+  let item = availableItems.length > 1 ? availableItems[1] : availableItems[0] || [undefined];
 
-  // const availableItems = Object.entries(d).filter(h => h[1] === itemName);
-  // let item = availableItems.length > 1 ? availableItems[1] : availableItems[0] || [undefined];
-
-  let item = Object.entries(d).find(h => h[0] === itemName)[1] || [undefined];
-  let itemId = itemName;
-
+  //let item = Object.entries(d).find(h => h[1] === itemName) || [undefined];
+  let itemId = item[0];
   if (itemId.includes(" ID")) {
     itemId = itemId.slice(0, -3);
-    item = Object.entries(d).find(h => h[0] === itemId)[1] || [undefined];
+    item = Object.entries(d).find(h => h[0] === itemId) || [undefined];
   }
 
   if (itemId === "ISO 3") {
     itemId = "Pais";
-    item = Object.entries(d).find(h => h[0] === itemId)[1] || [undefined];
+    item = Object.entries(d).find(h => h[0] === itemId) || [undefined];
   }
 
   if (itemId === "Categoria" && Object.keys(d).includes("Division") && [
@@ -79,7 +74,7 @@ const getTooltipTitle = (d3plusConfig, d) => {
     "Rigidez organizativa dentro de la empresa"
   ].includes(d.Indicador)) {
     itemId = "Division";
-    item = Object.entries(d).find(h => h[0] === itemId)[1] || [undefined];
+    item = Object.entries(d).find(h => h[0] === itemId) || [undefined];
   }
 
   if (itemId === "Categoria" && Object.keys(d).includes("Industria") && [
@@ -97,12 +92,12 @@ const getTooltipTitle = (d3plusConfig, d) => {
     "Porcentaje de empresas por tipo instrumentos de gestión ambiental"
   ].includes(d.Indicador)) {
     itemId = "Industria";
-    item = Object.entries(d).find(h => h[0] === itemId)[1] || [undefined];
+    item = Object.entries(d).find(h => h[0] === itemId) || [undefined];
   }
 
   if (itemId === "id" && Object.keys(d).includes("Indicador")) {
     itemId = "Indicador";
-    item = Object.entries(d).find(h => h[0] === itemId)[1] || [undefined];
+    item = Object.entries(d).find(h => h[0] === itemId) || [undefined];
   }
 
   return {item, itemId, parent, parentId};
@@ -121,8 +116,7 @@ export const findColorV2 = (key, d) => {
   if (key === "Indicador Tributo" && Object.keys(d).includes("Indicador Tributo Parent ID")) {
     return colors["Subindicador Tributo"][d["Indicador Tributo ID"]];
   }
-
-  /*
+/*
   if (key === "Componente" && Object.keys(d).includes("Flujo")) {
     return colors["Componente PIP"][d["Componente ID"]];
   }
@@ -139,7 +133,7 @@ export const findColorV2 = (key, d) => {
       "Infraestructura",
       "Supervisión",
       "Transferencia Tecnológica"
-    ].includes(d.Componente)) {
+    ].includes(d["Componente"])) {
       return colors["Ejecucion Financiera"][d["Componente ID"]];
     }
   }
@@ -250,23 +244,23 @@ export const findColorV2 = (key, d) => {
   }
 
   if (key === "Seccion CITE") {
-    if (d["Seccion CITE"] === "Agricultura, ganadería, caza y silvicultura") return "#8DD7D1";
-    else if (d["Seccion CITE"] === "Pesca") return "#ABC4FF";
-    else if (d["Seccion CITE"] === "Explotación de minas y canteras") return "#BC7D71";
-    else if (d["Seccion CITE"] === "Industrias manufactureras") return "#FF7B61";
-    else if (d["Seccion CITE"] === "Producción y distribución de electricidad, gas y agua") return "#E2D756";
-    else if (d["Seccion CITE"] === "Construcción") return "#C8B176";
-    else if (d["Seccion CITE"] === "Comercio al por mayor y al por menor; reparación de vehículos de motor, motocicletas, efectos personales y enseres domésticos") return "#AE69BC";
-    else if (d["Seccion CITE"] === "Hoteles y restaurantes") return "#4E938E";
-    else if (d["Seccion CITE"] === "Transporte, almacenamiento y comunicaciones") return "#BC3346";
-    else if (d["Seccion CITE"] === "Intermediación financiera") return "#785594";
-    else if (d["Seccion CITE"] === "Actividades inmobiliarias, empresariales y de alquiler") return "#6E5E5F";
-    else if (d["Seccion CITE"] === "Administración pública y defensa; planes de seguridad social de afiliación obligatoria") return "#36A2D7";
-    else if (d["Seccion CITE"] === "Enseñanza") return "#E290D1";
-    else if (d["Seccion CITE"] === "Servicios sociales y de salud") return "#2C5388";
-    else if (d["Seccion CITE"] === "Otras actividades de servicios comunitarios, sociales y personales") return "#414A4F";
-    else if (d["Seccion CITE"] === "Organizaciones y órganos extraterritoriales") return "#A6B1E1";
-    else if (d["Seccion CITE"] === "No determinado") return "#F7C59F";
+    if      (d["Seccion CITE"] === "Agricultura, ganadería, caza y silvicultura"                                                                                   ) return "#8DD7D1"
+    else if (d["Seccion CITE"] === "Pesca"                                                                                                                         ) return "#ABC4FF"
+    else if (d["Seccion CITE"] === "Explotación de minas y canteras"                                                                                               ) return "#BC7D71"
+    else if (d["Seccion CITE"] === "Industrias manufactureras"                                                                                                     ) return "#FF7B61"
+    else if (d["Seccion CITE"] === "Producción y distribución de electricidad, gas y agua"                                                                         ) return "#E2D756"
+    else if (d["Seccion CITE"] === "Construcción"                                                                                                                  ) return "#C8B176"
+    else if (d["Seccion CITE"] === "Comercio al por mayor y al por menor; reparación de vehículos de motor, motocicletas, efectos personales y enseres domésticos" ) return "#AE69BC"
+    else if (d["Seccion CITE"] === "Hoteles y restaurantes"                                                                                                        ) return "#4E938E"
+    else if (d["Seccion CITE"] === "Transporte, almacenamiento y comunicaciones"                                                                                   ) return "#BC3346"
+    else if (d["Seccion CITE"] === "Intermediación financiera"                                                                                                     ) return "#785594"
+    else if (d["Seccion CITE"] === "Actividades inmobiliarias, empresariales y de alquiler"                                                                        ) return "#6E5E5F"
+    else if (d["Seccion CITE"] === "Administración pública y defensa; planes de seguridad social de afiliación obligatoria"                                        ) return "#36A2D7"
+    else if (d["Seccion CITE"] === "Enseñanza"                                                                                                                     ) return "#E290D1"
+    else if (d["Seccion CITE"] === "Servicios sociales y de salud"                                                                                                 ) return "#2C5388"
+    else if (d["Seccion CITE"] === "Otras actividades de servicios comunitarios, sociales y personales"                                                            ) return "#414A4F"
+    else if (d["Seccion CITE"] === "Organizaciones y órganos extraterritoriales"                                                                                   ) return "#A6B1E1"
+    else if (d["Seccion CITE"] === "No determinado"                                                                                                                ) return "#F7C59F"
   }
 
   if (key === "Subcategoria" && Object.keys(d).includes("Servicios")) {
@@ -291,7 +285,7 @@ export const findColorV2 = (key, d) => {
       "Conchas de abanico",
       "Pota",
       "Pulpo"
-    ].includes(d.Producto)) {
+    ].includes(d["Producto"])) {
       return colors["Mercado interno pesquero"][d["Producto ID"]];
     }
 
@@ -308,8 +302,8 @@ export const findColorV2 = (key, d) => {
       "Huevo de Gallina",
       "Carne de Porcino",
       "Carne de Ave"
-    ].includes(d.Producto)) {
-      return colors["Dinamica Pecuaria"][d["Producto ID"]];
+    ].includes(d["Producto"])) {
+      return colors["Dinamica Pecuaria"][d["Producto ID"]];
     }
   }
 
@@ -355,7 +349,7 @@ export const findColorV2 = (key, d) => {
       "No necesita apoyo para innovar",
       "No le interesó",
       "Otro"
-    ].includes(d.Categoria) && d["Indicador ID"] === 66) {
+    ].includes(d.Categoria) && (d["Indicador ID"] === 66)) {
       return colors["No accede CITE"][d["Categoria ID"]];
     }
 
@@ -391,7 +385,7 @@ export const findColorV2 = (key, d) => {
       "No sabe dónde o cómo registrarse",
       "No sabe si debe registrarse",
       "Su negocio es pequeño/produce poca cantidad"
-    ].includes(d.Categoria) && d["Indicador ID"] === 75) {
+    ].includes(d.Categoria) && (d["Indicador ID"] === 75)) {
       return colors["Composicion por registrados en sunat"][d["Categoria ID"]];
     }
 
@@ -407,7 +401,7 @@ export const findColorV2 = (key, d) => {
       "En su taller comercial dentro de su vivienda y en una habitación de uso exclusivo",
       "En taller, tienda, restaurante, hotel, oficina, consultorio, etc.",
       "En vehículo para transporte de personas o mercaderías"
-    ].includes(d.Categoria) && d["Indicador ID"] === 76) {
+    ].includes(d.Categoria) && (d["Indicador ID"] === 76)) {
       return colors["Composicion por negocio o actividad"][d["Categoria ID"]];
     }
 
@@ -416,7 +410,7 @@ export const findColorV2 = (key, d) => {
       "Por medio de apuntes, registros o anotaciones personales",
       "Por medio de libros de ingresos y gastos exigidos por la sunat",
       "Por medios de libros o sistema de contabilidad completa"
-    ].includes(d.Categoria) && d["Indicador ID"] === 77) {
+    ].includes(d.Categoria) && (d["Indicador ID"] === 77)) {
       return colors["Composicion por tipo de instrumento contable"][d["Categoria ID"]];
     }
 
@@ -433,7 +427,7 @@ export const findColorV2 = (key, d) => {
       "Minería y petróleo",
       "Otros servicios excl. públicos",
       "Transporte"
-    ].includes(d.Categoria) && d["Indicador ID"] === 52) {
+    ].includes(d.Categoria) && (d["Indicador ID"] === 52)) {
       return colors["Poblacion economicamente ocupada por sector"][d["Categoria ID"]];
     }
 
@@ -446,7 +440,7 @@ export const findColorV2 = (key, d) => {
       "Regimen especial de contratación administrativa (cas)",
       "Sin contrato",
       "Otro"
-    ].includes(d.Categoria) && d["Indicador ID"] === 53) {
+    ].includes(d.Categoria) && (d["Indicador ID"] === 53)) {
       return colors["Distribucion poblacion ocupada por contrato"][d["Categoria ID"]];
     }
 
@@ -456,7 +450,7 @@ export const findColorV2 = (key, d) => {
       "De 51 a 100 personas",
       "Hasta 20 personas",
       "Más de 500 personas"
-    ].includes(d.Categoria) && d["Indicador ID"] === 54) {
+    ].includes(d.Categoria) && (d["Indicador ID"] === 54)) {
       return colors["Distribucion poblacion ocupada por tamaño"][d["Categoria ID"]];
     }
 
@@ -478,7 +472,7 @@ export const findColorV2 = (key, d) => {
       "Acude a establecimiento en su distrito",
       "Acude a establecimiento en otro distrito",
       "No acude a establecimiento de salud"
-    ].includes(d.Categoria) && d["Indicador ID"] === 49) {
+    ].includes(d.Categoria) && (d["Indicador ID"] === 49)) {
       return colors["Centros de prestacion de salud"][d["Categoria ID"]];
     }
 
@@ -495,7 +489,7 @@ export const findColorV2 = (key, d) => {
       "Problemas familiares",
       "Se dedica a los quehaceres del hogar",
       "Terminó sus estudios: secundarios/ superiores /asiste a academia preuniversitaria"
-    ].includes(d.Categoria) && d["Indicador ID"] === 20) {
+    ].includes(d.Categoria) && (d["Indicador ID"] === 20)) {
       return colors["Poblacion no matriculada"][d["Categoria ID"]];
     }
 
@@ -507,14 +501,14 @@ export const findColorV2 = (key, d) => {
     else if ([
       "Hogar con ingresos independientes",
       "Hogar sin ingresos independientes"
-    ].includes(d.Categoria) && d["Indicador ID"] === 9) {
+    ].includes(d.Categoria) && (d["Indicador ID"] === 9)) {
       return colors["Hogares por tipo de ingresos laborales"][d["Categoria ID"]];
     }
 
     else if ([
       "Hogar con ingresos dependientes",
       "Hogar sin ingresos dependientes"
-    ].includes(d.Categoria) && d["Indicador ID"] === 7) {
+    ].includes(d.Categoria) && (d["Indicador ID"] === 7)) {
       return colors["Hogares por tipo de ingresos laborales"][d["Categoria ID"]];
     }
 
@@ -591,25 +585,25 @@ export const findColorV2 = (key, d) => {
 
   if (key === "Subcategoria") {
     if ([
-      "Museo Arqueológico de Áncash \"Augusto Soriano Infante\"",
-      "Museo Regional de Casma \"Max Uhle\"",
+      `Museo Arqueológico de Áncash "Augusto Soriano Infante"`,
+      `Museo Regional de Casma "Max Uhle"`,
       "Museo de Antropolgía, Arqueología e Historia Natural de Ranrahirca",
       "Museo Nacional Chavín",
       "Museo Arqueológico Zonal de Cabana",
       "Museo Arqueológico, Antropológico de Apurímac",
       "Museo de Sitio Wari",
       "Museo de Sitio de Quinua",
-      "Museo Histórico Regional \"Hipólito Unanue\"",
+      `Museo Histórico Regional "Hipólito Unanue"`,
       "Museo Arqueológico y Etnográfico del Conjunto Monumental Belén",
       "Museo Histórico Regional del Cusco",
       "Museo de Sitio de Chinchero",
-      "Museo de Sitio \"Manuel Chávez Ballón\"",
+      `Museo de Sitio "Manuel Chávez Ballón"`,
       "Museo Amazónico Andino Qhapaq Ñan Quillabamba",
       "Museo de los Pueblos de Paucartambo",
-      "Museo Regional \"Daniel Hernández Morillo\"",
-      "Museo Arqueológico \"Samuel Humberto Espinoza Lozano\"",
-      "Museo Regional de Ica \"Adolfo Bermúdez Jenkins\"",
-      "Museo de Sitio \"Julio C. Tello\" de Paracas",
+      `Museo Regional "Daniel Hernández Morillo"`,
+      `Museo Arqueológico "Samuel Humberto Espinoza Lozano"`,
+      `Museo Regional de Ica "Adolfo Bermúdez Jenkins"`,
+      `Museo de Sitio "Julio C. Tello" de Paracas`,
       "Museo Regional de Arqueología de Junín",
       "Museo de Sitio de Wariwillka",
       "Museo de Sitio de Chan Chan",
@@ -619,28 +613,32 @@ export const findColorV2 = (key, d) => {
       "Museo de Sitio Túcume",
       "Museo de Sitio Huaca Rajada - Sipán",
       "Museo de Sitio Huaca Chotuna - Chornancap",
-      "Museo de Sitio \"Arturo Jiménez Borja\" - Puruchuco",
+      `Museo de Sitio "Arturo Jiménez Borja" - Puruchuco`,
       "Museo de Sitio Huallamarca",
       "Museo de Sitio Pachacamac",
-      "Museo de Sitio \"El Mirador del Cerro San Cristóbal\"",
+      `Museo de Sitio "El Mirador del Cerro San Cristóbal"`,
       "Museo de Arte Italiano",
       "Museo de Sitio Huaca Pucllana",
       "Museo de la Nación",
-      "Casa Museo \"José Carlos Mariátegui\"",
+      `Casa Museo "José Carlos Mariátegui"`,
       "Museo Nacional de Arqueología, Antropología e Historia del Perú",
       "Museo Nacional de la Cultura Peruana",
       "Museo Amazónico",
       "Museo de Sitio de Narihualá",
       "Sala de Oro del Museo Municipal Vicús",
-      "Templo Museo \"San Juan de Letrán\"",
-      "Templo Museo \"Nuestra Señora de la Asunción\"",
+      `Templo Museo "San Juan de Letrán"`,
+      `Templo Museo "Nuestra Señora de la Asunción"`,
       "Museo Lítico de Pukara",
       "Museo Departamental San Martín",
       "Museo de Sitio Las Peañas",
       "Museo Histórico Regional de Tacna",
-      "Museo de Sitio Cabeza de Vaca \"Gran Chilimasa\"",
-      "Lugar de la Memoria, la tolerancia y la inclusión social"
-    ].includes(d.Subcategoria) && d["Categoria ID"] === 3) {
+      `Museo de Sitio Cabeza de Vaca "Gran Chilimasa"`,
+      "Lugar de la Memoria, la tolerancia y la inclusión social",
+      "Sala de Exhibición de la Zona Arqueológica Monumental de Kotosh", // test
+      `Sala de Exhibición "Gilberto Tenorio Ruiz"`,
+      `Sala de Exhibición del Sitio Arqueológico "Tambo Colorado"`,
+      "Sala de Exhibición del Monumento Arqueológico Willkawaín"
+    ].includes(d.Subcategoria) && (d["Categoria ID"] === 3)) {
       return colors["Museos y salas de exposicion visitados"][d["Subcategoria ID"]];
     }
 
@@ -712,9 +710,9 @@ export const findColorV2 = (key, d) => {
       "Lugar de la Memoria, la Tolerancia y la Inclusión Social",
       "Sala de Exhibición de la Zona Arqueológica Monumental de Kotosh",
       "Sala de Exhibición del Monumento Arqueológico de Willkawaín",
-      "Sala de Exhibición \"Gilberto Tenorio Ruiz\"",
+      `Sala de Exhibición "Gilberto Tenorio Ruiz"`,
       "Sala de Exhibición de Pikillaqta",
-      "Sala de Exhibición del Sitio Arqueológico \"Tambo Colorado\"",
+      `Sala de Exhibición del Sitio Arqueológico "Tambo Colorado"`,
       "Sala de Oro del Museo Municipal Vicús",
       "Casa de la Gastronomía Peruana y Museo Postal y Filatélico del Perú"
     ].includes(d.Subcategoria)) {
@@ -774,10 +772,10 @@ export const findColorV2 = (key, d) => {
     }
 
     else if (["01", "02", "03", "04", "05", "06", "07", "08", "09", "10",
-      "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
-      "21", "22", "23", "24", "25"
+              "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
+              "21", "22", "23", "24", "25"
     ].includes(d["Departamento ID"])) {
-      return colors.Departamento[d["Departamento ID"]];
+      return colors["Departamento"][d["Departamento ID"]];
     }
   }
 
@@ -788,7 +786,7 @@ export const findColorV2 = (key, d) => {
   if (key === "Indicador") {
     if ([
       "Falta de interés",
-      "No fué necesario",
+      "No fue necesario",
       "Intentaron pero al final desistieron",
       "No contaron con los recursos económicos necesarios",
       "No contaron con personal capacitado",
@@ -956,7 +954,7 @@ export const findColorV2 = (key, d) => {
       "Ingreso bruto de la actividad principal monetario (dependiente)",
       "Ingreso por pago en especie de la actividad principal",
       " Ingreso por actividad principal independiente",
-      "Ingreso por autoconsumo de la actividad principal independiente"
+      "Ingreso por autoconsumo de la actividad principal independiente",
     ].includes(d.Indicador)) {
       return colors["Tipos de ingresos actividad principal"][d["Indicador ID"]];
     }
@@ -965,7 +963,7 @@ export const findColorV2 = (key, d) => {
       "Ingreso bruto de la actividad secundaria dependiente",
       "Ingreso pago en especie de la actividad secundaria dependiente",
       "Ingreso neto de la actividad secundaria independiente",
-      "Ingreso por autoconsumo de la actividad secundaria independiente"
+      "Ingreso por autoconsumo de la actividad secundaria independiente",
     ].includes(d.Indicador)) {
       return colors["Tipos de ingresos actividad secundaria"][d["Indicador ID"]];
     }
@@ -973,20 +971,20 @@ export const findColorV2 = (key, d) => {
     else if ([
       "Horas semanales dedicadas al trabajo",
       "Horas semanales dedicadas al trabajo (ocupación principal)",
-      "Horas semanales dedicadas al trabajo (ocupación secundaria)"
+      "Horas semanales dedicadas al trabajo (ocupación secundaria)",
     ].includes(d.Indicador)) {
       return colors["Horas laborales"][d["Indicador ID"]];
     }
 
-    else if (["Tiempo del negocio o establecimiento independiente"].includes(d.Indicador)) {
+    else if(["Tiempo del negocio o establecimiento independiente"].includes(d.Indicador)) {
       return "#709FB0";
     }
 
-    else if (["Trabajadores asalariados en el negocio o establecimiento independiente"].includes(d.Indicador)) {
+    else if(["Trabajadores asalariados en el negocio o establecimiento independiente"].includes(d.Indicador)) {
       return "#3282B8";
     }
 
-    else if (["Trabajadores no remunerados en el negocio o establecimiento independiente"].includes(d.Indicador)) {
+    else if(["Trabajadores no remunerados en el negocio o establecimiento independiente"].includes(d.Indicador)) {
       return "#005086";
     }
 
@@ -1021,8 +1019,8 @@ export const findColorV2 = (key, d) => {
     if (d.Indicador === "Gasto Promedio mensual monetario del hogar") return "#FF9F68";
 
     // Hogares - Sankeys
-    if (d.Indicador === "No hace uso" && d["Indicador ID"] === 21 && d["Categoria ID"] === 16) return "#78C2C3";
-    if (d.Indicador === "Si hace uso" && d["Indicador ID"] === 21 && d["Categoria ID"] === 17) return "#3F6699";
+    if (d.Indicador === "No hace uso"     && d["Indicador ID"] === 21 && d["Categoria ID"] === 16) return "#78C2C3";
+    if (d.Indicador === "Si hace uso"     && d["Indicador ID"] === 21 && d["Categoria ID"] === 17) return "#3F6699";
     if (d.Indicador === "Total población" && d["Indicador ID"] === 21 && d["Categoria ID"] === 99) return "#0D1B4C";
 
     if (d.Indicador === "Si hace uso" && d["Indicador ID"] === 22 && d["Categoria ID"] === 17) return "#A0DBDB";
@@ -1038,11 +1036,11 @@ export const findColorV2 = (key, d) => {
     if (d.Indicador === "Total con instrumento financiero" && d["Indicador ID"] === 66 && d["Categoria ID"] === 99) return "#6E5773";
     if (d.Indicador === "Total sin instrumento financiero" && d["Indicador ID"] === 73 && d["Categoria ID"] === 99) return "#D45D79";
 
-    if (d.Indicador === "Si tiene" && d["Indicador ID"] === 67 && d.Categoria === "Tiene una cuenta de ahorros") return "#EA9085";
-    if (d.Indicador === "Si tiene" && d["Indicador ID"] === 68 && d.Categoria === "Tiene una cuenta de ahorro a plazo fijo") return "#8F8787";
-    if (d.Indicador === "Si tiene" && d["Indicador ID"] === 69 && d.Categoria === "Tiene una cuenta corriente") return "#A64452";
-    if (d.Indicador === "Si tiene" && d["Indicador ID"] === 70 && d.Categoria === "Tiene una tarjeta de credito") return "#470031";
-    if (d.Indicador === "Si tiene" && d["Indicador ID"] === 71 && d.Categoria === "Tiene una tarjeta de débito") return "#C02727";
+    if (d.Indicador === "Si tiene" && d["Indicador ID"] === 67 && d["Categoria"] === "Tiene una cuenta de ahorros"            ) return "#EA9085";
+    if (d.Indicador === "Si tiene" && d["Indicador ID"] === 68 && d["Categoria"] === "Tiene una cuenta de ahorro a plazo fijo") return "#8F8787";
+    if (d.Indicador === "Si tiene" && d["Indicador ID"] === 69 && d["Categoria"] === "Tiene una cuenta corriente"             ) return "#A64452";
+    if (d.Indicador === "Si tiene" && d["Indicador ID"] === 70 && d["Categoria"] === "Tiene una tarjeta de credito"           ) return "#470031";
+    if (d.Indicador === "Si tiene" && d["Indicador ID"] === 71 && d["Categoria"] === "Tiene una tarjeta de débito"            ) return "#C02727";
 
     if (d.Indicador === "No tiene" && d["Categoria ID"] === 36) return "#65799B";
     if (d.Indicador === "No tiene" && d["Categoria ID"] === 72) return "#A12559";
@@ -1082,7 +1080,7 @@ export const findColorV2 = (key, d) => {
     else if ([
       "Anchoveta",
       "Otros"
-    ].includes(d.Indicador) && d.Tipo === "Pesca marítima") {
+    ].includes(d.Indicador) && d["Tipo"] === "Pesca marítima") {
       return colors["Desembarque de recursos maritimos por utilizacion"][d["Indicador ID"]];
     }
 
@@ -1178,14 +1176,14 @@ export const findColorV2 = (key, d) => {
   }
 
   if (key === "tipo") {
-    if (d.tipo === "Salas de Teatro") return "#5A5D9D";
-    else if (d.tipo === "Salas de Cine") return "#346473";
-    else if (d.tipo === "Centro / organización Cultura") return "#DAD773";
-    else if (d.tipo === "Escuelas de Arte") return "#7ECBA1";
-    else if (d.tipo === "Editoriales") return "#AA8976";
-    else if (d.tipo === "Galerías") return "#DF7861";
-    else if (d.tipo === "Librerías") return "#AF0069";
-    else if (d.tipo === "Archivos") return "#A685E2";
+    if      (d.tipo === "Salas de Teatro"               ) return "#5A5D9D";
+    else if (d.tipo === "Salas de Cine"                 ) return "#346473";
+    else if (d.tipo === "Centro / organización Cultura" ) return "#DAD773";
+    else if (d.tipo === "Escuelas de Arte"              ) return "#7ECBA1";
+    else if (d.tipo === "Editoriales"                   ) return "#AA8976";
+    else if (d.tipo === "Galerías"                      ) return "#DF7861";
+    else if (d.tipo === "Librerías"                     ) return "#AF0069";
+    else if (d.tipo === "Archivos"                      ) return "#A685E2";
   }
 
   if (key === "Measure") {
@@ -1205,7 +1203,7 @@ export const findColorV2 = (key, d) => {
       "Analfabetismo entre 30 a 39 años",
       "Analfabetismo entre 40 a 49 años",
       "Analfabetismo entre 50 a 59 años",
-      "Analfabetismo en edad de 60 años y mas"
+      "Analfabetismo en edad de 60 años y mas",
     ].includes(d.Measure)) {
       return colors["Analfabetismo segun grupo etario"][d["Measure ID"]];
     }
@@ -1222,7 +1220,7 @@ export const findColorV2 = (key, d) => {
       "Nacimientos anuales",
       "Defunciones anuales",
       "Crecimiento natural"
-    ].includes(d.Measure)) {
+    ].includes(d["Measure"])) {
       return colors["Crecimiento natural"][d["Measure ID"]];
     }
 
@@ -1232,7 +1230,7 @@ export const findColorV2 = (key, d) => {
       "Carecen servicios higiénicos",
       "Menores sin escuela",
       "Alta dependencia económica"
-    ].includes(d.Measure)) {
+    ].includes(d["Measure"])) {
       return colors["Necesidades basicas insatisfechas"][d["Measure ID"]];
     }
 
@@ -1241,7 +1239,7 @@ export const findColorV2 = (key, d) => {
       "Municipalidades con bibliotecas",
       "Municipalidades que disponen de servicio bibliotecario",
       "Municipalidades que disponen de computadoras operativos en la biblioteca"
-    ].includes(d.Measure)) {
+    ].includes(d["Measure"])) {
       return colors["Bibliotecas y servicios bibliotecarios"][d["Measure ID"]];
     }
 
@@ -1258,7 +1256,7 @@ export const findColorV2 = (key, d) => {
       "Gestión de la renta y administración tributaria",
       "Gestión del catastro",
       "Gestión de las licencias de funcionamiento"
-    ].includes(d.Measure)) {
+    ].includes(d["Measure"])) {
       return colors["Portal de transparencia y sistemas informaticos"][d["Measure ID"]];
     }
 
@@ -1266,8 +1264,8 @@ export const findColorV2 = (key, d) => {
       "Linea de telefonía fija en servicio",
       "Linea de telefonía móvil en servicio",
       "Servicio de internet"
-    ].includes(d.Measure)) {
-      return colors.Conectividad[d["Measure ID"]];
+    ].includes(d["Measure"])) {
+      return colors["Conectividad"][d["Measure ID"]];
     }
 
     else if ([
@@ -1276,8 +1274,8 @@ export const findColorV2 = (key, d) => {
       "Impresora básica",
       "Impresora multifuncional",
       "Proyector multimedia"
-    ].includes(d.Measure)) {
-      return colors.Equipamiento[d["Measure ID"]];
+    ].includes(d["Measure"])) {
+      return colors["Equipamiento"][d["Measure ID"]];
     }
 
     else if ([
@@ -1289,13 +1287,13 @@ export const findColorV2 = (key, d) => {
       "Control de certificado de inspección de seguridad en edificaciones",
       "Control de anuncios publicitario",
       "Control de transporte urbano"
-    ].includes(d.Measure)) {
+    ].includes(d["Measure"])) {
       return colors["Fiscalizacion municipal"][d["Measure ID"]];
     }
 
-    else if (d.Measure === "Licencias para actividades comerciales") return "#09A8FA";
-    else if (d.Measure === "Licencias para actividades artesanías y manufactura") return "#DD5B82";
-    else if (d.Measure === "Licencias para actividades agropecuarias") return "#3D93A3";
+    else if (d.Measure === "Licencias para actividades comerciales"              ) return "#09A8FA";
+    else if (d.Measure === "Licencias para actividades artesanías y manufactura" ) return "#DD5B82";
+    else if (d.Measure === "Licencias para actividades agropecuarias"            ) return "#3D93A3";
 
     else if ([
       "Funcionarios y/o directivos",
@@ -1303,7 +1301,7 @@ export const findColorV2 = (key, d) => {
       "Técnicos",
       "Auxiliares",
       "Obreros"
-    ].includes(d.Measure)) {
+    ].includes(d["Measure"])) {
       return colors["Composicion de empleados municipales segun tipo de trabajador"][d["Measure ID"]];
     }
 
@@ -1312,7 +1310,7 @@ export const findColorV2 = (key, d) => {
       "Frecuencia interdiaria",
       "Frecuencia de dos veces por semana",
       "Frecuencia de una vez por semana"
-    ].includes(d.Measure)) {
+    ].includes(d["Measure"])) {
       return colors["Frecuencia de recojo de residuos solidos"][d["Measure ID"]];
     }
 
@@ -1321,14 +1319,14 @@ export const findColorV2 = (key, d) => {
       "Cobertura con más del 25% y menos del 49%",
       "Cobertura con más del 50% y menos del 74%",
       "Cobertura superior al 75%"
-    ].includes(d.Measure)) {
+    ].includes(d["Measure"])) {
       return colors["Cobertura de recojo de residuos solidos"][d["Measure ID"]];
     }
 
     else if ([
       "Unidades moviles de serenazgo operativos",
       "Equipos de comunicación y videovigilancia"
-    ].includes(d.Measure)) {
+    ].includes(d["Measure"])) {
       return colors["Equipos de seguridad y unidades de serenazgo"][d["Measure ID"]];
     }
 
@@ -1339,15 +1337,15 @@ export const findColorV2 = (key, d) => {
       "Personal nombrado masculino",
       "Personal contratado femenino",
       "Personal contratado masculino"
-    ].includes(d.Measure)) {
+    ].includes(d["Measure"])) {
       return colors["Recursos humanos"][d["Measure ID"]];
     }
 
   }
 
-  if (key === "Tipo de indicador") {
+  if (key === "Tipo de indicador"){
     // Demografia
-    if ([
+    if([
       "Evolución poblacion censada urbana",
       "Evolución poblacion censada rural"
     ].includes(d["Tipo de indicador"])) {
@@ -1356,7 +1354,7 @@ export const findColorV2 = (key, d) => {
 
   }
 
-  if (key === "Sexo_Tipo") {
+  if (key === "Sexo_Tipo"){
     // Demografia
     return colors["Proyeccion demografica urbano rural"][d["Sexo_Tipo ID"]];
   }
@@ -1453,16 +1451,16 @@ export const findColorV2 = (key, d) => {
       "Rural",
       "Costa",
       "Sierra",
-      "Selva"
+      "Selva",
     ].includes(d["Sub ambito geografico"])) {
       return colors["Poblacion economicamente activa segun region"][d["Sub ambito geografico ID"]];
     }
   }
 
   if (key === "Value") {
-    if (d.Measure === "Licencias para actividades comerciales") return "#09A8FA";
-    else if (d.Measure === "Licencias para actividades artesanías y manufactura") return "#DD5B82";
-    else if (d.Measure === "Licencias para actividades agropecuarias") return "#3D93A3";
+    if      (d.Measure === "Licencias para actividades comerciales"              ) return "#09A8FA";
+    else if (d.Measure === "Licencias para actividades artesanías y manufactura" ) return "#DD5B82";
+    else if (d.Measure === "Licencias para actividades agropecuarias"            ) return "#3D93A3";
 
     else if ([
       "Inscripciones de hechos vitales en la Oficina de Registro de Estado Civil (OREC)",
@@ -1481,7 +1479,7 @@ export const findColorV2 = (key, d) => {
       "Servicio de conservación de areas verdes",
       "Cobran tasas y arbitrios",
       "Brindan licencias"
-    ].includes(d.Type)) {
+    ].includes(d["Type"])) {
       return colors["Servicios publicos"][d["Type ID"]];
     }
 
@@ -1522,7 +1520,7 @@ export const findColorV2 = (key, d) => {
     if ([
       "Posee servicio de Internet",
       "No posee servicio de Internet"
-    ].includes(d.Type)) {
+    ].includes(d["Type"])) {
       return colors["Conectividad gobiernos locales"][d["Type ID"]];
     }
 
@@ -1543,21 +1541,21 @@ export const findColorV2 = (key, d) => {
       "Servicio de conservación de areas verdes",
       "Cobran tasas y arbitrios",
       "Brindan licencias"
-    ].includes(d.Type)) {
+    ].includes(d["Type"])) {
       return colors["Servicios publicos"][d["Type ID"]];
     }
 
     else if ([
       "Recibe Financiamiento",
       "No Recibe Financiamiento"
-    ].includes(d.Type)) {
+    ].includes(d["Type"])) {
       return colors["Financiamiento municipal"][d["Type ID"]];
     }
 
     else if ([
       "Brinda licencias",
       "No brinda licencias"
-    ].includes(d.Type)) {
+    ].includes(d["Type"])) {
       return colors["Planificacion municipal distrital"][d["Type ID"]];
     }
 
@@ -1645,272 +1643,272 @@ export const findColorV2 = (key, d) => {
 
   }
 
-  // Gobierno
-  if (key === "Nivel Gobierno") {
-    if ([
-      "Gobierno nacional",
-      "Gobiernos locales",
-      "Gobiernos regionales"
-    ].includes(d["Nivel Gobierno"])) {
-      return colors["Presupuestos por tipo de gobierno"][d["Nivel Gobierno ID"]];
-    }
-  }
-
-  if (key === "Fuente de Financiamiento") {
-    if ([
-      "Recursos directamente recaudados",
-      "Recursos por operaciones oficiales de credito",
-      "Donaciones y transferencias",
-      "Recursos determinados"
-    ].includes(d["Fuente de Financiamiento"])) {
-      return colors["Recaudacion segun composicion geografica"][d["Fuente de Financiamiento ID"]];
-    }
-  }
-
-  if (key === "Sector") {
-    if ([
-      "Gobierno local",
-      "Presidencia consejo ministros",
-      "Cultura",
-      "Ambiental",
-      "Justicia",
-      "Interior",
-      "Relaciones exteriores",
-      "Economia y finanzas",
-      "Educacion",
-      "Salud",
-      "Trabajo y promocion del empleo",
-      "Agrario y de riego",
-      "Energia y minas",
-      "Contraloria general",
-      "Defensoria del pueblo",
-      "Junta nacional de justicia",
-      "Ministerio publico",
-      "Tribunal constitucional",
-      "Defensa",
-      "Fuero militar policial",
-      "Congreso de la republica",
-      "Jurado nacional de elecciones",
-      "Oficina nacional de procesos electorales",
-      "Registro nacional de identificacion y estado civil",
-      "Comercio exterior y turismo",
-      "Transportes y comunicaciones",
-      "Vivienda construccion y saneamiento",
-      "Produccion",
-      "Mujer y poblaciones vulnerables",
-      "Desarrollo e inclusion social",
-      "Mancomunidades",
-      "Mancomunidades regionales",
-      "Gobiernos regionales"
-    ].includes(d.Sector)) {
-      return colors["Recaudacion por sector economico"][d["Sector ID"]];
-    }
-  }
-
-  if (key === "Categoria de hospedaje") {
-    if ([
-      "1 Estrella",
-      "2 Estrellas",
-      "3 Estrellas",
-      "4 Estrellas",
-      "5 Estrellas",
-      "Albergue",
-      "Ecolodge",
-      "No Categorizados"
-    ].includes(d["Categoria de hospedaje"])) {
-      return colors["Indicadores de capacidad de alojamiento"][d["Categoria de hospedaje ID"]];
-    }
-  }
-
-  if (key === "Manifestacion 1") {
-    if ([
-      "No reportado",
-      "Animación/mediación sociocultural",
-      "Artes escénicas - circo, teatro",
-      "Audiovisuales - cine, video y/u otros",
-      "Artes escénicas - danza",
-      "Artes visuales y artesanía",
-      "Interpretación ambiental",
-      "Celebración de festividades, fiestas tradicionales y/o rituales",
-      "Libro, lectura y/o escritura",
-      "Protección del patrimonio cultural y proyección de cultura local",
-      "Títeres",
-      "Comida / Gastronomía",
-      "Música",
-      "Deporte, recreación y/o juego",
-      "Comunicaciones (periodismo, radio, podcast y/u otra)",
-      "Tradición oral propia de pueblos indígenas u originarios"
-    ].includes(d["Manifestacion 1"]) &&
-      [99, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16
-      ].includes(d["Manifestacion 1 ID"])) {
-      return colors["Organizaciones que trabajan el arte y la cultura"][d["Manifestacion 1 ID"]];
-    }
-  }
-
-  if (key === "Actividad 1") {
-    if ([
-      "Productora",
-      "Servicios conexos",
-      "Exhibidora",
-      "Distribuidora",
-      "Formación"
-    ].includes(d["Actividad 1"]) &&
-      ["1_1", "1_2", "1_3", "1_4", "1_5"
-      ].includes(d["Actividad 1 ID"])) {
-      return colors["Empresas y organizaciones cinematograficas"][d["Actividad 1 ID"]];
+    // Gobierno
+    if (key === "Nivel Gobierno") {
+      if ([
+        "Gobierno nacional",
+        "Gobiernos locales",
+        "Gobiernos regionales"
+      ].includes(d["Nivel Gobierno"])) {
+        return colors["Presupuestos por tipo de gobierno"][d["Nivel Gobierno ID"]];
+      }
     }
 
-    else if ([
-      "Editorial",
-      "Cartonera",
-      "Librería",
-      "Distribuidora",
-      "Revista",
-      "Imprenta",
-      "Fondos Universitarios",
-      "Prensa",
-      "Autor-editor",
-      "Fanzine"
-    ].includes(d["Actividad 1"])) {
-      return colors["Agentes del ecosistema del libro"][d["Actividad 1 ID"]];
+    if ( key === "Fuente de Financiamiento") {
+      if ([
+        "Recursos directamente recaudados",
+        "Recursos por operaciones oficiales de credito",
+        "Donaciones y transferencias",
+        "Recursos determinados"
+      ].includes(d["Fuente de Financiamiento"])) {
+        return colors["Recaudacion segun composicion geografica"][d["Fuente de Financiamiento ID"]];
+      }
     }
 
-  }
-
-  if (key === "Cantidad Agentes") {
-    if ([
-      "Editorial",
-      "Cartonera",
-      "Librería",
-      "Distribuidora",
-      "Revista",
-      "Imprenta",
-      "Fondos Universitarios",
-      "Prensa",
-      "Autor-editor",
-      "Fanzine"
-    ].includes(d["Actividad 1"])) {
-      return colors["Agentes del ecosistema del libro"][d["Actividad 1 ID"]];
-    }
-  }
-
-  if (key === "Names") {
-    if ([
-      "Espectáculos de teatro",
-      "Espectáculos de danza",
-      "Espectáculos de circo",
-      "Espectáculos musicales",
-      "Funciones de cine",
-      "Exposiciones de fotografía, pintura o galerías de arte",
-      "Ferias artesanales",
-      "Bibliotecas y/o salas de lectura",
-      "Ferias de libros",
-      "Festivales locales-tradicionales"
-    ].includes(d.Names)) {
-      return colors["Demanda de servicios culturales"][d["Indicador ID"]];
-    }
-
-    else if ([
-      "Periódicos impresos",
-      "Música a través de descargas o acceso a internet",
-      "Películas a través de descargas o acceso a internet",
-      "Libros impresos",
-      "Películas a través de CDs, bluray u otros dispositivos",
-      "Periódicos digitales",
-      "Libros digitales",
-      "Productos artesanales",
-      "Videojuegos desde dispositivos móviles a través de descargas o acceso a internet",
-      "Música a través de CDs, bluray u otros dispositivos"
-    ].includes(d.Names)) {
-      return colors["Demanda de bienes culturales"][d["Indicador ID"]];
+    if ( key === "Sector") {
+      if ([
+        "Gobierno local",
+        "Presidencia consejo ministros",
+        "Cultura",
+        "Ambiental",
+        "Justicia",
+        "Interior",
+        "Relaciones exteriores",
+        "Economia y finanzas",
+        "Educacion",
+        "Salud",
+        "Trabajo y promocion del empleo",
+        "Agrario y de riego",
+        "Energia y minas",
+        "Contraloria general",
+        "Defensoria del pueblo",
+        "Junta nacional de justicia",
+        "Ministerio publico",
+        "Tribunal constitucional",
+        "Defensa",
+        "Fuero militar policial",
+        "Congreso de la republica",
+        "Jurado nacional de elecciones",
+        "Oficina nacional de procesos electorales",
+        "Registro nacional de identificacion y estado civil",
+        "Comercio exterior y turismo",
+        "Transportes y comunicaciones",
+        "Vivienda construccion y saneamiento",
+        "Produccion",
+        "Mujer y poblaciones vulnerables",
+        "Desarrollo e inclusion social",
+        "Mancomunidades",
+        "Mancomunidades regionales",
+        "Gobiernos regionales"
+      ].includes(d["Sector"])) {
+        return colors["Recaudacion por sector economico"][d["Sector ID"]];
+      }
     }
 
-  }
-
-  if (key === "Estado Beneficio" && Object.keys(d).includes("Fase Cadena Valor")) {
-    return colors["Postulaciones segun fase de la cadena"][d["Estado Beneficio ID"]];
-  }
-
-  if (key === "Fase Cadena Valor") {
-    if ([
-      "Producción",
-      "Acceso",
-      "Creación",
-      "Circulación",
-      "Formación"
-    ].includes(d["Fase Cadena Valor"])) {
-      return colors["Postulaciones a estimulos economicos"][d["Fase Cadena Valor ID"]];
-    }
-  }
-
-  if (key === "Clasificacion") {
-    if ([
-      "Institutos Públicos",
-      "Institutos de Educación Superior",
-      "Institutos de Salud",
-      "Centros de Investigación Privada sin Fines de Lucro",
-      "Sociedad de Responsabilidad Limitada",
-      "Sociedad Colectiva",
-      "Sociedad Anónima Cerrada",
-      "Sociedad Anónima Abierta",
-      "Pública",
-      "Asociación",
-      "Otra"
-    ].includes(d.Clasificacion)) {
-      return colors["Centros de investigacion"][d["Clasificacion ID"]];
+    if ( key === "Categoria de hospedaje") {
+      if ([
+        "1 Estrella",
+        "2 Estrellas",
+        "3 Estrellas",
+        "4 Estrellas",
+        "5 Estrellas",
+        "Albergue",
+        "Ecolodge",
+        "No Categorizados"
+      ].includes(d["Categoria de hospedaje"])) {
+        return colors["Indicadores de capacidad de alojamiento"][d["Categoria de hospedaje ID"]];
+      }
     }
 
-  }
-
-  if (key === "Tipo de gasto label") {
-    if (d["Tipo de gasto label"] === "Gasto interno promedio en I+D") return "#FFD57E";
-    else if (d["Tipo de gasto label"] === "Gasto externo promedio en I+D") return "#FCA652";
-  }
-
-  if (key === "Tipo empresa") {
-    if ([
-      "Gran empresa",
-      "Mediana empresa",
-      "Microempresa",
-      "Otros",
-      "Pequeña empresa",
-      "Persona natural"
-    ].includes(d["Tipo empresa"])) {
-      return colors["Clientes atendidos acumulados por mes"][d["Tipo empresa ID"]];
+    if ( key === "Manifestacion 1") {
+      if ([
+        "No reportado",
+        "Animación/mediación sociocultural",
+        "Artes escénicas - circo, teatro",
+        "Audiovisuales - cine, video y/u otros",
+        "Artes escénicas - danza",
+        "Artes visuales y artesanía",
+        "Interpretación ambiental",
+        "Celebración de festividades, fiestas tradicionales y/o rituales",
+        "Libro, lectura y/o escritura",
+        "Protección del patrimonio cultural y proyección de cultura local",
+        "Títeres",
+        "Comida / Gastronomía",
+        "Música",
+        "Deporte, recreación y/o juego",
+        "Comunicaciones (periodismo, radio, podcast y/u otra)",
+        "Tradición oral propia de pueblos indígenas u originarios"
+      ].includes(d["Manifestacion 1"]) && (
+        [99,  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16
+      ].includes(d["Manifestacion 1 ID"]))) {
+        return colors["Organizaciones que trabajan el arte y la cultura"][d["Manifestacion 1 ID"]];
+      }
     }
-  }
 
-  if (key === "CITE") {
-    if ([
-      "CITEacuícola Ahuashiyacu",
-      "CITEagroindustrial Chavimochic",
-      "CITEagroindustrial Huallaga",
-      "CITEagroindustrial Ica",
-      "CITEagroindustrial Majes",
-      "CITEagroindustrial Moquegua",
-      "CITEagroindustrial Oxapampa",
-      "CITEagroindustrial VRAEM",
-      "CITEccal Lima",
-      "CITEcuero y calzado Arequipa",
-      "CITEcuero y calzado Trujillo",
-      "CITEforestal Maynas",
-      "CITEforestal Pucallpa",
-      "CITEmadera Lima",
-      "CITEpesquero Callao",
-      "CITEpesquero Ilo",
-      "CITEpesquero Piura",
-      "CITEpesquero amazónico Ahuashiyacu",
-      "CITEpesquero amazónico Pucallpa",
-      "CITEproductivo Madre de Dios",
-      "CITEproductivo Maynas",
-      "CITEtextil camélidos Arequipa",
-      "CITEtextil camélidos Cusco",
-      "CITEtextil camélidos Puno",
-      "UTagroindustrial Ambo",
-      "UTagroindustrial Huaura"
-    ].includes(d.CITE)) {
-      return colors["CITE y UT en Peru"][d["CITE ID"]];
+    if ( key === "Actividad 1") {
+      if ([
+        "Productora",
+        "Servicios conexos",
+        "Exhibidora",
+        "Distribuidora",
+        "Formación"
+      ].includes(d["Actividad 1"]) && (
+        ["1_1", "1_2", "1_3", "1_4", "1_5"
+      ].includes(d["Actividad 1 ID"]))) {
+        return colors["Empresas y organizaciones cinematograficas"][d["Actividad 1 ID"]];
+      }
+
+      else if ([
+        "Editorial",
+        "Cartonera",
+        "Librería",
+        "Distribuidora",
+        "Revista",
+        "Imprenta",
+        "Fondos Universitarios",
+        "Prensa",
+        "Autor-editor",
+        "Fanzine"
+      ].includes(d["Actividad 1"])) {
+        return colors["Agentes del ecosistema del libro"][d["Actividad 1 ID"]];
+      }
+
     }
+
+    if ( key === "Cantidad Agentes") {
+      if ([
+        "Editorial",
+        "Cartonera",
+        "Librería",
+        "Distribuidora",
+        "Revista",
+        "Imprenta",
+        "Fondos Universitarios",
+        "Prensa",
+        "Autor-editor",
+        "Fanzine"
+      ].includes(d["Actividad 1"])) {
+        return colors["Agentes del ecosistema del libro"][d["Actividad 1 ID"]];
+      }
+    }
+
+    if ( key === "Names") {
+      if ([
+        "Espectáculos de teatro",
+        "Espectáculos de danza",
+        "Espectáculos de circo",
+        "Espectáculos musicales",
+        "Funciones de cine",
+        "Exposiciones de fotografía, pintura o galerías de arte",
+        "Ferias artesanales",
+        "Bibliotecas y/o salas de lectura",
+        "Ferias de libros",
+        "Festivales locales-tradicionales"
+      ].includes(d["Names"])) {
+        return colors["Demanda de servicios culturales"][d["Indicador ID"]];
+      }
+
+      else if ([
+        "Periódicos impresos",
+        "Música a través de descargas o acceso a internet",
+        "Películas a través de descargas o acceso a internet",
+        "Libros impresos",
+        "Películas a través de CDs, bluray u otros dispositivos",
+        "Periódicos digitales",
+        "Libros digitales",
+        "Productos artesanales",
+        "Videojuegos desde dispositivos móviles a través de descargas o acceso a internet",
+        "Música a través de CDs, bluray u otros dispositivos"
+      ].includes(d["Names"])) {
+        return colors["Demanda de bienes culturales"][d["Indicador ID"]];
+      }
+
+    }
+
+    if (key === "Estado Beneficio" && Object.keys(d).includes("Fase Cadena Valor")) {
+      return colors["Postulaciones segun fase de la cadena"][d["Estado Beneficio ID"]];
+    }
+
+    if ( key === "Fase Cadena Valor") {
+      if ([
+        "Producción",
+        "Acceso",
+        "Creación",
+        "Circulación",
+        "Formación"
+      ].includes(d["Fase Cadena Valor"])) {
+        return colors["Postulaciones a estimulos economicos"][d["Fase Cadena Valor ID"]];
+      }
+    }
+
+    if ( key === "Clasificacion") {
+      if ([
+        "Institutos Públicos",
+        "Institutos de Educación Superior",
+        "Institutos de Salud",
+        "Centros de Investigación Privada sin Fines de Lucro",
+        "Sociedad de Responsabilidad Limitada",
+        "Sociedad Colectiva",
+        "Sociedad Anónima Cerrada",
+        "Sociedad Anónima Abierta",
+        "Pública",
+        "Asociación",
+        "Otra"
+      ].includes(d["Clasificacion"])) {
+        return colors["Centros de investigacion"][d["Clasificacion ID"]];
+      }
+
+    }
+
+    if ( key === "Tipo de gasto label") {
+      if      (d["Tipo de gasto label"] === "Gasto interno promedio en I+D") return "#FFD57E";
+      else if (d["Tipo de gasto label"] === "Gasto externo promedio en I+D") return "#FCA652";
+    }
+
+    if ( key === "Tipo empresa") {
+      if ([
+        "Gran empresa",
+        "Mediana empresa",
+        "Microempresa",
+        "Otros",
+        "Pequeña empresa",
+        "Persona natural"
+      ].includes(d["Tipo empresa"])) {
+        return colors["Clientes atendidos acumulados por mes"][d["Tipo empresa ID"]];
+      }
+    }
+
+    if ( key === "CITE") {
+      if ([
+        "CITEacuícola Ahuashiyacu",
+        "CITEagroindustrial Chavimochic",
+        "CITEagroindustrial Huallaga",
+        "CITEagroindustrial Ica",
+        "CITEagroindustrial Majes",
+        "CITEagroindustrial Moquegua",
+        "CITEagroindustrial Oxapampa",
+        "CITEagroindustrial VRAEM",
+        "CITEccal Lima",
+        "CITEcuero y calzado Arequipa",
+        "CITEcuero y calzado Trujillo",
+        "CITEforestal Maynas",
+        "CITEforestal Pucallpa",
+        "CITEmadera Lima",
+        "CITEpesquero Callao",
+        "CITEpesquero Ilo",
+        "CITEpesquero Piura",
+        "CITEpesquero amazónico Ahuashiyacu",
+        "CITEpesquero amazónico Pucallpa",
+        "CITEproductivo Madre de Dios",
+        "CITEproductivo Maynas",
+        "CITEtextil camélidos Arequipa",
+        "CITEtextil camélidos Cusco",
+        "CITEtextil camélidos Puno",
+        "UTagroindustrial Ambo",
+        "UTagroindustrial Huaura"
+      ].includes(d["CITE"])) {
+        return colors["CITE y UT en Peru"][d["CITE ID"]];
+      }
   }
 
   if (key === "nombre" && d.administracion === "Ministerio de Cultura") {
@@ -1918,7 +1916,7 @@ export const findColorV2 = (key, d) => {
   }
 
   if (key === "tipo_paisaje") {
-    return "#DE8971";
+    return "#DE8971"
   }
 
   if (key === "expresiones" && d.declaratorias) {
@@ -1926,12 +1924,12 @@ export const findColorV2 = (key, d) => {
   }
 
   if (key === "categoria") {
-    if (d.categoria === "Solicitud de creación") return "#09667F";
-    else if (d.categoria === "Reserva Territorial") return "#456268";
-    else if (d.categoria === "Reserva Indígena") return "#77C6D8";
+    if      (d["categoria"] === "Solicitud de creación") return "#09667F";
+    else if (d["categoria"] === "Reserva Territorial")   return "#456268";
+    else if (d["categoria"] === "Reserva Indígena")      return "#77C6D8";
   }
 
-  if (key === "Contribuyente") {
+  if ( key === "Contribuyente") {
     if ([
       "Asociacion",
       "Asociacion en participacion",
@@ -1962,7 +1960,7 @@ export const findColorV2 = (key, d) => {
       "Sucesion indivisa con negocio",
       "Sucursales o ag. de emp. extranj.",
       "Univers. centros educat. y cult."
-    ].includes(d.Contribuyente)) {
+    ].includes(d["Contribuyente"])) {
       return colors["Clientes atendidos segun CIIU y tipo de contribuyente"][d["Contribuyente ID"]];
     }
   }
@@ -2003,11 +2001,11 @@ export const findIconV2 = (key, d) => {
   }
 
   if (key === "Year" && Object.keys(d).includes("Tipo de Gasto")) {
-    return "/icons/visualizations/Presupuesto para investigacion/1.png";
+    return `/icons/visualizations/Presupuesto para investigacion/1.png`;
   }
 
   if (key === "Year" && Object.keys(d).includes("Area de conocimiento")) {
-    return "/icons/visualizations/Proyectos de investigacion/1.png";
+    return `/icons/visualizations/Proyectos de investigacion/1.png`;
   }
 
   if (key === "Producto") {
@@ -2029,9 +2027,9 @@ export const findIconV2 = (key, d) => {
       "Conchas de abanico",
       "Pota",
       "Pulpo"
-    ].includes(d.Producto)) {
+    ].includes(d["Producto"])) {
       return `/icons/visualizations/Mercado interno pesquero/${d["Producto ID"]}.png`;
-      // return colors["Mercado interno pesquero"][d["Producto ID"]];
+      //return colors["Mercado interno pesquero"][d["Producto ID"]];
     }
 
     else if ([
@@ -2047,7 +2045,7 @@ export const findIconV2 = (key, d) => {
       "Huevo de Gallina",
       "Carne de Porcino",
       "Carne de Ave"
-    ].includes(d.Producto)) {
+    ].includes(d["Producto"])) {
       return `/icons/visualizations/Dinamica Pecuaria/${d["Producto ID"]}.png`;
     }
   }
@@ -2064,14 +2062,14 @@ export const findIconV2 = (key, d) => {
       "Infraestructura",
       "Supervisión",
       "Transferencia Tecnológica"
-    ].includes(d.Componente)) {
+    ].includes(d["Componente"])) {
       return `/icons/visualizations/Ejecucion Financiera/${d["Componente ID"]}.png`;
     }
   }
 
   if (key === "Categoria") {
 
-    if (d.Indicador === "No tiene" && d["Categoria ID"] === 73) return "/icons/visualizations/Instrumentos financieros/7373.png";
+    if (d.Indicador === "No tiene" && d["Categoria ID"] === 73) return `/icons/visualizations/Instrumentos financieros/7373.png`;
 
     if (d.Indicador === "Porcentaje de empresas manufactureras que han realizado alguna actividad de innovación") {
       return `/icons/visualizations/Actividades de innovacion/${d["Categoria ID"]}.png`;
@@ -2095,12 +2093,12 @@ export const findIconV2 = (key, d) => {
       "No necesita apoyo para innovar",
       "No le interesó",
       "Otro"
-    ].includes(d.Categoria) && d["Indicador ID"] === 66) {
+    ].includes(d.Categoria) && (d["Indicador ID"] === 66)) {
       return `/icons/visualizations/No accede CITE/${d["Categoria ID"]}.png`;
     }
 
     else if (["Empleo informal"].includes(d.Categoria)) {
-      return "/icons/visualizations/Informalidad laboral/43.png";
+      return `/icons/visualizations/Informalidad laboral/43.png`;
     }
 
     // Empleo
@@ -2131,7 +2129,7 @@ export const findIconV2 = (key, d) => {
       "No sabe dónde o cómo registrarse",
       "No sabe si debe registrarse",
       "Su negocio es pequeño/produce poca cantidad"
-    ].includes(d.Categoria) && d["Indicador ID"] === 75) {
+    ].includes(d.Categoria) && (d["Indicador ID"] === 75)) {
       return `/icons/visualizations/Composicion por registrados en sunat/${d["Categoria ID"]}.png`;
     }
 
@@ -2147,7 +2145,7 @@ export const findIconV2 = (key, d) => {
       "En su taller comercial dentro de su vivienda y en una habitación de uso exclusivo",
       "En taller, tienda, restaurante, hotel, oficina, consultorio, etc.",
       "En vehículo para transporte de personas o mercaderías"
-    ].includes(d.Categoria) && d["Indicador ID"] === 76) {
+    ].includes(d.Categoria) && (d["Indicador ID"] === 76)) {
       return `/icons/visualizations/Composicion por negocio o actividad/${d["Categoria ID"]}.png`;
     }
 
@@ -2156,7 +2154,7 @@ export const findIconV2 = (key, d) => {
       "Por medio de apuntes, registros o anotaciones personales",
       "Por medio de libros de ingresos y gastos exigidos por la sunat",
       "Por medios de libros o sistema de contabilidad completa"
-    ].includes(d.Categoria) && d["Indicador ID"] === 77) {
+    ].includes(d.Categoria) && (d["Indicador ID"] === 77)) {
       return `/icons/visualizations/Composicion por tipo de instrumento contable/${d["Categoria ID"]}.png`;
     }
 
@@ -2173,7 +2171,7 @@ export const findIconV2 = (key, d) => {
       "Minería y petróleo",
       "Otros servicios excl. públicos",
       "Transporte"
-    ].includes(d.Categoria) && d["Indicador ID"] === 52) {
+    ].includes(d.Categoria) && (d["Indicador ID"] === 52)) {
       return `/icons/visualizations/Poblacion economicamente ocupada por sector/${d["Categoria ID"]}.png`;
     }
 
@@ -2186,7 +2184,7 @@ export const findIconV2 = (key, d) => {
       "Regimen especial de contratación administrativa (cas)",
       "Sin contrato",
       "Otro"
-    ].includes(d.Categoria) && d["Indicador ID"] === 53) {
+    ].includes(d.Categoria) && (d["Indicador ID"] === 53)) {
       return `/icons/visualizations/Distribucion poblacion ocupada por contrato/${d["Categoria ID"]}.png`;
     }
 
@@ -2196,7 +2194,7 @@ export const findIconV2 = (key, d) => {
       "De 51 a 100 personas",
       "Hasta 20 personas",
       "Más de 500 personas"
-    ].includes(d.Categoria) && d["Indicador ID"] === 54) {
+    ].includes(d.Categoria) && (d["Indicador ID"] === 54)) {
       return `/icons/visualizations/Distribucion poblacion ocupada por tamaño/${d["Categoria ID"]}.png`;
     }
 
@@ -2218,7 +2216,7 @@ export const findIconV2 = (key, d) => {
       "Acude a establecimiento en su distrito",
       "Acude a establecimiento en otro distrito",
       "No acude a establecimiento de salud"
-    ].includes(d.Categoria) && d["Indicador ID"] === 49) {
+    ].includes(d.Categoria) && (d["Indicador ID"] === 49)) {
       return `/icons/visualizations/Centros de prestacion de salud/${d["Categoria ID"]}.png`;
     }
 
@@ -2235,7 +2233,7 @@ export const findIconV2 = (key, d) => {
       "Problemas familiares",
       "Se dedica a los quehaceres del hogar",
       "Terminó sus estudios: secundarios/ superiores /asiste a academia preuniversitaria"
-    ].includes(d.Categoria) && d["Indicador ID"] === 20) {
+    ].includes(d.Categoria) && (d["Indicador ID"] === 20)) {
       return `/icons/visualizations/Poblacion no matriculada/${d["Categoria ID"]}.png`;
     }
 
@@ -2247,14 +2245,14 @@ export const findIconV2 = (key, d) => {
     else if ([
       "Hogar con ingresos independientes",
       "Hogar sin ingresos independientes"
-    ].includes(d.Categoria) && d["Indicador ID"] === 9) {
+    ].includes(d.Categoria) && (d["Indicador ID"] === 9)) {
       return `/icons/visualizations/Hogares por tipo de ingresos laborales/${d["Categoria ID"]}.png`;
     }
 
     else if ([
       "Hogar con ingresos dependientes",
       "Hogar sin ingresos dependientes"
-    ].includes(d.Categoria) && d["Indicador ID"] === 7) {
+    ].includes(d.Categoria) && (d["Indicador ID"] === 7)) {
       return `/icons/visualizations/Hogares por tipo de ingresos laborales/${d["Categoria ID"]}.png`;
     }
 
@@ -2276,8 +2274,8 @@ export const findIconV2 = (key, d) => {
       return `/icons/visualizations/Desembarque de recursos maritimos segun especies/${d["Categoria ID"]}.png`;
     }
 
-    else if (d.Categoria === "Nacional" && d["Categoria ID"] === 1) return "/icons/visualizations/Museos y salas de exposicion visitados/1.png";
-    else if (d.Categoria === "Extranjero" && d["Categoria ID"] === 2) return "/icons/visualizations/Museos y salas de exposicion visitados/2.png";
+    else if (d.Categoria === "Nacional" && d["Categoria ID"] === 1) return `/icons/visualizations/Museos y salas de exposicion visitados/1.png`;
+    else if (d.Categoria === "Extranjero" && d["Categoria ID"] === 2) return `/icons/visualizations/Museos y salas de exposicion visitados/2.png`;
 
     else if ([
       "Falta de tiempo",
@@ -2331,25 +2329,25 @@ export const findIconV2 = (key, d) => {
 
   if (key === "Subcategoria") {
     if ([
-      "Museo Arqueológico de Áncash \"Augusto Soriano Infante\"",
-      "Museo Regional de Casma \"Max Uhle\"",
+      `Museo Arqueológico de Áncash "Augusto Soriano Infante"`,
+      `Museo Regional de Casma "Max Uhle"`,
       "Museo de Antropolgía, Arqueología e Historia Natural de Ranrahirca",
       "Museo Nacional Chavín",
       "Museo Arqueológico Zonal de Cabana",
       "Museo Arqueológico, Antropológico de Apurímac",
       "Museo de Sitio Wari",
       "Museo de Sitio de Quinua",
-      "Museo Histórico Regional \"Hipólito Unanue\"",
+      `Museo Histórico Regional "Hipólito Unanue"`,
       "Museo Arqueológico y Etnográfico del Conjunto Monumental Belén",
       "Museo Histórico Regional del Cusco",
       "Museo de Sitio de Chinchero",
-      "Museo de Sitio \"Manuel Chávez Ballón\"",
+      `Museo de Sitio "Manuel Chávez Ballón"`,
       "Museo Amazónico Andino Qhapaq Ñan Quillabamba",
       "Museo de los Pueblos de Paucartambo",
-      "Museo Regional \"Daniel Hernández Morillo\"",
-      "Museo Arqueológico \"Samuel Humberto Espinoza Lozano\"",
-      "Museo Regional de Ica \"Adolfo Bermúdez Jenkins\"",
-      "Museo de Sitio \"Julio C. Tello\" de Paracas",
+      `Museo Regional "Daniel Hernández Morillo"`,
+      `Museo Arqueológico "Samuel Humberto Espinoza Lozano"`,
+      `Museo Regional de Ica "Adolfo Bermúdez Jenkins"`,
+      `Museo de Sitio "Julio C. Tello" de Paracas`,
       "Museo Regional de Arqueología de Junín",
       "Museo de Sitio de Wariwillka",
       "Museo de Sitio de Chan Chan",
@@ -2359,29 +2357,33 @@ export const findIconV2 = (key, d) => {
       "Museo de Sitio Túcume",
       "Museo de Sitio Huaca Rajada - Sipán",
       "Museo de Sitio Huaca Chotuna - Chornancap",
-      "Museo de Sitio \"Arturo Jiménez Borja\" - Puruchuco",
+      `Museo de Sitio "Arturo Jiménez Borja" - Puruchuco`,
       "Museo de Sitio Huallamarca",
       "Museo de Sitio Pachacamac",
-      "Museo de Sitio \"El Mirador del Cerro San Cristóbal\"",
+      `Museo de Sitio "El Mirador del Cerro San Cristóbal"`,
       "Museo de Arte Italiano",
       "Museo de Sitio Huaca Pucllana",
       "Museo de la Nación",
-      "Casa Museo \"José Carlos Mariátegui\"",
+      `Casa Museo "José Carlos Mariátegui"`,
       "Museo Nacional de Arqueología, Antropología e Historia del Perú",
       "Museo Nacional de la Cultura Peruana",
       "Museo Amazónico",
       "Museo de Sitio de Narihualá",
       "Sala de Oro del Museo Municipal Vicús",
-      "Templo Museo \"San Juan de Letrán\"",
-      "Templo Museo \"Nuestra Señora de la Asunción\"",
+      `Templo Museo "San Juan de Letrán"`,
+      `Templo Museo "Nuestra Señora de la Asunción"`,
       "Museo Lítico de Pukara",
       "Museo Departamental San Martín",
       "Museo de Sitio Las Peañas",
       "Museo Histórico Regional de Tacna",
-      "Museo de Sitio Cabeza de Vaca \"Gran Chilimasa\"",
-      "Lugar de la Memoria, la tolerancia y la inclusión social"
-    ].includes(d.Subcategoria) && d["Categoria ID"] === 3) {
-      return "/icons/visualizations/Museos y salas de exposicion mas visitados/museo.png";
+      `Museo de Sitio Cabeza de Vaca "Gran Chilimasa"`,
+      "Lugar de la Memoria, la tolerancia y la inclusión social",
+      "Sala de Exhibición de la Zona Arqueológica Monumental de Kotosh", // test
+      `Sala de Exhibición "Gilberto Tenorio Ruiz"`,
+      `Sala de Exhibición del Sitio Arqueológico "Tambo Colorado"`,
+      "Sala de Exhibición del Monumento Arqueológico Willkawaín"
+    ].includes(d.Subcategoria) && (d["Categoria ID"] === 3)) {
+      return `/icons/visualizations/Museos y salas de exposicion mas visitados/museo.png`;
     }
 
     else if ([
@@ -2395,8 +2397,8 @@ export const findIconV2 = (key, d) => {
       "Sitio Arqueológico de Sillustani",
       "Reserva Arqueológica Líneas y Geoglifos de Nazca",
       "Paisaje Cultural Arqueológico Cumbemayo"
-    ].includes(d.Subcategoria) && [87, 88, 89, 91, 93, 94, 95, 96, 97, 98].includes(d["Subcategoria ID"])) {
-      return "/icons/visualizations/Patrimonio cultural segun lugar arqueologico/sitio_arqueologico.png";
+    ].includes(d.Subcategoria) && ([87, 88, 89, 91, 93, 94, 95, 96, 97, 98].includes(d["Subcategoria ID"]))) {
+      return `/icons/visualizations/Patrimonio cultural segun lugar arqueologico/sitio_arqueologico.png`;
     }
 
     else if ([
@@ -2438,10 +2440,10 @@ export const findIconV2 = (key, d) => {
       "Sitio Arqueológico de Cerro Baúl",
       "Monumento Arqueológico de Cutimbo",
       "Sitio Arqueológico de Sillustani"
-    ].includes(d.Subcategoria) && [
+    ].includes(d.Subcategoria) && ([
       1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-      21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38].includes(d["Subcategoria ID"])) {
-      return "/icons/visualizations/Patrimonio cultural segun lugar arqueologico/complejo_arqueologico.png";
+      21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38].includes(d["Subcategoria ID"]))) {
+      return `/icons/visualizations/Patrimonio cultural segun lugar arqueologico/complejo_arqueologico.png`;
     }
 
     else if ([
@@ -2457,20 +2459,20 @@ export const findIconV2 = (key, d) => {
       "Museo de Sitio Túcume",
       "Lugar de la Memoria, la Tolerancia y la Inclusión Social",
       "Museo de la Nación"
-    ].includes(d.Subcategoria) && [99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110].includes(d["Subcategoria ID"])) {
-      return "/icons/visualizations/Museos y salas de exposicion mas visitados/museo.png";
+    ].includes(d.Subcategoria) && ([99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110].includes(d["Subcategoria ID"]))) {
+      return `/icons/visualizations/Museos y salas de exposicion mas visitados/museo.png`;
     }
 
     else if ([
       "Sala de Exhibición de la Zona Arqueológica Monumental de Kotosh",
       "Sala de Exhibición del Monumento Arqueológico de Willkawaín",
-      "Sala de Exhibición \"Gilberto Tenorio Ruiz\"",
+      `Sala de Exhibición "Gilberto Tenorio Ruiz"`,
       "Sala de Exhibición de Pikillaqta",
-      "Sala de Exhibición del Sitio Arqueológico \"Tambo Colorado\"",
+      `Sala de Exhibición del Sitio Arqueológico "Tambo Colorado"`,
       "Sala de Oro del Museo Municipal Vicús",
       "Casa de la Gastronomía Peruana y Museo Postal y Filatélico del Perú"
-    ].includes(d.Subcategoria) && [110, 111, 112, 113, 114, 115, 116, 117].includes(d["Subcategoria ID"])) {
-      return "/icons/visualizations/Museos y salas de exposicion mas visitados/sala_de_exposicion.png";
+    ].includes(d.Subcategoria) && ([110, 111, 112, 113, 114, 115, 116, 117].includes(d["Subcategoria ID"]))) {
+      return `/icons/visualizations/Museos y salas de exposicion mas visitados/sala_de_exposicion.png`;
     }
 
     else if ([
@@ -2484,7 +2486,7 @@ export const findIconV2 = (key, d) => {
       return `/icons/visualizations/Espectaculos de cultura/${d["Subcategoria ID"]}.png`;
     }
 
-    else if (d.Categoria === "Localidades" && d["Categoria ID"] === 33) return "/icons/visualizations/Cultura pueblos indigenas/33.png";
+    else if (d.Categoria === "Localidades" && d["Categoria ID"] === 33) return `/icons/visualizations/Cultura pueblos indigenas/33.png`;
 
     else if ([
       "Asistencia técnica",
@@ -2538,7 +2540,7 @@ export const findIconV2 = (key, d) => {
     if (d.Indicador === "Adoptaron medidas de seguridad" && d["Categoria ID"] === 99) return "/icons/visualizations/Sankey/conoce_cite.png";
     if (d.Indicador === "Adoptaron medidas de seguridad" && d["Categoria ID"] === 1) return "/icons/visualizations/Sankey/11.png";
     if (d.Indicador === "Adoptaron medidas de seguridad" && d["Categoria ID"] === 2) return "/icons/visualizations/Sankey/12.png";
-    if (d.Indicador === "Incorporación de un sistema de video y captura de imágenes") return "/icons/visualizations/Sankey/sistema_video.png";
+    if (d.Indicador === "Incorporación de un sistema de video y captura de imágenes") return  "/icons/visualizations/Sankey/sistema_video.png";
     if (d.Indicador === "Mejora de infraestructura física") return "/icons/visualizations/Sankey/estructura_fisica.png";
     if (d.Indicador === "Incorporación de un sistema de control de acceso de persona") return "/icons/visualizations/Sankey/control_acceso.png";
     if (d.Indicador === "Incorporación de un sistema de alarma de seguridad electrónica") return "/icons/visualizations/Sankey/alarma.png";
@@ -2602,23 +2604,23 @@ export const findIconV2 = (key, d) => {
   }
 
   if (key === "Seccion CITE") {
-    if (d["Seccion CITE"] === "Agricultura, ganadería, caza y silvicultura") return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/A.png";
-    else if (d["Seccion CITE"] === "Pesca") return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/B.png";
-    else if (d["Seccion CITE"] === "Explotación de minas y canteras") return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/C.png";
-    else if (d["Seccion CITE"] === "Industrias manufactureras") return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/D.png";
-    else if (d["Seccion CITE"] === "Producción y distribución de electricidad, gas y agua") return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/E.png";
-    else if (d["Seccion CITE"] === "Construcción") return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/F.png";
-    else if (d["Seccion CITE"] === "Comercio al por mayor y al por menor; reparación de vehículos de motor, motocicletas, efectos personales y enseres domésticos") return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/G.png";
-    else if (d["Seccion CITE"] === "Hoteles y restaurantes") return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/H.png";
-    else if (d["Seccion CITE"] === "Transporte, almacenamiento y comunicaciones") return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/I.png";
-    else if (d["Seccion CITE"] === "Intermediación financiera") return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/J.png";
-    else if (d["Seccion CITE"] === "Actividades inmobiliarias, empresariales y de alquiler") return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/K.png";
-    else if (d["Seccion CITE"] === "Administración pública y defensa; planes de seguridad social de afiliación obligatoria") return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/L.png";
-    else if (d["Seccion CITE"] === "Enseñanza") return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/M.png";
-    else if (d["Seccion CITE"] === "Servicios sociales y de salud") return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/N.png";
-    else if (d["Seccion CITE"] === "Otras actividades de servicios comunitarios, sociales y personales") return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/O.png";
-    else if (d["Seccion CITE"] === "Organizaciones y órganos extraterritoriales") return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/Q.png";
-    else if (d["Seccion CITE"] === "No determinado") return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/Z.png";
+    if      (d["Seccion CITE"] === "Agricultura, ganadería, caza y silvicultura"                                                                                   ) return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/A.png"
+    else if (d["Seccion CITE"] === "Pesca"                                                                                                                         ) return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/B.png"
+    else if (d["Seccion CITE"] === "Explotación de minas y canteras"                                                                                               ) return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/C.png"
+    else if (d["Seccion CITE"] === "Industrias manufactureras"                                                                                                     ) return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/D.png"
+    else if (d["Seccion CITE"] === "Producción y distribución de electricidad, gas y agua"                                                                         ) return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/E.png"
+    else if (d["Seccion CITE"] === "Construcción"                                                                                                                  ) return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/F.png"
+    else if (d["Seccion CITE"] === "Comercio al por mayor y al por menor; reparación de vehículos de motor, motocicletas, efectos personales y enseres domésticos" ) return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/G.png"
+    else if (d["Seccion CITE"] === "Hoteles y restaurantes"                                                                                                        ) return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/H.png"
+    else if (d["Seccion CITE"] === "Transporte, almacenamiento y comunicaciones"                                                                                   ) return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/I.png"
+    else if (d["Seccion CITE"] === "Intermediación financiera"                                                                                                     ) return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/J.png"
+    else if (d["Seccion CITE"] === "Actividades inmobiliarias, empresariales y de alquiler"                                                                        ) return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/K.png"
+    else if (d["Seccion CITE"] === "Administración pública y defensa; planes de seguridad social de afiliación obligatoria"                                        ) return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/L.png"
+    else if (d["Seccion CITE"] === "Enseñanza"                                                                                                                     ) return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/M.png"
+    else if (d["Seccion CITE"] === "Servicios sociales y de salud"                                                                                                 ) return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/N.png"
+    else if (d["Seccion CITE"] === "Otras actividades de servicios comunitarios, sociales y personales"                                                            ) return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/O.png"
+    else if (d["Seccion CITE"] === "Organizaciones y órganos extraterritoriales"                                                                                   ) return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/Q.png"
+    else if (d["Seccion CITE"] === "No determinado"                                                                                                                ) return "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/Z.png"
   }
 
   if (key === "Fuerza laboral") {
@@ -2648,21 +2650,21 @@ export const findIconV2 = (key, d) => {
     }
 
     else if (["01", "02", "03", "04", "05", "06", "07", "08", "09", "10",
-      "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
-      "21", "22", "23", "24", "25"
+              "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
+              "21", "22", "23", "24", "25"
     ].includes(d["Departamento ID"])) {
       return `/icons/visualizations/Departamentos/${d["Departamento ID"]}.png`;
     }
   }
 
   if (key === "Nacion") {
-    return "/icons/visualizations/Nacion/per.png";
+      return `/icons/visualizations/Nacion/per.png`;
   }
 
   if (key === "Indicador") {
     if ([
       "Falta de interés",
-      "No fué necesario",
+      "No fue necesario",
       "Intentaron pero al final desistieron",
       "No contaron con los recursos económicos necesarios",
       "No contaron con personal capacitado",
@@ -2821,14 +2823,14 @@ export const findIconV2 = (key, d) => {
 
     // Empleo
     else if (["Ingreso laboral mensual total (monetario y no monetario)"].includes(d.Indicador)) {
-      return "/icons/visualizations/Ingreso laboral total/55.png";
+      return `/icons/visualizations/Ingreso laboral total/55.png`
     }
 
     else if ([
       "Ingreso bruto de la actividad principal monetario (dependiente)",
       "Ingreso por pago en especie de la actividad principal",
       " Ingreso por actividad principal independiente",
-      "Ingreso por autoconsumo de la actividad principal independiente"
+      "Ingreso por autoconsumo de la actividad principal independiente",
     ].includes(d.Indicador)) {
       return `/icons/visualizations/Tipos de ingresos actividad principal/${d["Indicador ID"]}.png`;
     }
@@ -2837,7 +2839,7 @@ export const findIconV2 = (key, d) => {
       "Ingreso bruto de la actividad secundaria dependiente",
       "Ingreso pago en especie de la actividad secundaria dependiente",
       "Ingreso neto de la actividad secundaria independiente",
-      "Ingreso por autoconsumo de la actividad secundaria independiente"
+      "Ingreso por autoconsumo de la actividad secundaria independiente",
     ].includes(d.Indicador)) {
       return `/icons/visualizations/Tipos de ingresos actividad secundaria/${d["Indicador ID"]}.png`;
     }
@@ -2845,21 +2847,21 @@ export const findIconV2 = (key, d) => {
     else if ([
       "Horas semanales dedicadas al trabajo",
       "Horas semanales dedicadas al trabajo (ocupación principal)",
-      "Horas semanales dedicadas al trabajo (ocupación secundaria)"
+      "Horas semanales dedicadas al trabajo (ocupación secundaria)",
     ].includes(d.Indicador)) {
       return `/icons/visualizations/Horas laborales/${d["Indicador ID"]}.png`;
     }
 
-    else if (["Tiempo del negocio o establecimiento independiente"].includes(d.Indicador)) {
-      return "/icons/visualizations/Empleo independiente otras caracteristicas/78.png";
+    else if(["Tiempo del negocio o establecimiento independiente"].includes(d.Indicador)) {
+      return `/icons/visualizations/Empleo independiente otras caracteristicas/78.png`;
     }
 
-    else if (["Trabajadores asalariados en el negocio o establecimiento independiente"].includes(d.Indicador)) {
-      return "/icons/visualizations/Empleo independiente otras caracteristicas/79.png";
+    else if(["Trabajadores asalariados en el negocio o establecimiento independiente"].includes(d.Indicador)) {
+      return `/icons/visualizations/Empleo independiente otras caracteristicas/79.png`;
     }
 
-    else if (["Trabajadores no remunerados en el negocio o establecimiento independiente"].includes(d.Indicador)) {
-      return "/icons/visualizations/Empleo independiente otras caracteristicas/80.png";
+    else if(["Trabajadores no remunerados en el negocio o establecimiento independiente"].includes(d.Indicador)) {
+      return `/icons/visualizations/Empleo independiente otras caracteristicas/80.png`;
     }
 
     else if ([
@@ -2893,38 +2895,38 @@ export const findIconV2 = (key, d) => {
     if (d.Indicador === "Gasto Promedio mensual monetario del hogar") return "/icons/visualizations/Economia del hogar/11.png";
 
     // Hogares - Sankeys
-    if (d.Indicador === "No hace uso" && d["Indicador ID"] === 21 && d["Categoria ID"] === 16) return "/icons/visualizations/Razones del uso de internet/no_hace_uso.png";
-    if (d.Indicador === "Si hace uso" && d["Indicador ID"] === 21 && d["Categoria ID"] === 17) return "/icons/visualizations/Razones del uso de internet/si_hace_uso.png";
-    if (d.Indicador === "Total población" && d["Indicador ID"] === 21 && d["Categoria ID"] === 99) return "/icons/visualizations/Razones del uso de internet/total_poblacion.png";
+    if (d.Indicador === "No hace uso" && d["Indicador ID"] === 21 && d["Categoria ID"] === 16) return `/icons/visualizations/Razones del uso de internet/no_hace_uso.png`;
+    if (d.Indicador === "Si hace uso" && d["Indicador ID"] === 21 && d["Categoria ID"] === 17) return `/icons/visualizations/Razones del uso de internet/si_hace_uso.png`;
+    if (d.Indicador === "Total población" && d["Indicador ID"] === 21 && d["Categoria ID"] === 99) return `/icons/visualizations/Razones del uso de internet/total_poblacion.png`;
 
-    if (d.Indicador === "Si hace uso" && d["Indicador ID"] === 22 && d["Categoria ID"] === 17) return "/icons/visualizations/Razones del uso de internet/22.png";
-    if (d.Indicador === "Si hace uso" && d["Indicador ID"] === 23 && d["Categoria ID"] === 17) return "/icons/visualizations/Razones del uso de internet/23.png";
-    if (d.Indicador === "Si hace uso" && d["Indicador ID"] === 24 && d["Categoria ID"] === 17) return "/icons/visualizations/Razones del uso de internet/24.png";
-    if (d.Indicador === "Si hace uso" && d["Indicador ID"] === 25 && d["Categoria ID"] === 17) return "/icons/visualizations/Razones del uso de internet/25.png";
-    if (d.Indicador === "Si hace uso" && d["Indicador ID"] === 26 && d["Categoria ID"] === 17) return "/icons/visualizations/Razones del uso de internet/26.png";
-    if (d.Indicador === "Si hace uso" && d["Indicador ID"] === 27 && d["Categoria ID"] === 17) return "/icons/visualizations/Razones del uso de internet/27.png";
-    if (d.Indicador === "Si hace uso" && d["Indicador ID"] === 28 && d["Categoria ID"] === 17) return "/icons/visualizations/Razones del uso de internet/28.png";
-    if (d.Indicador === "Si hace uso" && d["Indicador ID"] === 29 && d["Categoria ID"] === 17) return "/icons/visualizations/Razones del uso de internet/29.png";
+    if (d.Indicador === "Si hace uso" && d["Indicador ID"] === 22 && d["Categoria ID"] === 17) return `/icons/visualizations/Razones del uso de internet/22.png`;
+    if (d.Indicador === "Si hace uso" && d["Indicador ID"] === 23 && d["Categoria ID"] === 17) return `/icons/visualizations/Razones del uso de internet/23.png`;
+    if (d.Indicador === "Si hace uso" && d["Indicador ID"] === 24 && d["Categoria ID"] === 17) return `/icons/visualizations/Razones del uso de internet/24.png`;
+    if (d.Indicador === "Si hace uso" && d["Indicador ID"] === 25 && d["Categoria ID"] === 17) return `/icons/visualizations/Razones del uso de internet/25.png`;
+    if (d.Indicador === "Si hace uso" && d["Indicador ID"] === 26 && d["Categoria ID"] === 17) return `/icons/visualizations/Razones del uso de internet/26.png`;
+    if (d.Indicador === "Si hace uso" && d["Indicador ID"] === 27 && d["Categoria ID"] === 17) return `/icons/visualizations/Razones del uso de internet/27.png`;
+    if (d.Indicador === "Si hace uso" && d["Indicador ID"] === 28 && d["Categoria ID"] === 17) return `/icons/visualizations/Razones del uso de internet/28.png`;
+    if (d.Indicador === "Si hace uso" && d["Indicador ID"] === 29 && d["Categoria ID"] === 17) return `/icons/visualizations/Razones del uso de internet/29.png`;
 
     // Instrumentos financieros
-    if (d.Indicador === "Total con instrumento financiero" && d["Indicador ID"] === 66 && d["Categoria ID"] === 99) return "/icons/visualizations/Instrumentos financieros/6699.png";
-    if (d.Indicador === "Total sin instrumento financiero" && d["Indicador ID"] === 73 && d["Categoria ID"] === 99) return "/icons/visualizations/Instrumentos financieros/7399.png";
+    if (d.Indicador === "Total con instrumento financiero" && d["Indicador ID"] === 66 && d["Categoria ID"] === 99) return `/icons/visualizations/Instrumentos financieros/6699.png`;
+    if (d.Indicador === "Total sin instrumento financiero" && d["Indicador ID"] === 73 && d["Categoria ID"] === 99) return `/icons/visualizations/Instrumentos financieros/7399.png`;
 
-    if (d.Indicador === "Si tiene" && d["Indicador ID"] === 67 && d.Categoria === "Tiene una cuenta de ahorros") return "/icons/visualizations/Instrumentos financieros/6717.png";
-    if (d.Indicador === "Si tiene" && d["Indicador ID"] === 68 && d.Categoria === "Tiene una cuenta de ahorro a plazo fijo") return "/icons/visualizations/Instrumentos financieros/6817.png";
-    if (d.Indicador === "Si tiene" && d["Indicador ID"] === 69 && d.Categoria === "Tiene una cuenta corriente") return "/icons/visualizations/Instrumentos financieros/6917.png";
-    if (d.Indicador === "Si tiene" && d["Indicador ID"] === 70 && d.Categoria === "Tiene una tarjeta de credito") return "/icons/visualizations/Instrumentos financieros/7017.png";
-    if (d.Indicador === "Si tiene" && d["Indicador ID"] === 71 && d.Categoria === "Tiene una tarjeta de débito") return "/icons/visualizations/Instrumentos financieros/7117.png";
+    if (d.Indicador === "Si tiene" && d["Indicador ID"] === 67 && d["Categoria"] === "Tiene una cuenta de ahorros"            ) return `/icons/visualizations/Instrumentos financieros/6717.png`;
+    if (d.Indicador === "Si tiene" && d["Indicador ID"] === 68 && d["Categoria"] === "Tiene una cuenta de ahorro a plazo fijo") return `/icons/visualizations/Instrumentos financieros/6817.png`;
+    if (d.Indicador === "Si tiene" && d["Indicador ID"] === 69 && d["Categoria"] === "Tiene una cuenta corriente"             ) return `/icons/visualizations/Instrumentos financieros/6917.png`;
+    if (d.Indicador === "Si tiene" && d["Indicador ID"] === 70 && d["Categoria"] === "Tiene una tarjeta de credito"           ) return `/icons/visualizations/Instrumentos financieros/7017.png`;
+    if (d.Indicador === "Si tiene" && d["Indicador ID"] === 71 && d["Categoria"] === "Tiene una tarjeta de débito"            ) return `/icons/visualizations/Instrumentos financieros/7117.png`;
 
-    if (d.Indicador === "No tiene" && d["Categoria ID"] === 36) return "/icons/visualizations/Instrumentos financieros/7336.png";
-    if (d.Indicador === "No tiene" && d["Categoria ID"] === 72) return "/icons/visualizations/Instrumentos financieros/7372.png";
-    // if (d.Indicador === "No tiene" && d["Categoria ID"] === 73) return `/icons/visualizations/Instrumentos financieros/7373.png`;
-    if (d.Indicador === "No tiene" && d["Categoria ID"] === 74) return "/icons/visualizations/Instrumentos financieros/7374.png";
-    if (d.Indicador === "No tiene" && d["Categoria ID"] === 75) return "/icons/visualizations/Instrumentos financieros/7375.png";
-    if (d.Indicador === "No tiene" && d["Categoria ID"] === 76) return "/icons/visualizations/Instrumentos financieros/7376.png";
-    if (d.Indicador === "No tiene" && d["Categoria ID"] === 77) return "/icons/visualizations/Instrumentos financieros/7377.png";
-    if (d.Indicador === "No tiene" && d["Categoria ID"] === 78) return "/icons/visualizations/Instrumentos financieros/7378.png";
-    if (d.Indicador === "No tiene" && d["Categoria ID"] === 79) return "/icons/visualizations/Instrumentos financieros/7379.png";
+    if (d.Indicador === "No tiene" && d["Categoria ID"] === 36) return `/icons/visualizations/Instrumentos financieros/7336.png`;
+    if (d.Indicador === "No tiene" && d["Categoria ID"] === 72) return `/icons/visualizations/Instrumentos financieros/7372.png`;
+    //if (d.Indicador === "No tiene" && d["Categoria ID"] === 73) return `/icons/visualizations/Instrumentos financieros/7373.png`;
+    if (d.Indicador === "No tiene" && d["Categoria ID"] === 74) return `/icons/visualizations/Instrumentos financieros/7374.png`;
+    if (d.Indicador === "No tiene" && d["Categoria ID"] === 75) return `/icons/visualizations/Instrumentos financieros/7375.png`;
+    if (d.Indicador === "No tiene" && d["Categoria ID"] === 76) return `/icons/visualizations/Instrumentos financieros/7376.png`;
+    if (d.Indicador === "No tiene" && d["Categoria ID"] === 77) return `/icons/visualizations/Instrumentos financieros/7377.png`;
+    if (d.Indicador === "No tiene" && d["Categoria ID"] === 78) return `/icons/visualizations/Instrumentos financieros/7378.png`;
+    if (d.Indicador === "No tiene" && d["Categoria ID"] === 79) return `/icons/visualizations/Instrumentos financieros/7379.png`;
 
     else if ([
       "Información",
@@ -2954,7 +2956,7 @@ export const findIconV2 = (key, d) => {
     else if ([
       "Anchoveta",
       "Otros"
-    ].includes(d.Indicador) && d.Tipo === "Pesca marítima") {
+    ].includes(d.Indicador) && d["Tipo"] === "Pesca marítima") {
       return `/icons/visualizations/Desembarque de recursos maritimos por utilizacion/${d["Indicador ID"]}.png`;
     }
 
@@ -3049,14 +3051,14 @@ export const findIconV2 = (key, d) => {
   }
 
   if (key === "tipo") {
-    if (d.tipo === "Salas de Teatro") return "/icons/visualizations/Industrias culturales y artes/salas_de_teatro.png";
-    else if (d.tipo === "Salas de Cine") return "/icons/visualizations/Industrias culturales y artes/salas_de_cine.png";
-    else if (d.tipo === "Centro / organización Cultura") return "/icons/visualizations/Industrias culturales y artes/centro_organizacion_cultura.png";
-    else if (d.tipo === "Escuelas de Arte") return "/icons/visualizations/Industrias culturales y artes/escuelas_de_arte.png";
-    else if (d.tipo === "Editoriales") return "/icons/visualizations/Industrias culturales y artes/editoriales.png";
-    else if (d.tipo === "Galerías") return "/icons/visualizations/Industrias culturales y artes/galerias.png";
-    else if (d.tipo === "Librerías") return "/icons/visualizations/Industrias culturales y artes/librerias.png";
-    else if (d.tipo === "Archivos") return "/icons/visualizations/Industrias culturales y artes/archivos.png";
+    if      (d.tipo === "Salas de Teatro"               ) return `/icons/visualizations/Industrias culturales y artes/salas_de_teatro.png`;
+    else if (d.tipo === "Salas de Cine"                 ) return `/icons/visualizations/Industrias culturales y artes/salas_de_cine.png`;
+    else if (d.tipo === "Centro / organización Cultura" ) return `/icons/visualizations/Industrias culturales y artes/centro_organizacion_cultura.png`;
+    else if (d.tipo === "Escuelas de Arte"              ) return `/icons/visualizations/Industrias culturales y artes/escuelas_de_arte.png`;
+    else if (d.tipo === "Editoriales"                   ) return `/icons/visualizations/Industrias culturales y artes/editoriales.png`;
+    else if (d.tipo === "Galerías"                      ) return `/icons/visualizations/Industrias culturales y artes/galerias.png`;
+    else if (d.tipo === "Librerías"                     ) return `/icons/visualizations/Industrias culturales y artes/librerias.png`;
+    else if (d.tipo === "Archivos"                      ) return `/icons/visualizations/Industrias culturales y artes/archivos.png`;
   }
 
   if (key === "Measure") {
@@ -3076,7 +3078,7 @@ export const findIconV2 = (key, d) => {
       "Analfabetismo entre 30 a 39 años",
       "Analfabetismo entre 40 a 49 años",
       "Analfabetismo entre 50 a 59 años",
-      "Analfabetismo en edad de 60 años y mas"
+      "Analfabetismo en edad de 60 años y mas",
     ].includes(d.Measure)) {
       return `/icons/visualizations/Analfabetismo segun grupo etario/${d["Measure ID"]}.png`;
     }
@@ -3093,7 +3095,7 @@ export const findIconV2 = (key, d) => {
       "Nacimientos anuales",
       "Defunciones anuales",
       "Crecimiento natural"
-    ].includes(d.Measure)) {
+    ].includes(d["Measure"])) {
       return `/icons/visualizations/Crecimiento natural/${d["Measure ID"]}.png`;
     }
 
@@ -3104,7 +3106,7 @@ export const findIconV2 = (key, d) => {
       "Carecen servicios higiénicos",
       "Menores sin escuela",
       "Alta dependencia económica"
-    ].includes(d.Measure)) {
+    ].includes(d["Measure"])) {
       return `/icons/visualizations/Necesidades basicas insatisfechas/${d["Measure ID"]}.png`;
     }
 
@@ -3113,7 +3115,7 @@ export const findIconV2 = (key, d) => {
       "Municipalidades con bibliotecas",
       "Municipalidades que disponen de servicio bibliotecario",
       "Municipalidades que disponen de computadoras operativos en la biblioteca"
-    ].includes(d.Measure)) {
+    ].includes(d["Measure"])) {
       return `/icons/visualizations/Bibliotecas y servicios bibliotecarios/${d["Measure ID"]}.png`;
     }
 
@@ -3130,7 +3132,7 @@ export const findIconV2 = (key, d) => {
       "Gestión de la renta y administración tributaria",
       "Gestión del catastro",
       "Gestión de las licencias de funcionamiento"
-    ].includes(d.Measure)) {
+    ].includes(d["Measure"])) {
       return `/icons/visualizations/Portal de transparencia y sistemas informaticos/${d["Measure ID"]}.png`;
     }
 
@@ -3138,7 +3140,7 @@ export const findIconV2 = (key, d) => {
       "Linea de telefonía fija en servicio",
       "Linea de telefonía móvil en servicio",
       "Servicio de internet"
-    ].includes(d.Measure)) {
+    ].includes(d["Measure"])) {
       return `/icons/visualizations/Conectividad/${d["Measure ID"]}.png`;
     }
 
@@ -3148,7 +3150,7 @@ export const findIconV2 = (key, d) => {
       "Impresora básica",
       "Impresora multifuncional",
       "Proyector multimedia"
-    ].includes(d.Measure)) {
+    ].includes(d["Measure"])) {
       return `/icons/visualizations/Equipamiento/${d["Measure ID"]}.png`;
     }
 
@@ -3161,13 +3163,13 @@ export const findIconV2 = (key, d) => {
       "Control de certificado de inspección de seguridad en edificaciones",
       "Control de anuncios publicitario",
       "Control de transporte urbano"
-    ].includes(d.Measure)) {
+    ].includes(d["Measure"])) {
       return `/icons/visualizations/Fiscalizacion municipal/${d["Measure ID"]}.png`;
     }
 
-    else if (d.Measure === "Licencias para actividades comerciales") return "/icons/visualizations/Planificacion municipal/1.png";
-    else if (d.Measure === "Licencias para actividades artesanías y manufactura") return "/icons/visualizations/Planificacion municipal/2.png";
-    else if (d.Measure === "Licencias para actividades agropecuarias") return "/icons/visualizations/Planificacion municipal/3.png";
+    else if (d.Measure === "Licencias para actividades comerciales"              ) return `/icons/visualizations/Planificacion municipal/1.png`;
+    else if (d.Measure === "Licencias para actividades artesanías y manufactura" ) return `/icons/visualizations/Planificacion municipal/2.png`;
+    else if (d.Measure === "Licencias para actividades agropecuarias"            ) return `/icons/visualizations/Planificacion municipal/3.png`;
 
     else if ([
       "Funcionarios y/o directivos",
@@ -3175,7 +3177,7 @@ export const findIconV2 = (key, d) => {
       "Técnicos",
       "Auxiliares",
       "Obreros"
-    ].includes(d.Measure)) {
+    ].includes(d["Measure"])) {
       return `/icons/visualizations/Composicion de empleados municipales segun tipo de trabajador/${d["Measure ID"]}.png`;
     }
 
@@ -3184,7 +3186,7 @@ export const findIconV2 = (key, d) => {
       "Frecuencia interdiaria",
       "Frecuencia de dos veces por semana",
       "Frecuencia de una vez por semana"
-    ].includes(d.Measure)) {
+    ].includes(d["Measure"])) {
       return `/icons/visualizations/Frecuencia de recojo de residuos solidos/${d["Measure ID"]}.png`;
     }
 
@@ -3193,14 +3195,14 @@ export const findIconV2 = (key, d) => {
       "Cobertura con más del 25% y menos del 49%",
       "Cobertura con más del 50% y menos del 74%",
       "Cobertura superior al 75%"
-    ].includes(d.Measure)) {
+    ].includes(d["Measure"])) {
       return `/icons/visualizations/Cobertura de recojo de residuos solidos/${d["Measure ID"]}.png`;
     }
 
     else if ([
       "Unidades moviles de serenazgo operativos",
       "Equipos de comunicación y videovigilancia"
-    ].includes(d.Measure)) {
+    ].includes(d["Measure"])) {
       return `/icons/visualizations/Equipos de seguridad y unidades de serenazgo/${d["Measure ID"]}.png`;
     }
 
@@ -3211,14 +3213,14 @@ export const findIconV2 = (key, d) => {
       "Personal nombrado masculino",
       "Personal contratado femenino",
       "Personal contratado masculino"
-    ].includes(d.Measure)) {
+    ].includes(d["Measure"])) {
       return `/icons/visualizations/Recursos humanos/${d["Measure ID"]}.png`;
     }
 
 
   }
 
-  if (key === "Tipo de indicador") {
+  if (key === "Tipo de indicador"){
     // Demografia
     if ([
       "Evolución poblacion censada urbana",
@@ -3229,7 +3231,7 @@ export const findIconV2 = (key, d) => {
 
   }
 
-  if (key === "Sexo_Tipo") {
+  if (key === "Sexo_Tipo"){
     // Demografia
     return `/icons/visualizations/Proyeccion demografica urbano rural/${d["Sexo_Tipo ID"]}.png`;
   }
@@ -3322,16 +3324,16 @@ export const findIconV2 = (key, d) => {
       "Rural",
       "Costa",
       "Sierra",
-      "Selva"
+      "Selva",
     ].includes(d["Sub ambito geografico"])) {
-      return `/icons/visualizations/Poblacion economicamente activa segun region/${d["Sub ambito geografico ID"]}.png`;
+      return `/icons/visualizations/Poblacion economicamente activa segun region/${d["Sub ambito geografico ID"]}.png`
     }
   }
 
   if (key === "Value") {
-    if (d.Measure === "Licencias para actividades comerciales") return "/icons/visualizations/Planificacion municipal/1.png";
-    else if (d.Measure === "Licencias para actividades artesanías y manufactura") return "/icons/visualizations/Planificacion municipal/2.png";
-    else if (d.Measure === "Licencias para actividades agropecuarias") return "/icons/visualizations/Planificacion municipal/3.png";
+    if      (d.Measure === "Licencias para actividades comerciales"              ) return `/icons/visualizations/Planificacion municipal/1.png`;
+    else if (d.Measure === "Licencias para actividades artesanías y manufactura" ) return `/icons/visualizations/Planificacion municipal/2.png`;
+    else if (d.Measure === "Licencias para actividades agropecuarias"            ) return `/icons/visualizations/Planificacion municipal/3.png`;
 
     else if ([
       "Inscripciones de hechos vitales en la Oficina de Registro de Estado Civil (OREC)",
@@ -3350,22 +3352,22 @@ export const findIconV2 = (key, d) => {
       "Servicio de conservación de areas verdes",
       "Cobran tasas y arbitrios",
       "Brindan licencias"
-    ].includes(d.Type)) {
-      return `/icons/visualizations/Servicios publicos/${d["Type ID"]}.png`;
+    ].includes(d["Type"])) {
+      return `/icons/visualizations/Servicios publicos/${d["Type ID"]}.png`
     }
 
     else if ([
       "Posee servicio de Internet",
       "No posee servicio de Internet"
-    ].includes(d.Type)) {
-      return `/icons/visualizations/Conectividad gobiernos locales/${d["Type ID"]}.png`;
+    ].includes(d["Type"])) {
+      return `/icons/visualizations/Conectividad gobiernos locales/${d["Type ID"]}.png`
     }
 
     else if ([
       "Porcentaje de trabajadores mujeres que labora en el mercado de abastos",
       "Porcentaje de trabajadores hombres que labora en el mercado de abastos"
     ].includes(d.Categoria)) {
-      return `/icons/visualizations/Gestion Administrativa/${d["Categoria ID"]}.png`;
+      return `/icons/visualizations/Gestion Administrativa/${d["Categoria ID"]}.png`
     }
 
     else if ([
@@ -3378,7 +3380,7 @@ export const findIconV2 = (key, d) => {
       "Numero de mercados de abastos que recibieron capacitacion sobre manipulacion de alimentos",
       "Numero de mercados de abastos que recibieron capacitacion sobre defensa civil"
     ].includes(d.Capacitacion)) {
-      return `/icons/visualizations/Recibe capacitacion/${d["Capacitacion ID"]}.png`;
+      return `/icons/visualizations/Recibe capacitacion/${d["Capacitacion ID"]}.png`
     }
 
     else if ([
@@ -3389,7 +3391,7 @@ export const findIconV2 = (key, d) => {
       "Numero de mercados de abastos que no recibieron capacitacion por poca concurrencia",
       "Numero de mercados de abastos que no recibieron capacitacion porque no cuentan con ambientes para charlas"
     ].includes(d.Capacitacion)) {
-      return `/icons/visualizations/No recibe capacitacion/${d["Capacitacion ID"]}.png`;
+      return `/icons/visualizations/No recibe capacitacion/${d["Capacitacion ID"]}.png`
     }
 
   }
@@ -3398,8 +3400,8 @@ export const findIconV2 = (key, d) => {
     if ([
       "Posee servicio de Internet",
       "No posee servicio de Internet"
-    ].includes(d.Type)) {
-      return `/icons/visualizations/Conectividad gobiernos locales/${d["Type ID"]}.png`;
+    ].includes(d["Type"])) {
+      return `/icons/visualizations/Conectividad gobiernos locales/${d["Type ID"]}.png`
     }
 
     else if ([
@@ -3419,22 +3421,22 @@ export const findIconV2 = (key, d) => {
       "Servicio de conservación de areas verdes",
       "Cobran tasas y arbitrios",
       "Brindan licencias"
-    ].includes(d.Type)) {
-      return `/icons/visualizations/Servicios publicos/${d["Type ID"]}.png`;
+    ].includes(d["Type"])) {
+      return `/icons/visualizations/Servicios publicos/${d["Type ID"]}.png`
     }
 
     else if ([
       "Recibe Financiamiento",
       "No Recibe Financiamiento"
-    ].includes(d.Type)) {
-      return `/icons/visualizations/Financiamiento municipal/${d["Type ID"]}.png`;
+    ].includes(d["Type"])) {
+      return `/icons/visualizations/Financiamiento municipal/${d["Type ID"]}.png`
     }
 
     else if ([
       "Brinda licencias",
       "No brinda licencias"
-    ].includes(d.Type)) {
-      return `/icons/visualizations/Planificacion municipal distrital/${d["Type ID"]}.png`;
+    ].includes(d["Type"])) {
+      return `/icons/visualizations/Planificacion municipal distrital/${d["Type ID"]}.png`
     }
 
   }
@@ -3473,7 +3475,7 @@ export const findIconV2 = (key, d) => {
       "Fabricación de muebles",
       "Otras industrias manufactureras"
     ].includes(d["Subactividad economica"])) {
-      return `/icons/visualizations/Valor agregado bruto/${d["Subactividad economica ID"]}.png`;
+      return `/icons/visualizations/Valor agregado bruto/${d["Subactividad economica ID"]}.png`
     }
 
   }
@@ -3490,7 +3492,7 @@ export const findIconV2 = (key, d) => {
       "Elaboración de piensos preparados para animales",
       "Elaboración de Bebidas"
     ].includes(d["Grupo economico"])) {
-      return `/icons/visualizations/Produccion de la industria de productos alimenticios y bebidas/${d["Grupo economico ID"]}.png`;
+      return `/icons/visualizations/Produccion de la industria de productos alimenticios y bebidas/${d["Grupo economico ID"]}.png`
     }
 
     else if ([
@@ -3503,7 +3505,7 @@ export const findIconV2 = (key, d) => {
       "Productos de madera",
       "Fabricación de Papel y de Productos de Papel"
     ].includes(d["Grupo economico"])) {
-      return `/icons/visualizations/Produccion de las industrias textiles y otros/${d["Grupo economico ID"]}.png`;
+      return `/icons/visualizations/Produccion de las industrias textiles y otros/${d["Grupo economico ID"]}.png`
     }
 
     else if ([
@@ -3516,7 +3518,7 @@ export const findIconV2 = (key, d) => {
       "Fabricación de carrocerías para vehículos automotores",
       "Fabricación de otros tipos de equipo de transporte"
     ].includes(d["Grupo economico"])) {
-      return `/icons/visualizations/Produccion de las industrias de elaborados de metal y otros/${d["Grupo economico ID"]}.png`;
+      return `/icons/visualizations/Produccion de las industrias de elaborados de metal y otros/${d["Grupo economico ID"]}.png`
     }
 
 
@@ -3529,22 +3531,22 @@ export const findIconV2 = (key, d) => {
       "Gobiernos locales",
       "Gobiernos regionales"
     ].includes(d["Nivel Gobierno"])) {
-      return `/icons/visualizations/Presupuestos por tipo de gobierno/${d["Nivel Gobierno ID"]}.png`;
+      return `/icons/visualizations/Presupuestos por tipo de gobierno/${d["Nivel Gobierno ID"]}.png`
     }
   }
 
-  if (key === "Fuente de Financiamiento") {
+  if ( key === "Fuente de Financiamiento") {
     if ([
       "Recursos directamente recaudados",
       "Recursos por operaciones oficiales de credito",
       "Donaciones y transferencias",
       "Recursos determinados"
     ].includes(d["Fuente de Financiamiento"])) {
-      return `/icons/visualizations/Recaudacion segun composicion geografica/${d["Fuente de Financiamiento ID"]}.png`;
+      return `/icons/visualizations/Recaudacion segun composicion geografica/${d["Fuente de Financiamiento ID"]}.png`
     }
   }
 
-  if (key === "Sector") {
+  if ( key === "Sector") {
     if ([
       "Gobierno local",
       "Presidencia consejo ministros",
@@ -3579,12 +3581,12 @@ export const findIconV2 = (key, d) => {
       "Mancomunidades",
       "Mancomunidades regionales",
       "Gobiernos regionales"
-    ].includes(d.Sector)) {
-      return `/icons/visualizations/Recaudacion por sector economico/${d["Sector ID"]}.png`;
+    ].includes(d["Sector"])) {
+      return `/icons/visualizations/Recaudacion por sector economico/${d["Sector ID"]}.png`
     }
   }
 
-  if (key === "Categoria de hospedaje") {
+  if ( key === "Categoria de hospedaje") {
     if ([
       "1 Estrella",
       "2 Estrellas",
@@ -3595,11 +3597,11 @@ export const findIconV2 = (key, d) => {
       "Ecolodge",
       "No Categorizados"
     ].includes(d["Categoria de hospedaje"])) {
-      return `/icons/visualizations/Indicadores de capacidad de alojamiento/${d["Categoria de hospedaje ID"]}.png`;
+      return `/icons/visualizations/Indicadores de capacidad de alojamiento/${d["Categoria de hospedaje ID"]}.png`
     }
   }
 
-  if (key === "Manifestacion 1") {
+  if ( key === "Manifestacion 1") {
     if ([
       "No reportado",
       "Animación/mediación sociocultural",
@@ -3617,24 +3619,24 @@ export const findIconV2 = (key, d) => {
       "Deporte, recreación y/o juego",
       "Comunicaciones (periodismo, radio, podcast y/u otra)",
       "Tradición oral propia de pueblos indígenas u originarios"
-    ].includes(d["Manifestacion 1"]) &&
-      [99, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16
-      ].includes(d["Manifestacion 1 ID"])) {
-      return `/icons/visualizations/Organizaciones que trabajan el arte y la cultura/${d["Manifestacion 1 ID"]}.png`;
+    ].includes(d["Manifestacion 1"]) && (
+      [99,  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16
+    ].includes(d["Manifestacion 1 ID"]))) {
+      return `/icons/visualizations/Organizaciones que trabajan el arte y la cultura/${d["Manifestacion 1 ID"]}.png`
     }
   }
 
-  if (key === "Actividad 1") {
+  if ( key === "Actividad 1") {
     if ([
       "Productora",
       "Servicios conexos",
       "Exhibidora",
       "Distribuidora",
       "Formación"
-    ].includes(d["Actividad 1"]) &&
+    ].includes(d["Actividad 1"]) && (
       ["1_1", "1_2", "1_3", "1_4", "1_5"
-      ].includes(d["Actividad 1 ID"])) {
-      return `/icons/visualizations/Empresas y organizaciones cinematograficas/${d["Actividad 1 ID"]}.png`;
+    ].includes(d["Actividad 1 ID"]))) {
+      return `/icons/visualizations/Empresas y organizaciones cinematograficas/${d["Actividad 1 ID"]}.png`
     }
 
     else if ([
@@ -3649,12 +3651,12 @@ export const findIconV2 = (key, d) => {
       "Autor-editor",
       "Fanzine"
     ].includes(d["Actividad 1"])) {
-      return `/icons/visualizations/Agentes del ecosistema del libro/${d["Actividad 1 ID"]}.png`;
+      return `/icons/visualizations/Agentes del ecosistema del libro/${d["Actividad 1 ID"]}.png`
     }
 
   }
 
-  if (key === "Cantidad Agentes") {
+  if ( key === "Cantidad Agentes") {
     if ([
       "Editorial",
       "Cartonera",
@@ -3667,12 +3669,12 @@ export const findIconV2 = (key, d) => {
       "Autor-editor",
       "Fanzine"
     ].includes(d["Actividad 1"])) {
-      return `/icons/visualizations/Agentes del ecosistema del libro/${d["Actividad 1 ID"]}.png`;
+      return `/icons/visualizations/Agentes del ecosistema del libro/${d["Actividad 1 ID"]}.png`
     }
 
   }
 
-  if (key === "Names") {
+  if ( key === "Names") {
     if ([
       "Espectáculos de teatro",
       "Espectáculos de danza",
@@ -3684,8 +3686,8 @@ export const findIconV2 = (key, d) => {
       "Bibliotecas y/o salas de lectura",
       "Ferias de libros",
       "Festivales locales-tradicionales"
-    ].includes(d.Names)) {
-      return `/icons/visualizations/Demanda de servicios culturales/${d["Indicador ID"]}.png`;
+    ].includes(d["Names"])) {
+      return `/icons/visualizations/Demanda de servicios culturales/${d["Indicador ID"]}.png`
     }
 
     else if ([
@@ -3699,7 +3701,7 @@ export const findIconV2 = (key, d) => {
       "Productos artesanales",
       "Videojuegos desde dispositivos móviles a través de descargas o acceso a internet",
       "Música a través de CDs, bluray u otros dispositivos"
-    ].includes(d.Names)) {
+    ].includes(d["Names"])) {
       return `/icons/visualizations/Demanda de bienes culturales/${d["Indicador ID"]}.png`;
     }
 
@@ -3710,7 +3712,7 @@ export const findIconV2 = (key, d) => {
     return `/icons/visualizations/Postulaciones segun fase de la cadena/${d["Estado Beneficio ID"]}.png`;
   }
 
-  if (key === "Fase Cadena Valor") {
+  if ( key === "Fase Cadena Valor") {
     if ([
       "Producción",
       "Acceso",
@@ -3718,11 +3720,11 @@ export const findIconV2 = (key, d) => {
       "Circulación",
       "Formación"
     ].includes(d["Fase Cadena Valor"])) {
-      return `/icons/visualizations/Postulaciones a estimulos economicos/${d["Fase Cadena Valor ID"]}.png`;
+      return `/icons/visualizations/Postulaciones a estimulos economicos/${d["Fase Cadena Valor ID"]}.png`
     }
   }
 
-  if (key === "Clasificacion") {
+  if ( key === "Clasificacion") {
     if ([
       "Institutos Públicos",
       "Institutos de Educación Superior",
@@ -3735,18 +3737,18 @@ export const findIconV2 = (key, d) => {
       "Pública",
       "Asociación",
       "Otra"
-    ].includes(d.Clasificacion)) {
-      return `/icons/visualizations/Centros de investigacion/${d["Clasificacion ID"]}.png`;
+    ].includes(d["Clasificacion"])) {
+      return `/icons/visualizations/Centros de investigacion/${d["Clasificacion ID"]}.png`
     }
 
   }
 
-  if (key === "Tipo de gasto label") {
-    if (d["Tipo de gasto label"] === "Gasto interno promedio en I+D") return "/icons/visualizations/Tipo de centro de investigacion/Interno.png";
-    else if (d["Tipo de gasto label"] === "Gasto externo promedio en I+D") return "/icons/visualizations/Tipo de centro de investigacion/Externo.png";
+  if ( key === "Tipo de gasto label") {
+    if      (d["Tipo de gasto label"] === "Gasto interno promedio en I+D") return `/icons/visualizations/Tipo de centro de investigacion/Interno.png`;
+    else if (d["Tipo de gasto label"] === "Gasto externo promedio en I+D") return `/icons/visualizations/Tipo de centro de investigacion/Externo.png`;
   }
 
-  if (key === "Tipo empresa") {
+  if ( key === "Tipo empresa") {
     if ([
       "Gran empresa",
       "Mediana empresa",
@@ -3755,11 +3757,11 @@ export const findIconV2 = (key, d) => {
       "Pequeña empresa",
       "Persona natural"
     ].includes(d["Tipo empresa"])) {
-      return `/icons/visualizations/Clientes atendidos acumulados por mes/${d["Tipo empresa ID"]}.png`;
+      return `/icons/visualizations/Clientes atendidos acumulados por mes/${d["Tipo empresa ID"]}.png`
     }
   }
 
-  if (key === "CITE") {
+  if ( key === "CITE") {
     if ([
       "CITEacuícola Ahuashiyacu",
       "CITEagroindustrial Chavimochic",
@@ -3787,26 +3789,26 @@ export const findIconV2 = (key, d) => {
       "CITEtextil camélidos Puno",
       "UTagroindustrial Ambo",
       "UTagroindustrial Huaura"
-    ].includes(d.CITE)) {
-      return `/icons/visualizations/CITE y UT en Peru/${d["CITE ID"]}.png`;
+    ].includes(d["CITE"])) {
+      return `/icons/visualizations/CITE y UT en Peru/${d["CITE ID"]}.png`
     }
   }
 
   if (key === "nombre" && d.administracion === "Ministerio de Cultura") {
-    return "/icons/visualizations/Cultura museos/museos.png";
+    return `/icons/visualizations/Cultura museos/museos.png`;
   }
 
   if (key === "expresiones" && d.declaratorias) {
-    return "/icons/visualizations/Patrimonio Inmaterial/declaratorias.png";
+    return `/icons/visualizations/Patrimonio Inmaterial/declaratorias.png`;
   }
 
   if (key === "categoria") {
-    if (d.categoria === "Solicitud de creación") return "/icons/visualizations/Reserva indigena/solicitud_de_creacion.png";
-    else if (d.categoria === "Reserva Territorial") return "/icons/visualizations/Reserva indigena/reserva_territorial.png";
-    else if (d.categoria === "Reserva Indígena") return "/icons/visualizations/Reserva indigena/reserva_indigena.png";
+    if      (d["categoria"] === "Solicitud de creación") return `/icons/visualizations/Reserva indigena/solicitud_de_creacion.png`;
+    else if (d["categoria"] === "Reserva Territorial")   return `/icons/visualizations/Reserva indigena/reserva_territorial.png`;
+    else if (d["categoria"] === "Reserva Indígena")      return `/icons/visualizations/Reserva indigena/reserva_indigena.png`;
   }
 
-  if (key === "Contribuyente") {
+  if ( key === "Contribuyente") {
     if ([
       "Asociacion",
       "Asociacion en participacion",
@@ -3837,8 +3839,8 @@ export const findIconV2 = (key, d) => {
       "Sucesion indivisa con negocio",
       "Sucursales o ag. de emp. extranj.",
       "Univers. centros educat. y cult."
-    ].includes(d.Contribuyente)) {
-      return `/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/${d["Contribuyente ID"]}.png`;
+    ].includes(d["Contribuyente"])) {
+      return `/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/${d["Contribuyente ID"]}.png`
     }
   }
 
@@ -3911,12 +3913,12 @@ export default {
     "Measure ID": mean,
     "Indicador Tributo ID": mean,
     "Industria ID": mean,
-    // "Rubro ID": mean,
-    // "Producto ID": mean,
+    //"Rubro ID": mean,
+    //"Producto ID": mean,
     "Sector ID": mean,
     "Subconcepto ID": mean,
     "Estado Beneficio ID": mean,
-    // "Subactividad economica ID": mean,
+    //"Subactividad economica ID": mean,
     "Trade Flow ID": mean,
     "Year": mean
   },
@@ -3938,7 +3940,7 @@ export default {
         const item = this._parent._groupBy[0](d);
         const availableItems = Object.entries(d).filter(h => h[1] === item);
         let itemId = availableItems.length > 1 ? availableItems[1][0] : availableItems[0][0];
-        // let itemId = Object.entries(d).find(h => h[1] === item)[0];
+        //let itemId = Object.entries(d).find(h => h[1] === item)[0];
         if (itemId.includes(" ID")) itemId = itemId.replace(" ID", "");
 
         return findColorV2(itemId, d);
@@ -3946,8 +3948,8 @@ export default {
       backgroundImage(d, i) {
         const item = this._parent._groupBy[0](d);
         const availableItems = Object.entries(d).filter(h => h[1] === item);
-        let itemId = availableItems.length > 1 ? availableItems[1][0] : availableItems[0][0];
-        // let itemId = Object.entries(d).find(h => h[1] === item)[0];
+        let itemId = availableItems.length > 1 ? availableItems[1][0] : availableItems[0][0]
+        //let itemId = Object.entries(d).find(h => h[1] === item)[0];
         if (itemId.includes(" ID")) itemId = itemId.replace(" ID", "");
         return findIconV2(itemId, d);
       },
@@ -3965,12 +3967,11 @@ export default {
   legendPosition: "bottom",
   legendTooltip: {
     title(d) {
-      const {item, itemId, parent, parentId} = getTooltipTitle(this, d);
-      const title = Array.isArray(item) ? `${parent || "Valores"}` : item;
+      const {item, parent, parentId} = getTooltipTitle(this, d);
+      const title = Array.isArray(item[1]) ? `${parent[1] || "Valores"}` : item[1];
       const itemBgImg = parentId;
       const bgColor = findColorV2(itemBgImg, d);
       const imgUrl = findIconV2(itemBgImg, d);
-
       return tooltipTitle(bgColor, imgUrl, title);
     },
     tbody: []
@@ -4074,12 +4075,11 @@ export default {
         padding: 3
       },
       stroke(d) {
-        if (this && this._groupByRaw) {
-          const item = Array.isArray(this._groupByRaw) ? this._groupByRaw[0] : this._groupByRaw;
-          // const availableItems = Object.entries(d).filter(h => h[1] === item);
-          // let itemId = availableItems.length > 1 ? availableItems[1][0] : availableItems[0][0];
-          let itemId = item;
-          // let itemId = Object.entries(d).find(h => h[1] === item)[0];
+        if (this && this._groupBy) {
+          const item = this._groupBy[0](d);
+          const availableItems = Object.entries(d).filter(h => h[1] === item);
+          let itemId = availableItems.length > 1 ? availableItems[1][0] : availableItems[0][0]
+          //let itemId = Object.entries(d).find(h => h[1] === item)[0];
           if (itemId.includes(" ID")) itemId = itemId.replace(" ID", "");
           return findColorV2(itemId, d);
         }
@@ -4101,16 +4101,15 @@ export default {
     },
     fill(d) {
       if (this && this._groupBy) {
-        const parentName = Array.isArray(this._groupByRaw) ? this._groupByRaw[0] : this._groupByRaw;
-        // const parentName = this._groupBy[0](d);
+        const parentName = this._groupBy[0](d);
         if (parentName) {
-          // const availableParents = Object.entries(d).filter(h => h[1] === parentName);
-          // let parent = availableParents.length > 1 ? availableParents[1] : availableParents[0] || [undefined];
-          // let parent = Object.entries(d).find(h => h[1] === parentName) || [undefined];
-          let parentId = parentName;
+          const availableParents = Object.entries(d).filter(h => h[1] === parentName);
+          let parent = availableParents.length > 1 ? availableParents[1] : availableParents[0] || [undefined];
+          //let parent = Object.entries(d).find(h => h[1] === parentName) || [undefined];
+          let parentId = parent[0];
           if (parentId.includes(" ID")) {
             parentId = parentId.slice(0, -3);
-            // parent = Object.entries(d).find(h => h[0] === parentId) || [undefined];
+            parent = Object.entries(d).find(h => h[0] === parentId) || [undefined];
           }
           const bgColor = findColorV2(parentId, d);
           return bgColor;
@@ -4210,8 +4209,8 @@ export default {
     },
     title(d) {
       const {item, itemId, parent, parentId} = getTooltipTitle(this, d);
-      const aggregated = Array.isArray(parent) ? "Valores" : parent;
-      const title = Array.isArray(item) ? `Otros ${aggregated || "Valores"}` : item;
+      const aggregated = Array.isArray(parent[1]) ? "Valores" : parent[1];
+      const title = Array.isArray(item[1]) ? `Otros ${aggregated || "Valores"}` : item[1];
       const itemBgImg = ["Pais"].includes(itemId) ? itemId : parentId;
       let bgColor = findColorV2(itemBgImg, d);
       let imgUrl = findIconV2(itemBgImg, d);
