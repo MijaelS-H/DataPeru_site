@@ -1291,9 +1291,10 @@ export const findColorV2 = (key, d) => {
       return colors["Fiscalizacion municipal"][d["Measure ID"]];
     }
 
-    else if (d.Measure === "Licencias para actividades comerciales"              ) return "#09A8FA";
-    else if (d.Measure === "Licencias para actividades artesanías y manufactura" ) return "#DD5B82";
-    else if (d.Measure === "Licencias para actividades agropecuarias"            ) return "#3D93A3";
+    else if (d.Measure === "Licencias para actividades comerciales"                       ) return "#09A8FA";
+    else if (d.Measure === "Licencias para actividades artesanías y manufactura"          ) return "#DD5B82";
+    else if (d.Measure === "Licencias para actividades agropecuarias"                     ) return "#3D93A3";
+    else if (d.Measure === "Licencias para actividades economicas ligadas a los servicios") return "#EAAC7F";
 
     else if ([
       "Funcionarios y/o directivos",
@@ -1458,9 +1459,10 @@ export const findColorV2 = (key, d) => {
   }
 
   if (key === "Value") {
-    if      (d.Measure === "Licencias para actividades comerciales"              ) return "#09A8FA";
-    else if (d.Measure === "Licencias para actividades artesanías y manufactura" ) return "#DD5B82";
-    else if (d.Measure === "Licencias para actividades agropecuarias"            ) return "#3D93A3";
+    if      (d.Measure === "Licencias para actividades comerciales"                       ) return "#09A8FA";
+    else if (d.Measure === "Licencias para actividades artesanías y manufactura"          ) return "#DD5B82";
+    else if (d.Measure === "Licencias para actividades agropecuarias"                     ) return "#3D93A3";
+    else if (d.Measure === "Licencias para actividades economicas ligadas a los servicios") return "#EAAC7F";
 
     else if ([
       "Inscripciones de hechos vitales en la Oficina de Registro de Estado Civil (OREC)",
@@ -3167,9 +3169,10 @@ export const findIconV2 = (key, d) => {
       return `/icons/visualizations/Fiscalizacion municipal/${d["Measure ID"]}.png`;
     }
 
-    else if (d.Measure === "Licencias para actividades comerciales"              ) return `/icons/visualizations/Planificacion municipal/1.png`;
-    else if (d.Measure === "Licencias para actividades artesanías y manufactura" ) return `/icons/visualizations/Planificacion municipal/2.png`;
-    else if (d.Measure === "Licencias para actividades agropecuarias"            ) return `/icons/visualizations/Planificacion municipal/3.png`;
+    else if (d.Measure === "Licencias para actividades comerciales") return `/icons/visualizations/Planificacion municipal/1.png`;
+    else if (d.Measure === "Licencias para actividades artesanías y manufactura") return `/icons/visualizations/Planificacion municipal/2.png`;
+    else if (d.Measure === "Licencias para actividades agropecuarias") return `/icons/visualizations/Planificacion municipal/3.png`;
+    else if (d.Measure === "Licencias para actividades economicas ligadas a los servicios") return `/icons/visualizations/Planificacion municipal/4.png`;
 
     else if ([
       "Funcionarios y/o directivos",
@@ -3334,6 +3337,7 @@ export const findIconV2 = (key, d) => {
     if      (d.Measure === "Licencias para actividades comerciales"              ) return `/icons/visualizations/Planificacion municipal/1.png`;
     else if (d.Measure === "Licencias para actividades artesanías y manufactura" ) return `/icons/visualizations/Planificacion municipal/2.png`;
     else if (d.Measure === "Licencias para actividades agropecuarias"            ) return `/icons/visualizations/Planificacion municipal/3.png`;
+    else if (d.Measure === "Licencias para actividades economicas ligadas a los servicios") return `/icons/visualizations/Planificacion municipal/4.png`;
 
     else if ([
       "Inscripciones de hechos vitales en la Oficina de Registro de Estado Civil (OREC)",
