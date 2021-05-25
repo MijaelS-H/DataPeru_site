@@ -358,6 +358,16 @@
     "16": "#A6B1E1",
     "17": "#F7C59F"
   },
+  "Creditos para iniciar el negocio": {
+    "13": "#034AA6",
+    "14": "#81D8D0",
+    "15": "#5EBAF2",
+    "18": "#EA907A",
+    "20": "#ABC2E8",
+    "66": "#03658C",
+    "67": "#0A97B0",
+    "68": "#FBC687"
+  },
   "Cultura pueblos indigenas": {
     "31": "#5D4D89",
     "32": "#C6A932",
@@ -579,6 +589,13 @@
     "107": "#966C3B",
     "108": "#D0AF84"
   },
+  "Estrategias de capacitacion": {
+    "34" : "#845EC2",
+    "35" : "#C1A1D3",
+    "36" : "#98ACF8",
+    "37" : "#C060A1",
+    "38" : "#790C5A"
+  },
   "Financiamiento Innovacion": {
     "32": "#CE9265",
     "33": "#DDAEB0",
@@ -661,6 +678,29 @@
   "Indicadores empresariales": {
     "4": "#68B0AB",
     "5": "#DF7373"
+  },
+  "Indicadores empresariales por categoria": {
+    "1": "#7868E6",
+    "2": "#77ACF1",
+    "3": "#00917C",
+    "6": "#8FD9A8",
+    "7": "#D2E69C",
+    "8": "#98DDCA",
+    "9": "#BDD2B6",
+    "10": "#798777",
+    "11": "#5B8A72",
+    "12": "#29BB89",
+    "13": "#E8D80F",
+    "14": "#FFB037",
+    "15": "#FAD586",
+    "16": "#E2703A",
+    "17": "#BE0000",
+    "18": "#9C3D54",
+    "19": "#B67162",
+    "20": "#C06014",
+    "21": "#E2BCB7",
+    "22": "#9E9D89",
+    "23": "#E9896A"
   },
   "Indicador Tributo": {
     "1": "#E76F51",
@@ -764,7 +804,10 @@
     "114": "#424642",
     "115": "#B67162",
     "116": "#B4A5A5",
-    "117": "#A7BBC7"
+    "117": "#A7BBC7",
+    "118": "#766161",
+    "119": "#51C2D5",
+    "120": "#95A792"
   },
   "Museos y salas de exposicion visitados": {
     "3_39": "#EEB76B",
@@ -946,6 +989,11 @@
     "16": "#9B5151",
     "17": "#FA9579"
   },
+  "Organizacion, contribuyentes y rango de ventas": {
+    "7": "#7579E7",
+    "8": "#590995",
+    "9": "#9AB3F5"
+  },
   "Organizaciones que trabajan el arte y la cultura": {
     "99": "#862A5C",
     "1": "#84142D",
@@ -965,10 +1013,13 @@
     "16": "#D9BF77"
   },
   "Patrimonio cultural segun lugar arqueologico": {
+    "86": "#BB596B",
     "87": "#ED6E5D",
     "88": "#D08752",
     "89": "#E0B036",
+    "90": "#006A71",
     "91": "#FFD57E",
+    "92": "#937A7A",
     "93": "#FC9D9D",
     "94": "#A07676",
     "95": "#B26734",
@@ -1096,6 +1147,11 @@
     "5" : "#C3A655",
     "6" : "#70560D"
   },
+  "Principales mercados de venta": {
+    "21": "#FFB396",
+    "22": "#FF8585",
+    "23": "#FF4646"
+  },
   "Proyeccion demografica urbano rural": {
     "1_1": "#0C907D",
     "1_2": "#509AAF",
@@ -1137,6 +1193,22 @@
     "19": "#68A4F1",
     "20": "#274472",
     "21": "#BDC6D9"
+  },
+  "Razones para no solicitar o acceder a creditos": {
+    "20" : "#AD6989",
+    "69" : "#E19999",
+    "70" : "#629BB3",
+    "71" : "#4B4979",
+    "72" : "#9085AC",
+    "73" : "#D6AD47",
+    "74" : "#F9C49A",
+    "75" : "#A65E44",
+    "142" : "#D8C593",
+    "143" : "#6886C5",
+    "144" : "#708160",
+    "145" : "#B49C73",
+    "146" : "#27496D",
+    "147" : "#862A5C"
   },
   "Recaudacion segun composicion geografica": {
     "2" : "#F6CE59",
@@ -1296,6 +1368,16 @@
     "14": "#1FB57B",
     "15": "#CCD51A",
     "16": "#83580B"
+  },
+  "Solicitud de creditos de capital de trabajo y activo": {
+    "13": "#034AA6",
+    "14": "#81D8D0",
+    "15": "#5EBAF2",
+    "18": "#EA907A",
+    "20": "#ABC2E8",
+    "66": "#99B898",
+    "67": "#0A97B0",
+    "68": "#FBC687"
   },
   "Solicitudes financiamiento": {
     "1": "#629BB3",

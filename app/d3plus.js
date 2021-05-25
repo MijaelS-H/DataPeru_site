@@ -108,7 +108,7 @@ const growthPct = d => `${formatAbbreviate(d * 100)}%`;
 const pesoPE = d => `S/ ${formatAbbreviate(d * 100)}`;
 
 export const findColorV2 = (key, d) => {
-  console.log(key,d);
+
   if (key === "Pais" || key === "ISO 3") {
     if (!Array.isArray(d["Pais ID"])) return "transparent";
     else return colors.Continente[d["Continente ID"]];
@@ -595,7 +595,158 @@ export const findColorV2 = (key, d) => {
       return colors["Indicadores empresariales"][d["Categoria ID"]];
     }
 
+    else if ([
+      "Empresa privada nacional",
+      "Empresa privada extranjera",
+      "Empresa privada mixta",
+      "Ningún competidor importante",
+      "Pocos competidores importantes",
+      "Muchos competidores importantes",
+      "No sabe/ No conoce",
+      "Muy alto",
+      "Relativamente alto",
+      "Relativamente bajo",
+      "Muy bajo",
+      "Sobrecargada",
+      "Justo , según su capacidad",
+      "Un poco por debajo de su plena capacidad",
+      "Muy por debajo de su plena capacidad",
+      "Gran escala",
+      "Mediana escala",
+      "Pequeña escala",
+      "Micro escala",
+      "Muy baja escala",
+      "Muy complejo"
+    ].includes(d.Categoria)) {
+      return colors["Indicadores empresariales por categoria"][d["Categoria ID"]];
+    }
 
+    else if ([
+      "Capacitan al personal actual",
+      "Capacitan a los contratistas",
+      "Contratan nuevo personal capacitado",
+      "Contratan nuevo personal y lo capacitan",
+      "Otros"
+    ].includes(d.Categoria) && d["Indicador ID"] === 36) {
+      return colors["Estrategias de capacitacion"][d["Categoria ID"]];
+    }
+
+    else if ([
+      "Porcentaje de empresas por rango de sus ventas"
+    ].includes(d.Indicador)) {
+      return colors["Organizacion, contribuyentes y rango de ventas"][d["Categoria ID"]];
+    }
+
+    else if (d["Categoria ID"] === 10 && d["Indicador ID"] === 3) {
+      return "#68B0AB";
+    }
+    else if (d["Categoria ID"] === 11 && d["Indicador ID"] === 3) {
+      return "#DF7373";
+    }
+/*
+    else if ([
+      "Banca múltiple",
+      "Caja municipal",
+      "Caja rural",
+      "EDPYME",
+      "Organismos no gubernamentales(ONG)",
+      "Cooperativas de ahorro y créditos (COOPAC)",
+      "Corporación Financiera de Desarrollo (COFIDE)",
+      "Prestamistas",
+      "Otro"
+    ].includes(d.Categoria) && d["Indicador ID"] === 4) {
+      return colors["Creditos para iniciar el negocio"][d["Categoria ID"]];
+    }
+*/
+    else if (d["Indicador"] === "Créditos para capital de trabajo") {
+      return "#FF847C"
+    }
+    else if (d["Indicador"] === "Créditos para inversión en activo fijo") {
+      return "#F0A500"
+    }
+
+    else if (d["Categoria ID"] === 10 && (d["Indicador ID"] === 128 || d["Indicador ID"] === 132)) {
+      return "#68B0AB";
+    }
+    else if (d["Categoria ID"] === 11 && (d["Indicador ID"] === 128 || d["Indicador ID"] === 132)) {
+      return "#DF7373";
+    }
+
+    else if ([
+      "Banco",
+      "Caja municipal",
+      "Caja rural",
+      "EDPYME",
+      "Organismos no gubernamentales (ONG)",
+      "Cooperativas de ahorro y crédito (COOPAC)",
+      "Corporación Financiera de Desarrollo (COFIDE)",
+      "Prestamistas",
+      "Otro"
+    ].includes(d.Categoria) && (d["Indicador ID"] === 130 || d["Indicador ID"] === 134)) {
+      return colors["Solicitud de creditos de capital de trabajo y activo"][d["Categoria ID"]];
+    }
+
+    else if ([
+      "Otro motivo",
+      "No necesitó",
+      "Trámites engorrosos",
+      "Intereses elevados",
+      "Falta de garantía",
+      "Tener deudas pendientes",
+      "No tener título de propiedad",
+      "Haber recibido crédito anteriormente"
+    ].includes(d.Categoria) && (d["Indicador ID"] === 141)) {
+      return colors["Razones para no solicitar o acceder a creditos"][d["Categoria ID"]];
+    }
+
+    else if ([
+      "Internacional",
+      "Nacional",
+      "Local"
+    ].includes(d.Categoria) && (d["Indicador ID"] === 5)) {
+      return colors["Principales mercados de venta"][d["Categoria ID"]];
+    }
+
+    else if (d["Categoria ID"] === 10 && (d["Indicador ID"] === 17 )) {
+      return "#68B0AB";
+    }
+    else if (d["Categoria ID"] === 11 && (d["Indicador ID"] === 17 )) {
+      return "#DF7373";
+    }
+/*
+    else if ([
+      "No",
+      "Si, totalmente",
+      "Si, parcialmente"
+    ].includes(d.Categoria) && (d["Indicador ID"] === 28)) {
+      return `/icons/visualizations/Capacitaciones y sus costos/${d["Categoria ID"]}.png`;
+    }
+
+    else if ([
+      "Herramientas manuales",
+      "Maquinas-Herramientas mecánicas",
+      "Equipos semiautomatizados",
+      "Equipos automáticos",
+      "Equipos de control Numerico Computarizado"
+    ].includes(d.Categoria) && (d["Indicador ID"] === 50)) {
+      return `/icons/visualizations/Composicion empresarial por tipo de tecnologia/${d["Categoria ID"]}.png`;
+    }
+
+    else if (d["Categoria ID"] === 10 && d["Indicador ID"] === 54) {
+      return `/icons/visualizations/Promocion comercial/10.png`;
+    }
+    else if (d["Categoria ID"] === 11 && d["Indicador ID"] === 54) {
+      return `/icons/visualizations/Promocion comercial/11.png`;
+    }
+
+    else if ([
+      "Compra",
+      "Venta"
+    ].includes(d.Categoria) && [45,46,47,48,49,67,68,69,70,71].includes(d["Indicador ID"])) {
+      return `/icons/visualizations/Medios de compra y venta por internet/${d["Categoria ID"]}.png`;
+    }
+
+*/
 
   }
 
@@ -653,7 +804,9 @@ export const findColorV2 = (key, d) => {
       "Sala de Exhibición de la Zona Arqueológica Monumental de Kotosh", // test
       "Sala de Exhibición \"Gilberto Tenorio Ruiz\"",
       "Sala de Exhibición del Sitio Arqueológico \"Tambo Colorado\"",
-      "Sala de Exhibición del Monumento Arqueológico Willkawaín"
+      "Sala de Exhibición del Monumento Arqueológico Willkawaín",
+      "Casa de la Gastronomía Peruana",
+      "Sala de Exhibición de Pikillaqta"
     ].includes(d.Subcategoria) && d["Categoria ID"] === 3) {
       return colors["Museos y salas de exposicion visitados"][d["Subcategoria ID"]];
     }
@@ -849,7 +1002,8 @@ export const findColorV2 = (key, d) => {
       "Transporte autónomo",
       "Manufactura avanzada",
       "Impresión 3D",
-      "Servicios avanzados en redes (ej: big data)"
+      "Servicios avanzados en redes (ej: big data)",
+      "Servicios avanzados en redes como Big Data"
     ].includes(d.Indicador)) {
       return colors["Tecnologias Produccion"][d["Indicador ID"]];
     }
@@ -1077,7 +1231,7 @@ export const findColorV2 = (key, d) => {
       "Transacciones con organizaciones estatales/autoridades públicas",
       "Actividades de entretenimiento",
       "Vender productos y/o servicios"
-    ].includes(d.Indicador)) {
+    ].includes(d.Indicador) && [22,23,24,25,26,27,28,29].includes(d["Indicador ID"])) {
       return colors["Internet segun uso"][d["Indicador ID"]];
     }
 
@@ -2427,6 +2581,86 @@ export const findIconV2 = (key, d) => {
       return `/icons/visualizations/Conoce, solicita y accede a creditos/131.png`;
     }
 
+    else if (d["Categoria ID"] === 10 && (d["Indicador ID"] === 128 || d["Indicador ID"] === 132)) {
+      return `/icons/visualizations/Solicitud de creditos de capital de trabajo y activo/10.png`;
+    }
+    else if (d["Categoria ID"] === 11 && (d["Indicador ID"] === 128 || d["Indicador ID"] === 132)) {
+      return `/icons/visualizations/Solicitud de creditos de capital de trabajo y activo/11.png`;
+    }
+
+    else if ([
+      "Banco",
+      "Caja municipal",
+      "Caja rural",
+      "EDPYME",
+      "Organismos no gubernamentales (ONG)",
+      "Cooperativas de ahorro y crédito (COOPAC)",
+      "Corporación Financiera de Desarrollo (COFIDE)",
+      "Prestamistas",
+      "Otro"
+    ].includes(d.Categoria) && (d["Indicador ID"] === 130 || d["Indicador ID"] === 134)) {
+      return `/icons/visualizations/Solicitud de creditos de capital de trabajo y activo/${d["Categoria ID"]}.png`;
+    }
+
+    else if ([
+      "Otro motivo",
+      "No necesitó",
+      "Trámites engorrosos",
+      "Intereses elevados",
+      "Falta de garantía",
+      "Tener deudas pendientes",
+      "No tener título de propiedad",
+      "Haber recibido crédito anteriormente"
+    ].includes(d.Categoria) && (d["Indicador ID"] === 141)) {
+      return `/icons/visualizations/Razones para no solicitar o acceder a creditos/${d["Categoria ID"]}.png`;
+    }
+
+    else if ([
+      "Internacional",
+      "Nacional",
+      "Local"
+    ].includes(d.Categoria) && (d["Indicador ID"] === 5)) {
+      return `/icons/visualizations/Principales mercados de venta/${d["Categoria ID"]}.png`;
+    }
+
+    else if (d["Categoria ID"] === 10 && (d["Indicador ID"] === 17 )) {
+      return `/icons/visualizations/Capacitaciones y sus costos/10.png`;
+    }
+    else if (d["Categoria ID"] === 11 && (d["Indicador ID"] === 17 )) {
+      return `/icons/visualizations/Capacitaciones y sus costos/11.png`;
+    }
+
+    else if ([
+      "No",
+      "Si, totalmente",
+      "Si, parcialmente"
+    ].includes(d.Categoria) && (d["Indicador ID"] === 28)) {
+      return `/icons/visualizations/Capacitaciones y sus costos/${d["Categoria ID"]}.png`;
+    }
+
+    else if ([
+      "Herramientas manuales",
+      "Maquinas-Herramientas mecánicas",
+      "Equipos semiautomatizados",
+      "Equipos automáticos",
+      "Equipos de control Numerico Computarizado"
+    ].includes(d.Categoria) && (d["Indicador ID"] === 50)) {
+      return `/icons/visualizations/Composicion empresarial por tipo de tecnologia/${d["Categoria ID"]}.png`;
+    }
+
+    else if (d["Categoria ID"] === 10 && d["Indicador ID"] === 54) {
+      return `/icons/visualizations/Promocion comercial/10.png`;
+    }
+    else if (d["Categoria ID"] === 11 && d["Indicador ID"] === 54) {
+      return `/icons/visualizations/Promocion comercial/11.png`;
+    }
+
+    else if ([
+      "Compra",
+      "Venta"
+    ].includes(d.Categoria) && [45,46,47,48,49,67,68,69,70,71].includes(d["Indicador ID"])) {
+      return `/icons/visualizations/Medios de compra y venta por internet/${d["Categoria ID"]}.png`;
+    }
 
 
 
@@ -2486,7 +2720,9 @@ export const findIconV2 = (key, d) => {
       "Sala de Exhibición de la Zona Arqueológica Monumental de Kotosh", // test
       "Sala de Exhibición \"Gilberto Tenorio Ruiz\"",
       "Sala de Exhibición del Sitio Arqueológico \"Tambo Colorado\"",
-      "Sala de Exhibición del Monumento Arqueológico Willkawaín"
+      "Sala de Exhibición del Monumento Arqueológico Willkawaín",
+      "Casa de la Gastronomía Peruana",
+      "Sala de Exhibición de Pikillaqta"
     ].includes(d.Subcategoria) && d["Categoria ID"] === 3) {
       return "/icons/visualizations/Museos y salas de exposicion mas visitados/museo.png";
     }
@@ -2501,8 +2737,9 @@ export const findIconV2 = (key, d) => {
       "Centro Arqueológico Ventanilla de Otuzco",
       "Sitio Arqueológico de Sillustani",
       "Reserva Arqueológica Líneas y Geoglifos de Nazca",
-      "Paisaje Cultural Arqueológico Cumbemayo"
-    ].includes(d.Subcategoria) && [87, 88, 89, 91, 93, 94, 95, 96, 97, 98].includes(d["Subcategoria ID"])) {
+      "Paisaje Cultural Arqueológico Cumbemayo",
+      "Zona Arqueológica Monumental Kuélap"
+    ].includes(d.Subcategoria) && [86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98].includes(d["Subcategoria ID"])) {
       return "/icons/visualizations/Patrimonio cultural segun lugar arqueologico/sitio_arqueologico.png";
     }
 
@@ -2571,12 +2808,12 @@ export const findIconV2 = (key, d) => {
     else if ([
       "Sala de Exhibición de la Zona Arqueológica Monumental de Kotosh",
       "Sala de Exhibición del Monumento Arqueológico de Willkawaín",
-      "Sala de Exhibición \"Gilberto Tenorio Ruiz\"",
+      `Sala de Exhibición "Gilberto Tenorio Ruiz"`,
       "Sala de Exhibición de Pikillaqta",
-      "Sala de Exhibición del Sitio Arqueológico \"Tambo Colorado\"",
+      `Sala de Exhibición del Sitio Arqueológico "Tambo Colorado"`,
       "Sala de Oro del Museo Municipal Vicús",
       "Casa de la Gastronomía Peruana y Museo Postal y Filatélico del Perú"
-    ].includes(d.Subcategoria) && [110, 111, 112, 113, 114, 115, 116, 117].includes(d["Subcategoria ID"])) {
+    ].includes(d.Subcategoria) && [110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120].includes(d["Subcategoria ID"])) {
       return "/icons/visualizations/Museos y salas de exposicion mas visitados/sala_de_exposicion.png";
     }
 
@@ -2814,7 +3051,8 @@ export const findIconV2 = (key, d) => {
       "Transporte autónomo",
       "Manufactura avanzada",
       "Impresión 3D",
-      "Servicios avanzados en redes (ej: big data)"
+      "Servicios avanzados en redes (ej: big data)",
+      "Servicios avanzados en redes como Big Data"
     ].includes(d.Indicador)) {
       return `/icons/visualizations/Tecnologias Produccion/${d["Indicador ID"]}.png`;
     }
@@ -3043,7 +3281,7 @@ export const findIconV2 = (key, d) => {
       "Transacciones con organizaciones estatales/autoridades públicas",
       "Actividades de entretenimiento",
       "Vender productos y/o servicios"
-    ].includes(d.Indicador)) {
+    ].includes(d.Indicador) && [22,23,24,25,26,27,28,29].includes(d["Indicador ID"])) {
       return `/icons/visualizations/Internet segun uso/${d["Indicador ID"]}.png`;
     }
 
@@ -3174,6 +3412,128 @@ export const findIconV2 = (key, d) => {
     ].includes(d.Indicador) && d["Categoria ID"] === 10) {
       return `/icons/visualizations/Cultura empresarial asociativa/${d["Indicador ID"]}.png`;
     }
+
+    else if ([
+      "Poco tiempo de funcionamiento de la empresa",
+      "Falta de capacidad de pago",
+      "Tiene deudas pendientes",
+      "No tiene título de propiedad",
+      "Falta de garantías distintas al título de propiedad",
+      "Otros motivos"
+    ].includes(d.Indicador) && (d["Categoria ID"] === 10)) {
+      return `/icons/visualizations/Razones para no solicitar o acceder a creditos/${d["Indicador ID"]}.png`;
+    }
+
+    else if ([
+      "Dificultad de financiamiento",
+      "Proceso productivo poco automatizado",
+      "Falta de mano de obra calificada",
+      "Falta de repuestos y/o servicio técnico para maquinaria",
+      "Demanda limitada",
+      "Falta de insumos nacionales",
+      "Falta de insumos importados",
+      "Falta de energía eléctrica",
+      "Falta de información tecnológica",
+      "Falta de información de mercados",
+      "Excesiva regulación laboral",
+      "Excesiva regulación tributaria",
+      "Excesiva regulación ambiental",
+      "Excesiva regulación en licencias de funcionamiento y construcción",
+      "Excesiva regulación de Defensa Civil",
+      "Excesiva regulación para trámites sectoriales y autorizaciones",
+      "Corrupción de funcionarios públicos",
+      "Contrabando",
+      "Exceso de cargas tributarias",
+      "Informalidad",
+      "Otro factor"
+    ].includes(d.Indicador) && (d["Categoria ID"] === 10)) {
+      return `/icons/visualizations/Limitantes al crecimiento/${d["Indicador ID"]}.png`;
+    }
+
+    else if ([
+      "Centros de formación sectoriales",
+      "Universidad o instituto educativo público",
+      "Universidad o instituto educativo privado",
+      "Instituciones públicas",
+      "Centros de Innovación tecnológica (CITE)",
+      "Cámara de Comercio",
+      "Proveedores de la empresa",
+      "Propia empresa y/o casa matriz",
+      "Instructor externo",
+      "Otra entidad",
+      "Idiomas",
+      "Gestión empresarial",
+      "Seguridad y salud empresarial",
+      "Tecnología de información y comunicación",
+      "Habilidades socio-emocionales",
+      "Habilidades temas técnicos productivos",
+      "Habilidades de marketing y/o estrategia de ventas",
+      "Otras materias"
+    ].includes(d.Indicador) && (d["Categoria ID"] === 10)) {
+      return `/icons/visualizations/Instituciones y tipos de capacitacion/${d["Indicador ID"]}.png`;
+    }
+
+    else if ([
+      "Inteligencia artificial o aprendizaje automático",
+      "Robótica avanzada",
+      "Transporte autónomo",
+      "Manufactura avanzada",
+      "Impresión 3D",
+      "Servicios avanzados en redes como Big Data"
+    ].includes(d.Indicador) && (d["Categoria ID"] === 10)) {
+      return `/icons/visualizations/Nuevas tecnologias/${d["Indicador ID"]}.png`;
+    }
+
+    else if ([
+      "Computadora de escritorio y/o PC",
+      "Computadora portátil (laptop, notebook, tablet)",
+      "Multifuncional",
+      "Impresora",
+      "Escáner",
+      "Teléfono móvil con acceso a internet (smartphone)"
+    ].includes(d.Indicador) && (d["Categoria ID"] === 10)) {
+      return `/icons/visualizations/Composicion empresarial por tipo de tecnologia/${d["Indicador ID"]}.png`;
+    }
+
+    else if ([
+      "Búsqueda de productos o servicios",
+      "Búsqueda de organismos gubernamentales",
+      "Búsqueda de información en I&D",
+      "Búsqueda de información",
+      "Comunicación (e-mail)",
+      "Operaciones de banca electrónica",
+      "Trámites o transacciones con organismos gubernamentales",
+      "Servicio y soporte al cliente",
+      "Venta de bienes y servicios",
+      "Promocionar productos o servicios",
+      "Capacitación del personal",
+      "Video conferencias",
+      "Emisión de facturas electrónicas",
+      "Servicios de computación en la nube",
+      "Otras actividades",
+      "No necesita y/o no es útil para la empresa",
+      "Desconoce cómo usarlo",
+      "No es rentable o resulta muy caro",
+      "No es seguro",
+      "Otro motivo"
+    ].includes(d.Indicador) && (d["Categoria ID"] === 10)) {
+      return `/icons/visualizations/Uso y no uso de internet/${d["Indicador ID"]}.png`;
+    }
+
+    else if ([
+      "Exposiciones o ferias de productos y servicios",
+      "Internet",
+      "Revistas especializadas",
+      "Publicidad en periódicos",
+      "Publicidad en televisión",
+      "Referencia de conocidos",
+      "Reparto de volantes, afiches y otros impresos",
+      "Degustadores, promotores, impulsadores",
+      "Otros medios"
+    ].includes(d.Indicador) && (d["Categoria ID"] === 10)) {
+      return `/icons/visualizations/Promocion comercial/${d["Indicador ID"]}.png`;
+    }
+
 
 
 
@@ -4038,7 +4398,7 @@ const axisConfig = {
     strokeWidth: 1
     // opacity: 0.5
   },
-  locale: "es-CL",
+  locale: "es-ES",
   // axis title labels
   titleConfig: {
     fontFamily: () => typeface,
