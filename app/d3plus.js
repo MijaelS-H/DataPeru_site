@@ -108,7 +108,7 @@ const growthPct = d => `${formatAbbreviate(d * 100)}%`;
 const pesoPE = d => `S/ ${formatAbbreviate(d * 100)}`;
 
 export const findColorV2 = (key, d) => {
-
+  console.log(key,d);
   if (key === "Pais" || key === "ISO 3") {
     if (!Array.isArray(d["Pais ID"])) return "transparent";
     else return colors.Continente[d["Continente ID"]];
@@ -466,7 +466,9 @@ export const findColorV2 = (key, d) => {
       "Seguro universitario",
       "Seguro escolar privado",
       "Otro"
-    ].includes(d.Categoria)) {
+    ].includes(d.Categoria) && [
+      40, 41, 42, 43, 44, 45, 46, 47
+    ].includes(d["Indicador ID"])) {
       return colors["Afiliados segun sistema de prestacion"][d["Categoria ID"]];
     }
 
@@ -571,7 +573,7 @@ export const findColorV2 = (key, d) => {
       "Lugares De Consumo",
       "Centros Laborales",
       "Centros Educativos"
-    ].includes(d.Categoria)) {
+    ].includes(d.Categoria) && [42, 44, 45, 46, 47, 48, 49, 50].includes(d["Categoria ID"])) {
       return colors["Alertas contra el racismo"][d["Categoria ID"]];
     }
 
@@ -582,6 +584,18 @@ export const findColorV2 = (key, d) => {
     ].includes(d.Categoria)) {
       return colors["Alerta de atentados patrimoniales"][d["Categoria ID"]];
     }
+
+    // Perfil Industrias
+    else if ([
+      "Pertenecen a un grupo u organización empresarial",
+      "Cuentan con área o departamento de Investigación y Desarrollo",
+      "Contrataron trabajadores en los últimos 12 meses",
+      "Realizaron exportaciones durante 2016"
+    ].includes(d.Indicator)) {
+      return colors["Indicadores empresariales"][d["Categoria ID"]];
+    }
+
+
 
   }
 
@@ -928,7 +942,7 @@ export const findColorV2 = (key, d) => {
       "Amenazas",
       "Secuestro",
       "Corrupción"
-    ].includes(d.Indicador)) {
+    ].includes(d.Indicador) && d["Categoria ID"] === 12) {
       return colors["Casos delictivos"][d["Indicador ID"]];
     }
 
@@ -1149,6 +1163,8 @@ export const findColorV2 = (key, d) => {
     ].includes(d.Indicador)) {
       return colors["Subproductos agropecuarios"][d["Indicador ID"]];
     }
+
+
 
 
   }
@@ -2212,7 +2228,9 @@ export const findIconV2 = (key, d) => {
       "Seguro universitario",
       "Seguro escolar privado",
       "Otro"
-    ].includes(d.Categoria)) {
+    ].includes(d.Categoria) && [
+      40, 41, 42, 43, 44, 45, 46, 47
+    ].includes(d["Indicador ID"])) {
       return `/icons/visualizations/Afiliados segun sistema de prestacion/${d["Categoria ID"]}.png`;
     }
 
@@ -2317,7 +2335,7 @@ export const findIconV2 = (key, d) => {
       "Lugares De Consumo",
       "Centros Laborales",
       "Centros Educativos"
-    ].includes(d.Categoria)) {
+    ].includes(d.Categoria) && [42, 44, 45, 46, 47, 48, 49, 50].includes(d["Categoria ID"])) {
       return `/icons/visualizations/Alertas contra el racismo/${d["Categoria ID"]}.png`;
     }
 
@@ -2328,6 +2346,89 @@ export const findIconV2 = (key, d) => {
     ].includes(d.Categoria)) {
       return `/icons/visualizations/Alerta de atentados patrimoniales/${d["Categoria ID"]}.png`;
     }
+
+    // Perfil Industrias
+    else if ([
+      "Pertenecen a un grupo u organización empresarial",
+      "Cuentan con área o departamento de Investigación y Desarrollo",
+      "Contrataron trabajadores en los últimos 12 meses",
+      "Realizaron exportaciones durante 2016"
+    ].includes(d.Indicator)) {
+      return `/icons/visualizations/Indicadores empresariales/${d["Categoria ID"]}.png`;
+    }
+
+    else if ([
+      "Empresa privada nacional",
+      "Empresa privada extranjera",
+      "Empresa privada mixta",
+      "Ningún competidor importante",
+      "Pocos competidores importantes",
+      "Muchos competidores importantes",
+      "No sabe/ No conoce",
+      "Muy alto",
+      "Relativamente alto",
+      "Relativamente bajo",
+      "Muy bajo",
+      "Sobrecargada",
+      "Justo , según su capacidad",
+      "Un poco por debajo de su plena capacidad",
+      "Muy por debajo de su plena capacidad",
+      "Gran escala",
+      "Mediana escala",
+      "Pequeña escala",
+      "Micro escala",
+      "Muy baja escala",
+      "Muy complejo"
+    ].includes(d.Categoria)) {
+      return `/icons/visualizations/Indicadores empresariales por categoria/${d["Categoria ID"]}.png`;
+    }
+
+    else if ([
+      "Capacitan al personal actual",
+      "Capacitan a los contratistas",
+      "Contratan nuevo personal capacitado",
+      "Contratan nuevo personal y lo capacitan",
+      "Otros"
+    ].includes(d.Categoria) && d["Indicador ID"] === 36) {
+      return `/icons/visualizations/Estrategias de capacitacion/${d["Categoria ID"]}.png`;
+    }
+
+    else if ([
+      "Porcentaje de empresas por rango de sus ventas"
+    ].includes(d.Indicador)) {
+      return `/icons/visualizations/Organizacion, contribuyentes y rango de ventas/Rango de ventas.png`;
+    }
+
+    else if (d["Categoria ID"] === 10 && d["Indicador ID"] === 3) {
+      return `/icons/visualizations/Creditos para iniciar el negocio/10.png`;
+    }
+    else if (d["Categoria ID"] === 11 && d["Indicador ID"] === 3) {
+      return `/icons/visualizations/Creditos para iniciar el negocio/11.png`;
+    }
+
+    else if ([
+      "Banca múltiple",
+      "Caja municipal",
+      "Caja rural",
+      "EDPYME",
+      "Organismos no gubernamentales(ONG)",
+      "Cooperativas de ahorro y créditos (COOPAC)",
+      "Corporación Financiera de Desarrollo (COFIDE)",
+      "Prestamistas",
+      "Otro"
+    ].includes(d.Categoria) && d["Indicador ID"] === 4) {
+      return `/icons/visualizations/Creditos para iniciar el negocio/${d["Categoria ID"]}.png`;
+    }
+
+    else if (d["Indicador"] === "Créditos para capital de trabajo") {
+      return `/icons/visualizations/Conoce, solicita y accede a creditos/127.png`;
+    }
+    else if (d["Indicador"] === "Créditos para inversión en activo fijo") {
+      return `/icons/visualizations/Conoce, solicita y accede a creditos/131.png`;
+    }
+
+
+
 
   }
 
@@ -2806,7 +2907,7 @@ export const findIconV2 = (key, d) => {
       "Amenazas",
       "Secuestro",
       "Corrupción"
-    ].includes(d.Indicador)) {
+    ].includes(d.Indicador) && d["Categoria ID"] === 12) {
       return `/icons/visualizations/Casos delictivos/${d["Indicador ID"]}.png`;
     }
 
@@ -2880,7 +2981,8 @@ export const findIconV2 = (key, d) => {
       "Trabajar independientemente",
       "Manejo de tiempo",
       "Estabilidad emocional",
-      "Extraversión"
+      "Extraversión",
+      "Conocimiento informático y uso de computadoras"
     ].includes(d.Indicador) && d["Categoria ID"] === 4) {
       return `/icons/visualizations/Habilidades importantes para las empresas/${d["Indicador ID"]}.png`;
     }
@@ -3027,6 +3129,53 @@ export const findIconV2 = (key, d) => {
     ].includes(d.Indicador)) {
       return `/icons/visualizations/Subproductos agropecuarios/${d["Indicador ID"]}.png`;
     }
+
+    // Perfil Industrias
+    else if ([
+      "Acceso a financiamiento",
+      "Acceso a terrenos",
+      "Licencias de operación y permisos comerciales",
+      "Corrupción",
+      "Sistema judicial",
+      "Delitos, robo y desorden",
+      "Regulaciones aduaneras y de comercio exterior",
+      "Acceso a energía",
+      "Fuerza laboral con educación inadecuada",
+      "Regulaciones laborales",
+      "Inestabilidad política",
+      "Sector informal",
+      "Administración de impuestos",
+      "Tasas impositivas",
+      "Transporte y logística"
+    ].includes(d.Indicador) && d["Categoria ID"] === 4 ) {
+      return `/icons/visualizations/Dificultades de operacion/${d["Indicador ID"]}.png`;
+    }
+
+    else if ([
+      "MyPE",
+      "Personal de confianza",
+      "Exportación no tradicional",
+      "Practicantes",
+      "Agroexportación"
+    ].includes(d.Indicador) && [31, 32, 33, 34, 35].includes(d["Indicador ID"])
+    && d["Categoria ID"] === 4 ) {
+      return `/icons/visualizations/Regimen laboral especial/${d["Indicador ID"]}.png`;
+    }
+
+    else if ([
+      "Negociar con proveedores",
+      "Acceder a servicios financieros",
+      "Acceder a mercados",
+      "Acceder a información empresarial",
+      "Acceder a capacitación y asistencia técnica",
+      "Acceder a servicios de vigilancia, limpieza y otros",
+      "Acceder a infraestructura (locales)",
+      "Se agruparon por otro motivo"
+    ].includes(d.Indicador) && d["Categoria ID"] === 10) {
+      return `/icons/visualizations/Cultura empresarial asociativa/${d["Indicador ID"]}.png`;
+    }
+
+
 
   }
 
@@ -3711,6 +3860,15 @@ export const findIconV2 = (key, d) => {
       return `/icons/visualizations/Demanda de bienes culturales/${d["Indicador ID"]}.png`;
     }
 
+    else if ([
+      "Otro",
+      "Asociación",
+      "Cooperativa",
+      "Consorcio",
+      "Grupo sin personería jurídica"
+    ].includes(d.Names) && (d["Indicador ID"] === 7)) {
+      return `/icons/visualizations/Cultura empresarial asociativa/${d["Names ID"]}.png`;
+    }
 
   }
 
