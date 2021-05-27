@@ -15,7 +15,7 @@ const getScrolledState =
 
 /** */
 export function useWindowScrolled() {
-  const [isScrolled, setIsScrolled] = useState(getScrolledState);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useIsomorphicLayoutEffect(() => {
     if (typeof window === "undefined") return undefined;
@@ -34,6 +34,7 @@ export function useWindowScrolled() {
       }
     };
 
+    listener();
     window.addEventListener("scroll", listener);
 
     return () => {
