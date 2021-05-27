@@ -323,7 +323,28 @@ export const findColorV2 = (key, d) => {
     if (d.Year === 2015) return "#5D54A4";
   }
 
+  // Perfil Industrias
+  if (key === "Year" && [
+    "Valor de la producción",
+    "Margen Comercial",
+    "Ventas Netas",
+    "Valor agregado",
+    "Ratio consumo intermedio entre producción",
+    "Margen sobre las ventas"
+  ].includes(d.Indicador)) {
+    if (d.Year === 2015) return "#1687A7";
+    if (d.Year === 2016) return "#1A508B";
+    if (d.Year === 2017) return "#00917C";
+  }
 
+  if (key === "Year" && [
+    "Remuneración promedio de los trabajadores",
+    "Personal ocupado"
+  ].includes(d.Indicador)) {
+    if (d.Year === 2015) return "#B6BC7A";
+    if (d.Year === 2016) return "#D99879";
+    if (d.Year === 2017) return "#F1CA89";
+  }
 
   if (key === "Categoria") {
 
@@ -616,7 +637,16 @@ export const findColorV2 = (key, d) => {
       "Pequeña escala",
       "Micro escala",
       "Muy baja escala",
-      "Muy complejo"
+      "Muy complejo",
+      "Complejo",
+      "Poco complejo",
+      "Simple",
+      "Muy simple",
+      "No es un obstáculo",
+      "Es un obstáculo menor",
+      "Es un obstáculo moderado",
+      "Es un obstáculo grave",
+      "Es un obstáculo muy grave"
     ].includes(d.Categoria)) {
       return colors["Indicadores empresariales por categoria"][d["Categoria ID"]];
     }
@@ -632,6 +662,26 @@ export const findColorV2 = (key, d) => {
     }
 
     else if ([
+      "Otro",
+      "Régimen general",
+      "Nuevo RUS (Régimen único simplificado)",
+      "Régimen especial de Renta (RER)"
+    ].includes(d.Categoria) && d["Indicador ID"] === 170) {
+      return colors["Organizacion, contribuyentes y rango de ventas"][d["Categoria ID"]];
+    }
+
+    else if ([
+      "Persona natural",
+      "Sociedad anónima abierta",
+      "Sociedad anónima cerrada",
+      "Sociedad comercial de responsabilidad limitada",
+      "Empresa individual de responsabilidad limitada",
+      "Otra"
+    ].includes(d.Categoria) && d["Indicador ID"] === 1) {
+      return colors["Organizacion, contribuyentes y rango de ventas"][d["Categoria ID"]];
+    }
+
+    else if ([
       "Porcentaje de empresas por rango de sus ventas"
     ].includes(d.Indicador)) {
       return colors["Organizacion, contribuyentes y rango de ventas"][d["Categoria ID"]];
@@ -643,7 +693,7 @@ export const findColorV2 = (key, d) => {
     else if (d["Categoria ID"] === 11 && d["Indicador ID"] === 3) {
       return "#DF7373";
     }
-/*
+
     else if ([
       "Banca múltiple",
       "Caja municipal",
@@ -657,7 +707,7 @@ export const findColorV2 = (key, d) => {
     ].includes(d.Categoria) && d["Indicador ID"] === 4) {
       return colors["Creditos para iniciar el negocio"][d["Categoria ID"]];
     }
-*/
+
     else if (d["Indicador"] === "Créditos para capital de trabajo") {
       return "#FF847C"
     }
@@ -713,13 +763,13 @@ export const findColorV2 = (key, d) => {
     else if (d["Categoria ID"] === 11 && (d["Indicador ID"] === 17 )) {
       return "#DF7373";
     }
-/*
+
     else if ([
       "No",
       "Si, totalmente",
       "Si, parcialmente"
     ].includes(d.Categoria) && (d["Indicador ID"] === 28)) {
-      return `/icons/visualizations/Capacitaciones y sus costos/${d["Categoria ID"]}.png`;
+      return colors["Capacitaciones y sus costos"][d["Categoria ID"]];
     }
 
     else if ([
@@ -729,24 +779,104 @@ export const findColorV2 = (key, d) => {
       "Equipos automáticos",
       "Equipos de control Numerico Computarizado"
     ].includes(d.Categoria) && (d["Indicador ID"] === 50)) {
-      return `/icons/visualizations/Composicion empresarial por tipo de tecnologia/${d["Categoria ID"]}.png`;
+      return colors["Composicion empresarial por tipo de tecnologia"][d["Categoria ID"]];
     }
 
     else if (d["Categoria ID"] === 10 && d["Indicador ID"] === 54) {
-      return `/icons/visualizations/Promocion comercial/10.png`;
+      return "#68B0AB";
     }
     else if (d["Categoria ID"] === 11 && d["Indicador ID"] === 54) {
-      return `/icons/visualizations/Promocion comercial/11.png`;
+      return "#DF7373";
     }
 
     else if ([
       "Compra",
       "Venta"
     ].includes(d.Categoria) && [45,46,47,48,49,67,68,69,70,71].includes(d["Indicador ID"])) {
-      return `/icons/visualizations/Medios de compra y venta por internet/${d["Categoria ID"]}.png`;
+      return colors["Medios de compra y venta por internet"][d["Categoria ID"]];
     }
 
-*/
+    else if (d["Categoria ID"] === 10 && (d["Indicador ID"] === 112 )) {
+      return "#68B0AB";
+    }
+    else if (d["Categoria ID"] === 11 && (d["Indicador ID"] === 112 )) {
+      return "#DF7373";
+    }
+
+    else if ([
+      "No sabe",
+      "Declaración de Impacto Ambiental (DIA)",
+      "Estudio de Impacto Ambiental (EIA)",
+      "Declaración Ambiental para Actividades en Curso (DAAC)",
+      "Programa de Adecuacion y Manejo Ambiental (PAMA)",
+      "Ninguno"
+    ].includes(d.Categoria) && (d["Indicador ID"] === 165)) {
+      return colors["Instrumentos de gestion ambiental"][d["Categoria ID"]];
+    }
+
+    else if ([
+      "Escasas",
+      "Muy baja",
+      "Baja",
+      "Regular",
+      "Alta",
+      "Muy alta",
+      "Excesivas",
+      "No sabe o no opina"
+    ].includes(d.Categoria) && (d["Indicador ID"] === 167 || d["Indicador ID"] === 168 || d["Indicador ID"] === 169)) {
+      return colors["Percepcion de la fiscalizacion"][d["Categoria ID"]];
+    }
+
+    else if ([
+      "Disminuyeron",
+      "Aumentaron",
+      "No sabe",
+      "Siguieron igual"
+    ].includes(d.Categoria) && d["Indicador ID"] === 11) {
+      return colors["Percepcion sobre delitos contra las empresas"][d["Categoria ID"]];
+    }
+
+    else if ([
+      "No sabe",
+      "Continuará igual de bien",
+      "Continuará igual de mal",
+      "Empeorará",
+      "Mejorará"
+    ].includes(d.Categoria) && d["Indicador ID"] === 18) {
+      return colors["Percepcion sobre delitos contra las empresas"][d["Categoria ID"]];
+    }
+
+    else if (d["Categoria ID"] === 1 && (d["Indicador ID"] === 35 || d["Indicador ID"] === 36 || d["Indicador ID"] === 37 || d["Indicador ID"] === 38)) {
+      return "#DF7373";
+    }
+    else if (d["Categoria ID"] === 2 && (d["Indicador ID"] === 35 || d["Indicador ID"] === 36 || d["Indicador ID"] === 37 || d["Indicador ID"] === 38)) {
+      return "#68B0AB";
+    }
+
+    else if (d["Categoria ID"] === 1 && (d["Indicador ID"] === 47)) {
+      return "#68B0AB";
+    }
+    else if (d["Categoria ID"] === 2 && (d["Indicador ID"] === 47)) {
+      return "#DF7373";
+    }
+
+    else if ([
+      "No se adaptan a las necesidades de su actividad",
+      "Dificultades con el manejo de la confidencialidad",
+      "Dificultades burocráticas",
+      "No necesita apoyo para innovar",
+      "No le interesó",
+      "Otro motivo"
+    ].includes(d.Categoria) && d["Indicador ID"] === 56) {
+      return colors["Acceso a servicios de CITE publico"][d["Categoria ID"]];
+    }
+
+    else if ([
+      "CITE Público",
+      "CITE Privado"
+    ].includes(d.Indicador)) {
+      return colors["Acceso a los servicios de la Red CITE"][d["Categoria ID"]];
+    }
 
   }
 
@@ -956,20 +1086,20 @@ export const findColorV2 = (key, d) => {
     if ([
       "Falta de interés",
       "No fue necesario",
-      "Intentaron pero al final desistieron",
-      "No contaron con los recursos económicos necesarios",
+      "Intentaron pero desistieron",
+      "Falta de recursos económicos",
       "No contaron con personal capacitado",
       "No contaron con la infraestructura necesaria",
       "Baja escala de producción",
-      "Son realizadas en la casa matriz",
+      "Se realizan en la casa matriz",
       "Desconocimiento del tema"
     ].includes(d.Indicador)) {
       return colors["Razones no innovar"][d["Indicador ID"]];
     }
 
     else if ([
-      "Investigación y desarrollo (I + D) internas",
-      "Investigación y desarrollo (I + D) externas",
+      "Investigación y desarrollo (I+D) internas",
+      "Investigación y desarrollo (I+D) externas",
       "Ingeniería, diseño y otros procesos creativos",
       "Marketing y valor de marca",
       "Declaración de propiedad intelectual",
@@ -983,15 +1113,15 @@ export const findColorV2 = (key, d) => {
 
     else if ([
       "Cultura empresarial desarrollada",
-      "Detección de una demanda total o parcialmente insatisfecha en el mercado",
-      "Aprovechamiento de una idea o novedad científica",
+      "Detección de demanda insatisfecha",
+      "Aprovechar idea o novedad científica-técnica",
       "Amenaza de la competencia",
       "Pautas regulatorias",
       "Cambios en normas de propiedad intelectual",
       "Procesos de certificación",
-      "Problemas técnivcos",
-      "Aprovechamiento de una idea generada al interior de la empresa",
-      "Aprovechamiento de incentivos gubernamentales"
+      "Problemas técnicos",
+      "Aprovechar idea generada al interior de la empresa",
+      "Aprovechar incentivos gubernamentales"
     ].includes(d.Indicador)) {
       return colors["Razon para innovar"][d["Indicador ID"]];
     }
@@ -1170,7 +1300,8 @@ export const findColorV2 = (key, d) => {
       "Trabajar independientemente",
       "Manejo de tiempo",
       "Estabilidad emocional",
-      "Extraversión"
+      "Extraversión",
+      "Conocimiento informático y uso de computadoras"
     ].includes(d.Indicador) && d["Categoria ID"] === 4) {
       return colors["Habilidades importantes para las empresas"][d["Indicador ID"]];
     }
@@ -1318,7 +1449,235 @@ export const findColorV2 = (key, d) => {
       return colors["Subproductos agropecuarios"][d["Indicador ID"]];
     }
 
+    // Perfil Industrias
+    else if ([
+      "Acceso a financiamiento",
+      "Acceso a terrenos",
+      "Licencias de operación y permisos comerciales",
+      "Corrupción",
+      "Sistema judicial",
+      "Delitos, robo y desorden",
+      "Regulaciones aduaneras y de comercio exterior",
+      "Acceso a energía",
+      "Fuerza laboral con educación inadecuada",
+      "Regulaciones laborales",
+      "Inestabilidad política",
+      "Sector informal",
+      "Administración de impuestos",
+      "Tasas impositivas",
+      "Transporte y logística"
+    ].includes(d.Indicador) && d["Categoria ID"] === 4 ) {
+      return colors["Dificultades de operacion"][d["Indicador ID"]];
+    }
 
+    else if ([
+      "MyPE",
+      "Personal de confianza",
+      "Exportación no tradicional",
+      "Practicantes",
+      "Agroexportación"
+    ].includes(d.Indicador) && [31, 32, 33, 34, 35].includes(d["Indicador ID"])
+    && d["Categoria ID"] === 4 ) {
+      return colors["Regimen laboral especial"][d["Indicador ID"]];
+    }
+
+    else if ([
+      "Negociar con proveedores",
+      "Acceder a servicios financieros",
+      "Acceder a mercados",
+      "Acceder a información empresarial",
+      "Acceder a capacitación y asistencia técnica",
+      "Acceder a servicios de vigilancia, limpieza y otros",
+      "Acceder a infraestructura (locales)",
+      "Se agruparon por otro motivo"
+    ].includes(d.Indicador) && d["Categoria ID"] === 10) {
+      return colors["Cultura empresarial asociativa"][d["Indicador ID"]];
+    }
+
+    else if ([
+      "Poco tiempo de funcionamiento de la empresa",
+      "Falta de capacidad de pago",
+      "Tiene deudas pendientes",
+      "No tiene título de propiedad",
+      "Falta de garantías distintas al título de propiedad",
+      "Otros motivos"
+    ].includes(d.Indicador) && (d["Categoria ID"] === 10)) {
+      return colors["Razones para no solicitar o acceder a creditos"][d["Indicador ID"]];
+    }
+
+    else if ([
+      "Dificultad de financiamiento",
+      "Proceso productivo poco automatizado",
+      "Falta de mano de obra calificada",
+      "Falta de repuestos y/o servicio técnico para maquinaria",
+      "Demanda limitada",
+      "Falta de insumos nacionales",
+      "Falta de insumos importados",
+      "Falta de energía eléctrica",
+      "Falta de información tecnológica",
+      "Falta de información de mercados",
+      "Excesiva regulación laboral",
+      "Excesiva regulación tributaria",
+      "Excesiva regulación ambiental",
+      "Excesiva regulación en licencias de funcionamiento y construcción",
+      "Excesiva regulación de Defensa Civil",
+      "Excesiva regulación para trámites sectoriales y autorizaciones",
+      "Corrupción de funcionarios públicos",
+      "Contrabando",
+      "Exceso de cargas tributarias",
+      "Informalidad",
+      "Otro factor"
+    ].includes(d.Indicador) && (d["Categoria ID"] === 10)) {
+      return colors["Limitantes al crecimiento"][d["Indicador ID"]];
+    }
+
+    else if ([
+      "Centros de formación sectoriales",
+      "Universidad o instituto educativo público",
+      "Universidad o instituto educativo privado",
+      "Instituciones públicas",
+      "Centros de Innovación tecnológica (CITE)",
+      "Cámara de Comercio",
+      "Proveedores de la empresa",
+      "Propia empresa y/o casa matriz",
+      "Instructor externo",
+      "Otra entidad",
+      "Idiomas",
+      "Gestión empresarial",
+      "Seguridad y salud empresarial",
+      "Tecnología de información y comunicación",
+      "Habilidades socio-emocionales",
+      "Habilidades temas técnicos productivos",
+      "Habilidades de marketing y/o estrategia de ventas",
+      "Otras materias"
+    ].includes(d.Indicador) && (d["Categoria ID"] === 10)) {
+      return colors["Instituciones y tipos de capacitacion"][d["Indicador ID"]];
+    }
+
+    else if ([
+      "Inteligencia artificial o aprendizaje automático",
+      "Robótica avanzada",
+      "Transporte autónomo",
+      "Manufactura avanzada",
+      "Impresión 3D",
+      "Servicios avanzados en redes como Big Data"
+    ].includes(d.Indicador) && (d["Categoria ID"] === 10)) {
+      return colors["Nuevas tecnologias"][d["Indicador ID"]];
+    }
+
+    else if ([
+      "Computadora de escritorio y/o PC",
+      "Computadora portátil (laptop, notebook, tablet)",
+      "Multifuncional",
+      "Impresora",
+      "Escáner",
+      "Teléfono móvil con acceso a internet (smartphone)"
+    ].includes(d.Indicador) && (d["Categoria ID"] === 10)) {
+      return colors["Composicion empresarial por tipo de tecnologia"][d["Indicador ID"]];
+    }
+
+    else if ([
+      "Búsqueda de productos o servicios",
+      "Búsqueda de organismos gubernamentales",
+      "Búsqueda de información en I&D",
+      "Búsqueda de información",
+      "Comunicación (e-mail)",
+      "Operaciones de banca electrónica",
+      "Trámites o transacciones con organismos gubernamentales",
+      "Servicio y soporte al cliente",
+      "Venta de bienes y servicios",
+      "Promocionar productos o servicios",
+      "Capacitación del personal",
+      "Video conferencias",
+      "Emisión de facturas electrónicas",
+      "Servicios de computación en la nube",
+      "Otras actividades",
+      "No necesita y/o no es útil para la empresa",
+      "Desconoce cómo usarlo",
+      "No es rentable o resulta muy caro",
+      "No es seguro",
+      "Otro motivo"
+    ].includes(d.Indicador) && (d["Categoria ID"] === 10)) {
+      return colors["Uso y no uso de internet"][d["Indicador ID"]];
+    }
+
+    else if ([
+      "Exposiciones o ferias de productos y servicios",
+      "Internet",
+      "Revistas especializadas",
+      "Publicidad en periódicos",
+      "Publicidad en televisión",
+      "Referencia de conocidos",
+      "Reparto de volantes, afiches y otros impresos",
+      "Degustadores, promotores, impulsadores",
+      "Otros medios"
+    ].includes(d.Indicador) && (d["Categoria ID"] === 10)) {
+      return colors["Promocion comercial"][d["Indicador ID"]];
+    }
+
+    else if ([
+      "Falta de información sobre los procesos de exportación",
+      "Costos logísticos",
+      "Identificación de mercados y compradores potenciales",
+      "Accesos al financiamiento de las operaciones de comercio exterior",
+      "Cumplimiento de normas o requisitos de calidad",
+      "Cumplimiento con requisitos de cantidad de los compradores",
+      "Retrasos causados por el transporte internacional",
+      "Procedimientos aduaneros",
+      "Retrasos en aduanas",
+      "Barreras arancelarias en el extranjero",
+      "Corrupción en las fronteras"
+    ].includes(d.Indicador) && (d["Categoria ID"] === 10)) {
+      return colors["Exportaciones y dificultades"][d["Indicador ID"]];
+    }
+/*
+    Empresas victimas de delito y denuncias
+    else if (d["Indicador"] === "Créditos para capital de trabajo") {
+      return `/icons/visualizations/Conoce, solicita y accede a creditos/127.png`;
+    }
+    else if (d["Indicador"] === "Créditos para inversión en activo fijo") {
+      return `/icons/visualizations/Conoce, solicita y accede a creditos/131.png`;
+    }
+*/
+
+    else if ([
+      "Mejora de infraestructura física (alambrado, muros)",
+      "Incorporación de un sistema de video y captura de imágenes",
+      "Incorporación de un sistema de control de acceso de persona",
+      "Incorporación de un sistema de alarma de seguridad electrónica",
+      "Traslado de valores",
+      "Traslado de bienes",
+      "Incorporación de personal para resguardo (guardaespaldas)",
+      "Incorporación de personal de seguridad de bienes e inmuebles"
+    ].includes(d.Indicador) && (d["Categoria ID"] === 2)) {
+      return colors["Empresas que adoptaron medidas de seguridad"][d["Indicador ID"]];
+    }
+
+    else if ([
+      "Solicitud de marca",
+      "Solicitud de patente",
+      "Solicitud de modelo de utilidad",
+      "Solicitud de diseño industrial",
+      "Solicitud de derechos de autor",
+      "Solicitud de la denominación de origen",
+      "Cláusula de confidencialidad para los empleados",
+      "Contratos de confidencialidad con proveedores y/o clientes",
+      "Control de las redes distribución",
+      "Llegar primero al mercado",
+      "Existencia de economías de escala",
+      "Complejidad del diseño",
+      "Segmentación de procesos"
+    ].includes(d.Indicador) && (d["Categoria ID"] === 12)) {
+      return colors["Metodos de proteccion de innovaciones"][d["Indicador ID"]];
+    }
+
+    else if ([
+      "Programa Nacional de Innovación para la Competitividad y Productividad - Innóvate Perú",
+      "Programas de Apoyo a la Ciencia, Tecnología e Innovación Tecnológica",
+      "Incentivo tributario para proyectos de I + D + i (Ley N°30309)",
+    ].includes(d.Indicador) && (d["Categoria ID"] === 11 || d["Categoria ID"] === 12 || d["Categoria ID"] === 99)) {
+      return colors["Acceso a programas de innovacion"][d["Indicador ID"]];
+    }
 
 
   }
@@ -1997,6 +2356,42 @@ export const findColorV2 = (key, d) => {
       return colors["Demanda de bienes culturales"][d["Indicador ID"]];
     }
 
+    // Perfil Industrias
+    else if ([
+      "Otro",
+      "Asociación",
+      "Cooperativa",
+      "Consorcio",
+      "Grupo sin personería jurídica"
+    ].includes(d.Names) && (d["Indicador ID"] === 7)) {
+      return colors["Cultura empresarial asociativa"][d["Names ID"]];
+    }
+
+    else if ([
+      "Mantenimiento y limpieza de calles",
+      "Alumbrado público",
+      "Aumento de patrullaje y vigilancia policial",
+      "Instalación de videocámaras de vigilancia",
+      "Operativos contra el narcotráfico",
+      "Operativos contra la delicuencia"
+    ].includes(d.Names) && (d["Categoria ID"] === 2)) {
+      return colors["Acciones y operativos para mejorar seguridad alrededor de las empresas"][d["Names ID"]];
+    }
+
+    else if ([
+      "Directores y gerentes",
+      "Profesionales científicos e intelectuales",
+      "Profesionales técnicos",
+      "Jefes y empleados administrativos",
+      "Trabajadores de servicios y vendedores de comercio",
+      "Agricultores y trabajadores calificados agropecuarios, forestales y pesqueros",
+      "Trabajadores de construcción, edificación, producción artesanal, electricidad y telecomunicaciones",
+      "Operadores de maquinaria industrial, ensambladores y conductores de transporte ",
+      "Personas empleadas en operaciones elementales"
+    ].includes(d.Names)) {
+      return colors["Personal empleado por cargo"][d["Names ID"]];
+    }
+
   }
 
   if (key === "Estado Beneficio" && Object.keys(d).includes("Fase Cadena Valor")) {
@@ -2180,6 +2575,25 @@ export const findIconV2 = (key, d) => {
 
   if (key === "Year" && Object.keys(d).includes("Area de conocimiento")) {
     return "/icons/visualizations/Proyectos de investigacion/1.png";
+  }
+
+  // Perfil Industrias
+  if (key === "Year" && [
+    "Valor de la producción",
+    "Margen Comercial",
+    "Ventas Netas",
+    "Valor agregado",
+    "Ratio consumo intermedio entre producción",
+    "Margen sobre las ventas"
+  ].includes(d.Indicador)) {
+    return "/icons/visualizations/Evolucion anual de indicadores comerciales/year.png";
+  }
+
+  if (key === "Year" && [
+    "Remuneración promedio de los trabajadores",
+    "Personal ocupado"
+  ].includes(d.Indicador)) {
+    return "/icons/visualizations/Caracteristicas del personal ocupado/year.png";
   }
 
   if (key === "Producto") {
@@ -2532,7 +2946,16 @@ export const findIconV2 = (key, d) => {
       "Pequeña escala",
       "Micro escala",
       "Muy baja escala",
-      "Muy complejo"
+      "Muy complejo",
+      "Complejo",
+      "Poco complejo",
+      "Simple",
+      "Muy simple",
+      "No es un obstáculo",
+      "Es un obstáculo menor",
+      "Es un obstáculo moderado",
+      "Es un obstáculo grave",
+      "Es un obstáculo muy grave"
     ].includes(d.Categoria)) {
       return `/icons/visualizations/Indicadores empresariales por categoria/${d["Categoria ID"]}.png`;
     }
@@ -2545,6 +2968,26 @@ export const findIconV2 = (key, d) => {
       "Otros"
     ].includes(d.Categoria) && d["Indicador ID"] === 36) {
       return `/icons/visualizations/Estrategias de capacitacion/${d["Categoria ID"]}.png`;
+    }
+
+    else if ([
+      "Otro",
+      "Régimen general",
+      "Nuevo RUS (Régimen único simplificado)",
+      "Régimen especial de Renta (RER)"
+    ].includes(d.Categoria) && d["Indicador ID"] === 170) {
+      return `/icons/visualizations/Organizacion, contribuyentes y rango de ventas/${d["Categoria ID"]}.png`;
+    }
+
+    else if ([
+      "Persona natural",
+      "Sociedad anónima abierta",
+      "Sociedad anónima cerrada",
+      "Sociedad comercial de responsabilidad limitada",
+      "Empresa individual de responsabilidad limitada",
+      "Otra"
+    ].includes(d.Categoria) && d["Indicador ID"] === 1) {
+      return `/icons/visualizations/Organizacion, contribuyentes y rango de ventas/${d["Categoria ID"]}.png`;
     }
 
     else if ([
@@ -2662,8 +3105,88 @@ export const findIconV2 = (key, d) => {
       return `/icons/visualizations/Medios de compra y venta por internet/${d["Categoria ID"]}.png`;
     }
 
+    else if (d["Categoria ID"] === 10 && (d["Indicador ID"] === 112 )) {
+      return `/icons/visualizations/Exportaciones y dificultades/10.png`;
+    }
+    else if (d["Categoria ID"] === 11 && (d["Indicador ID"] === 112 )) {
+      return `/icons/visualizations/Exportaciones y dificultades/11.png`;
+    }
 
+    else if ([
+      "No sabe",
+      "Declaración de Impacto Ambiental (DIA)",
+      "Estudio de Impacto Ambiental (EIA)",
+      "Declaración Ambiental para Actividades en Curso (DAAC)",
+      "Programa de Adecuacion y Manejo Ambiental (PAMA)",
+      "Ninguno"
+    ].includes(d.Categoria) && (d["Indicador ID"] === 165)) {
+      return `/icons/visualizations/Instrumentos de gestion ambiental/${d["Categoria ID"]}.png`;
+    }
 
+    else if ([
+      "Escasas",
+      "Muy baja",
+      "Baja",
+      "Regular",
+      "Alta",
+      "Muy alta",
+      "Excesivas",
+      "No sabe o no opina"
+    ].includes(d.Categoria) && (d["Indicador ID"] === 167 || d["Indicador ID"] === 168 || d["Indicador ID"] === 169)) {
+      return `/icons/visualizations/Percepcion de la fiscalizacion/${d["Categoria ID"]}.png`;
+    }
+
+    else if ([
+      "Disminuyeron",
+      "Aumentaron",
+      "No sabe",
+      "Siguieron igual"
+    ].includes(d.Categoria) && d["Indicador ID"] === 11) {
+      return `/icons/visualizations/Percepcion sobre delitos contra las empresas/${d["Categoria ID"]}.png`;
+    }
+
+    else if ([
+      "No sabe",
+      "Continuará igual de bien",
+      "Continuará igual de mal",
+      "Empeorará",
+      "Mejorará"
+    ].includes(d.Categoria) && d["Indicador ID"] === 18) {
+      return `/icons/visualizations/Percepcion sobre delitos contra las empresas/${d["Categoria ID"]}.png`;
+    }
+
+    else if (d["Categoria ID"] === 1 && (d["Indicador ID"] === 35 || d["Indicador ID"] === 36 || d["Indicador ID"] === 37 || d["Indicador ID"] === 38)) {
+      return `/icons/visualizations/Empresas afectadas de manera material/1.png`;
+    }
+    else if (d["Categoria ID"] === 2 && (d["Indicador ID"] === 35 || d["Indicador ID"] === 36 || d["Indicador ID"] === 37 || d["Indicador ID"] === 38)) {
+      return `/icons/visualizations/Empresas afectadas de manera material/2.png`;
+    }
+
+    else if (d["Categoria ID"] === 1 && (d["Indicador ID"] === 47)) {
+      return `/icons/visualizations/Empresas que adoptaron medidas de seguridad/1.png`;
+    }
+    else if (d["Categoria ID"] === 2 && (d["Indicador ID"] === 47)) {
+      return `/icons/visualizations/Empresas que adoptaron medidas de seguridad/2.png`;
+    }
+
+    else if ([
+      "No se adaptan a las necesidades de su actividad",
+      "Dificultades con el manejo de la confidencialidad",
+      "Dificultades burocráticas",
+      "No necesita apoyo para innovar",
+      "No le interesó",
+      "Otro motivo"
+    ].includes(d.Categoria) && d["Indicador ID"] === 56) {
+      return `/icons/visualizations/Acceso a servicios de CITE publico/${d["Categoria ID"]}.png`;
+    }
+/*
+    else if ([
+      "CITE Público",
+      "CITE Privado"
+    ].includes(d.Indicador)) {
+      return `/icons/visualizations/Acceso a los servicios de la Red CITE/${d["Indicador ID"]}.png`;
+    }
+*/
   }
 
   if (key === "Subcategoria") {
@@ -3007,19 +3530,20 @@ export const findIconV2 = (key, d) => {
     if ([
       "Falta de interés",
       "No fue necesario",
-      "Intentaron pero al final desistieron",
-      "No contaron con los recursos económicos necesarios",
+      "Intentaron pero desistieron",
+      "Falta de recursos económicos",
       "No contaron con personal capacitado",
       "No contaron con la infraestructura necesaria",
       "Baja escala de producción",
-      "Son realizadas en la casa matriz",
+      "Se realizan en la casa matriz",
       "Desconocimiento del tema"
     ].includes(d.Indicador)) {
       return `/icons/visualizations/Razon no innovar/${d["Indicador ID"]}.png`;
     }
+
     else if ([
-      "Investigación y desarrollo (I + D) internas",
-      "Investigación y desarrollo (I + D) externas",
+      "Investigación y desarrollo (I+D) internas",
+      "Investigación y desarrollo (I+D) externas",
       "Ingeniería, diseño y otros procesos creativos",
       "Marketing y valor de marca",
       "Declaración de propiedad intelectual",
@@ -3030,17 +3554,18 @@ export const findIconV2 = (key, d) => {
     ].includes(d.Indicador)) {
       return `/icons/visualizations/Actividad de innovacion realizada/${d["Indicador ID"]}.png`;
     }
+
     else if ([
       "Cultura empresarial desarrollada",
-      "Detección de una demanda total o parcialmente insatisfecha en el mercado",
-      "Aprovechamiento de una idea o novedad científica",
+      "Detección de demanda insatisfecha",
+      "Aprovechar idea o novedad científica-técnica",
       "Amenaza de la competencia",
       "Pautas regulatorias",
       "Cambios en normas de propiedad intelectual",
       "Procesos de certificación",
-      "Problemas técnivcos",
-      "Aprovechamiento de una idea generada al interior de la empresa",
-      "Aprovechamiento de incentivos gubernamentales"
+      "Problemas técnicos",
+      "Aprovechar idea generada al interior de la empresa",
+      "Aprovechar incentivos gubernamentales"
     ].includes(d.Indicador)) {
       return `/icons/visualizations/Razon para innovar/${d["Indicador ID"]}.png`;
     }
@@ -3534,8 +4059,69 @@ export const findIconV2 = (key, d) => {
       return `/icons/visualizations/Promocion comercial/${d["Indicador ID"]}.png`;
     }
 
+    else if ([
+      "Falta de información sobre los procesos de exportación",
+      "Costos logísticos",
+      "Identificación de mercados y compradores potenciales",
+      "Accesos al financiamiento de las operaciones de comercio exterior",
+      "Cumplimiento de normas o requisitos de calidad",
+      "Cumplimiento con requisitos de cantidad de los compradores",
+      "Retrasos causados por el transporte internacional",
+      "Procedimientos aduaneros",
+      "Retrasos en aduanas",
+      "Barreras arancelarias en el extranjero",
+      "Corrupción en las fronteras"
+    ].includes(d.Indicador) && (d["Categoria ID"] === 10)) {
+      return `/icons/visualizations/Exportaciones y dificultades/${d["Indicador ID"]}.png`;
+    }
+/*
+    Empresas victimas de delito y denuncias
+    else if (d["Indicador"] === "Créditos para capital de trabajo") {
+      return `/icons/visualizations/Conoce, solicita y accede a creditos/127.png`;
+    }
+    else if (d["Indicador"] === "Créditos para inversión en activo fijo") {
+      return `/icons/visualizations/Conoce, solicita y accede a creditos/131.png`;
+    }
+*/
 
+    else if ([
+      "Mejora de infraestructura física (alambrado, muros)",
+      "Incorporación de un sistema de video y captura de imágenes",
+      "Incorporación de un sistema de control de acceso de persona",
+      "Incorporación de un sistema de alarma de seguridad electrónica",
+      "Traslado de valores",
+      "Traslado de bienes",
+      "Incorporación de personal para resguardo (guardaespaldas)",
+      "Incorporación de personal de seguridad de bienes e inmuebles"
+    ].includes(d.Indicador) && (d["Categoria ID"] === 2)) {
+      return `/icons/visualizations/Empresas que adoptaron medidas de seguridad/${d["Indicador ID"]}.png`;
+    }
 
+    else if ([
+      "Solicitud de marca",
+      "Solicitud de patente",
+      "Solicitud de modelo de utilidad",
+      "Solicitud de diseño industrial",
+      "Solicitud de derechos de autor",
+      "Solicitud de la denominación de origen",
+      "Cláusula de confidencialidad para los empleados",
+      "Contratos de confidencialidad con proveedores y/o clientes",
+      "Control de las redes distribución",
+      "Llegar primero al mercado",
+      "Existencia de economías de escala",
+      "Complejidad del diseño",
+      "Segmentación de procesos"
+    ].includes(d.Indicador) && (d["Categoria ID"] === 12)) {
+      return `/icons/visualizations/Metodos de proteccion de innovaciones/${d["Indicador ID"]}.png`;
+    }
+
+    else if ([
+      "Programa Nacional de Innovación para la Competitividad y Productividad - Innóvate Perú",
+      "Programas de Apoyo a la Ciencia, Tecnología e Innovación Tecnológica",
+      "Incentivo tributario para proyectos de I + D + i (Ley N°30309)",
+    ].includes(d.Indicador) && (d["Categoria ID"] === 11 || d["Categoria ID"] === 12 || d["Categoria ID"] === 99)) {
+      return `/icons/visualizations/Acceso a programas de innovacion/${d["Indicador ID"]}.png`;
+    }
 
   }
 
@@ -4220,6 +4806,7 @@ export const findIconV2 = (key, d) => {
       return `/icons/visualizations/Demanda de bienes culturales/${d["Indicador ID"]}.png`;
     }
 
+    // Perfil Industrias
     else if ([
       "Otro",
       "Asociación",
@@ -4228,6 +4815,31 @@ export const findIconV2 = (key, d) => {
       "Grupo sin personería jurídica"
     ].includes(d.Names) && (d["Indicador ID"] === 7)) {
       return `/icons/visualizations/Cultura empresarial asociativa/${d["Names ID"]}.png`;
+    }
+
+    else if ([
+      "Mantenimiento y limpieza de calles",
+      "Alumbrado público",
+      "Aumento de patrullaje y vigilancia policial",
+      "Instalación de videocámaras de vigilancia",
+      "Operativos contra el narcotráfico",
+      "Operativos contra la delicuencia"
+    ].includes(d.Names) && (d["Categoria ID"] === 2)) {
+      return `/icons/visualizations/Acciones y operativos para mejorar seguridad alrededor de las empresas/${d["Names ID"]}.png`;
+    }
+
+    else if ([
+      "Directores y gerentes",
+      "Profesionales científicos e intelectuales",
+      "Profesionales técnicos",
+      "Jefes y empleados administrativos",
+      "Trabajadores de servicios y vendedores de comercio",
+      "Agricultores y trabajadores calificados agropecuarios, forestales y pesqueros",
+      "Trabajadores de construcción, edificación, producción artesanal, electricidad y telecomunicaciones",
+      "Operadores de maquinaria industrial, ensambladores y conductores de transporte ",
+      "Personas empleadas en operaciones elementales"
+    ].includes(d.Names)) {
+      return `/icons/visualizations/Personal empleado por cargo/${d["Names ID"]}.png`;
     }
 
   }
