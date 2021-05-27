@@ -317,5 +317,47 @@ export const dataSources = [
         ]
       }
     ]
+  },
+  {
+    id: 5,
+    name: "Ministerio de Cultura",
+    shortname: "MINCUL",
+    summary: [
+      "El MINCUL es el organismo público rector en la formulación y establecimiento de estrategias de promoción cultural de manera inclusiva y accesible, con el objetivo de fortalecer la identidad cultural",
+      "Sus principales funciones son formular, ejecutar y establecer estrategias de promoción cultural de manera inclusiva y accesible, realizar acciones de conservación y protección del patrimonio cultural, fomentar toda forma de expresiones artísticas, convocar y reconocer el mérito de quienes aporten al desarrollo cultural del país, planificar y gestionar con todos los niveles de gobierno actividades que permitan el desarrollo de los pueblos amazónicos, andinos y afroperuanos, todo ello propiciando el fortalecimiento de la ciudadanía e identidad cultural y abriendo espacios de participación de todas las culturas, mediante lo cual se democratiza la cultura para acercarla al ciudadano.",
+      "Su misión es promover y gestionar la diversidad cultural con enfoque intercultural y de derechos de manera eficiente para beneficio de la ciudadanía."
+    ],
+    datasets: [
+      {
+        name: "Indicadores Culturales",
+        link: "#",
+        indicators: [
+          {
+            name: "Patrimonio cultural de la Nación",
+            link: "/profile/geo/peru#patrimonio-cultural-de-la-nacion"
+          },
+          {
+            name: "Oferta cultural",
+            link: "/profile/geo/peru#oferta-cultural"
+          },
+          {
+            name: "Demanda cultural",
+            link: "/profile/geo/peru#demanda-cultural"
+          },
+          {
+            name: "Interculturalidad",
+            link: "/profile/geo/peru#interculturalidad"
+          },
+          {
+            name: "Promoción del desarrollo del arte y la cultura",
+            link: "/profile/geo/peru#desarrollo-del-arte-y-la-cultura"
+          },
+          {
+            name: "Localizaciones culturales",
+            link: "/profile/geo/peru#localizaciones"
+          }
+        ]
+      }
+    ]
   }
 ];
