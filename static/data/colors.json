@@ -14,6 +14,15 @@
     "45": "#7FD6B5",
     "46": "#7FD6B7"
   },
+  "Acceso a servicios de CITE privados": {
+    "59": "#09747C",
+    "60": "#CED37A",
+    "61": "#4E6766",
+    "62": "#A5C882",
+    "63": "#80BD9F",
+    "64": "#5AB1BB",
+    "65": "#548C91"
+    },
   "Acceso a servicios de CITE publico": {
     "49": "#09747C",
     "50": "#CED37A",
@@ -298,7 +307,15 @@
     "10": "#68B0AB",
     "11": "#DF7373",
     "32": "#347474",
-    "33": "#D5C455"
+    "33": "#D5C455",
+    "6": "#185ADB",
+    "34": "#A6D6D6",
+    "35": "#8FD9A8",
+    "36": "#FF7B54",
+    "37": "#233E8B",
+    "38": "#1EAE98",
+    "39": "#511281",
+    "40": "#1597BB"
   },
   "Capital Humano": {
     "66": "#4B5F8C",
@@ -667,6 +684,12 @@
     "44": "#C7B198",
     "45": "#FF9A76",
     "46": "#FF847C"
+  },
+  "Empresas victimas de delito y denuncias": {
+    "27": "#28527A",
+    "31": "#8AC4D0",
+    "33": "#F4D160",
+    "34": "#99BBAD"
   },
   "Empresas y organizaciones cinematograficas": {
     "1_1": "#1865B2",
@@ -1283,7 +1306,7 @@
   },
   "Patrimonio cultural segun tipo de visita": {
     "1": "#FF847C",
-    "2": "#E84A5F"
+    "2": "#4AA596"
   },
   "Percepcion delitos": {
     "3": "#9AD3BC",

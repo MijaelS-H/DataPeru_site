@@ -369,8 +369,10 @@ export const findColorV2 = (key, d) => {
       "No se adaptan a las necesidades de su actividad",
       "Dificultades con el manejo de la confidencialidad",
       "Dificultades burocrátcias",
+      "Dificultades burocráticas",
       "No necesita apoyo para innovar",
       "No le interesó",
+      "Otro motivo",
       "Otro"
     ].includes(d.Categoria) && d["Indicador ID"] === 66) {
       return colors["No accede CITE"][d["Categoria ID"]];
@@ -556,7 +558,7 @@ export const findColorV2 = (key, d) => {
     }
 
     else if (d.Categoria === "Nacional" && d["Categoria ID"] === 1) return "#FF847C";
-    else if (d.Categoria === "Extranjero" && d["Categoria ID"] === 2) return "#E84A5F";
+    else if (d.Categoria === "Extranjero" && d["Categoria ID"] === 2) return "#4AA596";
 
     else if ([
       "Falta de tiempo",
@@ -872,10 +874,34 @@ export const findColorV2 = (key, d) => {
     }
 
     else if ([
+      "Programa Nacional de Innovación para la Competitividad y Productividad - Innóvate Perú",
+      "Programas de Apoyo a la Ciencia, Tecnología e Innovación Tecnológica",
+      "Incentivo tributario para proyectos de I + D + i (Ley N°30309)",
+    ].includes(d.Indicador) && (d["Categoria ID"] === 11 || d["Categoria ID"] === 12 || d["Categoria ID"] === 99)) {
+      return colors["Acceso a programas de innovacion"][d["Indicador ID"]];
+    }
+
+    else if ([
       "CITE Público",
       "CITE Privado"
-    ].includes(d.Indicador)) {
-      return colors["Acceso a los servicios de la Red CITE"][d["Categoria ID"]];
+    ].includes(d.Indicador) && (d["Categoria ID"] === 11 || d["Categoria ID"] === 12 || d["Categoria ID"] === 99)) {
+      return colors["Acceso a los servicios de la Red CITE"][d["Indicador ID"]];
+    }
+
+    else if ([
+      "Víctima de delito",
+      "Denunciaron",
+      "Consecuencias de la denuncia",
+      "Motivos para no denunciar"
+    ].includes(d.Indicador) && Object.keys(d).includes("id")) {
+      return colors["Empresas victimas de delito y denuncias"][d["Indicador ID"]];
+    }
+
+    else if (d["Categoria ID"] === 11 && (d["Indicador ID"] === 58)) {
+      return "#DF7373";
+    }
+    else if (d["Categoria ID"] === 12 && (d["Indicador ID"] === 58)) {
+      return "#68B0AB";
     }
 
   }
@@ -1013,7 +1039,10 @@ export const findColorV2 = (key, d) => {
       "Sala de Exhibición de Pikillaqta",
       "Sala de Exhibición del Sitio Arqueológico \"Tambo Colorado\"",
       "Sala de Oro del Museo Municipal Vicús",
-      "Casa de la Gastronomía Peruana y Museo Postal y Filatélico del Perú"
+      "Casa de la Gastronomía Peruana y Museo Postal y Filatélico del Perú",
+      "Museo de Sitio Huaca Rajada - Sipán", // test
+      "Museo de Sitio de Chan Chan",
+      "Museo Arqueológico Nacional Brüning"
     ].includes(d.Subcategoria)) {
       return colors["Museos y salas de exposicion mas visitados"][d["Subcategoria ID"]];
     }
@@ -1140,7 +1169,8 @@ export const findColorV2 = (key, d) => {
 
     else if ([
       "Agricultores, trabajadores calificados agropecuarios, forestales y pesqueros",
-      "Obreros, artesanos y electrisistas",
+      "Agricultores, agropecuarios, forestales y pesqueros",
+      "Obreros, artesanos y electricistas",
       "Industriales y conductores",
       "Trabajadores de ocupaciones elementales",
       "Profesionales científicos e intelectuales",
@@ -1161,6 +1191,18 @@ export const findColorV2 = (key, d) => {
       "Cooperación internacional"
     ].includes(d.Indicador)) {
       return colors["Financiamiento Innovacion"][d["Indicador ID"]];
+    }
+
+    else if ([
+      "Capacitación",
+      "Certificación de competencias laborales",
+      "Información tecnológica especializada",
+      "Diseño y desarrollo de productos",
+      "Asistencia técnica",
+      "Soporte productivo",
+      "Ensayo de laboratorio"
+    ].includes(d.Indicador) && [59, 60, 61, 62, 63, 64, 65].includes(d["Indicador ID"]) && d["Categoria ID"] === 12) {
+      return colors["Acceso a servicios de CITE privados"][d["Indicador ID"]];
     }
 
     else if ([
@@ -1671,15 +1713,6 @@ export const findColorV2 = (key, d) => {
       return colors["Metodos de proteccion de innovaciones"][d["Indicador ID"]];
     }
 
-    else if ([
-      "Programa Nacional de Innovación para la Competitividad y Productividad - Innóvate Perú",
-      "Programas de Apoyo a la Ciencia, Tecnología e Innovación Tecnológica",
-      "Incentivo tributario para proyectos de I + D + i (Ley N°30309)",
-    ].includes(d.Indicador) && (d["Categoria ID"] === 11 || d["Categoria ID"] === 12 || d["Categoria ID"] === 99)) {
-      return colors["Acceso a programas de innovacion"][d["Indicador ID"]];
-    }
-
-
   }
 
   if (key === "Tipo") {
@@ -1969,6 +2002,32 @@ export const findColorV2 = (key, d) => {
     ].includes(d.Capacitacion)) {
       return colors["No recibe capacitacion"][d["Capacitacion ID"]];
     }
+
+
+    if ([
+      "Mercado de abastos recibio capacitacion sobre gestion empresarial",
+      "Mercado de abastos recibio capacitacion sobre seguridad y salud ocupacional",
+      "Mercado de abastos recibio capacitacion sobre gestion de residuos solidos",
+      "Mercado de abastos recibio capacitacion sobre habilidades socioemocionales",
+      "Mercado de abastos recibio capacitacion sobre marketing",
+      "Mercado de abastos recibio capacitacion sobre tecnologias de informacion y comunicacion",
+      "Mercado de abastos recibio capacitacion sobre manipulacion de alimentos",
+      "Mercado de abastos recibio capacitacion sobre defensa civil"
+    ].includes(d.Capacitacion)) {
+      return colors["Recibe capacitacion"][d["Capacitacion ID"]];
+    }
+
+    else if ([
+      "Mercado de abastos no recibio capacitacion por falta de recursos",
+      "Mercado de abastos no recibio capacitacion por falta de tiempo",
+      "Mercado de abastos no recibio capacitacion por falta de interes",
+      "Mercado de abastos no recibio capacitacion por falta de informacion",
+      "Mercado de abastos no recibio capacitacion por poca concurrencia",
+      "Mercado de abastos no recibio capacitacion porque no cuenta con ambientes para charlas"
+    ].includes(d.Capacitacion)) {
+      return colors["No recibe capacitacion"][d["Capacitacion ID"]];
+    }
+
   }
 
   // Educacion
@@ -2392,6 +2451,19 @@ export const findColorV2 = (key, d) => {
       return colors["Personal empleado por cargo"][d["Names ID"]];
     }
 
+    else if ([
+      "Otra",
+      "Escasez de recursos",
+      "Falta de ofertas adecuadas",
+      "No conoce cursos",
+      "No es útil",
+      "Salida de personal capacitado",
+      "Falta de tiempo",
+      "No necesita"
+    ].includes(d.Names)) {
+      return colors["Capacitaciones y sus costos"][d["Names ID"]];
+    }
+
   }
 
   if (key === "Estado Beneficio" && Object.keys(d).includes("Fase Cadena Valor")) {
@@ -2554,7 +2626,7 @@ export const tooltipTitle = (bgColor, imgUrl, title) => {
 };
 
 export const findIconV2 = (key, d) => {
-
+  console.log(key, d)
   // const options = {2: "export", 1: "import"};
   if (key === "Pais" || key === "ISO 3") {
     const icon = key === "Pais" && Array.isArray(d["Pais ID"]) ? d["Continente ID"] : d[`${key} ID`];
@@ -2678,8 +2750,10 @@ export const findIconV2 = (key, d) => {
       "No se adaptan a las necesidades de su actividad",
       "Dificultades con el manejo de la confidencialidad",
       "Dificultades burocrátcias",
+      "Dificultades burocráticas",
       "No necesita apoyo para innovar",
       "No le interesó",
+      "Otro motivo",
       "Otro"
     ].includes(d.Categoria) && d["Indicador ID"] === 66) {
       return `/icons/visualizations/No accede CITE/${d["Categoria ID"]}.png`;
@@ -3179,14 +3253,38 @@ export const findIconV2 = (key, d) => {
     ].includes(d.Categoria) && d["Indicador ID"] === 56) {
       return `/icons/visualizations/Acceso a servicios de CITE publico/${d["Categoria ID"]}.png`;
     }
-/*
+
+    else if ([
+      "Programa Nacional de Innovación para la Competitividad y Productividad - Innóvate Perú",
+      "Programas de Apoyo a la Ciencia, Tecnología e Innovación Tecnológica",
+      "Incentivo tributario para proyectos de I + D + i (Ley N°30309)",
+    ].includes(d.Indicador) && (d["Categoria ID"] === 11 || d["Categoria ID"] === 12 || d["Categoria ID"] === 99)) {
+      return `/icons/visualizations/Acceso a programas de innovacion/${d["Indicador ID"]}.png`;
+    }
+
     else if ([
       "CITE Público",
       "CITE Privado"
-    ].includes(d.Indicador)) {
+    ].includes(d.Indicador) && (d["Categoria ID"] === 11 || d["Categoria ID"] === 12 || d["Categoria ID"] === 99)) {
       return `/icons/visualizations/Acceso a los servicios de la Red CITE/${d["Indicador ID"]}.png`;
     }
-*/
+
+    else if ([
+      "Víctima de delito",
+      "Denunciaron",
+      "Consecuencias de la denuncia",
+      "Motivos para no denunciar"
+    ].includes(d.Indicador) && Object.keys(d).includes("id")) {
+      return `/icons/visualizations/Empresas victimas de delito y denuncias/${d["Indicador ID"]}.png`;
+    }
+
+    else if (d["Categoria ID"] === 11 && (d["Indicador ID"] === 58)) {
+      return `/icons/visualizations/Capacitaciones y sus costos/11.png`;
+    }
+    else if (d["Categoria ID"] === 12 && (d["Indicador ID"] === 58)) {
+      return `/icons/visualizations/Capacitaciones y sus costos/10.png`;
+    }
+
   }
 
   if (key === "Subcategoria") {
@@ -3323,8 +3421,11 @@ export const findIconV2 = (key, d) => {
       "Museo Lítico de Pukara",
       "Museo de Sitio Túcume",
       "Lugar de la Memoria, la Tolerancia y la Inclusión Social",
-      "Museo de la Nación"
-    ].includes(d.Subcategoria) && [99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110].includes(d["Subcategoria ID"])) {
+      "Museo de la Nación",
+      "Museo de Sitio Huaca Rajada - Sipán", // test
+      "Museo de Sitio de Chan Chan",
+      "Museo Arqueológico Nacional Brüning"
+    ].includes(d.Subcategoria) && [99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113].includes(d["Subcategoria ID"])) {
       return "/icons/visualizations/Museos y salas de exposicion mas visitados/museo.png";
     }
 
@@ -3584,7 +3685,8 @@ export const findIconV2 = (key, d) => {
 
     else if ([
       "Agricultores, trabajadores calificados agropecuarios, forestales y pesqueros",
-      "Obreros, artesanos y electrisistas",
+      "Agricultores, agropecuarios, forestales y pesqueros",
+      "Obreros, artesanos y electricistas",
       "Industriales y conductores",
       "Trabajadores de ocupaciones elementales",
       "Profesionales científicos e intelectuales",
@@ -3605,6 +3707,18 @@ export const findIconV2 = (key, d) => {
       "Cooperación internacional"
     ].includes(d.Indicador)) {
       return `/icons/visualizations/Financiamiento Innovacion/${d["Indicador ID"]}.png`;
+    }
+
+    else if ([
+      "Capacitación",
+      "Certificación de competencias laborales",
+      "Información tecnológica especializada",
+      "Diseño y desarrollo de productos",
+      "Asistencia técnica",
+      "Soporte productivo",
+      "Ensayo de laboratorio"
+    ].includes(d.Indicador) && [59, 60, 61, 62, 63, 64, 65].includes(d["Indicador ID"]) && d["Categoria ID"] === 12) {
+      return `/icons/visualizations/Acceso a servicios de CITE privados/${d["Indicador ID"]}.png`;
     }
 
     else if ([
@@ -4115,14 +4229,6 @@ export const findIconV2 = (key, d) => {
       return `/icons/visualizations/Metodos de proteccion de innovaciones/${d["Indicador ID"]}.png`;
     }
 
-    else if ([
-      "Programa Nacional de Innovación para la Competitividad y Productividad - Innóvate Perú",
-      "Programas de Apoyo a la Ciencia, Tecnología e Innovación Tecnológica",
-      "Incentivo tributario para proyectos de I + D + i (Ley N°30309)",
-    ].includes(d.Indicador) && (d["Categoria ID"] === 11 || d["Categoria ID"] === 12 || d["Categoria ID"] === 99)) {
-      return `/icons/visualizations/Acceso a programas de innovacion/${d["Indicador ID"]}.png`;
-    }
-
   }
 
   if (key === "Tipo") {
@@ -4410,6 +4516,31 @@ export const findIconV2 = (key, d) => {
     ].includes(d.Capacitacion)) {
       return `/icons/visualizations/No recibe capacitacion/${d["Capacitacion ID"]}.png`;
     }
+
+    if ([
+      "Mercado de abastos recibio capacitacion sobre gestion empresarial",
+      "Mercado de abastos recibio capacitacion sobre seguridad y salud ocupacional",
+      "Mercado de abastos recibio capacitacion sobre gestion de residuos solidos",
+      "Mercado de abastos recibio capacitacion sobre habilidades socioemocionales",
+      "Mercado de abastos recibio capacitacion sobre marketing",
+      "Mercado de abastos recibio capacitacion sobre tecnologias de informacion y comunicacion",
+      "Mercado de abastos recibio capacitacion sobre manipulacion de alimentos",
+      "Mercado de abastos recibio capacitacion sobre defensa civil"
+    ].includes(d.Capacitacion)) {
+      return `/icons/visualizations/Recibe capacitacion/${d["Capacitacion ID"]}.png`;
+    }
+
+    else if ([
+      "Mercado de abastos no recibio capacitacion por falta de recursos",
+      "Mercado de abastos no recibio capacitacion por falta de tiempo",
+      "Mercado de abastos no recibio capacitacion por falta de interes",
+      "Mercado de abastos no recibio capacitacion por falta de informacion",
+      "Mercado de abastos no recibio capacitacion por poca concurrencia",
+      "Mercado de abastos no recibio capacitacion porque no cuenta con ambientes para charlas"
+    ].includes(d.Capacitacion)) {
+      return `/icons/visualizations/No recibe capacitacion/${d["Capacitacion ID"]}.png`;
+    }
+
   }
 
   // Educacion
@@ -4841,6 +4972,20 @@ export const findIconV2 = (key, d) => {
     ].includes(d.Names)) {
       return `/icons/visualizations/Personal empleado por cargo/${d["Names ID"]}.png`;
     }
+
+    else if ([
+      "Otra",
+      "Escasez de recursos",
+      "Falta de ofertas adecuadas",
+      "No conoce cursos",
+      "No es útil",
+      "Salida de personal capacitado",
+      "Falta de tiempo",
+      "No necesita"
+    ].includes(d.Names)) {
+      return `/icons/visualizations/Capacitaciones y sus costos/${d["Names ID"]}.png`;
+    }
+
 
   }
 
