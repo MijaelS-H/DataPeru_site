@@ -405,12 +405,12 @@
         }
       }
     }
-    &:nth-child(2),
+    /*&:nth-child(2),
     &:nth-child(3) {
       & .cp-graphic-viz-container {
         background: var(--light-2);
       }
-    }
+    }*/
   }
 }
 
