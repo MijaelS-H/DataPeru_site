@@ -710,11 +710,11 @@ export const findColorV2 = (key, d) => {
       return colors["Creditos para iniciar el negocio"][d["Categoria ID"]];
     }
 
-    else if (d["Indicador"] === "Créditos para capital de trabajo") {
-      return "#FF847C"
+    else if (d.Indicador === "Créditos para capital de trabajo") {
+      return "#FF847C";
     }
-    else if (d["Indicador"] === "Créditos para inversión en activo fijo") {
-      return "#F0A500"
+    else if (d.Indicador === "Créditos para inversión en activo fijo") {
+      return "#F0A500";
     }
 
     else if (d["Categoria ID"] === 10 && (d["Indicador ID"] === 128 || d["Indicador ID"] === 132)) {
@@ -747,7 +747,7 @@ export const findColorV2 = (key, d) => {
       "Tener deudas pendientes",
       "No tener título de propiedad",
       "Haber recibido crédito anteriormente"
-    ].includes(d.Categoria) && (d["Indicador ID"] === 141)) {
+    ].includes(d.Categoria) && d["Indicador ID"] === 141) {
       return colors["Razones para no solicitar o acceder a creditos"][d["Categoria ID"]];
     }
 
@@ -755,14 +755,14 @@ export const findColorV2 = (key, d) => {
       "Internacional",
       "Nacional",
       "Local"
-    ].includes(d.Categoria) && (d["Indicador ID"] === 5)) {
+    ].includes(d.Categoria) && d["Indicador ID"] === 5) {
       return colors["Principales mercados de venta"][d["Categoria ID"]];
     }
 
-    else if (d["Categoria ID"] === 10 && (d["Indicador ID"] === 17 )) {
+    else if (d["Categoria ID"] === 10 && d["Indicador ID"] === 17) {
       return "#68B0AB";
     }
-    else if (d["Categoria ID"] === 11 && (d["Indicador ID"] === 17 )) {
+    else if (d["Categoria ID"] === 11 && d["Indicador ID"] === 17) {
       return "#DF7373";
     }
 
@@ -770,7 +770,7 @@ export const findColorV2 = (key, d) => {
       "No",
       "Si, totalmente",
       "Si, parcialmente"
-    ].includes(d.Categoria) && (d["Indicador ID"] === 28)) {
+    ].includes(d.Categoria) && d["Indicador ID"] === 28) {
       return colors["Capacitaciones y sus costos"][d["Categoria ID"]];
     }
 
@@ -780,7 +780,7 @@ export const findColorV2 = (key, d) => {
       "Equipos semiautomatizados",
       "Equipos automáticos",
       "Equipos de control Numerico Computarizado"
-    ].includes(d.Categoria) && (d["Indicador ID"] === 50)) {
+    ].includes(d.Categoria) && d["Indicador ID"] === 50) {
       return colors["Composicion empresarial por tipo de tecnologia"][d["Categoria ID"]];
     }
 
@@ -794,14 +794,14 @@ export const findColorV2 = (key, d) => {
     else if ([
       "Compra",
       "Venta"
-    ].includes(d.Categoria) && [45,46,47,48,49,67,68,69,70,71].includes(d["Indicador ID"])) {
+    ].includes(d.Categoria) && [45, 46, 47, 48, 49, 67, 68, 69, 70, 71].includes(d["Indicador ID"])) {
       return colors["Medios de compra y venta por internet"][d["Categoria ID"]];
     }
 
-    else if (d["Categoria ID"] === 10 && (d["Indicador ID"] === 112 )) {
+    else if (d["Categoria ID"] === 10 && d["Indicador ID"] === 112) {
       return "#68B0AB";
     }
-    else if (d["Categoria ID"] === 11 && (d["Indicador ID"] === 112 )) {
+    else if (d["Categoria ID"] === 11 && d["Indicador ID"] === 112) {
       return "#DF7373";
     }
 
@@ -812,7 +812,7 @@ export const findColorV2 = (key, d) => {
       "Declaración Ambiental para Actividades en Curso (DAAC)",
       "Programa de Adecuacion y Manejo Ambiental (PAMA)",
       "Ninguno"
-    ].includes(d.Categoria) && (d["Indicador ID"] === 165)) {
+    ].includes(d.Categoria) && d["Indicador ID"] === 165) {
       return colors["Instrumentos de gestion ambiental"][d["Categoria ID"]];
     }
 
@@ -855,10 +855,10 @@ export const findColorV2 = (key, d) => {
       return "#68B0AB";
     }
 
-    else if (d["Categoria ID"] === 1 && (d["Indicador ID"] === 47)) {
+    else if (d["Categoria ID"] === 1 && d["Indicador ID"] === 47) {
       return "#68B0AB";
     }
-    else if (d["Categoria ID"] === 2 && (d["Indicador ID"] === 47)) {
+    else if (d["Categoria ID"] === 2 && d["Indicador ID"] === 47) {
       return "#DF7373";
     }
 
@@ -876,7 +876,7 @@ export const findColorV2 = (key, d) => {
     else if ([
       "Programa Nacional de Innovación para la Competitividad y Productividad - Innóvate Perú",
       "Programas de Apoyo a la Ciencia, Tecnología e Innovación Tecnológica",
-      "Incentivo tributario para proyectos de I + D + i (Ley N°30309)",
+      "Incentivo tributario para proyectos de I + D + i (Ley N°30309)"
     ].includes(d.Indicador) && (d["Categoria ID"] === 11 || d["Categoria ID"] === 12 || d["Categoria ID"] === 99)) {
       return colors["Acceso a programas de innovacion"][d["Indicador ID"]];
     }
@@ -897,10 +897,10 @@ export const findColorV2 = (key, d) => {
       return colors["Empresas victimas de delito y denuncias"][d["Indicador ID"]];
     }
 
-    else if (d["Categoria ID"] === 11 && (d["Indicador ID"] === 58)) {
+    else if (d["Categoria ID"] === 11 && d["Indicador ID"] === 58) {
       return "#DF7373";
     }
-    else if (d["Categoria ID"] === 12 && (d["Indicador ID"] === 58)) {
+    else if (d["Categoria ID"] === 12 && d["Indicador ID"] === 58) {
       return "#68B0AB";
     }
 
@@ -1404,7 +1404,7 @@ export const findColorV2 = (key, d) => {
       "Transacciones con organizaciones estatales/autoridades públicas",
       "Actividades de entretenimiento",
       "Vender productos y/o servicios"
-    ].includes(d.Indicador) && [22,23,24,25,26,27,28,29].includes(d["Indicador ID"])) {
+    ].includes(d.Indicador) && [22, 23, 24, 25, 26, 27, 28, 29].includes(d["Indicador ID"])) {
       return colors["Internet segun uso"][d["Indicador ID"]];
     }
 
@@ -1508,7 +1508,7 @@ export const findColorV2 = (key, d) => {
       "Administración de impuestos",
       "Tasas impositivas",
       "Transporte y logística"
-    ].includes(d.Indicador) && d["Categoria ID"] === 4 ) {
+    ].includes(d.Indicador) && d["Categoria ID"] === 4) {
       return colors["Dificultades de operacion"][d["Indicador ID"]];
     }
 
@@ -1518,8 +1518,8 @@ export const findColorV2 = (key, d) => {
       "Exportación no tradicional",
       "Practicantes",
       "Agroexportación"
-    ].includes(d.Indicador) && [31, 32, 33, 34, 35].includes(d["Indicador ID"])
-    && d["Categoria ID"] === 4 ) {
+    ].includes(d.Indicador) && [31, 32, 33, 34, 35].includes(d["Indicador ID"]) &&
+      d["Categoria ID"] === 4) {
       return colors["Regimen laboral especial"][d["Indicador ID"]];
     }
 
@@ -1543,7 +1543,7 @@ export const findColorV2 = (key, d) => {
       "No tiene título de propiedad",
       "Falta de garantías distintas al título de propiedad",
       "Otros motivos"
-    ].includes(d.Indicador) && (d["Categoria ID"] === 10)) {
+    ].includes(d.Indicador) && d["Categoria ID"] === 10) {
       return colors["Razones para no solicitar o acceder a creditos"][d["Indicador ID"]];
     }
 
@@ -1569,7 +1569,7 @@ export const findColorV2 = (key, d) => {
       "Exceso de cargas tributarias",
       "Informalidad",
       "Otro factor"
-    ].includes(d.Indicador) && (d["Categoria ID"] === 10)) {
+    ].includes(d.Indicador) && d["Categoria ID"] === 10) {
       return colors["Limitantes al crecimiento"][d["Indicador ID"]];
     }
 
@@ -1592,7 +1592,7 @@ export const findColorV2 = (key, d) => {
       "Habilidades temas técnicos productivos",
       "Habilidades de marketing y/o estrategia de ventas",
       "Otras materias"
-    ].includes(d.Indicador) && (d["Categoria ID"] === 10)) {
+    ].includes(d.Indicador) && d["Categoria ID"] === 10) {
       return colors["Instituciones y tipos de capacitacion"][d["Indicador ID"]];
     }
 
@@ -1603,7 +1603,7 @@ export const findColorV2 = (key, d) => {
       "Manufactura avanzada",
       "Impresión 3D",
       "Servicios avanzados en redes como Big Data"
-    ].includes(d.Indicador) && (d["Categoria ID"] === 10)) {
+    ].includes(d.Indicador) && d["Categoria ID"] === 10) {
       return colors["Nuevas tecnologias"][d["Indicador ID"]];
     }
 
@@ -1614,7 +1614,7 @@ export const findColorV2 = (key, d) => {
       "Impresora",
       "Escáner",
       "Teléfono móvil con acceso a internet (smartphone)"
-    ].includes(d.Indicador) && (d["Categoria ID"] === 10)) {
+    ].includes(d.Indicador) && d["Categoria ID"] === 10) {
       return colors["Composicion empresarial por tipo de tecnologia"][d["Indicador ID"]];
     }
 
@@ -1639,7 +1639,7 @@ export const findColorV2 = (key, d) => {
       "No es rentable o resulta muy caro",
       "No es seguro",
       "Otro motivo"
-    ].includes(d.Indicador) && (d["Categoria ID"] === 10)) {
+    ].includes(d.Indicador) && d["Categoria ID"] === 10) {
       return colors["Uso y no uso de internet"][d["Indicador ID"]];
     }
 
@@ -1653,7 +1653,7 @@ export const findColorV2 = (key, d) => {
       "Reparto de volantes, afiches y otros impresos",
       "Degustadores, promotores, impulsadores",
       "Otros medios"
-    ].includes(d.Indicador) && (d["Categoria ID"] === 10)) {
+    ].includes(d.Indicador) && d["Categoria ID"] === 10) {
       return colors["Promocion comercial"][d["Indicador ID"]];
     }
 
@@ -1669,18 +1669,19 @@ export const findColorV2 = (key, d) => {
       "Retrasos en aduanas",
       "Barreras arancelarias en el extranjero",
       "Corrupción en las fronteras"
-    ].includes(d.Indicador) && (d["Categoria ID"] === 10)) {
+    ].includes(d.Indicador) && d["Categoria ID"] === 10) {
       return colors["Exportaciones y dificultades"][d["Indicador ID"]];
     }
-/*
-    Empresas victimas de delito y denuncias
-    else if (d["Indicador"] === "Créditos para capital de trabajo") {
-      return `/icons/visualizations/Conoce, solicita y accede a creditos/127.png`;
-    }
-    else if (d["Indicador"] === "Créditos para inversión en activo fijo") {
-      return `/icons/visualizations/Conoce, solicita y accede a creditos/131.png`;
-    }
-*/
+
+    /*
+        Empresas victimas de delito y denuncias
+        else if (d["Indicador"] === "Créditos para capital de trabajo") {
+          return `/icons/visualizations/Conoce, solicita y accede a creditos/127.png`;
+        }
+        else if (d["Indicador"] === "Créditos para inversión en activo fijo") {
+          return `/icons/visualizations/Conoce, solicita y accede a creditos/131.png`;
+        }
+    */
 
     else if ([
       "Mejora de infraestructura física (alambrado, muros)",
@@ -1691,7 +1692,7 @@ export const findColorV2 = (key, d) => {
       "Traslado de bienes",
       "Incorporación de personal para resguardo (guardaespaldas)",
       "Incorporación de personal de seguridad de bienes e inmuebles"
-    ].includes(d.Indicador) && (d["Categoria ID"] === 2)) {
+    ].includes(d.Indicador) && d["Categoria ID"] === 2) {
       return colors["Empresas que adoptaron medidas de seguridad"][d["Indicador ID"]];
     }
 
@@ -1709,7 +1710,7 @@ export const findColorV2 = (key, d) => {
       "Existencia de economías de escala",
       "Complejidad del diseño",
       "Segmentación de procesos"
-    ].includes(d.Indicador) && (d["Categoria ID"] === 12)) {
+    ].includes(d.Indicador) && d["Categoria ID"] === 12) {
       return colors["Metodos de proteccion de innovaciones"][d["Indicador ID"]];
     }
 
@@ -2331,8 +2332,8 @@ export const findColorV2 = (key, d) => {
       "Comunicaciones (periodismo, radio, podcast y/u otra)",
       "Tradición oral propia de pueblos indígenas u originarios"
     ].includes(d["Manifestacion 1"]) &&
-        [99, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16
-        ].includes(d["Manifestacion 1 ID"])) {
+      [99, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16
+      ].includes(d["Manifestacion 1 ID"])) {
       return colors["Organizaciones que trabajan el arte y la cultura"][d["Manifestacion 1 ID"]];
     }
   }
@@ -2345,8 +2346,8 @@ export const findColorV2 = (key, d) => {
       "Distribuidora",
       "Formación"
     ].includes(d["Actividad 1"]) &&
-        ["1_1", "1_2", "1_3", "1_4", "1_5"
-        ].includes(d["Actividad 1 ID"])) {
+      ["1_1", "1_2", "1_3", "1_4", "1_5"
+      ].includes(d["Actividad 1 ID"])) {
       return colors["Empresas y organizaciones cinematograficas"][d["Actividad 1 ID"]];
     }
 
@@ -2422,7 +2423,7 @@ export const findColorV2 = (key, d) => {
       "Cooperativa",
       "Consorcio",
       "Grupo sin personería jurídica"
-    ].includes(d.Names) && (d["Indicador ID"] === 7)) {
+    ].includes(d.Names) && d["Indicador ID"] === 7) {
       return colors["Cultura empresarial asociativa"][d["Names ID"]];
     }
 
@@ -2433,7 +2434,7 @@ export const findColorV2 = (key, d) => {
       "Instalación de videocámaras de vigilancia",
       "Operativos contra el narcotráfico",
       "Operativos contra la delicuencia"
-    ].includes(d.Names) && (d["Categoria ID"] === 2)) {
+    ].includes(d.Names) && d["Categoria ID"] === 2) {
       return colors["Acciones y operativos para mejorar seguridad alrededor de las empresas"][d["Names ID"]];
     }
 
@@ -3066,14 +3067,14 @@ export const findIconV2 = (key, d) => {
     else if ([
       "Porcentaje de empresas por rango de sus ventas"
     ].includes(d.Indicador)) {
-      return `/icons/visualizations/Organizacion, contribuyentes y rango de ventas/Rango de ventas.png`;
+      return "/icons/visualizations/Organizacion, contribuyentes y rango de ventas/Rango de ventas.png";
     }
 
     else if (d["Categoria ID"] === 10 && d["Indicador ID"] === 3) {
-      return `/icons/visualizations/Creditos para iniciar el negocio/10.png`;
+      return "/icons/visualizations/Creditos para iniciar el negocio/10.png";
     }
     else if (d["Categoria ID"] === 11 && d["Indicador ID"] === 3) {
-      return `/icons/visualizations/Creditos para iniciar el negocio/11.png`;
+      return "/icons/visualizations/Creditos para iniciar el negocio/11.png";
     }
 
     else if ([
@@ -3090,18 +3091,18 @@ export const findIconV2 = (key, d) => {
       return `/icons/visualizations/Creditos para iniciar el negocio/${d["Categoria ID"]}.png`;
     }
 
-    else if (d["Indicador"] === "Créditos para capital de trabajo") {
-      return `/icons/visualizations/Conoce, solicita y accede a creditos/127.png`;
+    else if (d.Indicador === "Créditos para capital de trabajo") {
+      return "/icons/visualizations/Conoce, solicita y accede a creditos/127.png";
     }
-    else if (d["Indicador"] === "Créditos para inversión en activo fijo") {
-      return `/icons/visualizations/Conoce, solicita y accede a creditos/131.png`;
+    else if (d.Indicador === "Créditos para inversión en activo fijo") {
+      return "/icons/visualizations/Conoce, solicita y accede a creditos/131.png";
     }
 
     else if (d["Categoria ID"] === 10 && (d["Indicador ID"] === 128 || d["Indicador ID"] === 132)) {
-      return `/icons/visualizations/Solicitud de creditos de capital de trabajo y activo/10.png`;
+      return "/icons/visualizations/Solicitud de creditos de capital de trabajo y activo/10.png";
     }
     else if (d["Categoria ID"] === 11 && (d["Indicador ID"] === 128 || d["Indicador ID"] === 132)) {
-      return `/icons/visualizations/Solicitud de creditos de capital de trabajo y activo/11.png`;
+      return "/icons/visualizations/Solicitud de creditos de capital de trabajo y activo/11.png";
     }
 
     else if ([
@@ -3127,7 +3128,7 @@ export const findIconV2 = (key, d) => {
       "Tener deudas pendientes",
       "No tener título de propiedad",
       "Haber recibido crédito anteriormente"
-    ].includes(d.Categoria) && (d["Indicador ID"] === 141)) {
+    ].includes(d.Categoria) && d["Indicador ID"] === 141) {
       return `/icons/visualizations/Razones para no solicitar o acceder a creditos/${d["Categoria ID"]}.png`;
     }
 
@@ -3135,22 +3136,22 @@ export const findIconV2 = (key, d) => {
       "Internacional",
       "Nacional",
       "Local"
-    ].includes(d.Categoria) && (d["Indicador ID"] === 5)) {
+    ].includes(d.Categoria) && d["Indicador ID"] === 5) {
       return `/icons/visualizations/Principales mercados de venta/${d["Categoria ID"]}.png`;
     }
 
-    else if (d["Categoria ID"] === 10 && (d["Indicador ID"] === 17 )) {
-      return `/icons/visualizations/Capacitaciones y sus costos/10.png`;
+    else if (d["Categoria ID"] === 10 && d["Indicador ID"] === 17) {
+      return "/icons/visualizations/Capacitaciones y sus costos/10.png";
     }
-    else if (d["Categoria ID"] === 11 && (d["Indicador ID"] === 17 )) {
-      return `/icons/visualizations/Capacitaciones y sus costos/11.png`;
+    else if (d["Categoria ID"] === 11 && d["Indicador ID"] === 17) {
+      return "/icons/visualizations/Capacitaciones y sus costos/11.png";
     }
 
     else if ([
       "No",
       "Si, totalmente",
       "Si, parcialmente"
-    ].includes(d.Categoria) && (d["Indicador ID"] === 28)) {
+    ].includes(d.Categoria) && d["Indicador ID"] === 28) {
       return `/icons/visualizations/Capacitaciones y sus costos/${d["Categoria ID"]}.png`;
     }
 
@@ -3160,29 +3161,29 @@ export const findIconV2 = (key, d) => {
       "Equipos semiautomatizados",
       "Equipos automáticos",
       "Equipos de control Numerico Computarizado"
-    ].includes(d.Categoria) && (d["Indicador ID"] === 50)) {
+    ].includes(d.Categoria) && d["Indicador ID"] === 50) {
       return `/icons/visualizations/Composicion empresarial por tipo de tecnologia/${d["Categoria ID"]}.png`;
     }
 
     else if (d["Categoria ID"] === 10 && d["Indicador ID"] === 54) {
-      return `/icons/visualizations/Promocion comercial/10.png`;
+      return "/icons/visualizations/Promocion comercial/10.png";
     }
     else if (d["Categoria ID"] === 11 && d["Indicador ID"] === 54) {
-      return `/icons/visualizations/Promocion comercial/11.png`;
+      return "/icons/visualizations/Promocion comercial/11.png";
     }
 
     else if ([
       "Compra",
       "Venta"
-    ].includes(d.Categoria) && [45,46,47,48,49,67,68,69,70,71].includes(d["Indicador ID"])) {
+    ].includes(d.Categoria) && [45, 46, 47, 48, 49, 67, 68, 69, 70, 71].includes(d["Indicador ID"])) {
       return `/icons/visualizations/Medios de compra y venta por internet/${d["Categoria ID"]}.png`;
     }
 
-    else if (d["Categoria ID"] === 10 && (d["Indicador ID"] === 112 )) {
-      return `/icons/visualizations/Exportaciones y dificultades/10.png`;
+    else if (d["Categoria ID"] === 10 && d["Indicador ID"] === 112) {
+      return "/icons/visualizations/Exportaciones y dificultades/10.png";
     }
-    else if (d["Categoria ID"] === 11 && (d["Indicador ID"] === 112 )) {
-      return `/icons/visualizations/Exportaciones y dificultades/11.png`;
+    else if (d["Categoria ID"] === 11 && d["Indicador ID"] === 112) {
+      return "/icons/visualizations/Exportaciones y dificultades/11.png";
     }
 
     else if ([
@@ -3192,7 +3193,7 @@ export const findIconV2 = (key, d) => {
       "Declaración Ambiental para Actividades en Curso (DAAC)",
       "Programa de Adecuacion y Manejo Ambiental (PAMA)",
       "Ninguno"
-    ].includes(d.Categoria) && (d["Indicador ID"] === 165)) {
+    ].includes(d.Categoria) && d["Indicador ID"] === 165) {
       return `/icons/visualizations/Instrumentos de gestion ambiental/${d["Categoria ID"]}.png`;
     }
 
@@ -3229,17 +3230,17 @@ export const findIconV2 = (key, d) => {
     }
 
     else if (d["Categoria ID"] === 1 && (d["Indicador ID"] === 35 || d["Indicador ID"] === 36 || d["Indicador ID"] === 37 || d["Indicador ID"] === 38)) {
-      return `/icons/visualizations/Empresas afectadas de manera material/1.png`;
+      return "/icons/visualizations/Empresas afectadas de manera material/1.png";
     }
     else if (d["Categoria ID"] === 2 && (d["Indicador ID"] === 35 || d["Indicador ID"] === 36 || d["Indicador ID"] === 37 || d["Indicador ID"] === 38)) {
-      return `/icons/visualizations/Empresas afectadas de manera material/2.png`;
+      return "/icons/visualizations/Empresas afectadas de manera material/2.png";
     }
 
-    else if (d["Categoria ID"] === 1 && (d["Indicador ID"] === 47)) {
-      return `/icons/visualizations/Empresas que adoptaron medidas de seguridad/1.png`;
+    else if (d["Categoria ID"] === 1 && d["Indicador ID"] === 47) {
+      return "/icons/visualizations/Empresas que adoptaron medidas de seguridad/1.png";
     }
-    else if (d["Categoria ID"] === 2 && (d["Indicador ID"] === 47)) {
-      return `/icons/visualizations/Empresas que adoptaron medidas de seguridad/2.png`;
+    else if (d["Categoria ID"] === 2 && d["Indicador ID"] === 47) {
+      return "/icons/visualizations/Empresas que adoptaron medidas de seguridad/2.png";
     }
 
     else if ([
@@ -3256,7 +3257,7 @@ export const findIconV2 = (key, d) => {
     else if ([
       "Programa Nacional de Innovación para la Competitividad y Productividad - Innóvate Perú",
       "Programas de Apoyo a la Ciencia, Tecnología e Innovación Tecnológica",
-      "Incentivo tributario para proyectos de I + D + i (Ley N°30309)",
+      "Incentivo tributario para proyectos de I + D + i (Ley N°30309)"
     ].includes(d.Indicador) && (d["Categoria ID"] === 11 || d["Categoria ID"] === 12 || d["Categoria ID"] === 99)) {
       return `/icons/visualizations/Acceso a programas de innovacion/${d["Indicador ID"]}.png`;
     }
@@ -3277,11 +3278,11 @@ export const findIconV2 = (key, d) => {
       return `/icons/visualizations/Empresas victimas de delito y denuncias/${d["Indicador ID"]}.png`;
     }
 
-    else if (d["Categoria ID"] === 11 && (d["Indicador ID"] === 58)) {
-      return `/icons/visualizations/Capacitaciones y sus costos/11.png`;
+    else if (d["Categoria ID"] === 11 && d["Indicador ID"] === 58) {
+      return "/icons/visualizations/Capacitaciones y sus costos/11.png";
     }
-    else if (d["Categoria ID"] === 12 && (d["Indicador ID"] === 58)) {
-      return `/icons/visualizations/Capacitaciones y sus costos/10.png`;
+    else if (d["Categoria ID"] === 12 && d["Indicador ID"] === 58) {
+      return "/icons/visualizations/Capacitaciones y sus costos/10.png";
     }
 
   }
@@ -3431,9 +3432,9 @@ export const findIconV2 = (key, d) => {
     else if ([
       "Sala de Exhibición de la Zona Arqueológica Monumental de Kotosh",
       "Sala de Exhibición del Monumento Arqueológico de Willkawaín",
-      `Sala de Exhibición "Gilberto Tenorio Ruiz"`,
+      "Sala de Exhibición \"Gilberto Tenorio Ruiz\"",
       "Sala de Exhibición de Pikillaqta",
-      `Sala de Exhibición del Sitio Arqueológico "Tambo Colorado"`,
+      "Sala de Exhibición del Sitio Arqueológico \"Tambo Colorado\"",
       "Sala de Oro del Museo Municipal Vicús",
       "Casa de la Gastronomía Peruana y Museo Postal y Filatélico del Perú"
     ].includes(d.Subcategoria) && [110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120].includes(d["Subcategoria ID"])) {
@@ -3902,7 +3903,7 @@ export const findIconV2 = (key, d) => {
 
     if (d.Indicador === "No tiene" && d["Categoria ID"] === 36) return "/icons/visualizations/Instrumentos financieros/7336.png";
     if (d.Indicador === "No tiene" && d["Categoria ID"] === 72) return "/icons/visualizations/Instrumentos financieros/7372.png";
-    if (d.Indicador === "No tiene" && d["Categoria ID"] === 73) return `/icons/visualizations/Instrumentos financieros/7373.png`;
+    if (d.Indicador === "No tiene" && d["Categoria ID"] === 73) return "/icons/visualizations/Instrumentos financieros/7373.png";
     if (d.Indicador === "No tiene" && d["Categoria ID"] === 74) return "/icons/visualizations/Instrumentos financieros/7374.png";
     if (d.Indicador === "No tiene" && d["Categoria ID"] === 75) return "/icons/visualizations/Instrumentos financieros/7375.png";
     if (d.Indicador === "No tiene" && d["Categoria ID"] === 76) return "/icons/visualizations/Instrumentos financieros/7376.png";
@@ -3919,7 +3920,7 @@ export const findIconV2 = (key, d) => {
       "Transacciones con organizaciones estatales/autoridades públicas",
       "Actividades de entretenimiento",
       "Vender productos y/o servicios"
-    ].includes(d.Indicador) && [22,23,24,25,26,27,28,29].includes(d["Indicador ID"])) {
+    ].includes(d.Indicador) && [22, 23, 24, 25, 26, 27, 28, 29].includes(d["Indicador ID"])) {
       return `/icons/visualizations/Internet segun uso/${d["Indicador ID"]}.png`;
     }
 
@@ -4023,7 +4024,7 @@ export const findIconV2 = (key, d) => {
       "Administración de impuestos",
       "Tasas impositivas",
       "Transporte y logística"
-    ].includes(d.Indicador) && d["Categoria ID"] === 4 ) {
+    ].includes(d.Indicador) && d["Categoria ID"] === 4) {
       return `/icons/visualizations/Dificultades de operacion/${d["Indicador ID"]}.png`;
     }
 
@@ -4033,8 +4034,8 @@ export const findIconV2 = (key, d) => {
       "Exportación no tradicional",
       "Practicantes",
       "Agroexportación"
-    ].includes(d.Indicador) && [31, 32, 33, 34, 35].includes(d["Indicador ID"])
-    && d["Categoria ID"] === 4 ) {
+    ].includes(d.Indicador) && [31, 32, 33, 34, 35].includes(d["Indicador ID"]) &&
+      d["Categoria ID"] === 4) {
       return `/icons/visualizations/Regimen laboral especial/${d["Indicador ID"]}.png`;
     }
 
@@ -4058,7 +4059,7 @@ export const findIconV2 = (key, d) => {
       "No tiene título de propiedad",
       "Falta de garantías distintas al título de propiedad",
       "Otros motivos"
-    ].includes(d.Indicador) && (d["Categoria ID"] === 10)) {
+    ].includes(d.Indicador) && d["Categoria ID"] === 10) {
       return `/icons/visualizations/Razones para no solicitar o acceder a creditos/${d["Indicador ID"]}.png`;
     }
 
@@ -4084,7 +4085,7 @@ export const findIconV2 = (key, d) => {
       "Exceso de cargas tributarias",
       "Informalidad",
       "Otro factor"
-    ].includes(d.Indicador) && (d["Categoria ID"] === 10)) {
+    ].includes(d.Indicador) && d["Categoria ID"] === 10) {
       return `/icons/visualizations/Limitantes al crecimiento/${d["Indicador ID"]}.png`;
     }
 
@@ -4107,7 +4108,7 @@ export const findIconV2 = (key, d) => {
       "Habilidades temas técnicos productivos",
       "Habilidades de marketing y/o estrategia de ventas",
       "Otras materias"
-    ].includes(d.Indicador) && (d["Categoria ID"] === 10)) {
+    ].includes(d.Indicador) && d["Categoria ID"] === 10) {
       return `/icons/visualizations/Instituciones y tipos de capacitacion/${d["Indicador ID"]}.png`;
     }
 
@@ -4118,7 +4119,7 @@ export const findIconV2 = (key, d) => {
       "Manufactura avanzada",
       "Impresión 3D",
       "Servicios avanzados en redes como Big Data"
-    ].includes(d.Indicador) && (d["Categoria ID"] === 10)) {
+    ].includes(d.Indicador) && d["Categoria ID"] === 10) {
       return `/icons/visualizations/Nuevas tecnologias/${d["Indicador ID"]}.png`;
     }
 
@@ -4129,7 +4130,7 @@ export const findIconV2 = (key, d) => {
       "Impresora",
       "Escáner",
       "Teléfono móvil con acceso a internet (smartphone)"
-    ].includes(d.Indicador) && (d["Categoria ID"] === 10)) {
+    ].includes(d.Indicador) && d["Categoria ID"] === 10) {
       return `/icons/visualizations/Composicion empresarial por tipo de tecnologia/${d["Indicador ID"]}.png`;
     }
 
@@ -4154,7 +4155,7 @@ export const findIconV2 = (key, d) => {
       "No es rentable o resulta muy caro",
       "No es seguro",
       "Otro motivo"
-    ].includes(d.Indicador) && (d["Categoria ID"] === 10)) {
+    ].includes(d.Indicador) && d["Categoria ID"] === 10) {
       return `/icons/visualizations/Uso y no uso de internet/${d["Indicador ID"]}.png`;
     }
 
@@ -4168,7 +4169,7 @@ export const findIconV2 = (key, d) => {
       "Reparto de volantes, afiches y otros impresos",
       "Degustadores, promotores, impulsadores",
       "Otros medios"
-    ].includes(d.Indicador) && (d["Categoria ID"] === 10)) {
+    ].includes(d.Indicador) && d["Categoria ID"] === 10) {
       return `/icons/visualizations/Promocion comercial/${d["Indicador ID"]}.png`;
     }
 
@@ -4184,18 +4185,19 @@ export const findIconV2 = (key, d) => {
       "Retrasos en aduanas",
       "Barreras arancelarias en el extranjero",
       "Corrupción en las fronteras"
-    ].includes(d.Indicador) && (d["Categoria ID"] === 10)) {
+    ].includes(d.Indicador) && d["Categoria ID"] === 10) {
       return `/icons/visualizations/Exportaciones y dificultades/${d["Indicador ID"]}.png`;
     }
-/*
-    Empresas victimas de delito y denuncias
-    else if (d["Indicador"] === "Créditos para capital de trabajo") {
-      return `/icons/visualizations/Conoce, solicita y accede a creditos/127.png`;
-    }
-    else if (d["Indicador"] === "Créditos para inversión en activo fijo") {
-      return `/icons/visualizations/Conoce, solicita y accede a creditos/131.png`;
-    }
-*/
+
+    /*
+        Empresas victimas de delito y denuncias
+        else if (d["Indicador"] === "Créditos para capital de trabajo") {
+          return `/icons/visualizations/Conoce, solicita y accede a creditos/127.png`;
+        }
+        else if (d["Indicador"] === "Créditos para inversión en activo fijo") {
+          return `/icons/visualizations/Conoce, solicita y accede a creditos/131.png`;
+        }
+    */
 
     else if ([
       "Mejora de infraestructura física (alambrado, muros)",
@@ -4206,7 +4208,7 @@ export const findIconV2 = (key, d) => {
       "Traslado de bienes",
       "Incorporación de personal para resguardo (guardaespaldas)",
       "Incorporación de personal de seguridad de bienes e inmuebles"
-    ].includes(d.Indicador) && (d["Categoria ID"] === 2)) {
+    ].includes(d.Indicador) && d["Categoria ID"] === 2) {
       return `/icons/visualizations/Empresas que adoptaron medidas de seguridad/${d["Indicador ID"]}.png`;
     }
 
@@ -4224,7 +4226,7 @@ export const findIconV2 = (key, d) => {
       "Existencia de economías de escala",
       "Complejidad del diseño",
       "Segmentación de procesos"
-    ].includes(d.Indicador) && (d["Categoria ID"] === 12)) {
+    ].includes(d.Indicador) && d["Categoria ID"] === 12) {
       return `/icons/visualizations/Metodos de proteccion de innovaciones/${d["Indicador ID"]}.png`;
     }
 
@@ -4751,8 +4753,6 @@ export const findIconV2 = (key, d) => {
     ].includes(d["Grupo economico"])) {
       return `/icons/visualizations/Produccion de las industrias de elaborados de metal y otros/${d["Grupo economico ID"]}.png`;
     }
-
-
   }
 
   // Gobierno
@@ -4851,8 +4851,8 @@ export const findIconV2 = (key, d) => {
       "Comunicaciones (periodismo, radio, podcast y/u otra)",
       "Tradición oral propia de pueblos indígenas u originarios"
     ].includes(d["Manifestacion 1"]) &&
-        [99, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16
-        ].includes(d["Manifestacion 1 ID"])) {
+      [99, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16
+      ].includes(d["Manifestacion 1 ID"])) {
       return `/icons/visualizations/Organizaciones que trabajan el arte y la cultura/${d["Manifestacion 1 ID"]}.png`;
     }
   }
@@ -4865,8 +4865,8 @@ export const findIconV2 = (key, d) => {
       "Distribuidora",
       "Formación"
     ].includes(d["Actividad 1"]) &&
-        ["1_1", "1_2", "1_3", "1_4", "1_5"
-        ].includes(d["Actividad 1 ID"])) {
+      ["1_1", "1_2", "1_3", "1_4", "1_5"
+      ].includes(d["Actividad 1 ID"])) {
       return `/icons/visualizations/Empresas y organizaciones cinematograficas/${d["Actividad 1 ID"]}.png`;
     }
 
@@ -4943,7 +4943,7 @@ export const findIconV2 = (key, d) => {
       "Cooperativa",
       "Consorcio",
       "Grupo sin personería jurídica"
-    ].includes(d.Names) && (d["Indicador ID"] === 7)) {
+    ].includes(d.Names) && d["Indicador ID"] === 7) {
       return `/icons/visualizations/Cultura empresarial asociativa/${d["Names ID"]}.png`;
     }
 
@@ -4954,7 +4954,7 @@ export const findIconV2 = (key, d) => {
       "Instalación de videocámaras de vigilancia",
       "Operativos contra el narcotráfico",
       "Operativos contra la delicuencia"
-    ].includes(d.Names) && (d["Categoria ID"] === 2)) {
+    ].includes(d.Names) && d["Categoria ID"] === 2) {
       return `/icons/visualizations/Acciones y operativos para mejorar seguridad alrededor de las empresas/${d["Names ID"]}.png`;
     }
 
@@ -5124,13 +5124,6 @@ export const findIconV2 = (key, d) => {
     }
   }
 
-
-
-
-
-
-
-
   const icon = key;
   const iconID = d[`${key} ID`];
 
@@ -5217,19 +5210,19 @@ export default {
     },
     shapeConfig: {
       fill(d) {
-        const item = this._parent._groupBy[0](d);
-        const availableItems = Object.entries(d).filter(h => h[1] === item);
-        let itemId = availableItems.length > 1 ? availableItems[1][0] : availableItems[0][0];
+        const item = Array.isArray(this._parent._groupByRaw) ? this._parent._groupByRaw[0] : this._parent._groupByRaw;
+        let itemId = item;
         // let itemId = Object.entries(d).find(h => h[1] === item)[0];
         if (itemId.includes(" ID")) itemId = itemId.replace(" ID", "");
 
         return findColorV2(itemId, d);
       },
       backgroundImage(d, i) {
-        const item = this._parent._groupBy[0](d);
-        const availableItems = Object.entries(d).filter(h => h[1] === item);
-        let itemId = availableItems.length > 1 ? availableItems[1][0] : availableItems[0][0];
+        const item = Array.isArray(this._parent._groupByRaw) ? this._parent._groupByRaw[0] : this._parent._groupByRaw;
+        // const availableItems = Object.entries(d).filter(h => h[1] === item);
+        // let itemId = availableItems.length > 1 ? availableItems[1][0] : availableItems[0][0];
         // let itemId = Object.entries(d).find(h => h[1] === item)[0];
+        let itemId = item;
         if (itemId.includes(" ID")) itemId = itemId.replace(" ID", "");
         return findIconV2(itemId, d);
       },
