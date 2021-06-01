@@ -17,6 +17,7 @@
     "@blueprintjs/popover2": "^0.2.0",
     "@datawheel/canon-cms": "^0.18.24",
     "@datawheel/canon-core": "^0.21.3",
+    "@datawheel/canon-test": "^0.0.4",
     "axios": "^0.21.1",
     "classnames": "^2.2.6",
     "d3-array": "^2.11.0",

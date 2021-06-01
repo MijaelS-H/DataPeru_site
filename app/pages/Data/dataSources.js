@@ -39,7 +39,7 @@ export const dataSources = [
         ]
       },
       {
-        name: "Encuesta Nacinoal de Hogares",
+        name: "Encuesta Nacional de Hogares",
         link: "#",
         indicators: [
           {
