@@ -865,10 +865,12 @@ export const findColorV2 = (key, d) => {
     else if ([
       "No se adaptan a las necesidades de su actividad",
       "Dificultades con el manejo de la confidencialidad",
+      "Dificultades burocrátcias",
       "Dificultades burocráticas",
       "No necesita apoyo para innovar",
       "No le interesó",
-      "Otro motivo"
+      "Otro motivo",
+      "Otro"
     ].includes(d.Categoria) && d["Indicador ID"] === 56) {
       return colors["Acceso a servicios de CITE publico"][d["Categoria ID"]];
     }
@@ -3246,10 +3248,12 @@ export const findIconV2 = (key, d) => {
     else if ([
       "No se adaptan a las necesidades de su actividad",
       "Dificultades con el manejo de la confidencialidad",
+      "Dificultades burocrátcias",
       "Dificultades burocráticas",
       "No necesita apoyo para innovar",
       "No le interesó",
-      "Otro motivo"
+      "Otro motivo",
+      "Otro"
     ].includes(d.Categoria) && d["Indicador ID"] === 56) {
       return `/icons/visualizations/Acceso a servicios de CITE publico/${d["Categoria ID"]}.png`;
     }
