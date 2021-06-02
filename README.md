@@ -36,16 +36,12 @@ La carpeta static almacena los registros estáticos utilizados en la plataforma 
 Carpeta de configuración global que no tiene mayor incidencia en el desarrollo del presente proyecto.
 
 
-## Ejecución
+## Proceso de build del sitio
 
-Antes que nada, se debe revisar que las variables del entorno estén configuradas
-correctamente. El archivo [`example.env`](./example.env) contiene las variables
-del entorno que se necesitan para la ejecución, pero su aplicación depende del
-sistema operativo que posee el usuario. Asegúrese que los valores sean correctos.
+El proceso de build del sitio corresponde al proceso en el cual nuevas funcionalidades o características son agregadas al servidor de producción. Dichas funcionalidades no corresponden a nuevas visualizaciones o secciones de contenido, sino más bien modificaciones en las páginas, diseño, imágenes, íconos o rutas relacionadas al proyecto en sí. Este proceso es automatizado y permitirá la inclusión de nuevas funcionalidades, las cuales se recomienda desarrollar y probar en instancias locales previa inclusión en el servidor de producción.
 
-Para compilar y ejecutar el servidor en modo producción, ejecute los comandos:
+Para ejecutar el proceso de build del sitio, es necesario ingresar al servidor de frontend correspondiente y, dentro del directorio raíz del repositorio dataperu-site, ejecutar el siguiente comando:
 
-```bash
-npm run build
-node index.js
-```
+```bash init.sh```
+
+Dicho comando comenzará la ejecución de una serie de tareas secuenciales entre las cuales se encuentra la actualización de la versión del repositorio disponible en el servidor correspondiente, la eliminación de los módulos de Node.js existentes en el sitio, la reinstalación de los módulos de Node.js y la construcción del sitio y su publicación en pm2, gestor de procesos utilizado por la consultora. Este proceso tiene una duración aproximada de 5 minutos, el cual, si los cambios incorporados han sido desarrollados correctamente, no presentará problema alguno con el sitio visualizado por el usuario final.
