@@ -557,3 +557,12 @@
     }
 }
 
+.d3plus-Message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  & .no-data-image {
+    height: 60%;
+    width: auto;
+  }
+}
