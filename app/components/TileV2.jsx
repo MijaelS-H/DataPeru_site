@@ -44,7 +44,7 @@ export const TileV2Content = props => {
 
   const backgroundStyle = props.color
     ? {backgroundColor: props.color}
-    : {backgroundImage: `url(https://dataperu.datawheel.us/api/image?slug=${slug}&id=${id}&size=thumb)`};
+    : {backgroundImage: `url(/api/image?slug=${slug}&id=${id}&size=thumb)`};
   const icon = props.icon || `/icons/explore/${slug}.svg`;
   const link = props.link || `/profile/${slug}/${id}`;
   const normalizedTitle = stringNormalizer(title);
