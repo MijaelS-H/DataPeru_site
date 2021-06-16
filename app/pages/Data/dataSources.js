@@ -1,6 +1,39 @@
 export const dataSources = [
   {
     id: 1,
+    name: "Consejo Nacional de Cientia Tecnología e Innovación Tecnológica",
+    shortname: "CONCYTEC",
+    summary: [
+      "El CONCYTEC es el órgano rector del SINACYT, encargado de dirigir, fomentar, coordinar, supervisar y evaluar las acciones de Estado en todo el país en el ámbito de la ciencia, tecnología e innovación tecnológica; orienta las acciones del sector privado; y ejecuta acciones de soporte que impulsen el desarrollo científico y tecnológico del país.",
+      "Consejo Nacional de Ciencia, Tecnología e Innovación Tecnológica (CONCYTEC) es una entidad adscrita a Presidencia del Consejo de Ministros."
+    ],
+    datasets: [
+      {
+        name: "Censo Nacional de Investigación y Desarrollo",
+        link: "#",
+        indicators: [
+          {
+            name: "Centros de Investigación",
+            link: "/profile/geo/peru#centros-de-investigacion"
+          },
+          {
+            name: "Gastos en I+D",
+            link: "/profile/geo/peru#gastos-en-investigacion-y-desarrollo"
+          },
+          {
+            name: "Presupuesto para investigación",
+            link: "/profile/geo/peru#presupuesto-para-investigacion"
+          },
+          {
+            name: "Proyectos de Investigación",
+            link: "/profile/geo/peru#proyectos-de-investigacion"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 2,
     name: "Instituto Nacional de Estadística e Informática",
     shortname: "INEI",
     summary: [
@@ -167,44 +200,56 @@ export const dataSources = [
             link: "/profile/geo/peru#salubridad-publica"
           }
         ]
-      }
-    ]
-  },
-  {
-    id: 2,
-    name: "Instituto Tecnológico de la Producción",
-    shortname: "ITP",
-    summary: [
-      "El ITP es un organismo técnico especializado que contribuye a la mejora de la productividad, calidad y rentabilidad de las empresas a través de la provisión de servicios de investigación, desarrollo, innovación, adaptación, transformación y transferencia tecnológica ambientalmente sostenibles y accesibles, en coordinación con entidades de soporte productivo y del ecosistema de CTI (Ciencia Tecnología e Innovación).",
-      "A través de los servicios de los CITE (Centros de Innovación Productiva y Transferencia Tecnológica), asegura el cumplimiento de las normas técnicas, las buenas prácticas y estándares de calidad que permiten a las empresas desarrollar productos de mejor calidad y aprovechar las oportunidades de los mercados a nivel nacional e internacional.",
-      "Cada CITE es un punto de encuentro entre el Estado, la academia y el sector privado que articula con el resto de elementos del sistema de innovación de las cadenas productivas.",
-      "De esta manera, ITP aporta a la visión del Ministerio de la Producción (PRODUCE), la cual busca que las empresas produzcan y accedan a mercados de manera sostenible, competitiva y con altos niveles de productividad.",
-      "Instituto Tecnológico de la Producción (ITP) es una entidad adscrita a Presidencia del Consejo de Ministros."
-    ],
-    datasets: [
+      },
       {
-        name: "Red CITE",
+        name: "Registro Nacional de Municipalidades",
         link: "#",
         indicators: [
           {
-            name: "CITE y UT en Perú",
-            link: "/profile/geo/peru#distribucion-cite"
+            name: "Descripción general",
+            link: "/profile/geo/peru#gobierno-gl-descripcion"
           },
           {
-            name: "Principales cadenas atendidas",
-            link: "/profile/geo/peru#principales-cadenas-atendidas-cite"
+            name: "Portal de transparencia y sistemas informáticos",
+            link: "/profile/geo/peru#gobierno-gl-sistemas"
           },
           {
-            name: "Servicios brindados, acumulados por mes",
-            link: "/profile/geo/peru#servicios-brindados-mes-cite"
+            name: "Planificación municipal",
+            link: "/profile/geo/peru#gobierno-gl-planificacion"
           },
           {
-            name: "Clientes atendidos, acumulados por mes",
-            link: "/profile/geo/peru#clientes-atendidos-mes-cite"
+            name: "Informalidad",
+            link: "/profile/geo/peru#gobierno-gl-informalidad"
           },
           {
-            name: "Ejecución financiera",
-            link: "/profile/geo/peru#ejecucion-financiera-cite"
+            name: "Composición de empleados municipales según tipo de trabajador",
+            link: "/profile/geo/peru#gobierno-gl-rrhh-trabajadores"
+          }
+        ]
+      },
+      {
+        name: "Registro Nacional de Municipalidades de Centros Poblados",
+        link: "#",
+        indicators: [
+          {
+            name: "Conectividad",
+            link: "/profile/geo/peru#gobierno-cp-conectividad"
+          },
+          {
+            name: "Servicios públicos",
+            link: "/profile/geo/peru#servicios-publicos"
+          },
+          {
+            name: "Financiamiento municipal",
+            link: "/profile/geo/peru#gobierno-cp-financiamiento"
+          },
+          {
+            name: "Finanzas por municipio",
+            link: "/profile/geo/peru#gobierno-cp-finanzas"
+          },
+          {
+            name: "Planificación municipal",
+            link: "/profile/geo/peru#gobierno-cp-planificacion"
           }
         ]
       }
@@ -212,37 +257,6 @@ export const dataSources = [
   },
   {
     id: 3,
-    name: "Ministerio de Desarrollo Agrario y Riego",
-    shortname: "MIDAGRI",
-    summary: [
-      "El MIDAGRI es el organismo público rector en materia agragia, encargado de desarrollar estrategias alineadas a proveer de bienes y servicios públicos de calidad a miles de familias del país, las mismas que son desarrolladas en concordancia con la Política Nacional Agraria, que define orientaciones de mediano y largo plazo, a favor del desarrollo sostenible de la agricultura, priorizando la agricultura familiar, y permitiendo activar el desarrollo y la inclusión social en beneficio de la población rural, contribuyendo además a la seguridad alimentaria y nutricional en el Perú.",
-      "Adicionalmente, el MIDAGRI actúa como agente regulador en el uso de recursos forestales y de fauna silvestre, fuentes de agua naturales, estado fito y zoosanitario, actividad agragia y ganadera, y como agente promovedor de la calidad de productos relacionados, fomentando el acceso de productos a mercados nacionales e internacionales bajo políticas de seguridad alimentaria y de desarrollo económico ambientalmente amigable."
-    ],
-    datasets: [
-      {
-        name: "Dinámica Agrícola",
-        link: "#",
-        indicators: [
-          {
-            name: "Dinámica Agrícola: Principales cultivos",
-            link: "/profile/industry/agricultura-ganaderia-silvicultura-y-pesca#principales-cultivos"
-          }
-        ]
-      },
-      {
-        name: "Dinámica Pecuaria",
-        link: "#",
-        indicators: [
-          {
-            name: "Dinámica Pecuaria: Variación de la producción mensual",
-            link: "/profile/industry/agricultura-ganaderia-silvicultura-y-pesca#produccion-mensual"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    id: 4,
     name: "Instituto Nacional de Estadística e Informática (Sistema de Información Económica)",
     shortname: "INEI (Sistema de Información Económica)",
     summary: [
@@ -319,7 +333,121 @@ export const dataSources = [
     ]
   },
   {
+    id: 4,
+    name: "Instituto Tecnológico de la Producción",
+    shortname: "ITP",
+    summary: [
+      "El ITP es un organismo técnico especializado que contribuye a la mejora de la productividad, calidad y rentabilidad de las empresas a través de la provisión de servicios de investigación, desarrollo, innovación, adaptación, transformación y transferencia tecnológica ambientalmente sostenibles y accesibles, en coordinación con entidades de soporte productivo y del ecosistema de CTI (Ciencia Tecnología e Innovación).",
+      "A través de los servicios de los CITE (Centros de Innovación Productiva y Transferencia Tecnológica), asegura el cumplimiento de las normas técnicas, las buenas prácticas y estándares de calidad que permiten a las empresas desarrollar productos de mejor calidad y aprovechar las oportunidades de los mercados a nivel nacional e internacional.",
+      "Cada CITE es un punto de encuentro entre el Estado, la academia y el sector privado que articula con el resto de elementos del sistema de innovación de las cadenas productivas.",
+      "De esta manera, ITP aporta a la visión del Ministerio de la Producción (PRODUCE), la cual busca que las empresas produzcan y accedan a mercados de manera sostenible, competitiva y con altos niveles de productividad.",
+      "Instituto Tecnológico de la Producción (ITP) es una entidad adscrita a Presidencia del Consejo de Ministros."
+    ],
+    datasets: [
+      {
+        name: "Red CITE",
+        link: "#",
+        indicators: [
+          {
+            name: "CITE y UT en Perú",
+            link: "/profile/geo/peru#distribucion-cite"
+          },
+          {
+            name: "Principales cadenas atendidas",
+            link: "/profile/geo/peru#principales-cadenas-atendidas-cite"
+          },
+          {
+            name: "Servicios brindados, acumulados por mes",
+            link: "/profile/geo/peru#servicios-brindados-mes-cite"
+          },
+          {
+            name: "Clientes atendidos, acumulados por mes",
+            link: "/profile/geo/peru#clientes-atendidos-mes-cite"
+          },
+          {
+            name: "Ejecución financiera",
+            link: "/profile/geo/peru#ejecucion-financiera-cite"
+          }
+        ]
+      }
+    ]
+  },
+  {
     id: 5,
+    name: "Ministerio de Economía y Finanzas",
+    shortname: "MEF",
+    summary: [
+      "El MEF es el organismo público rector en materia económica, encargado de impulsar el crecimiento económico sostenido que contribuye a una mejor calidad de vida de los peruanos, garantizando una política fiscal responsable y transparente, en el marco de la estabilidad macroeconómica.",
+      "Entre sus objetivos estratégicos se encuentra la consolidación del equilibrio y sostenibilidad fiscal, la mejora del nivel de estabilidad de los ingresos públicos, el enfoque hacia una mayor apertura económica y armonización del mercado de bienes y servicios, el incremento de la cobertura y eficiencia de los mercados financieros y previsionales privados, la reactivación de la inversión orientada al cierre de breachas de infraestructura social y productiva, la mejora de la calidad del gasto público a múltiples niveles de gobierno, la optimización de la transparencia y rendición de cuentas en el sector público y la modernización de la gestión institucional del Ministerio."
+    ],
+    datasets: [
+      {
+        name: "Ingreso presupuestal",
+        link: "#",
+        indicators: [
+          {
+            name: "Evolución de la recaudación por tipo de gobierno",
+            link: "/profile/geo/peru#gobierno-recaudacion-tipo"
+          },
+          {
+            name: "Recaudación según composición geográfica",
+            link: "/profile/geo/peru#gobierno-composicion-recaudado"
+          },
+          {
+            name: "Recaudación por sector",
+            link: "/profile/geo/peru#gobierno-recaudacion-sector"
+          }
+        ]
+      },
+      {
+        name: "Ejecución presupuestal",
+        link: "#",
+        indicators: [
+          {
+            name: "Evolución de los gastos por tipo de gobierno",
+            link: "/profile/geo/peru#gobierno-gastos-tipo"
+          },
+          {
+            name: "Gastos según composición geográfica",
+            link: "/profile/geo/peru#gobierno-composicion-gastos"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 6,
+    name: "Ministerio de Desarrollo Agrario y Riego",
+    shortname: "MIDAGRI",
+    summary: [
+      "El MIDAGRI es el organismo público rector en materia agragia, encargado de desarrollar estrategias alineadas a proveer de bienes y servicios públicos de calidad a miles de familias del país, las mismas que son desarrolladas en concordancia con la Política Nacional Agraria, que define orientaciones de mediano y largo plazo, a favor del desarrollo sostenible de la agricultura, priorizando la agricultura familiar, y permitiendo activar el desarrollo y la inclusión social en beneficio de la población rural, contribuyendo además a la seguridad alimentaria y nutricional en el Perú.",
+      "Adicionalmente, el MIDAGRI actúa como agente regulador en el uso de recursos forestales y de fauna silvestre, fuentes de agua naturales, estado fito y zoosanitario, actividad agragia y ganadera, y como agente promovedor de la calidad de productos relacionados, fomentando el acceso de productos a mercados nacionales e internacionales bajo políticas de seguridad alimentaria y de desarrollo económico ambientalmente amigable."
+    ],
+    datasets: [
+      {
+        name: "Dinámica Agrícola",
+        link: "#",
+        indicators: [
+          {
+            name: "Dinámica Agrícola: Principales cultivos",
+            link: "/profile/industry/agricultura-ganaderia-silvicultura-y-pesca#principales-cultivos"
+          }
+        ]
+      },
+      {
+        name: "Dinámica Pecuaria",
+        link: "#",
+        indicators: [
+          {
+            name: "Dinámica Pecuaria: Variación de la producción mensual",
+            link: "/profile/industry/agricultura-ganaderia-silvicultura-y-pesca#produccion-mensual"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 7,
     name: "Ministerio de Cultura",
     shortname: "MINCUL",
     summary: [
@@ -355,6 +483,30 @@ export const dataSources = [
           {
             name: "Localizaciones culturales",
             link: "/profile/geo/peru#localizaciones"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 8,
+    name: "Superintendencia Nacional de Aduanas y Administración Tributaria",
+    shortname: "SUNAT",
+    summary: [
+      "La Superintendencia Nacional de Aduanas y Administración Tributaria, SUNAT, es una entidad adscrita al Ministerio de Finanzas encargada de la administración de los tributos del gobierno nacional (con excepción de las municipales), y la facilitación del comercio exterior a través de la promoción del cumplimiento tributario y aduanero mediante el uso de la tecnología y el fortalecimiento de la conciencia tributaria."
+    ],
+    datasets: [
+      {
+        name: "Registro de exportaciones e importaciones definitivas",
+        link: "#",
+        indicators: [
+          {
+            name: "Exportaciones y destinos",
+            link: "/profile/geo/peru#destinos-exportaciones"
+          },
+          {
+            name: "Importaciones y orígenes",
+            link: "/profile/geo/peru#origenes-importaciones"
           }
         ]
       }
