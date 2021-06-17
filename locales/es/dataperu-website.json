@@ -30,8 +30,9 @@
       "Loading": "Cargando resultados...",
       "No results": "No se encontraron resultados \"{{query}}\"",
       "Related Profiles": "Perfiles similares",
-      "Search profiles": "Buscar perfiles",
-      "reset": "restablecer"
+      "Search profiles": "Buscar a nivel geográfico, industrial o Red CITE...",
+      "reset": "restablecer",
+      "All": "Explorar"
     },
     "Section": {
       "Reset visualizations": "Restablecer visualizaciones"
@@ -57,11 +58,14 @@
     "Industry Title": "{{name}}: ",
     "CITE Description": "Explore las estadísticas sobre Centros de Innovación Productiva y Transferencia Tecnológica: {{name}}",
     "CITE Title": "{{name}}: clientes, servicios, presupuesto y recuros humanos",
-    "Search Placeholder": "Buscar perfiles..."
+    "Search Placeholder": "Buscar perfiles...",
+    "Hero": {
+      "images credits": "Créditos de imagen"
+    }
   },
   "Explore": {
     "Clear Filters": "Borrar",
-    "Search Placeholder": "Buscar perfiles...",
+    "Search Placeholder": "Buscar a nivel geográfico, industrial o Red CITE",
     "Title": "Explorador de perfiles"
   },
   "Loading": {
