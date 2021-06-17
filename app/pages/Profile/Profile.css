@@ -506,6 +506,15 @@
   font-weight: 400;
   padding: var(--gutter-sm)!important;
   width: 60%!important;
+
+  @mixin max-md {
+    width: 80%!important;
+  }
+
+  @mixin max-xs {
+    width: 90%!important;
+  }
+
   & .bp3-tabs {
     & .bp3-tab-list {
       justify-content: center!important;
