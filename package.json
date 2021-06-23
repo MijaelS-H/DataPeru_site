@@ -8,7 +8,7 @@
     "start": "node index.js",
     "dev": "canon-dev",
     "build": "canon-build",
-    "locale": "canon-locale"
+    "locales": "canon-locales"
   },
   "author": "",
   "license": "ISC",
