@@ -30,7 +30,7 @@ class Footer extends React.Component {
             </a>
           </div>
         </div>
-        <div className="footer-logos">
+        <div className="footer-logos-support">
           <div className="footer-logos-left">
             <div className="footer-logos-team">
               <span className="footer-logos-header">Desarrollado por:</span>
