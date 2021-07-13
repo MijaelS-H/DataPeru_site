@@ -73,17 +73,327 @@
     }
   }
 
-  & .footer-logos-support {
+  & .footer-logos {
     background-color: #000;
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
     height: 100%;
-    padding: var(--gutter-md) var(--gutter-xxl) var(--gutter-xl);
+    padding: var(--gutter-md) var(--gutter-xxl) var(--gutter-lg);
 
     @mixin max-md {
       flex-direction: column;
-      padding: var(--gutter-md) var(--gutter-xs) var(--gutter-xxs);
+      padding: var(--gutter-md) var(--gutter-lg) var(--gutter-lg);
+    }
+
+    & .footer-logos-left {
+      margin-right: 10%;
+      width: 35%;
+
+      @mixin max-md {
+        margin-bottom: var(--gutter-md);
+        margin-right: 0%!important;
+        width: 100%;
+      }
+
+      & .footer-logos-left-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: var(--gutter-md);
+        row-gap: var(--gutter-lg);
+        align-items: center;
+
+        @mixin max-md {
+          column-gap: 0;
+        }
+
+        @mixin max-xs {
+          row-gap: var(--gutter-md);
+        }
+
+        & .left-item-1 {
+          justify-self: start;
+
+          @mixin max-md {
+            justify-self: center;
+          }
+        }
+
+        & .left-item-2 {
+          justify-self: end;
+
+          @mixin min-xl {
+            justify-self: start;
+          }
+
+          @mixin max-md {
+            justify-self: center;
+          }
+        }
+
+        & .left-item-3 {
+          justify-self: start;
+
+          @mixin max-md {
+            justify-self: center;
+            grid-area: 2/1/2/4;
+          }
+        }
+
+        @mixin max-md {
+          justify-items: center;
+        }
+
+        & .footer-logo-produce {
+          height: 3em;
+          width: auto;
+
+          @mixin min-xxl {
+            height: 4em;
+          }
+
+          @mixin max-xl {
+            height: 3em;
+          }
+
+          @mixin max-lg {
+            height: 2em;
+          }
+
+          @mixin max-md {
+            height: 3em;
+          }
+
+          @mixin max-xs {
+            height: 1.7em;
+          }
+        }
+
+        & .footer-logo-itp {
+          height: 3em;
+          width: auto;
+
+          @mixin min-xxl {
+            height: 4em;
+          }
+
+          @mixin max-xl {
+            height: 3em;
+          }
+
+          @mixin max-lg {
+            height: 2em;
+          }
+
+          @mixin max-md {
+            height: 3em;
+          }
+
+          @mixin max-xs {
+            height: 1.7em;
+          }
+        }
+
+        & .footer-logo-bicentenario {
+          height: 5em;
+          width: auto;
+
+          @mixin min-xxl {
+            height: 6em;
+          }
+
+          @mixin max-lg {
+            height: 3.5em;
+          }
+
+          @mixin max-md {
+            height: 5em;
+          }
+
+          @mixin max-xs {
+            height: 3em;
+          }
+        }
+      }
+    }
+
+    & .footer-logos-right {
+      width: 55%;
+
+      @mixin max-md {
+        margin-top: var(--gutter-sm);
+        width: 100%;
+      }
+
+      & .footer-logos-right-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: var(--gutter-md);
+        row-gap: var(--gutter-md);
+        align-items: center;
+
+        & .right-item-1, & .right-item-4 {
+          justify-self: start;
+        }
+
+        & .right-item-2, & .right-item-5  {
+          justify-self: center;
+        }
+
+        & .right-item-3 {
+          justify-self: end;
+        }
+
+        & .right-item-6 {
+          justify-self: center;
+
+          @mixin min-xxl {
+            justify-self: end;
+          }
+        }
+
+        @mixin max-md {
+          justify-items: center;
+          row-gap: var(--gutter-sm);
+        }
+
+        & .footer-logo-mef {
+          height: 3em;
+          width: auto;
+
+          @mixin min-xxl {
+            height: 4em;
+          }
+
+          @mixin max-xl {
+            height: 3em;
+          }
+
+          @mixin max-lg {
+            height: 2em;
+          }
+
+          @mixin max-md {
+            height: 3em;
+          }
+
+          @mixin max-xs {
+            height: 1em;
+          }
+        }
+
+        & .footer-logo-mincul {
+          height: 3em;
+          width: auto;
+
+          @mixin min-xxl {
+            height: 4em;
+          }
+
+          @mixin max-xl {
+            height: 3em;
+          }
+
+          @mixin max-lg {
+            height: 2em;
+          }
+
+          @mixin max-md {
+            height: 3em;
+          }
+
+          @mixin max-xs {
+            height: 1em;
+          }
+        }
+
+        & .footer-logo-midagri {
+          height: 3em;
+          width: auto;
+
+          @mixin min-xxl {
+            height: 4em;
+          }
+
+          @mixin max-xl {
+            height: 3em;
+          }
+
+          @mixin max-lg {
+            height: 2em;
+          }
+
+          @mixin max-md {
+            height: 3em;
+          }
+
+          @mixin max-xs {
+            height: 1em;
+          }
+        }
+
+        & .footer-logo-concytec {
+          height: 3.5em;
+          width: auto;
+
+          @mixin min-xxl {
+            height: 5em;
+          }
+
+          @mixin max-xl {
+            height: 3.5em;
+          }
+
+          @mixin max-lg {
+            height: 2.5em;
+          }
+
+          @mixin max-md {
+            height: 3em;
+          }
+
+          @mixin max-xs {
+            height: 1.6em;
+          }
+        }
+
+        & .footer-logo-bid {
+          height: 2em;
+          width: auto;
+
+          @mixin min-xxl {
+            height: 2.5em;
+          }
+
+          @mixin max-lg {
+            height: 1.2em;
+          }
+
+          @mixin max-md {
+            height: 1.7em;
+          }
+
+          @mixin max-xs {
+            height: 0.7em;
+          }
+        }
+
+        & .footer-logo-dw {
+          height: 6.5em;
+          width: auto;
+
+          @mixin min-xxl {
+            height: 8em;
+          }
+
+          @mixin max-xl {
+            height: 6em;
+          }
+
+          @mixin max-md {
+            height: 5em;
+          }
+        }
+      }
     }
 
     & .footer-logos-header {
@@ -95,400 +405,6 @@
 
       @mixin max-md {
         justify-content: center;
-      }
-    }
-
-    & .footer-logos-left {
-      height: 100%;
-      margin-right: var(--gutter-xxl);
-      width: 35vw;
-
-      @mixin max-md {
-        margin-right: 0;
-        width: 100%;
-      }
-
-      & .footer-logos-team {
-
-        @mixin max-md {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-        }
-
-        & .footer-logos-team-box {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          justify-content: space-between;
-          height: 5rem;
-          margin-bottom: var(--gutter-xs);
-
-          @mixin max-md {
-            align-items: center;
-            justify-content: space-around;
-            width: 70%;
-          }
-          @mixin max-xs {
-            width: 80%;
-          }
-
-          & .footer-logo-itp {
-            height: 3em;
-
-            @mixin max-xl {
-              height: 2em;
-            }
-            @mixin max-lg {
-              height: 1.5em;
-            }
-            @mixin max-md {
-              height: 2.2em;
-            }
-            @mixin max-sm {
-              height: 2em;
-            }
-            @mixin max-xs {
-              height: 1.5em;
-            }
-          }
-
-          & .footer-logo-produce {
-            height: 3em;
-            width: auto;
-
-            @mixin max-xl {
-              height: 2em;
-            }
-            @mixin max-lg {
-              height: 1.5em;
-            }
-            @mixin max-md {
-              height: 2.2em;
-            }
-            @mixin max-sm {
-              height: 2em;
-            }
-            @mixin max-xs {
-              height: 1.5em;
-            }
-          }
-
-          & .footer-logo-bicentenario {
-            height: 3rem;
-            width: auto;
-            @mixin max-xs {
-              height: 2em;
-            }
-          }
-        }
-      }
-
-      & .footer-contact {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        height: 5rem;
-        margin-top: var(--gutter-lg);
-
-        @mixin max-xl {
-          margin-top: 3.5em;
-        }
-
-        @mixin max-md {
-          display: none;
-        }
-
-        & .footer-contact-icon {
-          height: 1.5rem;
-          margin-right: var(--gutter-xxs);
-        }
-
-        & .footer-contact-text {
-          color: var(--white);
-          text-decoration: none;
-          font-family: "Open Sans";
-          font-size: var(--font-sm);
-          font-weight: 600;
-          letter-spacing: 0;
-        }
-      }
-    }
-
-    & .footer-logos-right {
-      height: 100%;
-      width: 50vw;
-
-      @mixin max-md {
-        width: 100%;
-      }
-
-      & .footer-logos-partners {
-        height: 20vh;
-
-        @mixin max-md {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-        }
-
-        & .footer-logos-partners-box {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          height: 5rem;
-          margin-top: .5rem;
-
-          @mixin max-lg {
-            margin-top: .1rem;
-          }
-
-          @mixin max-md {
-            align-items: center;
-            justify-content: space-between;
-            margin-top: var(--gutter-sm);
-            width: 60%;
-          }
-
-          @mixin max-sm {
-            width: 65%;
-          }
-
-          @mixin max-xs {
-            width: 80%;
-          }
-
-          & .footer-logos-partners-box-top {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 1.1em;
-            width: 100%;
-            & .footer-logo-mef {
-              height: 3em;
-              width: auto;
-              margin-bottom: 1em;
-
-              @mixin max-xl {
-                height: 2em;
-                margin: 0;
-              }
-              @mixin max-lg {
-                height: 1.6em;
-                margin: 0;
-              }
-              @mixin max-md {
-                height: 2.2em;
-                margin: 0;
-              }
-              @mixin max-sm {
-                height: 2em;
-              }
-              @mixin max-xs {
-                height: 1.3em;
-              }
-            }
-
-            & .footer-logo-mincul {
-              height: 3em;
-              width: auto;
-              margin-bottom: 1em;
-
-              @mixin max-xl {
-                height: 2em;
-                margin: 0;
-              }
-              @mixin max-lg {
-                height: 1.6em;
-                margin: 0;
-              }
-              @mixin max-md {
-                height: 2.2em;
-                margin: 0;
-              }
-              @mixin max-sm {
-                height: 2em;
-              }
-              @mixin max-xs {
-                height: 1.3em;
-              }
-            }
-
-            & .footer-logo-midagri {
-              height: 3em;
-              margin-bottom: 1em;
-
-              @mixin max-xl {
-                height: 2em;
-                margin: 0;
-              }
-              @mixin max-lg {
-                height: 1.6em;
-                margin: 0;
-              }
-              @mixin max-md {
-                height: 2.2em;
-                margin: 0;
-              }
-              @mixin max-sm {
-                height: 2em;
-              }
-              @mixin max-xs {
-                height: 1.3em;
-              }
-            }
-          }
-
-          & .footer-logos-partners-box-bottom {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-top: var(--gutter-xs);
-            width: 100%;
-
-            @mixin max-xl {
-              margin-top: var(--gutter-md);
-            }
-
-            & .footer-logo-inei {
-              height: 4em;
-              width: auto;
-              margin-left: 4.5em;
-
-              @mixin max-xl {
-                height: 3em;
-                margin-left: 2em;
-              }
-              @mixin max-lg {
-                height: 3em;
-                margin-left: 1.5em;
-              }
-              @mixin max-md {
-                height: 3em;
-                margin-left: 3em;
-              }
-              @mixin max-sm {
-                margin-left: 2.5em;
-              }
-              @mixin max-xs {
-                height: 3em;
-                margin-left: 1em;
-              }
-            }
-
-            & .footer-logo-sunat {
-              height: 3em;
-              width: auto;
-              margin-left: 1.5em;
-
-              @mixin max-xl {
-                height: 2em;
-                margin-left: 0;
-              }
-              @mixin max-lg {
-                height: 1.5em;
-                margin-left: 2em;
-              }
-              @mixin max-md {
-
-              }
-              @mixin max-sm {
-
-              }
-              @mixin max-xs {
-
-              }
-            }
-
-            & .footer-logo-concytec {
-              height: 3em;
-              width: auto;
-              margin-right: 2.5em;
-
-              @mixin max-xl {
-                height: 2.5em;
-                margin-right: 0.5em;
-              }
-              @mixin max-lg {
-                height: 2em;
-                margin-left: 1.5em;
-              }
-              @mixin max-md {
-                height: 2em;
-                margin-right: 2em;
-              }
-              @mixin max-sm {
-                margin-right: 1.5em;
-              }
-              @mixin max-xs {
-                height: 1.7em;
-                margin-right: 1em;
-              }
-            }
-          }
-        }
-      }
-
-      & .footer-logos-support {
-        display: flex;
-        height: 5rem;
-        margin-top: var(--gutter-xs);
-        width: 100%;
-
-        @mixin max-xl {
-          margin-top: 0;
-        }
-        @mixin max-md {
-          justify-content: center;
-          margin-top: var(--gutter-md);
-          margin-bottom: var(--gutter-md);
-        }
-
-        & .footer-logos-support-box {
-          display: flex;
-          flex-direction: column;
-          width: 100%;
-
-          @mixin max-md {
-            justify-content: center;
-          }
-
-          & .footer-logos-support-items {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-around;
-
-            & .footer-logo-bid {
-              height: 2rem;
-              width: auto;
-
-              @mixin max-sm {
-                height: 1.5em;
-              }
-            }
-
-            & .footer-logo-dw {
-              height: 6em;
-              width: auto;
-
-              @mixin max-xl {
-                height: 4em;
-              }
-              @mixin max-lg {
-                height: 3.7em;
-              }
-              @mixin max-md {
-                height: 5em;
-              }
-              @mixin max-sm {
-                height: 4.5em;
-              }
-            }
-          }
-        }
-
       }
     }
   }
