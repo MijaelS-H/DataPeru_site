@@ -487,29 +487,5 @@ export const dataSources = [
         ]
       }
     ]
-  },
-  {
-    id: 8,
-    name: "Superintendencia Nacional de Aduanas y Administración Tributaria",
-    shortname: "SUNAT",
-    summary: [
-      "La Superintendencia Nacional de Aduanas y Administración Tributaria, SUNAT, es una entidad adscrita al Ministerio de Finanzas encargada de la administración de los tributos del gobierno nacional (con excepción de las municipales), y la facilitación del comercio exterior a través de la promoción del cumplimiento tributario y aduanero mediante el uso de la tecnología y el fortalecimiento de la conciencia tributaria."
-    ],
-    datasets: [
-      {
-        name: "Registro de exportaciones e importaciones definitivas",
-        link: "#",
-        indicators: [
-          {
-            name: "Exportaciones y destinos",
-            link: "/profile/geo/peru#destinos-exportaciones"
-          },
-          {
-            name: "Importaciones y orígenes",
-            link: "/profile/geo/peru#origenes-importaciones"
-          }
-        ]
-      }
-    ]
   }
 ];
