@@ -13,14 +13,14 @@ module.exports = {
   ],
   LOGOS: [
     {
-      title: "Instituto Tecnológico de la Producción",
-      url: "https://www.gob.pe/itp",
-      src: "/icons/homepage/logos_peru-itp.png"
-    },
-    {
       title: "Ministerio de la Producción",
       url: "https://www.gob.pe/produce",
       src: "/icons/homepage/Min_produccion_logo.png"
+    },
+    {
+      title: "Instituto Tecnológico de la Producción",
+      url: "https://www.gob.pe/itp",
+      src: "/icons/homepage/logos_peru-itp.png"
     },
     {
       title: "Bicentenario del Perú",

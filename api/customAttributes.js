@@ -38,7 +38,7 @@ module.exports = function(app) {
  * PID: 1
  */
 async function geoProfileAttributes(variables) {
-  const {hierarchy1} = variables;
+  const {id1, hierarchy1} = variables;
 
   const isNation = hierarchy1 === "Nacion";
   const isDepartment = hierarchy1 === "Departamento";
@@ -57,6 +57,19 @@ async function geoProfileAttributes(variables) {
     Distrito: "Distrito"
   };
 
+  const geoParams = {
+    cube: "dimension_ubigeo_district",
+    drilldowns: hierarchy1,
+    measures: "Variable conteo",
+    parents: true,
+    [hierarchy1]: id1
+  };
+
+  const parentsData = await axios.get(BASE_API, {params: geoParams}).then(resp => resp.data.data);
+
+  const parentDepartment = !isNationOrDepartment ? parentsData[0].Departamento || false : false;
+  const parentProvince = !isNationOrDepartmentOrProvince ? parentsData[0].Provincia || false : false;
+
   return {
     isNation,
     isDepartment,
@@ -66,7 +79,9 @@ async function geoProfileAttributes(variables) {
     isNationOrProvince,
     isNationOrDepartmentOrProvince,
     isDepartmentOrProvince,
-    subHierarchy: subHierarchyDict[hierarchy1]
+    subHierarchy: subHierarchyDict[hierarchy1],
+    parentDepartment,
+    parentProvince
   };
 }
 
@@ -145,7 +160,7 @@ async function citeProfileAttributes(variables) {
   const citeClientsParams = {
     cube: "itp_cite_empresas_tipo",
     drilldowns: "Time",
-    measures: "Empresas",
+    measures: "Clientes",
     CITE: id1
   };
 

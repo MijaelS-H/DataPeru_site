@@ -1,40 +1,66 @@
 {
+  "Activate": {
+    "actions": {
+      "ACTIVATE_SEND_FAILURE": "Error enviando la activación a {{email}}.",
+      "ACTIVATE_SEND_SUCCESS": "Se ha enviado un link de activación a {{email}}. Por favor, revise su bandeja de entrada.",
+      "ACTIVATE_TOKEN_FAILURE": "El token de activación es inválido o ha expirado."
+    },
+    "button": "Enviar verificación",
+    "mailgun": {
+      "body": "Gracias por registrarse en {{site}}! Por favor confirma tu email haciendo click en el enlace siguiente.",
+      "button": "Click para confirmar",
+      "closing": "Atentamente,",
+      "footer": "Estas recibiendo este email porque recientemente has creado una cuenta en {{site}}. Si no has sido tú, por favor, ignora este mensaje.",
+      "greeting": "Hola {{username}},",
+      "link": "O copia y pega el siguiente enlace en tu navegador: {{confirmLink}}",
+      "signature": "El equipo de {{site}}",
+      "title": "Verificación de email",
+      "welcome": "Bienvenido a {{site}}!"
+    }
+  },
+  "Admin": "Admin",
   "CMS": {
     "Options": {
       "Close": "Cerrar",
       "Copied": "Copiado",
       "Copy": "Copiar",
-      "Direct link": "Enlace",
+      "Direct link": "Link directo",
       "Download": "Descargar",
-      "Download as CSV": "Descargar CSV",
+      "Download as CSV": "Descargar como CSV",
       "Endpoint": "API",
       "Image Format": "Formato de imagen",
       "Image area": "Área de imagen",
-      "Loading Data": "Cargando datos...",
+      "Loading Data": "Cargando datos",
       "Processing image": "Procesando imagen",
       "Save Image": "Guardar imagen",
-      "Save visualization as": "Guardar visualización",
-      "Scroll to section": "Scroll a la sección",
+      "Save visualization as": "Guardar visualización como",
+      "Scroll to section": "Scroll a sección",
       "Share": "Compartir",
       "Share on Facebook": "Compartir en Facebook",
-      "Share on Twitter": "Compartir en Twitter",
+      "Share on Twitter": "Compartir en  Twitter",
       "Social": "Social",
-      "Transparent Background": "Fondo Transparente",
+      "Transparent Background": "Fondo transparente",
       "View Data": "Ver datos",
       "Visualization options": "Opciones de visualización",
       "entire section": "Sección completa",
       "visualization only": "Solo visualización"
     },
+    "Profile": {
+      "Data Appendix": "Data Appendix",
+      "Data Appendix Description": "These data tables represent the underlying datasets used to power each visualization featured in this report.",
+      "Download Page as PDF": "Descargar página como PDF"
+    },
     "Search": {
-      "Empty": "Por favor ingrese un término de búsqueda",
+      "All": "Explorar",
+      "Empty": "Buscar a nivel geográfico, industrial o RedCITE",
       "Loading": "Cargando resultados...",
-      "No results": "No se encontraron resultados \"{{query}}\"",
-      "Related Profiles": "Perfiles similares",
+      "No results": "No existen resultados para la búsqueda: \"{{query}}\"",
+      "Related Profiles": "Perfiles relacionados",
       "Search profiles": "Buscar perfiles",
-      "reset": "restablecer"
+      "reset": "Reestablecer"
     },
     "Section": {
-      "Reset visualizations": "Restablecer visualizaciones"
+      "Reset visualizations": "Reestablecer visualizaciones"
     },
     "SourceGroup": {
       "Data provided by": "Fuente",
@@ -43,29 +69,82 @@
     "Table": {
       "Loading": "Cargando...",
       "Next": "Siguiente",
-      "No rows found": "No se encontraron resultados",
+      "No rows found": "No existen resultados",
       "Page": "Página",
       "Previous": "Anterior",
       "of": "de",
       "rows": "filas"
     }
   },
+  "Contributor": "Contribuidor",
+  "Explore": {
+    "Clear Filters": "Borrar filtros"
+  },
+  "Home": "Inicio",
+  "Loading": {
+    "description": "Cargando {{progress}} de {{total}} datasets",
+    "title": "Por favor, espere"
+  },
+  "Login": {
+    "E-mail": "Email",
+    "Facebook": "Facebook",
+    "Github": "",
+    "Google": "",
+    "Instagram": "Instagram",
+    "LinkedIn": "",
+    "Login": "Login",
+    "Password": "Contraseña",
+    "Twitter": "Twitter",
+    "error": "Usuario o contraseña incorrectos",
+    "success": "Ingreso correcto"
+  },
   "Profile": {
+    "CITE Description": "Explore las estadísticas sobre Centros de Innovación Productiva y Transferencia Tecnológica: {{name}}",
+    "CITE Title": "{{name}}: clientes, servicios, presupuesto y recuros humanos",
     "Geo Description": "Explore las estadísticas sobre economía, salud, educación, hogares, demografía, gobierno, industrias, I+D y red CITE en {{name}}",
     "Geo Title": "{{name}}: Economía, salud, educación, hogares, demografía, gobierno, industrias, I+D y red CITE",
     "Industry Description": "Explore las estadísticas más relevantes en la industria {{name}}",
-    "Industry Title": "{{name}}: ",
-    "CITE Description": "Explore las estadísticas sobre Centros de Innovación Productiva y Transferencia Tecnológica: {{name}}",
-    "CITE Title": "{{name}}: clientes, servicios, presupuesto y recuros humanos",
-    "Search Placeholder": "Buscar perfiles..."
+    "Industry Title": "{{name}}: innovación, comercio y empleo"
   },
-  "Explore": {
-    "Clear Filters": "Borrar",
-    "Search Placeholder": "Buscar perfiles...",
-    "Title": "Explorador de perfiles"
+  "Reset": {
+    "Confirm Password": "Confirmar nueva contraseña",
+    "E-mail": "Email",
+    "Password": "Nueva contraseña",
+    "actions": {
+      "RESET_SEND_FAILURE": "No existe una cuenta asociada a {{email}}.",
+      "RESET_SEND_SUCCESS": "Se ha enviado un correo de reestablecimiento de contraseña a {{email}}. Por favor, revise su bandeja de entrada.",
+      "RESET_TOKEN_FAILURE": "El token de reestablecimiento de contraseña es inválido o ha expirado."
+    },
+    "button": "Reestablecer contraseña",
+    "mailgun": {
+      "body": "Alguien ha solicitado reestablecer su contraseña del sitio {{site}}. Si no has sido tu, puedes ignorar este correo con seguridad. Tu contraseña seguirá siendo la misma.",
+      "button": "Reestablecer mi contraseña",
+      "footer": "O solo visite en siguiente enlace en su navegador: {{resetLink}}",
+      "title": "Reestablecer contraseña"
+    }
   },
-  "Loading": {
-    "title": "Por favor espere",
-    "description": "Cargando {{progress}} de {{total}} datasets"
-  }
+  "Role": "Role",
+  "Share": {
+    "Description": "Share.Description",
+    "Title": "Share.Title"
+  },
+  "SignUp": {
+    "Confirm Password": "Confirmar contraseña",
+    "E-mail": "Email",
+    "Password": "Contraseña",
+    "PrivacyTermsText": "By checking this box, you agree to our <a href='{{terms}}'>Terms of Service</a> and <a href='{{privacy}}'>Privacy Policy</a>",
+    "PrivacyText": "By checking this box, you agree to our <a href='{{privacy}}'>Privacy Policy</a>",
+    "Sign Up": "Sign Up",
+    "TermsText": "By checking this box, you agree to our <a href='{{terms}}'>Terms of Service</a>",
+    "Username": "Username",
+    "error": {
+      "Exists": "E-mail or Username already in use",
+      "IncompleteFields": "Please set all fields",
+      "PasswordMatch": "Passwords don't match",
+      "TermsAgree": "Must agree to terms to continue"
+    },
+    "success": "Successfully Signed Up"
+  },
+  "User": "Usuario",
+  "Username": "Nombre de usuario"
 }

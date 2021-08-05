@@ -110,6 +110,10 @@
           padding-right: 0;
         }
 
+        @mixin max-sm {
+          display: none;
+        }
+
         & .data-content-source {
           padding: var(--gutter-sm) 0;
 
@@ -124,6 +128,31 @@
               padding: var(--gutter-sm);
             }
           }
+        }
+      }
+
+      & .data-content-sources-selector {
+        display: none;
+
+        & .cp-select {
+          background: none;
+          border: 0;
+          border-bottom: 1px solid #c5c5c5;
+          border-radius: 0;
+          color: var(--white);
+          font-size: .75rem;
+          font-weight: 700;
+        }
+
+        & .data-content-sources-selector-name {
+          color: var(--white);
+          padding: 0;
+          width: 30%;
+        }
+
+        @mixin max-sm {
+          display: flex;
+          justify-content: center;
         }
       }
 
@@ -222,6 +251,17 @@
             }
           }
         }
+
+        & .data-back-top {
+          color: var(--white);
+          font-size: var(--font-md);
+          text-align: start;
+
+          @mixin max-md {
+            text-align: center!important;
+          }
+        }
+
       }
     }
   }

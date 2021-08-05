@@ -77,327 +77,334 @@
     background-color: #000;
     display: flex;
     flex-direction: row;
-    align-items: center;
-    height: 45vh;
-    padding: var(--gutter-md) var(--gutter-xxl) var(--gutter-xl);
+    height: 100%;
+    padding: var(--gutter-md) var(--gutter-xxl) var(--gutter-lg);
 
     @mixin max-md {
       flex-direction: column;
-      height: 100%;
-      padding: var(--gutter-md) var(--gutter-xs) var(--gutter-xxs);
-    }
-
-    & .footer-logos-header {
-      font-family: "Open Sans";
-      font-size: var(--font-xxxs);
-      text-transform: uppercase;
-      padding-bottom: var(--gutter-sm);
+      padding: var(--gutter-md) var(--gutter-lg) var(--gutter-lg);
     }
 
     & .footer-logos-left {
-      height: 100%;
-      margin-right: var(--gutter-lg);
-      width: 33vw;
+      margin-right: 10%;
+      width: 35%;
 
       @mixin max-md {
-        margin-right: 0;
+        margin-bottom: var(--gutter-md);
+        margin-right: 0%!important;
         width: 100%;
       }
 
-      & .footer-logos-team {
+      & .footer-logos-left-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: var(--gutter-md);
+        row-gap: var(--gutter-lg);
+        align-items: center;
 
         @mixin max-md {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
+          column-gap: 0;
         }
 
-        & .footer-logos-team-box {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          justify-content: space-between;
-          height: 5rem;
-          margin-bottom: var(--gutter-md);
+        @mixin max-xs {
+          row-gap: var(--gutter-md);
+        }
+
+        & .left-item-1 {
+          justify-self: start;
 
           @mixin max-md {
-            align-items: center;
-            justify-content: space-around;
-            width: 80%;
-          }
-
-          & .footer-logo-itp {
-            height: 2.5em;
-
-            @mixin max-xl {
-              height: 2em;
-            }
-            @mixin max-lg {
-              height: 1.5em;
-            }
-            @mixin max-md {
-              height: 2.2em;
-            }
-            @mixin max-sm {
-              height: 1.4em;
-            }
-          }
-
-          & .footer-logo-produce {
-            height: 2.5em;
-            width: auto;
-
-            @mixin max-xl {
-              height: 2em;
-            }
-            @mixin max-lg {
-              height: 1.5em;
-            }
-            @mixin max-md {
-              height: 2.2em;
-            }
-            @mixin max-sm {
-              height: 1.4em;
-            }
-          }
-
-          & .footer-logo-dw {
-            height: 5em;
-            width: auto;
-
-            @mixin max-xl {
-              height: 4em;
-            }
-            @mixin max-lg {
-              height: 3.7em;
-            }
-            @mixin max-md {
-              height: 5em;
-            }
-            @mixin max-sm {
-              height: 2.5em;
-            }
+            justify-self: center;
           }
         }
-      }
 
-      & .footer-logos-support {
-        display: flex;
-        flex-direction: row;
-        height: 5rem;
-        justify-content: space-between;
+        & .left-item-2 {
+          justify-self: end;
 
-        & .footer-logos-support-box {
-          display: flex;
-          flex-direction: column;
+          @mixin min-xl {
+            justify-self: start;
+          }
+
+          @mixin max-md {
+            justify-self: center;
+          }
+        }
+
+        & .left-item-3 {
+          justify-self: start;
+
+          @mixin max-md {
+            justify-self: center;
+            grid-area: 2/1/2/4;
+          }
         }
 
         @mixin max-md {
-          display: none;
+          justify-items: center;
         }
 
-        & .footer-logo-bid {
-          height: 2rem;
+        & .footer-logo-produce {
+          height: 3em;
           width: auto;
+
+          @mixin min-xxl {
+            height: 4em;
+          }
+
+          @mixin max-xl {
+            height: 3em;
+          }
+
+          @mixin max-lg {
+            height: 2em;
+          }
+
+          @mixin max-md {
+            height: 3em;
+          }
+
+          @mixin max-xs {
+            height: 1.7em;
+          }
+        }
+
+        & .footer-logo-itp {
+          height: 3em;
+          width: auto;
+
+          @mixin min-xxl {
+            height: 4em;
+          }
+
+          @mixin max-xl {
+            height: 3em;
+          }
+
+          @mixin max-lg {
+            height: 2em;
+          }
+
+          @mixin max-md {
+            height: 3em;
+          }
+
+          @mixin max-xs {
+            height: 1.7em;
+          }
         }
 
         & .footer-logo-bicentenario {
-          height: 3rem;
+          height: 5em;
           width: auto;
+
+          @mixin min-xxl {
+            height: 6em;
+          }
+
+          @mixin max-lg {
+            height: 3.5em;
+          }
+
+          @mixin max-md {
+            height: 5em;
+          }
+
+          @mixin max-xs {
+            height: 3em;
+          }
         }
       }
     }
 
     & .footer-logos-right {
-      height: 100%;
-      width: 50vw;
+      width: 55%;
 
       @mixin max-md {
+        margin-top: var(--gutter-sm);
         width: 100%;
       }
 
-      & .footer-logos-partners {
+      & .footer-logos-right-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: var(--gutter-md);
+        row-gap: var(--gutter-md);
+        align-items: center;
 
-        @mixin max-md {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
+        & .right-item-1, & .right-item-4 {
+          justify-self: start;
         }
 
-        & .footer-logos-partners-box {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          justify-content: space-between;
-          height: 5rem;
-          margin-bottom: 1.5rem;
-          margin-top: .5rem;
+        & .right-item-2, & .right-item-5  {
+          justify-self: center;
+        }
+
+        & .right-item-3 {
+          justify-self: end;
+        }
+
+        & .right-item-6 {
+          justify-self: center;
+
+          @mixin min-xxl {
+            justify-self: end;
+          }
+        }
+
+        @mixin max-md {
+          justify-items: center;
+          row-gap: var(--gutter-sm);
+        }
+
+        & .footer-logo-mef {
+          height: 3em;
+          width: auto;
+
+          @mixin min-xxl {
+            height: 4em;
+          }
+
+          @mixin max-xl {
+            height: 3em;
+          }
 
           @mixin max-lg {
-            margin-top: .1rem;
+            height: 2em;
           }
 
           @mixin max-md {
-            align-items: center;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            margin-top: var(--gutter-sm);
-            width: 80%;
+            height: 3em;
           }
 
-          & .footer-logo-mef {
-            height: 2.3em;
-            width: auto;
-            margin-bottom: 1em;
-
-            @mixin max-xl {
-              height: 2em;
-              margin: 0;
-            }
-            @mixin max-lg {
-              height: 1.6em;
-              margin: 0;
-            }
-            @mixin max-md {
-              height: 2.2em;
-              margin: 0;
-            }
-            @mixin max-sm {
-              height: 2.3em;
-            }
-            @mixin max-xs {
-              height: 1.5em;
-            }
-          }
-
-          & .footer-logo-mincul {
-            height: 2.3em;
-            width: auto;
-            margin-bottom: 1em;
-
-            @mixin max-xl {
-              height: 2em;
-              margin: 0;
-            }
-            @mixin max-lg {
-              height: 1.6em;
-              margin: 0;
-            }
-            @mixin max-md {
-              height: 2.2em;
-              margin: 0;
-            }
-            @mixin max-sm {
-              height: 2.3em;
-            }
-            @mixin max-xs {
-              height: 1.5em;
-            }
-          }
-
-          & .footer-logo-midagri {
-            height: 2.3em;
-            margin-bottom: 1em;
-            padding-right: 2rem;
-
-            @mixin max-xl {
-              height: 2em;
-              margin: 0;
-            }
-            @mixin max-lg {
-              height: 1.6em;
-              margin: 0;
-            }
-            @mixin max-md {
-              height: 2.2em;
-              margin: 0;
-            }
-            @mixin max-sm {
-              height: 2.3em;
-            }
-            @mixin max-xs {
-              height: 1.5em;
-            }
-          }
-
-          & .footer-logo-inei {
-            height: 4em;
-            width: auto;
-            margin: 0;
-
-            @mixin max-xl {
-              height: 3em;
-              margin: 0;
-            }
-            @mixin max-lg {
-              height: 2.3em;
-              margin-left: -2em;
-            }
-            @mixin max-md {
-              height: 3em;
-              margin-left: 0;
-              margin-right: 0;
-            }
-            @mixin max-sm {
-              height: 3.5em;
-              margin-right: 2rem;
-              margin-left: 0;
-              margin-top: 0.5em;
-            }
-            @mixin max-xs {
-              height: 2.5em;
-            }
+          @mixin max-xs {
+            height: 1em;
           }
         }
-      }
 
-      & .footer-logos-support {
-        display: none;
-        flex-direction: column;
-        height: 5rem;
+        & .footer-logo-mincul {
+          height: 3em;
+          width: auto;
 
-        @mixin max-md {
-          display: flex;
-          align-items: center;
+          @mixin min-xxl {
+            height: 4em;
+          }
+
+          @mixin max-xl {
+            height: 3em;
+          }
+
+          @mixin max-lg {
+            height: 2em;
+          }
+
+          @mixin max-md {
+            height: 3em;
+          }
+
+          @mixin max-xs {
+            height: 1em;
+          }
+        }
+
+        & .footer-logo-midagri {
+          height: 3em;
+          width: auto;
+
+          @mixin min-xxl {
+            height: 4em;
+          }
+
+          @mixin max-xl {
+            height: 3em;
+          }
+
+          @mixin max-lg {
+            height: 2em;
+          }
+
+          @mixin max-md {
+            height: 3em;
+          }
+
+          @mixin max-xs {
+            height: 1em;
+          }
+        }
+
+        & .footer-logo-concytec {
+          height: 3.5em;
+          width: auto;
+
+          @mixin min-xxl {
+            height: 5em;
+          }
+
+          @mixin max-xl {
+            height: 3.5em;
+          }
+
+          @mixin max-lg {
+            height: 2.5em;
+          }
+
+          @mixin max-md {
+            height: 3em;
+          }
+
+          @mixin max-xs {
+            height: 1.6em;
+          }
         }
 
         & .footer-logo-bid {
-          height: 2rem;
+          height: 2em;
           width: auto;
+
+          @mixin min-xxl {
+            height: 2.5em;
+          }
+
+          @mixin max-lg {
+            height: 1.2em;
+          }
+
+          @mixin max-md {
+            height: 1.7em;
+          }
+
+          @mixin max-xs {
+            height: 0.7em;
+          }
         }
 
-        & .footer-logo-bicentenario {
-          height: 4rem;
+        & .footer-logo-dw {
+          height: 6.5em;
           width: auto;
+
+          @mixin min-xxl {
+            height: 8em;
+          }
+
+          @mixin max-xl {
+            height: 6em;
+          }
+
+          @mixin max-md {
+            height: 5em;
+          }
         }
       }
+    }
 
-      & .footer-contact {
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        height: 5rem;
+    & .footer-logos-header {
+      font-family: "Open Sans";
+      font-size: var(--font-xxs);
+      text-transform: uppercase;
+      padding-bottom: var(--gutter-sm);
+      display: flex;
 
-        @mixin max-md {
-          justify-content: center;
-          width: 100%;
-        }
-
-        & .footer-contact-icon {
-          height: 1.5rem;
-          margin-right: var(--gutter-xxs);
-        }
-
-        & .footer-contact-text {
-          color: var(--white);
-          text-decoration: none;
-          font-family: "Open Sans";
-          font-size: var(--font-sm);
-          font-weight: 600;
-          letter-spacing: 0;
-        }
+      @mixin max-md {
+        justify-content: center;
       }
     }
   }

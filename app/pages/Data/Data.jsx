@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import PropTypes from "prop-types";
 import {withNamespaces} from "react-i18next";
 
 import {dataSources} from "./dataSources.js";
@@ -12,6 +11,10 @@ import "./Data.css";
 const Data = () => {
 
   const [selectedDataSource, setDatasource] = useState(dataSources[0]);
+
+  const scrollTop = () =>{
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  };
 
   return (
     <div className="data-container container">
@@ -30,22 +33,31 @@ const Data = () => {
               <a className="data-content-source-name" onClickCapture={evt => [evt.preventDefault(), setDatasource(d)]}>{d.shortname}</a>
             </div>)}
           </div>
+          <div className="data-content-sources-selector">
+            <span className="data-content-sources-selector-name">Fuente de datos</span>
+            <select className="cp-select" value={selectedDataSource.shortname} onChange={evt => [evt.preventDefault(), setDatasource(dataSources.find(h => h.shortname === evt.target.value))]}>
+              {dataSources.map((d, i) =>
+                <option value={d.shortname}>{d.shortname}</option>
+              )}
+            </select>
+          </div>
           <div className="data-content-summary">
             <h2 className="data-content-summary-title">{selectedDataSource.shortname}</h2>
             <h3 className="data-content-summary-subtitle">{selectedDataSource.name}</h3>
             {selectedDataSource.summary.map((d, i) => <p className="data-content-summary-text" key={`summary-${selectedDataSource.shortname.toLowerCase()}-${i}`}>{d}</p>)}
-            <h3 className="data-content-summary-datasets-title">Datasets</h3>
+            <h3 className="data-content-summary-datasets-title">Set de datos</h3>
             {selectedDataSource.datasets.map((d, i) => <div className="data-content-dataset-container" key={`data-content-dataset-${i}`}>
               <div className="data-content-dataset-box">
                 <img className="data-content-dataset-box-icon" src="/icons/data/nombre_dataset_icon.png" alt="Dataset" />
                 {/* <a className="data-content-dataset-box-title" href={d.link}>{d.name}</a> */}
                 <span className="data-content-dataset-box-title">{d.name}</span>
               </div>
-              <h3 className="data-content-summary-datasets-title">¿Qué indicadores puedo encontrar desde esta fuente?</h3>
+              <h3 className="data-content-summary-datasets-title">Principales indicadores que puedo encontrar desde esta fuente:</h3>
               <ul className="data-content-dataset-indicator-list">
                 {d.indicators.map((h, j) => <a className="data-content-dataset-indicator-name" href={h.link} key={`indicator-${j}`} target="_blank" rel="noreferrer"><li>{h.name}</li></a>)}
               </ul>
             </div>)}
+            <a className="data-back-top" onClick={scrollTop} >Volver al inicio</a>
           </div>
         </div>
       </div>
