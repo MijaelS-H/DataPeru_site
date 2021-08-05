@@ -2524,7 +2524,7 @@ export const findColorV2 = (key, d) => {
   }
   */
 
-  if (key === "Tipo empresa") {
+  if (key === "Tipo cliente") {
     if ([
       "Empresa formal",
       "Persona natural con negocio",
@@ -2532,8 +2532,8 @@ export const findColorV2 = (key, d) => {
       "Emprendedor",
       "Academia",
       "Otros"
-    ].includes(d["Tipo empresa"])) {
-      return colors["Clientes atendidos acumulados por mes v2"][d["Tipo empresa ID"]];
+    ].includes(d["Tipo cliente"])) {
+      return colors["Clientes atendidos acumulados por mes v2"][d["Tipo cliente ID"]];
     }
   }
 
@@ -5063,7 +5063,7 @@ export const findIconV2 = (key, d) => {
   */
 
   // Colores para nueva versión de tipo de clientes
-  if (key === "Tipo empresa") {
+  if (key === "Tipo cliente") {
     if ([
       "Empresa formal",
       "Persona natural con negocio",
@@ -5071,8 +5071,8 @@ export const findIconV2 = (key, d) => {
       "Emprendedor",
       "Academia",
       "Otros"
-    ].includes(d["Tipo empresa"])) {
-      return `/icons/visualizations/Clientes atendidos acumulados por mes v2/${d["Tipo empresa ID"]}.png`;
+    ].includes(d["Tipo cliente"])) {
+      return `/icons/visualizations/Clientes atendidos acumulados por mes v2/${d["Tipo cliente ID"]}.png`;
     }
   }
 
