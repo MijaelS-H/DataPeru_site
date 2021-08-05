@@ -215,6 +215,7 @@
   "Clientes atendidos segun CIIU y tipo de contribuyente": {
     "1": "#E28F83",
     "2": "#4A503D",
+    "3": "#616EEF",
     "4": "#8E9775",
     "5": "#F7A440",
     "6": "#E1701A",
@@ -242,7 +243,9 @@
     "29": "#E5707E",
     "30": "#FF8585",
     "31": "#5C6E91",
-    "32": "#EBCFC4"
+    "32": "#EBCFC4",
+    "33": "#09A8FA",
+    "34": "#FF4646"
   },
   "colorGrey": "#ccc",
   "Composicion de empleados municipales segun tipo de trabajador": {
