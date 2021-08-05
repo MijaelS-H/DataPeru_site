@@ -2509,6 +2509,7 @@ export const findColorV2 = (key, d) => {
     else if (d["Tipo de gasto label"] === "Gasto externo promedio en I+D") return "#FCA652";
   }
 
+  /*
   if (key === "Tipo empresa") {
     if ([
       "Gran empresa",
@@ -2519,6 +2520,20 @@ export const findColorV2 = (key, d) => {
       "Persona natural"
     ].includes(d["Tipo empresa"])) {
       return colors["Clientes atendidos acumulados por mes"][d["Tipo empresa ID"]];
+    }
+  }
+  */
+
+  if (key === "Tipo empresa") {
+    if ([
+      "Empresa formal",
+      "Persona natural con negocio",
+      "Asociación / cooperativa",
+      "Emprendedor",
+      "Academia",
+      "Otros"
+    ].includes(d["Tipo empresa"])) {
+      return colors["Clientes atendidos acumulados por mes v2"][d["Tipo empresa ID"]];
     }
   }
 
@@ -5032,6 +5047,7 @@ export const findIconV2 = (key, d) => {
     else if (d["Tipo de gasto label"] === "Gasto externo promedio en I+D") return "/icons/visualizations/Tipo de centro de investigacion/Externo.png";
   }
 
+  /*
   if (key === "Tipo empresa") {
     if ([
       "Gran empresa",
@@ -5042,6 +5058,21 @@ export const findIconV2 = (key, d) => {
       "Persona natural"
     ].includes(d["Tipo empresa"])) {
       return `/icons/visualizations/Clientes atendidos acumulados por mes/${d["Tipo empresa ID"]}.png`;
+    }
+  }
+  */
+
+  // Colores para nueva versión de tipo de clientes
+  if (key === "Tipo empresa") {
+    if ([
+      "Empresa formal",
+      "Persona natural con negocio",
+      "Asociación / cooperativa",
+      "Emprendedor",
+      "Academia",
+      "Otros"
+    ].includes(d["Tipo empresa"])) {
+      return `/icons/visualizations/Clientes atendidos acumulados por mes v2/${d["Tipo empresa ID"]}.png`;
     }
   }
 
