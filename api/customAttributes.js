@@ -167,7 +167,7 @@ async function citeProfileAttributes(variables) {
   const latestClientsPerSizeDate = await axios.get(BASE_API, {params: citeClientsParams})
     .then(resp => {
       const {data} = resp.data;
-      const maxDate = data.length > 0 ? max(data.filter(d => d.Empresas), d => d.Time) : false;
+      const maxDate = data.length > 0 ? max(data.filter(d => d.Clientes), d => d.Time) : false;
       return maxDate;
     });
 
