@@ -160,7 +160,7 @@ async function citeProfileAttributes(variables) {
   const citeClientsParams = {
     cube: "itp_cite_empresas_tipo",
     drilldowns: "Time",
-    measures: "Empresas",
+    measures: "Clientes",
     CITE: id1
   };
 
