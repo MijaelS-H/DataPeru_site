@@ -2590,12 +2590,16 @@ export const findColorV2 = (key, d) => {
 
   if (key === "Contribuyente") {
     if ([
+      "Asoc. fundac. y comite no inscritos",
       "Asociacion",
       "Asociacion en participacion",
+      "Colegios profesionales",
       "Comunidad campesina, nativa",
       "Contratos colaboracion empresarial",
       "Cooperativas, sais, caps",
+      "Empresa de derecho publico",
       "Empresa de economia mixta",
+      "Empresa de propiedad social",
       "Empresa estatal de derecho privado",
       "Empresa individual de resp. ltda",
       "Ent.inst.cooperac.tecnica - eniex",
@@ -2615,6 +2619,7 @@ export const findColorV2 = (key, d) => {
       "Sociedad anonima cerrada",
       "Sociedad civil",
       "Sociedad conyugal con negocio",
+      "Sociedad en comandita por acciones",
       "Sociedad irregular",
       "Sucesion indivisa con negocio",
       "Sucursales o ag. de emp. extranj.",
@@ -5125,12 +5130,16 @@ export const findIconV2 = (key, d) => {
 
   if (key === "Contribuyente") {
     if ([
+      "Asoc. fundac. y comite no inscritos",
       "Asociacion",
       "Asociacion en participacion",
+      "Colegios profesionales",
       "Comunidad campesina, nativa",
       "Contratos colaboracion empresarial",
       "Cooperativas, sais, caps",
+      "Empresa de derecho publico",
       "Empresa de economia mixta",
+      "Empresa de propiedad social",
       "Empresa estatal de derecho privado",
       "Empresa individual de resp. ltda",
       "Ent.inst.cooperac.tecnica - eniex",
@@ -5150,6 +5159,7 @@ export const findIconV2 = (key, d) => {
       "Sociedad anonima cerrada",
       "Sociedad civil",
       "Sociedad conyugal con negocio",
+      "Sociedad en comandita por acciones",
       "Sociedad irregular",
       "Sucesion indivisa con negocio",
       "Sucursales o ag. de emp. extranj.",
