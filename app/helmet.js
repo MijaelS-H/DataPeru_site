@@ -30,5 +30,5 @@ export default {
     /* iOS Safari*/
     {name: "apple-mobile-web-app-status-bar-style", content: "#E30A14"}
   ],
-  title: "ITPProducción"
+  title: "ITP Producción"
 };
