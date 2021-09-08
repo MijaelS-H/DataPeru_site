@@ -17,17 +17,13 @@ const Home = props => {
   const labels = {
     title: "ITP Producción",
     desc: "ITP Producción es un esfuerzo de integración, visualización y distribución de datos públicos del Perú desarrollado por Ministerio de la Producción, el Instituto Tecnológico de la Producción y Datawheel, que busca apoyar la formulación de políticas públicas a través de la identificación de clústeres y brechas de productividad.",
-    img: [
-      "/images/homepage/geo.jpg",
-      "/images/homepage/industry.jpeg",
-      "/images/homepage/cite.jpg"
-    ]
+    img: "/images/homepage/geo.jpg"
   };
 
   const share = {
     title: labels.title,
     desc: labels.desc,
-    img: labels.img[Math.floor(Math.random() * labels.img.length)]
+    img: labels.img
   };
 
   return (
