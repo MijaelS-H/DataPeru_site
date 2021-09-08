@@ -5,6 +5,7 @@ import {dataSources} from "./dataSources.js";
 
 import Footer from "../../components/Footer";
 import Nav from "../../components/Nav";
+import HelmetWrapper from "../HelmetWrapper";
 
 import "./Data.css";
 
@@ -18,6 +19,12 @@ const Data = () => {
 
   return (
     <div className="data-container container">
+      <HelmetWrapper info={{
+          title: "Datos",
+          desc: "Descubra las principales fuentes de datos e indicadores utilizados en el desarrollo de ITP Producción.",
+          img: "/images/datos/willian-justen-de-vasconcellos-g_1mAmAAG0k-unsplash_1.jpg"
+        }} />
+
       <Nav />
       <div className="data-header">
         <span className="data-header-title">Datos</span>

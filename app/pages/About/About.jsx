@@ -4,6 +4,7 @@ import {withNamespaces} from "react-i18next";
 
 import Footer from "../../components/Footer";
 import Nav from "../../components/Nav";
+import HelmetWrapper from "../HelmetWrapper";
 
 import "./About.css";
 
@@ -13,6 +14,12 @@ class About extends Component {
 
     return (
       <div className="about-container container">
+        <HelmetWrapper info={{
+          title: "Acerca de",
+          desc: "Conozca acerca del ITP y su rol en el desarollo de la productividad, calidad y rentabilidad de las empresas mediante ITP Producción.",
+          img: "/images/about/mckayla-crump-hjanvZlqoB8-unsplash.jpg"
+        }} />
+
         <Nav
           logo={false}
           routeParams={routeParams}

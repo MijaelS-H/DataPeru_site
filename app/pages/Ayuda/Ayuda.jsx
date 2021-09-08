@@ -4,6 +4,7 @@ import * as d3plus from "d3plus-react";
 
 import Nav from "../../components/Nav";
 import Footer from "../../components/Footer";
+import HelmetWrapper from "../HelmetWrapper";
 
 import {vizOptions} from "./constVizOptions.js";
 
@@ -97,6 +98,12 @@ const Ayuda = () => {
 
   return (
     <div className="help-container">
+      <HelmetWrapper info={{
+          title: "Ayuda",
+          desc: "Conozca y comprenda los principales usos y funciones del catálogo de visualizaciones utilizadas en la plataforma ITP Producción.",
+          img: "/images/ayuda/Aerial_View_of_Ocra,_Part_2.jpg"
+        }} />
+
       <Nav />
 
       <div className="help-header">

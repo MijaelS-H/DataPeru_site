@@ -59,7 +59,8 @@ const ExplorePage = props => {
     <div className="explore">
       <HelmetWrapper info={{
         title: "Explorador de perfiles",
-        desc: "Explore a través de los perfiles disponibles en ITP Producción"
+        desc: "Explore a través de los perfiles disponibles en ITP Producción",
+        img: "/images/homepage/geo.jpg"
       }} />
 
       <Nav
