@@ -17,7 +17,7 @@ const Home = props => {
   const labels = {
     title: "ITP Producción",
     desc: "ITP Producción es un esfuerzo de integración, visualización y distribución de datos públicos del Perú desarrollado por Ministerio de la Producción, el Instituto Tecnológico de la Producción y Datawheel, que busca apoyar la formulación de políticas públicas a través de la identificación de clústeres y brechas de productividad.",
-    img: "/images/homepage/geo.jpg"
+    img: "/images/datos/willian-justen-de-vasconcellos-g_1mAmAAG0k-unsplash_1.jpg"
   };
 
   const share = {
