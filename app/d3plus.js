@@ -2590,40 +2590,41 @@ export const findColorV2 = (key, d) => {
 
   if (key === "Contribuyente") {
     if ([
-      "Asoc. fundac. y comite no inscritos",
-      "Asociacion",
-      "Asociacion en participacion",
-      "Colegios profesionales",
-      "Comunidad campesina, nativa",
-      "Contratos colaboracion empresarial",
-      "Cooperativas, sais, caps",
-      "Empresa de derecho publico",
-      "Empresa de economia mixta",
-      "Empresa de propiedad social",
-      "Empresa estatal de derecho privado",
-      "Empresa individual de resp. ltda",
-      "Ent.inst.cooperac.tecnica - eniex",
-      "Fundacion",
-      "Gobierno central",
-      "Gobierno regional, local",
-      "Instituciones publicas",
-      "Instituciones religiosas",
-      "Junta de propietarios",
-      "No determinado",
-      "Persona natural con negocio",
-      "Persona natural sin negocio",
-      "Sindicatos y federaciones",
-      "Soc.com.respons. ltda",
-      "Sociedad anonima",
-      "Sociedad anonima abierta",
-      "Sociedad anonima cerrada",
-      "Sociedad civil",
-      "Sociedad conyugal con negocio",
-      "Sociedad en comandita por acciones",
-      "Sociedad irregular",
-      "Sucesion indivisa con negocio",
-      "Sucursales o ag. de emp. extranj.",
-      "Univers. centros educat. y cult."
+      "Asoc. fundac. y comite no inscritos", // 1
+      "Asociacion", // 2
+      "Asociacion en participacion", // 3
+      "Cafaes y subcafaes", // 4 <--
+      "Colegios profesionales", // 5
+      "Comunidad campesina, nativa", // 6
+      "Contratos colaboracion empresarial", // 7
+      "Cooperativas, sais, caps", // 8
+      "Empresa de derecho publico", // 9
+      "Empresa de economia mixta", // 10
+      "Empresa de propiedad social", // 11
+      "Empresa estatal de derecho privado", // 12
+      "Empresa individual de resp. ltda", // 13
+      "Ent.inst.cooperac.tecnica - eniex", // 14
+      "Fundacion", // 15
+      "Gobierno central", // 16
+      "Gobierno regional, local", // 17
+      "Instituciones publicas", // 18
+      "Instituciones religiosas", // 19
+      "Junta de propietarios", // 20
+      "No determinado", // 21
+      "Persona natural con negocio", // 22
+      "Persona natural sin negocio", // 23
+      "Sindicatos y federaciones", // 24
+      "Soc.com.respons. ltda", // 25
+      "Sociedad anonima", // 26
+      "Sociedad anonima abierta", // 27
+      "Sociedad anonima cerrada", // 28
+      "Sociedad civil", // 29
+      "Sociedad conyugal con negocio", // 30
+      "Sociedad en comandita por acciones", // 31
+      "Sociedad irregular", // 32
+      "Sucesion indivisa con negocio", // 33
+      "Sucursales o ag. de emp. extranj.", // 34
+      "Univers. centros educat. y cult." // 35
     ].includes(d.Contribuyente)) {
       return colors["Clientes atendidos segun CIIU y tipo de contribuyente"][d["Contribuyente ID"]];
     }
@@ -5130,42 +5131,43 @@ export const findIconV2 = (key, d) => {
 
   if (key === "Contribuyente") {
     if ([
-      "Asoc. fundac. y comite no inscritos",
-      "Asociacion",
-      "Asociacion en participacion",
-      "Colegios profesionales",
-      "Comunidad campesina, nativa",
-      "Contratos colaboracion empresarial",
-      "Cooperativas, sais, caps",
-      "Empresa de derecho publico",
-      "Empresa de economia mixta",
-      "Empresa de propiedad social",
-      "Empresa estatal de derecho privado",
-      "Empresa individual de resp. ltda",
-      "Ent.inst.cooperac.tecnica - eniex",
-      "Fundacion",
-      "Gobierno central",
-      "Gobierno regional, local",
-      "Instituciones publicas",
-      "Instituciones religiosas",
-      "Junta de propietarios",
-      "No determinado",
-      "Persona natural con negocio",
-      "Persona natural sin negocio",
-      "Sindicatos y federaciones",
-      "Soc.com.respons. ltda",
-      "Sociedad anonima",
-      "Sociedad anonima abierta",
-      "Sociedad anonima cerrada",
-      "Sociedad civil",
-      "Sociedad conyugal con negocio",
-      "Sociedad en comandita por acciones",
-      "Sociedad irregular",
-      "Sucesion indivisa con negocio",
-      "Sucursales o ag. de emp. extranj.",
-      "Univers. centros educat. y cult."
+      "Asoc. fundac. y comite no inscritos", // 1
+      "Asociacion", // 2
+      "Asociacion en participacion", // 3
+      "Cafaes y subcafaes", // 4 <--
+      "Colegios profesionales", // 5
+      "Comunidad campesina, nativa", // 6
+      "Contratos colaboracion empresarial", // 7
+      "Cooperativas, sais, caps", // 8
+      "Empresa de derecho publico", // 9
+      "Empresa de economia mixta", // 10
+      "Empresa de propiedad social", // 11
+      "Empresa estatal de derecho privado", // 12
+      "Empresa individual de resp. ltda", // 13
+      "Ent.inst.cooperac.tecnica - eniex", // 14
+      "Fundacion", // 15
+      "Gobierno central", // 16
+      "Gobierno regional, local", // 17
+      "Instituciones publicas", // 18
+      "Instituciones religiosas", // 19
+      "Junta de propietarios", // 20
+      "No determinado", // 21
+      "Persona natural con negocio", // 22
+      "Persona natural sin negocio", // 23
+      "Sindicatos y federaciones", // 24
+      "Soc.com.respons. ltda", // 25
+      "Sociedad anonima", // 26
+      "Sociedad anonima abierta", // 27
+      "Sociedad anonima cerrada", // 28
+      "Sociedad civil", // 29
+      "Sociedad conyugal con negocio", // 30
+      "Sociedad en comandita por acciones", // 31
+      "Sociedad irregular", // 32
+      "Sucesion indivisa con negocio", // 33
+      "Sucursales o ag. de emp. extranj.", // 34
+      "Univers. centros educat. y cult." // 35
     ].includes(d.Contribuyente)) {
-      return `/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/${d["Contribuyente ID"]}.png`;
+      return `/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/${d["Contribuyente ID"]}.png` || "/icons/visualizations/Clientes atendidos segun CIIU y tipo de contribuyente/21.png";
     }
   }
 
